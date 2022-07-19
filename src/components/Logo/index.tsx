@@ -1,6 +1,14 @@
 import {Logo} from "./styles/logo";
+import React from "react";
 
-// @ts-ignore
-export default function LogoContainer({children, ...restProps}){
-    return <Logo {...restProps}>{children}</Logo>
+
+export interface ILogoElement{
+    children: React.ReactNode
 }
+
+const LogoElement: React.FunctionComponent<ILogoElement>=({children, ...restProps})=>{
+    return <Logo {...restProps}>{children}</Logo>
+
+}
+
+export default LogoElement
