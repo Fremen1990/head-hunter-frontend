@@ -11,7 +11,8 @@ export const HeaderContainer = styled.header`
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      max-width: 70%;
+      align-items: center;
+      max-width: 1200px;
       margin: 0 auto;
    }
 `
