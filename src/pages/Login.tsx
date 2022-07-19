@@ -4,8 +4,6 @@ import {
    ForgetPasswordLink,
    FormContainer,
    LoginContainer,
-   RegisterLink,
-   SectionContainer,
 } from '../components/Login/Login.style'
 
 export interface ILoginPageProps {}
@@ -49,13 +47,7 @@ export const LoginPage: React.FunctionComponent<ILoginPageProps> = () => {
                <ForgetPasswordLink to="#">
                   Zapomniałeś hasła?
                </ForgetPasswordLink>
-               <SectionContainer>
-                  <div>
-                     <span>Nie masz konta?</span>
-                     <RegisterLink to="#">Zarejestruj się</RegisterLink>
-                  </div>
-                  <button>Zaloguj się</button>
-               </SectionContainer>
+               <button>Zaloguj się</button>
             </FormContainer>
          </LoginContainer>
       </ContainerElement>

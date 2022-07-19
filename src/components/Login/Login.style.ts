@@ -42,13 +42,6 @@ export const FormContainer = styled.form`
          color: #000;
       }
    }
-`
-export const SectionContainer = styled.div`
-   display: flex;
-   justify-content: space-between;
-   flex-wrap: wrap;
-   align-items: center;
-   width: 100%;
 
    & button {
       color: white;
@@ -59,11 +52,6 @@ export const SectionContainer = styled.div`
       background-color: red;
       cursor: pointer;
    }
-`
-export const RegisterLink = styled(Link)`
-   color: white;
-   margin-left: 5px;
-   text-decoration: underline;
 `
 export const ForgetPasswordLink = styled(Link)`
    color: white;
