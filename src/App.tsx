@@ -28,5 +28,4 @@ const App: React.FunctionComponent<IAppProps> = () => {
       </BrowserRouter>
    )
 }
-// Testing eslint and lint-staged
 export default App
