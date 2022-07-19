@@ -10,7 +10,7 @@ import * as ROUTES from './constants/routes'
 export interface IAppProps {}
 
 const App: React.FunctionComponent<IAppProps> = () => {
-  return (
+   return (
       <BrowserRouter>
          <Routes>
             <Route path={ROUTES.HOME} element={<Home />} />
@@ -26,7 +26,7 @@ const App: React.FunctionComponent<IAppProps> = () => {
             />
          </Routes>
       </BrowserRouter>
-  )
+   )
 }
-
+// Testing eslint and lint-staged
 export default App
