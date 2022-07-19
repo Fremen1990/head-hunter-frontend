@@ -1,0 +1,5 @@
+export { default as AvailableStudents } from './AvailableStudents.page'
+export { default as ForInterview } from './ForInterview.page'
+export { default as Home } from './Home.page'
+export { default as Login } from './Login.page'
+export { default as StudentPortfolio } from './StudentPortfolio.page'

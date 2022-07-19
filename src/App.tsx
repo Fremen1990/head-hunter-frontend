@@ -1,11 +1,14 @@
 import React from 'react'
-import Home from './pages/Home'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Login from './pages/Login'
-import AvailableStudents from './pages/AvailableStudents'
-import ForInterview from './pages/ForInterview'
-import StudentPortfolio from './pages/StudentPortfolio'
+
 import * as ROUTES from './constants/routes'
+import {
+   AvailableStudents,
+   ForInterview,
+   Home,
+   Login,
+   StudentPortfolio,
+} from './pages'
 
 export interface IAppProps {}
 
