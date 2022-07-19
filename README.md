@@ -1,8 +1,22 @@
-# Getting Started with Create React App
+<div style="display: flex; align-items: center; justify-content: center">
+<p align="center">
+  <a href="https://platforma.megak.pl/" target="blank">
+<img src="https://static1.s123-cdn-static-a.com/uploads/5191798/400_609bb5e2d9a39.png" width="150" alt="Nest Logo" /></a>
+<h1>Head Hunter</h1>
+<img src="./assetts/headhynterlogo.png" width="80" alt="Nest Logo" /></a>
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+
+## Project currently in progres, will use technology:
+
+### ReactJS
+### TypeScript
+### ContextAPI
+### Styled Components
+
+<br/>
+
 
 In the project directory, you can run:
 
