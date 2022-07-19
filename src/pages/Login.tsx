@@ -12,7 +12,7 @@ export const LoginPage: React.FunctionComponent<ILoginPageProps> = () => {
    const [email, setEmail] = useState<string>('')
    const [password, setPassword] = useState<string>('')
 
-   const handleClick = async (e: FormEvent) => {
+   const handleSubmit = async (e: FormEvent) => {
       e.preventDefault()
       setEmail('')
       setPassword('')
@@ -25,7 +25,7 @@ export const LoginPage: React.FunctionComponent<ILoginPageProps> = () => {
                src="https://static1.s123-cdn-static-a.com/uploads/5191798/400_609bb5e2d9a39.png"
                alt="logo"
             />
-            <FormContainer onSubmit={handleClick}>
+            <FormContainer onSubmit={handleSubmit}>
                <input
                   type="email"
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
