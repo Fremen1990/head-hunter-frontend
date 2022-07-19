@@ -1,12 +1,12 @@
 import React from 'react'
-import LogoContainer from '../components/Logo'
+import LogoElement from '../components/LogoElement/LogoElement'
 
 export interface IAvailableStudentsPageProps {}
 
 const AvailableStudents: React.FunctionComponent<
    IAvailableStudentsPageProps
 > = () => {
-   return <LogoContainer>Student Portfolio Page </LogoContainer>
+   return <LogoElement>Student Portfolio Page</LogoElement>
 }
 
 export default AvailableStudents

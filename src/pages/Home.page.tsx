@@ -1,5 +1,5 @@
 import React from 'react'
-import LogoElement from '../components/Logo'
+import LogoElement from '../components/LogoElement/LogoElement'
 
 export interface IHomePageProps {}
 

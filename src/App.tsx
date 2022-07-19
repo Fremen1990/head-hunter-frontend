@@ -9,6 +9,8 @@ import {
    Login,
    StudentPortfolio,
 } from './pages'
+import FilterModalElement from './components/FilterModal/FilterModalElement'
+import UserItemElement from './components/UserItem/UserItemElement'
 
 export interface IAppProps {}
 
@@ -27,6 +29,20 @@ const App: React.FunctionComponent<IAppProps> = () => {
                path={ROUTES.STUDENT_PORTFOLIO}
                element={<StudentPortfolio />}
             />
+
+            {/* --------- FilterModal component route----------- **/}
+            <Route
+               path={`${ROUTES.AVAILABLE_STUDENTS}/filter-modal`}
+               element={<FilterModalElement> Filter modal </FilterModalElement>}
+            />
+            {/* --------- FilterModal component route----------- **/}
+
+            {/* --------- UserItem component route----------- **/}
+            <Route
+               path={`${ROUTES.AVAILABLE_STUDENTS}/user-item`}
+               element={<UserItemElement>User item</UserItemElement>}
+            />
+            {/* --------- UserItem component route----------- **/}
          </Routes>
       </BrowserRouter>
    )
