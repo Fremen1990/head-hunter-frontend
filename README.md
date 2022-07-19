@@ -1,10 +1,10 @@
 <div style="display: flex; align-items: center; justify-content: center">
 <p align="center">
-  <a href="https://platforma.megak.pl/" target="blank">
-<img src="https://static1.s123-cdn-static-a.com/uploads/5191798/400_609bb5e2d9a39.png" width="150" alt="Nest Logo" /></a>
-<h1>Head Hunter</h1>
-<img src="./assetts/headhynterlogo.png" width="80" alt="Nest Logo" /></a>
+<img src="./assetts/readme_logo.png" width="500" alt="Nest Logo" />
+
+
 </div>
+<h1>MegaK Head Hunter </h1>
 
 
 
