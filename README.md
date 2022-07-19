@@ -1,22 +1,21 @@
 <div style="display: flex; align-items: center; justify-content: center">
 <p align="center">
-<img src="./assetts/readme_logo.png" width="500" alt="Nest Logo" />
-
+<img src="assets/readme_logo.png" width="500" alt="Nest Logo" />
 
 </div>
 <h1>MegaK Head Hunter </h1>
 
-
-
 ## Project currently in progres, will use technology:
 
 ### ReactJS
+
 ### TypeScript
+
 ### ContextAPI
+
 ### Styled Components
 
 <br/>
-
 
 In the project directory, you can run:
 
