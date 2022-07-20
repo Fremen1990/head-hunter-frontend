@@ -1,16 +1,7 @@
 import React from 'react'
-import ContainerElement from '../components/ContainerElement/ContainerElement'
 
 export interface ILoginPageProps {}
 
-const LoginPage: React.FunctionComponent<ILoginPageProps> = () => {
-   return (
-      <ContainerElement>
-         <label>Login</label>
-         <input type="email" />
-         <input type="password" />
-      </ContainerElement>
-   )
+export const LoginPage: React.FunctionComponent<ILoginPageProps> = () => {
+   return <h1>Login Page</h1>
 }
-
-export default LoginPage

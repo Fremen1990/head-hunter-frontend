@@ -1,5 +1,5 @@
-export const HOME = '/';
-export const LOGIN = '/login';
-export const AVAILABLE_STUDENTS = '/available-students';
-export const FOR_INTERVIEW = '/for-interview';
-export const STUDENT_PORTFOLIO = '/student-portfolio';
+export const HOME = '/'
+export const LOGIN = '/login'
+export const USER_PAGE = '/user'
+export const ADMIN_PAGE = '/admin'
+export const NOT_FOUND = '*'
