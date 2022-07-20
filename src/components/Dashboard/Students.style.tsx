@@ -6,17 +6,15 @@ export const StudentsTabs = styled.nav`
    flex-direction: row;
    align-items: center;
    margin-top: 10px;
-   background: ${appColors.pageContainerColor};
+   background: transparent;
    justify-content: flex-start;
    width: 100%;
-   height: 72px;
+   height: 40px;
 `
 
-export const OneTab = styled.a`
-   margin-top: 18px;
-   padding: 10px 20px;
-   margin-bottom: 25px;
+export const Tab = styled.a`
    width: 200px;
+   background: transparent;
    text-align: center;
    cursor: pointer;
 
@@ -28,5 +26,6 @@ export const OneTab = styled.a`
 export const Text = styled.p`
    font-family: Catamaran, sans-serif;
    color: ${appColors.fontColor};
+   background: transparent;
    font-size: 18px;
 `
