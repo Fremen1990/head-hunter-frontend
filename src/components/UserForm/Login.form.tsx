@@ -8,6 +8,9 @@ type Login = {
    password: string
 }
 
+export const emailValidate =
+   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
 export const LoginForm = () => {
    const navigate = useNavigate()
 
@@ -31,7 +34,7 @@ export const LoginForm = () => {
                {...register('email', {
                   required: 'Email jest wymagany',
                   pattern: {
-                     value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                     value: emailValidate,
                      message: 'Podaj swój adres email',
                   },
                })}
