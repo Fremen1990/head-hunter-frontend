@@ -1,7 +1,15 @@
 import React from 'react'
+import { LoginPageContainer } from '../components/Login/Login.style'
+import { LoginForm } from '../components/UserForm/Login.form'
+import { Logo } from '../components/Header/Logo/Logo'
 
 export interface ILoginPageProps {}
 
 export const LoginPage: React.FunctionComponent<ILoginPageProps> = () => {
-   return <h1>Login Page</h1>
+   return (
+      <LoginPageContainer>
+         <Logo logoWidth={'200px'} />
+         <LoginForm />
+      </LoginPageContainer>
+   )
 }
