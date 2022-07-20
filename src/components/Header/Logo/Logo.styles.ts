@@ -1,18 +1,22 @@
 import styled from 'styled-components'
 import { device } from '../../../constants/mediaQueries'
 
-export const LogoContainer = styled.div`
-   width: 40px;
+interface Props {
+   logoWidth?: string
+}
+
+export const LogoContainer = styled.div<Props>`
+   width: ${(props) => props.logoWidth ?? '40px'};
    display: flex;
    justify-content: center;
    align-items: center;
 
    ${device.mobile} {
-      width: 60px;
+      width: ${(props) => props.logoWidth ?? '60px'};
    }
 
    ${device.desktop} {
-      width: 50px;
+      width: ${(props) => props.logoWidth ?? '50px'};
    }
 
    & img {
