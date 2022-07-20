@@ -6,7 +6,7 @@
 </div>
 <h1>MegaK Head Hunter </h1>
 
-
+Previews and builds on Vercel: https://head-hunter-frontend.vercel.app/login
 
 ## Project currently in progres, will use technology:
 
