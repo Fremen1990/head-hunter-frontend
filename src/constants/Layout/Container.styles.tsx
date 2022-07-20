@@ -3,6 +3,7 @@ import { appColors } from './app.colors'
 
 export const PageContainer = styled.div`
    display: flex;
+   flex-direction: column;
    align-items: center;
    justify-content: center;
    max-width: 1200px;
