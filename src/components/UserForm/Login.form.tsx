@@ -2,14 +2,12 @@ import React from 'react'
 import { ForgetPasswordLink, Form, FormContainer } from './Form.styles'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { emailValidate } from '../../constants/validation'
 
 type Login = {
    email: string
    password: string
 }
-
-export const emailValidate =
-   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 export const LoginForm = () => {
    const navigate = useNavigate()
