@@ -1,5 +1,17 @@
 import React from 'react'
+import { PageContainer } from '../constants/Layout/Container.styles'
+import { Header } from '../components/Header/Header'
 
 export const AdminPage = () => {
-   return <h1>Admin Page</h1>
+   return (
+      <>
+         <Header />
+         <PageContainer>
+            <h1>Admin Page</h1>
+            <p>
+               For example how to use page container with header component :)
+            </p>
+         </PageContainer>
+      </>
+   )
 }
