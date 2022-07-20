@@ -1,19 +1,15 @@
 import React from 'react'
-import { OneTab, StudentsTabs, Text } from './Students.style'
-
-// export interface IStudentsElement {
-//   children: React.ReactNode
-// }
+import { Tab, StudentsTabs, Text } from './Students.style'
 
 export const StudentsNavigation = () => {
    return (
       <StudentsTabs>
-         <OneTab>
+         <Tab>
             <Text>Dostępni kursanci</Text>
-         </OneTab>
-         <OneTab>
+         </Tab>
+         <Tab>
             <Text>Do rozmowy</Text>
-         </OneTab>
+         </Tab>
       </StudentsTabs>
    )
 }
