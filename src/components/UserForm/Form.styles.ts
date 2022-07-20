@@ -33,6 +33,11 @@ export const Form = styled.form`
       }
    }
 
+   & p {
+      color: white;
+      align-self: flex-start;
+   }
+
    & button {
       color: white;
       border: none;

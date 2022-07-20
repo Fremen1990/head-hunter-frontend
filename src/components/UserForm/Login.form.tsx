@@ -8,7 +8,11 @@ type Login = {
 }
 
 export const LoginForm = () => {
-   const { handleSubmit, register } = useForm<Login>()
+   const {
+      handleSubmit,
+      register,
+      formState: { errors },
+   } = useForm<Login>()
 
    const onSubmit = (data: Login) => {
       console.log(data)
@@ -22,11 +26,13 @@ export const LoginForm = () => {
                {...register('email', { required: 'To pole jest wymagane' })}
                placeholder="E-mail"
             />
+            <p>{errors.email?.message}</p>
             <input
                type="password"
                {...register('password', { required: 'To pole jest wymagane' })}
                placeholder="Hasło"
             />
+            <p>{errors.password?.message}</p>
             <ForgetPasswordLink to="#">Zapomniałeś hasła?</ForgetPasswordLink>
             <button>Zaloguj się</button>
          </Form>
