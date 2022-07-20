@@ -8,7 +8,7 @@ export interface ILoginPageProps {}
 export const LoginPage: React.FunctionComponent<ILoginPageProps> = () => {
    return (
       <LoginPageContainer>
-         <Logo logoWidth={'200px'} />
+         <Logo logoWidth={'124px'} />
          <LoginForm />
       </LoginPageContainer>
    )
