@@ -1,10 +1,11 @@
 import styled from 'styled-components'
+import { appColors } from '../../constants/Layout/app.colors'
 
 export const HeaderContainer = styled.header`
    width: 100%;
    color: white;
-   background: #1e1e1f;
-   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+   background: ${appColors.headerColor};
+   border-bottom: 1px solid ${appColors.borderColor};
    padding: 5px 10px;
 
    & > div {
