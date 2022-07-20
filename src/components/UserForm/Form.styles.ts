@@ -15,16 +15,16 @@ export const Form = styled.form`
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   margin-top: 5px;
-   width: 90%;
+   width: 350px;
    padding: 10px;
 
    & input {
-      width: 100%;
+      width: 350px;
       border: none;
       padding: 5px;
-      color: #e1e1fe;
-      background-color: rgba(255, 255, 255, 0.15);
+      color: #f7f7f7;
+      background-color: #292a2b;
+      height: 40px;
       margin: 10px 0;
 
       &:focus {
@@ -39,18 +39,19 @@ export const Form = styled.form`
    }
 
    & button {
-      color: white;
+      color: #f7f7f7;
       border: none;
       font-size: 1rem;
       padding: 5px 15px;
       margin: 5px;
       background-color: red;
       cursor: pointer;
+      align-self: flex-end;
    }
 `
 
 export const ForgetPasswordLink = styled(NavLink)`
-   color: white;
+   color: #f7f7f7;
    align-self: flex-end;
    margin-bottom: 10px;
    padding: 0 10px;
