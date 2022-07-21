@@ -22,7 +22,9 @@ export const LoginForm = () => {
    const {
       handleSubmit,
       register,
-      formState: { errors },
+      formState: {
+         errors: { email, password },
+      },
    } = useForm<Login>()
 
    const onSubmit = (data: Login) => {
@@ -36,7 +38,7 @@ export const LoginForm = () => {
          <Form onSubmit={handleSubmit(onSubmit)}>
             <InputWrap>
                <Input
-                  err={errors.email}
+                  err={email}
                   type="email"
                   {...register('email', {
                      required: 'Email jest wymagany',
@@ -47,16 +49,16 @@ export const LoginForm = () => {
                   })}
                   placeholder="E-mail"
                />
-               {errors.email && <div>{errors.email.message}</div>}
+               {email && <div>{email.message}</div>}
             </InputWrap>
             <InputWrap>
                <Input
-                  err={errors.password}
+                  err={password}
                   type="password"
                   {...register('password', { required: 'Hasło jest wymagane' })}
                   placeholder="Hasło"
                />
-               {errors.password && <div>{errors.password.message}</div>}
+               {password && <div>{password.message}</div>}
             </InputWrap>
             <ForgetPasswordLink to="#">Zapomniałeś hasła?</ForgetPasswordLink>
             <Button buttonTitle="Zaloguj się" />
