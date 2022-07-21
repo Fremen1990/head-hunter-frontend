@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
+import { appColors } from '../../constants/Layout/app.colors'
 
 interface Props {
    err: {} | undefined
@@ -22,19 +23,7 @@ export const Form = styled.form`
    width: 350px;
    padding: 10px;
 
-   & p {
-      color: white;
-      align-self: flex-start;
-   }
-
    & button {
-      color: #f7f7f7;
-      border: none;
-      font-size: 1rem;
-      padding: 5px 15px;
-      margin: 5px;
-      background-color: #e02735;
-      cursor: pointer;
       align-self: flex-end;
    }
 `
@@ -42,10 +31,11 @@ export const Form = styled.form`
 export const Input = styled.input<Props>`
    width: 350px;
    ${(props) => props.theme.main}
-   border: 1px solid ${({ err }) => (err ? 'red' : 'transparent')};
+   border: 1px solid ${({ err }) =>
+      err ? `${appColors.buttonColor}` : 'transparent'};
    padding: 5px;
-   color: #f7f7f7;
-   background-color: #292a2b;
+   color: ${appColors.fontColor};
+   background-color: ${appColors.pageContainerColor};
    height: 40px;
    margin: 10px 0;
 
@@ -56,7 +46,7 @@ export const Input = styled.input<Props>`
 `
 
 export const ForgetPasswordLink = styled(NavLink)`
-   color: #f7f7f7;
+   color: ${appColors.fontColor};
    align-self: flex-end;
    margin-bottom: 10px;
    padding: 0 10px;
@@ -76,15 +66,15 @@ export const InputWrap = styled.div`
       height: 35px;
       left: -220px;
       top: 13px;
-      font-size: 12px;
-      padding: 8px 5px;
-      background: #e02735;
-      color: #fff;
+      font-size: 14px;
+      padding: 6px 5px;
+      background: ${appColors.buttonColor};
+      color: ${appColors.fontColor};
       border-radius: 6px;
 
       &:after {
          content: '';
-         border-left: 15px solid #e02735;
+         border-left: 15px solid ${appColors.buttonColor};
          border-top: 15px solid transparent;
          border-bottom: 15px solid transparent;
          position: absolute;
