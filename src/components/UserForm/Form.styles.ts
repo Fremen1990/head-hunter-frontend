@@ -78,7 +78,7 @@ export const InputWrap = styled.div`
          border-top: 15px solid transparent;
          border-bottom: 15px solid transparent;
          position: absolute;
-         right: -14px;
+         right: -13.5px;
          top: 2.5px;
       }
    }
