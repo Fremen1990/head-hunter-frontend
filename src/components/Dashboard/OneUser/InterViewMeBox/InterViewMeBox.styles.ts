@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { appColors } from '../../../../constants/Layout/app.colors'
+import { device } from '../../../../constants/mediaQueries'
 
 export const BoxContainer = styled.div`
    display: flex;
@@ -10,7 +11,15 @@ export const BoxContainer = styled.div`
    margin: 2px;
    height: 100px;
    color: ${appColors.descriptionColor};
-   min-width: 10%;
+   min-width: 100%;
+
+   ${device.tablet} {
+      min-width: 10%;
+   }
+
+   ${device.desktop} {
+      min-width: 10%;
+   }
 
    & p {
       color: ${appColors.descriptionColor};
