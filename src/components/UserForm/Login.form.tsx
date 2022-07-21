@@ -9,6 +9,7 @@ import {
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { emailValidate } from '../../constants/validation'
+import { Button } from '../commons/Button/Button'
 
 type Login = {
    email: string
@@ -58,7 +59,7 @@ export const LoginForm = () => {
                {errors.password && <div>{errors.password.message}</div>}
             </InputWrap>
             <ForgetPasswordLink to="#">Zapomniałeś hasła?</ForgetPasswordLink>
-            <button>Zaloguj się</button>
+            <Button buttonTitle="Zaloguj się" />
          </Form>
       </FormContainer>
    )
