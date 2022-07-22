@@ -10,7 +10,7 @@ export const AccountContainer = styled.div`
    border: 1px solid ${appColors.borderColor};
    background-color: ${appColors.pageContainerColor};
    color: ${appColors.fontColor};
-   min-height: 100vh;
+   min-height: 89vh;
 
    & .container-box {
       width: 50%;
