@@ -33,9 +33,14 @@ export const AccountContainer = styled.div`
    }
 `
 export const AccountAvatar = styled.img`
-   max-width: 200px;
-   max-height: 200px;
+   max-width: 140px;
+   max-height: 140px;
    border-radius: 50%;
    margin: 40px 0;
    box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+
+   ${device.desktop} {
+      max-width: 190px;
+      max-height: 190px;
+   }
 `
