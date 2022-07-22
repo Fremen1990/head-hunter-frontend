@@ -1,7 +1,7 @@
 import React from 'react'
 import { PageContainer } from '../constants/Layout/Container.styles'
 import { Header } from '../components/Header/Header'
-import { StudentsNavigation } from '../components/Dashboard/Students'
+import { StudentsNavigation } from '../components/Dashboard/Navigation/Navigation'
 
 export interface IHomePageProps {}
 

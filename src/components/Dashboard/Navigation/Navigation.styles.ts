@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { appColors } from '../../constants/Layout/app.colors'
+import { appColors } from '../../../constants/Layout/app.colors'
 
 export const StudentsTabs = styled.nav`
    display: flex;
@@ -15,17 +15,13 @@ export const StudentsTabs = styled.nav`
 export const Tab = styled.a`
    width: 200px;
    background: transparent;
+   font-family: Catamaran, sans-serif;
+   color: ${appColors.fontColor};
+   font-size: 18px;
    text-align: center;
    cursor: pointer;
 
    &:hover {
       border-bottom: 1px solid red;
    }
-`
-
-export const Text = styled.p`
-   font-family: Catamaran, sans-serif;
-   color: ${appColors.fontColor};
-   background: transparent;
-   font-size: 18px;
 `
