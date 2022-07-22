@@ -22,6 +22,6 @@ export const Tab = styled.a`
    cursor: pointer;
 
    &:hover {
-      border-bottom: 1px solid red;
+      border-bottom: 1px solid ${appColors.buttonColor};
    }
 `
