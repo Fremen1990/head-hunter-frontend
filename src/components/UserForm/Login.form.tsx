@@ -1,8 +1,15 @@
 import React from 'react'
-import { ForgetPasswordLink, Form, FormContainer } from './Form.styles'
+import {
+   ForgetPasswordLink,
+   Form,
+   FormContainer,
+   Input,
+   InputWrap,
+} from './Form.styles'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { emailValidate } from '../../constants/validation'
+import { Button } from '../commons/Button/Button'
 
 type Login = {
    email: string
@@ -15,39 +22,46 @@ export const LoginForm = () => {
    const {
       handleSubmit,
       register,
-      formState: { errors },
+      formState: {
+         errors: { email, password },
+      },
    } = useForm<Login>()
 
    const onSubmit = (data: Login) => {
       if (data.email && data.password) {
-         navigate('/')
+         navigate('/user')
       }
    }
 
    return (
       <FormContainer>
          <Form onSubmit={handleSubmit(onSubmit)}>
-            <input
-               type="email"
-               {...register('email', {
-                  required: 'Email jest wymagany',
-                  pattern: {
-                     value: emailValidate,
-                     message: 'Podaj swój adres email',
-                  },
-               })}
-               placeholder="E-mail"
-            />
-            <p>{errors.email?.message}</p>
-
-            <input
-               type="password"
-               {...register('password', { required: 'Hasło jest wymagane' })}
-               placeholder="Hasło"
-            />
-            <p>{errors.password?.message}</p>
+            <InputWrap>
+               <Input
+                  err={email}
+                  type="email"
+                  {...register('email', {
+                     required: 'Email jest wymagany',
+                     pattern: {
+                        value: emailValidate,
+                        message: 'Podaj swój adres email',
+                     },
+                  })}
+                  placeholder="E-mail"
+               />
+               {email && <div>{email.message}</div>}
+            </InputWrap>
+            <InputWrap>
+               <Input
+                  err={password}
+                  type="password"
+                  {...register('password', { required: 'Hasło jest wymagane' })}
+                  placeholder="Hasło"
+               />
+               {password && <div>{password.message}</div>}
+            </InputWrap>
             <ForgetPasswordLink to="#">Zapomniałeś hasła?</ForgetPasswordLink>
-            <button>Zaloguj się</button>
+            <Button buttonTitle="Zaloguj się" />
          </Form>
       </FormContainer>
    )
