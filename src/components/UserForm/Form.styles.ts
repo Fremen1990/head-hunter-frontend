@@ -12,8 +12,8 @@ export const FormContainer = styled.div`
    justify-content: center;
    align-items: center;
    flex-wrap: wrap;
-   width: 50vw;
-   height: 50vh;
+   height: 50%;
+   padding: 5px;
 `
 export const Form = styled.form`
    display: flex;
