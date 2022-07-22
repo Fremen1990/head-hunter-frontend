@@ -1,5 +1,5 @@
 import React from 'react'
-import { LoginPageContainer } from '../components/Login/Login.style'
+import { LoginPageContainer } from '../components/UserForm/Login/Login.styles'
 import { LoginForm } from '../components/UserForm/Login.form'
 import { Logo } from '../components/Header/Logo/Logo'
 
