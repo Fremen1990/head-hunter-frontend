@@ -15,7 +15,9 @@ export const FormContainer = styled.div`
    align-items: center;
    flex-wrap: wrap;
    height: 50%;
+   width: 95%;
    padding: 5px;
+   overflow: hidden;
 `
 export const Form = styled.form`
    display: flex;
@@ -23,6 +25,15 @@ export const Form = styled.form`
    justify-content: center;
    align-items: center;
    padding: 10px;
+   width: 100%;
+
+   ${device.tablet} {
+      width: 50%;
+   }
+
+   ${device.desktop} {
+      width: 20%;
+   }
 
    & * {
       font-size: 1.4rem;
@@ -34,7 +45,7 @@ export const Form = styled.form`
 `
 
 export const Input = styled.input<Props>`
-   width: 150px;
+   width: 100%;
    ${(props) => props.theme.main}
    border: 1px solid ${({ err }) =>
       err ? `${appColors.buttonColor}` : 'transparent'};
@@ -43,14 +54,6 @@ export const Input = styled.input<Props>`
    background-color: ${appColors.pageContainerColor};
    height: 40px;
    margin: 10px 0;
-
-   ${device.tablet} {
-      width: 250px;
-   }
-
-   ${device.desktop} {
-      width: 350px;
-   }
 
    &:focus {
       background-color: rgb(256, 256, 256);
@@ -72,6 +75,7 @@ export const InputWrap = styled.div`
    flex-direction: column;
    align-items: center;
    user-select: none;
+   width: 100%;
 
    & div {
       position: absolute;
