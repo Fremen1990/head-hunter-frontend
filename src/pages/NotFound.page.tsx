@@ -1,5 +1,15 @@
 import React from 'react'
+import { PageContainer } from '../constants/Layout/Container.styles'
+import { Header } from '../components/Header/Header'
+import { NotFound } from '../components/NotFound/NotFound'
 
 export const NotFoundPage = () => {
-   return <h1>404 Not Found</h1>
+   return (
+      <>
+         <Header />
+         <PageContainer>
+            <NotFound />
+         </PageContainer>
+      </>
+   )
 }

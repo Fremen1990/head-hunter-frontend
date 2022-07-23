@@ -1,6 +1,13 @@
 export const description = {
    inputsFields: {
       placeholder: 'name',
+      passwordPlaceholder: 'hasło',
+      emailPlaceholder: 'email',
+   },
+   form: {
+      requiredEmail: 'Email jest wymagany',
+      messageEmail: 'Podaj swój adres email',
+      requiredPass: 'Hasło jest wymagane',
    },
    userInterview: {
       userReservation: 'rezerwacja do:',
@@ -20,5 +27,9 @@ export const description = {
       disinterest: 'brak zainteresowania',
       hired: 'zatrudniony',
       bookCall: 'zarezerwuj rozmowe',
+      logOut: 'wyloguj',
+      logIn: 'Zaloguj się',
+      account: 'konto',
+      forgotPass: 'zapomniałeś hasła ?',
    },
 }
