@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { UserContainer } from './UserBox.styles'
 import { AiOutlineCaretDown } from 'react-icons/ai'
+import { NavLink } from 'react-router-dom'
+import { description } from '../../../constants/description/description'
 
 export const UserBox = () => {
    const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -14,8 +16,8 @@ export const UserBox = () => {
          </div>
          {isOpen && (
             <div>
-               <p>konto</p>
-               <p>wyloguj</p>
+               <NavLink to={'/user'}>{description.buttons.account}</NavLink>
+               <NavLink to={'/login'}>{description.buttons.logOut}</NavLink>
             </div>
          )}
       </UserContainer>
