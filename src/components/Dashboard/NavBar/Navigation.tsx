@@ -3,7 +3,7 @@ import { NavBar, Tab } from './Navigation.styles'
 
 const types = ['Dostępni studenci', 'Do rozmowy']
 
-export function NavBar() {
+export function NavigationBar() {
    const [active, setActive] = useState(types[0])
 
    return (
