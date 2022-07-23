@@ -15,7 +15,7 @@ export const Tab = styled.a<{ active: boolean }>`
     border-bottom: 1px solid ${appColors.buttonColor}
   `}
 `
-export const ButtonGroup = styled.div`
+export const NavBar = styled.div`
    display: flex;
    flex-direction: row;
    align-items: center;

@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import { ButtonGroup, Tab } from './Navigation.styles'
+import { NavBar, Tab } from './Navigation.styles'
 
 const types = ['Dostępni studenci', 'Do rozmowy']
 
-export function StudentsNavigation() {
+export function NavBar() {
    const [active, setActive] = useState(types[0])
 
    return (
       <>
-         <ButtonGroup>
+         <NavBar>
             {types.map((type) => (
                <Tab
                   key={type}
@@ -18,7 +18,7 @@ export function StudentsNavigation() {
                   {type}
                </Tab>
             ))}
-         </ButtonGroup>
+         </NavBar>
       </>
    )
 }
