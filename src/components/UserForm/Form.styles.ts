@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { appColors } from '../../constants/Layout/app.colors'
 
+import { device } from '../../constants/mediaQueries'
+
 interface Props {
    err: {} | undefined
 }
@@ -20,7 +22,6 @@ export const Form = styled.form`
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   width: 350px;
    padding: 10px;
 
    & button {
@@ -29,7 +30,7 @@ export const Form = styled.form`
 `
 
 export const Input = styled.input<Props>`
-   width: 350px;
+   width: 150px;
    ${(props) => props.theme.main}
    border: 1px solid ${({ err }) =>
       err ? `${appColors.buttonColor}` : 'transparent'};
@@ -38,6 +39,14 @@ export const Input = styled.input<Props>`
    background-color: ${appColors.pageContainerColor};
    height: 40px;
    margin: 10px 0;
+
+   ${device.tablet} {
+      width: 250px;
+   }
+
+   ${device.desktop} {
+      width: 350px;
+   }
 
    &:focus {
       background-color: rgb(256, 256, 256);
@@ -62,15 +71,28 @@ export const InputWrap = styled.div`
 
    & div {
       position: absolute;
-      width: 200px;
+      width: 80px;
       height: 35px;
-      left: -220px;
+      left: -100px;
       top: 13px;
-      font-size: 14px;
+      text-align: start;
+      font-size: 8px;
       padding: 6px 5px;
       background: ${appColors.buttonColor};
       color: ${appColors.fontColor};
       border-radius: 6px;
+
+      ${device.tablet} {
+         width: 150px;
+         left: -170px;
+         font-size: 12px;
+      }
+
+      ${device.desktop} {
+         width: 200px;
+         left: -220px;
+         font-size: 14px;
+      }
 
       &:after {
          content: '';
