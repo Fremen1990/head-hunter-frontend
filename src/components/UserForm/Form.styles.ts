@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { appColors } from '../../constants/Layout/app.colors'
+
 import { device } from '../../constants/mediaQueries'
 
 interface Props {
