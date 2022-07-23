@@ -24,6 +24,10 @@ export const Form = styled.form`
    align-items: center;
    padding: 10px;
 
+   & * {
+      font-size: 1.4rem;
+   }
+
    & button {
       align-self: flex-end;
    }
