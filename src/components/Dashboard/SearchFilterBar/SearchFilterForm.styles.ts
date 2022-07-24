@@ -16,11 +16,14 @@ export const SearchFilterBar = styled.div`
 export const SearchForm = styled.form`
    display: flex;
    padding-left: 10px;
+   margin-top: 5px;
+   margin-left: 10px;
 `
 
 export const FilterLabel = styled.label`
    cursor: pointer;
    height: 35px;
+   margin-right: 10px;
    padding-top: 5px;
    padding-right: 10px;
 `

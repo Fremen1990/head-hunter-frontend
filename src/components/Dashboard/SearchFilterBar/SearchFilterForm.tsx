@@ -12,6 +12,11 @@ export const SearchFilter = () => {
    const handleSubmit = (e: SyntheticEvent) => {
       e.preventDefault()
    }
+
+   function handleFilter(e: SyntheticEvent) {
+      e.preventDefault()
+   }
+
    return (
       <SearchFilterBar>
          <SearchForm onSubmit={handleSubmit}>
@@ -22,7 +27,7 @@ export const SearchFilter = () => {
          </SearchForm>
 
          <FilterLabel>
-            <SearchButton>
+            <SearchButton onClick={handleFilter}>
                <BiFilterAlt />
             </SearchButton>
             Filtrowanie
