@@ -2,13 +2,11 @@ import React from 'react'
 import { Button } from '../commons/Button/Button'
 import {
    AsideSection,
-   ClipIcon,
    DescriptionContainer,
    DescriptionSection,
    ExpectationContainer,
    GitHubContainer,
    GithubIcon,
-   LinksSection,
    MailIcon,
    MainSection,
    PhoneIcon,
@@ -17,6 +15,7 @@ import {
    SubtitleSection,
    UserPortfolioContainer,
 } from './StudentPortfolio.styles'
+import { LinksBox } from './LinksBox/LinksBox'
 
 const loremText =
    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt\n' +
@@ -85,48 +84,18 @@ export const StudentPortfolio = () => {
                </div>
             </ExpectationContainer>
             <SubtitleSection>Edukacja</SubtitleSection>
-            <DescriptionSection>
-               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-               nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-               erat, sed diam voluptua. At vero eos et accusam et justo duo
-               dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-               sanctus est Lorem ipsum dolor sit amet.
-            </DescriptionSection>
+            <DescriptionSection>{loremText}</DescriptionSection>
             <SubtitleSection>Kursy</SubtitleSection>
-            <DescriptionSection>
-               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-               nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-               erat, sed diam voluptua. At vero eos et accusam et justo duo
-               dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-               sanctus est Lorem ipsum dolor sit amet.
-            </DescriptionSection>
+            <DescriptionSection>{loremText}</DescriptionSection>
             <SubtitleSection>Doświadczenie zawodowe</SubtitleSection>
-            <DescriptionSection>
-               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-               nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-               erat, sed diam voluptua. At vero eos et accusam et justo duo
-               dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-               sanctus est Lorem ipsum dolor sit amet.
-            </DescriptionSection>
+            <DescriptionSection>{loremText}</DescriptionSection>
             <SubtitleSection>Portfolio</SubtitleSection>
-            <LinksSection>
-               <ClipIcon />
-               <a href="https://github.com/">https://github.com/</a>
-            </LinksSection>
+            <LinksBox link="https://github.com" />
             <SubtitleSection> Projekt w zespole Scrumowym</SubtitleSection>
-            <LinksSection>
-               <ClipIcon />
-               <a href="https://github.com/">https://github.com/</a>
-            </LinksSection>
-            <LinksSection>
-               <ClipIcon />
-               <a href="https://github.com/">https://github.com/</a>
-            </LinksSection>
+            <LinksBox link="https://github.com" />
+            <LinksBox link="https://github.com" />
             <SubtitleSection>Projekt na zaliczenie</SubtitleSection>
-            <LinksSection>
-               <ClipIcon />
-               <a href="https://github.com/">https://github.com/</a>
-            </LinksSection>
+            <LinksBox link="https://github.com" />
          </MainSection>
       </UserPortfolioContainer>
    )

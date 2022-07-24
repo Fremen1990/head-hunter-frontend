@@ -1,6 +1,5 @@
 import { IoMdMail } from 'react-icons/io'
 import { FaPhoneAlt } from 'react-icons/fa'
-import { BsPaperclip } from 'react-icons/bs'
 import { AiFillGithub, AiOutlineStar } from 'react-icons/ai'
 import styled from 'styled-components'
 import { device } from '../../constants/mediaQueries'
@@ -160,11 +159,6 @@ export const ExpectationContainer = styled.div`
    }
 `
 
-export const LinksSection = styled.div`
-   padding: 10px;
-   color: #0b8bd4; ;
-`
-
 export const DescriptionSection = styled.div`
    padding: 10px;
 `
@@ -181,6 +175,4 @@ export const PhoneIcon = styled(FaPhoneAlt)`
    color: #4d4d4d;
    background-color: #292a2b;
 `
-
 export const StarIcon = styled(AiOutlineStar)``
-export const ClipIcon = styled(BsPaperclip)``
