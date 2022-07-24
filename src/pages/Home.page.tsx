@@ -1,7 +1,7 @@
 import React from 'react'
 import { PageContainer } from '../constants/Layout/Container.styles'
 import { Header } from '../components/Header/Header'
-import { StudentsNavigation } from '../components/Dashboard/Navigation/Navigation'
+import { NavigationBar } from '../components/Dashboard/Navigation/Navigation'
 import { SearchFilter } from '../components/Dashboard/SearchFilterBar/SearchFilterForm'
 
 export interface IHomePageProps {}
@@ -11,7 +11,7 @@ export const Home: React.FunctionComponent<IHomePageProps> = () => {
       <>
          <PageContainer>
             <Header />
-            <StudentsNavigation />
+            <NavigationBar />
             <SearchFilter />
          </PageContainer>
       </>
