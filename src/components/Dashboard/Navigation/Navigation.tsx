@@ -1,11 +1,24 @@
-import React from 'react'
-import { Tab, StudentsTabs } from './Navigation.styles'
+import React, { useState } from 'react'
+import { NavBar, Tab } from './Navigation.styles'
 
-export const StudentsNavigation = () => {
+const types = ['Dostępni studenci', 'Do rozmowy']
+
+export function NavigationBar() {
+   const [active, setActive] = useState(types[0])
+
    return (
-      <StudentsTabs>
-         <Tab>Dostępni kursanci</Tab>
-         <Tab>Do rozmowy</Tab>
-      </StudentsTabs>
+      <>
+         <NavBar>
+            {types.map((type) => (
+               <Tab
+                  key={type}
+                  active={active === type}
+                  onClick={() => setActive(type)}
+               >
+                  {type}
+               </Tab>
+            ))}
+         </NavBar>
+      </>
    )
 }
