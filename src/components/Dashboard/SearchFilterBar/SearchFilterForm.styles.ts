@@ -60,6 +60,6 @@ export const SearchInput = styled.input`
    background: ${appColors.backgroundColor};
 
    &:focus {
-      width: 175px;
+      width: 200px;
    }
 `
