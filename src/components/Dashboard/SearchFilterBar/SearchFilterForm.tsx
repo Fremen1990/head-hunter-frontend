@@ -6,6 +6,7 @@ import {
    SearchFilterBar,
    SearchInput,
    SearchForm,
+   FilterButton,
 } from './SearchFilterForm.styles'
 
 export const SearchFilter = () => {
@@ -27,9 +28,9 @@ export const SearchFilter = () => {
          </SearchForm>
 
          <FilterLabel>
-            <SearchButton onClick={handleFilter}>
+            <FilterButton onClick={handleFilter}>
                <BiFilterAlt />
-            </SearchButton>
+            </FilterButton>
             Filtrowanie
          </FilterLabel>
       </SearchFilterBar>

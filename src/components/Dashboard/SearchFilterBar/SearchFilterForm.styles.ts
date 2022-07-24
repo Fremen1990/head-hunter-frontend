@@ -18,15 +18,15 @@ export const SearchForm = styled.form`
    padding-left: 10px;
    height: 30px;
    margin-top: 5px;
-   margin-left: 10px;
+   margin-left: 5px;
 `
 
 export const FilterLabel = styled.label`
    cursor: pointer;
-   height: 35px;
-   margin-right: 10px;
+   height: 30px;
+   margin-right: 5px;
    margin-top: 5px;
-   padding-top: 5px;
+   padding-top: 3px;
    padding-right: 10px;
 `
 
@@ -35,7 +35,16 @@ export const SearchButton = styled.button`
    border: 0;
 
    & svg {
-      margin-top: 6px;
+      margin-top: 7px;
+      transform: scale(1.5);
+   }
+`
+
+export const FilterButton = styled.button`
+   width: 30px;
+   border: 0;
+
+   & svg {
       transform: scale(1.5);
    }
 `
@@ -43,7 +52,7 @@ export const SearchButton = styled.button`
 export const SearchInput = styled.input`
    display: flex;
    flex-direction: row;
-   width: 200px;
+   width: 150px;
    color: white;
    transition: 0.5s;
    margin: 5px;
@@ -51,6 +60,6 @@ export const SearchInput = styled.input`
    background: ${appColors.backgroundColor};
 
    &:focus {
-      width: 250px;
+      width: 175px;
    }
 `
