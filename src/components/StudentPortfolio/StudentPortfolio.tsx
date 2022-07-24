@@ -5,11 +5,11 @@ import {
    ExpectationContainer,
    MainSection,
    RatingContainer,
-   SubtitleSection,
    UserPortfolioContainer,
 } from './StudentPortfolio.styles'
 import { LinksBox } from './LinksBox/LinksBox'
 import { AsideUserBox } from './AsideUserBox/AsideUserBox'
+import { SubtitlesSection } from './SubtitlesSection/SubtitlesSection'
 
 export const loremText =
    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt\n' +
@@ -27,13 +27,11 @@ export const StudentPortfolio = () => {
             />
          </AsideSection>
          <MainSection>
-            <SubtitleSection>Oceny</SubtitleSection>
+            <SubtitlesSection text="Oceny" />
             <RatingContainer>
                <div>Sekcja Ocen</div>
             </RatingContainer>
-            <SubtitleSection>
-               Oczekiwanie w stosunku do zatrudnienia
-            </SubtitleSection>
+            <SubtitlesSection text={'Oczekiwanie w stosunku do zatrudnienia'} />
             <ExpectationContainer>
                <div className="container">
                   <h2>Preferowane miejsce pracy</h2>
@@ -62,18 +60,18 @@ export const StudentPortfolio = () => {
                   <p>Biuro</p>
                </div>
             </ExpectationContainer>
-            <SubtitleSection>Edukacja</SubtitleSection>
+            <SubtitlesSection text={'Edukacja'} />
             <DescriptionSection>{loremText}</DescriptionSection>
-            <SubtitleSection>Kursy</SubtitleSection>
+            <SubtitlesSection text={'Kursy'} />
             <DescriptionSection>{loremText}</DescriptionSection>
-            <SubtitleSection>Doświadczenie zawodowe</SubtitleSection>
+            <SubtitlesSection text={'Doświadczenie zawodowe'} />
             <DescriptionSection>{loremText}</DescriptionSection>
-            <SubtitleSection>Portfolio</SubtitleSection>
+            <SubtitlesSection text={'Portfolio'} />
             <LinksBox link="https://github.com" />
-            <SubtitleSection> Projekt w zespole Scrumowym</SubtitleSection>
+            <SubtitlesSection text={' Projekt w zespole Scrumowym'} />
             <LinksBox link="https://github.com" />
             <LinksBox link="https://github.com" />
-            <SubtitleSection>Projekt na zaliczenie</SubtitleSection>
+            <SubtitlesSection text={' Projekt na zaliczenie'} />
             <LinksBox link="https://github.com" />
          </MainSection>
       </UserPortfolioContainer>

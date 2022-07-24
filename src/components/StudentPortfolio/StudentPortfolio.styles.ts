@@ -48,7 +48,11 @@ export const AsideSection = styled.aside`
    }
 
    & Button {
-      width: 80%;
+      width: 100%;
+
+      ${device.desktop} {
+         width: 80%;
+      }
    }
 `
 
@@ -98,13 +102,6 @@ export const RatingContainer = styled.div`
       color: #cfcfcf;
       font-size: 16px;
    }
-`
-export const SubtitleSection = styled.div`
-   background-color: #292a2b;
-   padding: 10px;
-   font-size: 20px;
-   font-weight: bold;
-   color: #f7f7f7;
 `
 
 export const ExpectationContainer = styled.div`

@@ -9,6 +9,7 @@ export const RowContainer = styled.div`
    justify-content: flex-start;
    flex-wrap: wrap;
    margin: 5px 0;
+
    align-items: center;
 
    & p {
