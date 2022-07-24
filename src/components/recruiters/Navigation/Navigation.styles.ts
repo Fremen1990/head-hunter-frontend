@@ -13,7 +13,7 @@ export const StudentsTabs = styled.nav`
 `
 
 export const Tab = styled.a`
-   width: 200px;
+   width: 175px;
    background: transparent;
    font-family: Catamaran, sans-serif;
    color: ${appColors.fontColor};
@@ -22,6 +22,6 @@ export const Tab = styled.a`
    cursor: pointer;
 
    &:hover {
-      border-bottom: 1px solid red;
+      border-bottom: 3px solid ${appColors.buttonColor};
    }
 `
