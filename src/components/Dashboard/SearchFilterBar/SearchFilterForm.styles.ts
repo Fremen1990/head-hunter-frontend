@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { appColors } from '../../../constants/Layout/app.colors'
 
-export const SearchFilterForm = styled.div`
+export const SearchFilterBar = styled.div`
    display: flex;
    flex-direction: row;
    align-items: center;
@@ -13,7 +13,7 @@ export const SearchFilterForm = styled.div`
    height: 50px;
 `
 
-export const SearchLabel = styled.label`
+export const SearchForm = styled.form`
    display: flex;
    padding-left: 10px;
 `

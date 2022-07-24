@@ -1,22 +1,25 @@
-import React from 'react'
+import React, { SyntheticEvent } from 'react'
 import { BiFilterAlt, BiSearch } from 'react-icons/bi'
 import {
    FilterLabel,
    SearchButton,
-   SearchFilterForm,
+   SearchFilterBar,
    SearchInput,
-   SearchLabel,
+   SearchForm,
 } from './SearchFilterForm.styles'
 
 export const SearchFilter = () => {
+   const handleSubmit = (e: SyntheticEvent) => {
+      e.preventDefault()
+   }
    return (
-      <SearchFilterForm>
-         <SearchLabel>
+      <SearchFilterBar>
+         <SearchForm onSubmit={handleSubmit}>
             <SearchButton>
                <BiSearch />
             </SearchButton>
             <SearchInput placeholder="Szukaj..." />
-         </SearchLabel>
+         </SearchForm>
 
          <FilterLabel>
             <SearchButton>
@@ -24,6 +27,6 @@ export const SearchFilter = () => {
             </SearchButton>
             Filtrowanie
          </FilterLabel>
-      </SearchFilterForm>
+      </SearchFilterBar>
    )
 }
