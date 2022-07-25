@@ -13,10 +13,11 @@ export const ExpectationBox = () => {
       practice,
       experience,
    } = description.userInterview
+   const { expectation } = description.studentPortfolio
 
    return (
       <>
-         <SubtitlesSection text={'Oczekiwanie w stosunku do zatrudnienia'} />
+         <SubtitlesSection text={expectation} />
          <MoreInfoBox>
             <InterViewMeBox
                ratingBox={false}
