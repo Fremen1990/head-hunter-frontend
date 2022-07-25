@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { emailValidate } from '../../constants/validation'
 import { Button } from '../commons/Button/Button'
+import { description } from '../../constants/description/description'
 
 type Login = {
    email: string
@@ -41,13 +42,13 @@ export const LoginForm = () => {
                   err={email}
                   type="email"
                   {...register('email', {
-                     required: 'Email jest wymagany',
+                     required: `${description.form.requiredEmail}`,
                      pattern: {
                         value: emailValidate,
-                        message: 'Podaj swój adres email',
+                        message: `${description.form.messageEmail}`,
                      },
                   })}
-                  placeholder="E-mail"
+                  placeholder={description.inputsFields.emailPlaceholder}
                />
                {email && <div>{email.message}</div>}
             </InputWrap>
@@ -55,13 +56,17 @@ export const LoginForm = () => {
                <Input
                   err={password}
                   type="password"
-                  {...register('password', { required: 'Hasło jest wymagane' })}
-                  placeholder="Hasło"
+                  {...register('password', {
+                     required: `${description.form.requiredPass}`,
+                  })}
+                  placeholder={description.inputsFields.passwordPlaceholder}
                />
                {password && <div>{password.message}</div>}
             </InputWrap>
-            <ForgetPasswordLink to="#">Zapomniałeś hasła?</ForgetPasswordLink>
-            <Button buttonTitle="Zaloguj się" />
+            <ForgetPasswordLink to="#">
+               {description.buttons.forgotPass}
+            </ForgetPasswordLink>
+            <Button buttonTitle={description.buttons.logIn} />
          </Form>
       </FormContainer>
    )

@@ -1,8 +1,5 @@
 import React from 'react'
-import {
-   AccountContainer,
-   AccountAvatar,
-} from '../../../constants/Layout/AccountContainer.styles'
+import { AccountContainer, AccountAvatar } from '../AccountContainer.styles'
 import { Button } from '../../commons/Button/Button'
 import { AccountBox } from '../AccountBox'
 

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { appColors } from '../../../constants/Layout/app.colors'
 
 interface Props {
    isOpen: boolean
@@ -13,6 +14,10 @@ export const UserContainer = styled.div<Props>`
       justify-content: center;
       align-items: center;
 
+      & p {
+         font-size: 1.4rem;
+      }
+
       & .avatar {
          height: 30px;
          width: 30px;
@@ -25,6 +30,13 @@ export const UserContainer = styled.div<Props>`
       & > svg {
          margin: 5px;
          cursor: pointer;
+         font-size: 1.4rem;
+         transition: 0.3s;
+
+         &:hover {
+            color: ${appColors.buttonColor};
+         }
+
          ${({ isOpen }) =>
             isOpen &&
             `
@@ -38,18 +50,21 @@ export const UserContainer = styled.div<Props>`
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      background: #1e1e1f;
+      background: ${appColors.headerColor};
       width: 100%;
       padding: 5px;
 
-      & p {
+      & a {
          text-transform: capitalize;
          padding: 5px;
          cursor: pointer;
+         color: ${appColors.fontColor};
+         text-decoration: none;
+         font-size: 1.4rem;
          transition: 0.3s;
 
          &:hover {
-            color: red;
+            color: ${appColors.buttonColor};
          }
       }
    }
