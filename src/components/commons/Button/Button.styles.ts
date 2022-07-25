@@ -10,6 +10,7 @@ export const PrimaryButton = styled.button`
    margin: 5px;
    cursor: pointer;
    transition: 0.3s;
+   font-size: 1.2rem;
 
    &:hover {
       border-color: ${appColors.fontColor};

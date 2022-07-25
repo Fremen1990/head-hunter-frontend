@@ -28,14 +28,15 @@ export const BoxContainer = styled.div`
    }
 
    & p:nth-child(1) {
-      font-size: 12px;
+      font-size: 1.2rem;
    }
 
    & p:nth-child(2) {
       color: ${appColors.descriptionColorPoints};
-      font-size: 15px;
+      font-size: 1.4rem;
 
       & span {
+         font-size: 1.5rem;
          color: ${appColors.userPointColor};
          font-weight: bold;
       }
