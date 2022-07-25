@@ -4,6 +4,7 @@ import { device } from '../../constants/mediaQueries'
 
 export const UserPortfolioContainer = styled.div`
    display: flex;
+   flex-wrap: wrap;
    align-items: flex-start;
 `
 export const AsideSection = styled.aside`
@@ -12,11 +13,11 @@ export const AsideSection = styled.aside`
    justify-content: space-between;
    align-items: center;
    flex-wrap: wrap;
-   width: 100px;
+   margin-bottom: 10px;
    background-color: ${appColors.pageContainerColor};
 
    ${device.desktop} {
-      width: 255px;
+      width: 300px;
    }
 
    & div {
@@ -26,25 +27,37 @@ export const AsideSection = styled.aside`
    }
 
    & h2 {
-      font-size: 2.4rem;
+      font-size: 1.8rem;
       background-color: ${appColors.pageContainerColor};
+
+      ${device.desktop} {
+         font-size: 2.4rem;
+      }
    }
 
    & p {
       background-color: ${appColors.pageContainerColor};
-      font-size: 1.6rem;
+      font-size: 1.4rem;
+
+      ${device.desktop} {
+         font-size: 1.6rem;
+      }
    }
 
    & a {
-      text-decoration: none;
       background-color: ${appColors.pageContainerColor};
       color: ${appColors.linksColor};
-      font-size: 1.6rem;
+      text-decoration: none;
+      font-size: 1.4rem;
+
+      ${device.desktop} {
+         font-size: 1.6rem;
+      }
    }
 
    & img {
-      max-width: 80px;
-      max-height: 80px;
+      max-width: 60px;
+      max-height: 60px;
       border-radius: 50%;
       margin: 20px 0;
 
@@ -55,20 +68,16 @@ export const AsideSection = styled.aside`
    }
 
    & Button {
-      width: 100%;
-
-      ${device.desktop} {
-         width: 80%;
-      }
+      width: 80%;
    }
 `
 
 export const MainSection = styled.main`
    padding: 0 10px;
-   width: 250px;
+   width: 100%;
 
    ${device.desktop} {
-      width: calc(100% - 255px);
+      width: calc(100% - 300px);
    }
 
    & a {

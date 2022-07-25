@@ -5,16 +5,19 @@ import { AiFillGithub } from 'react-icons/ai'
 import { appColors } from '../../../constants/Layout/app.colors'
 
 export const RowContainer = styled.div`
-   display: flex;
-   flex-direction: row;
-   justify-content: flex-start;
-   flex-wrap: wrap;
-   margin: 5px 0;
-   align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 5px 0;
+  
 
-   & p {
-      margin-left: 10px;
-   }
+
+  & p {
+    margin-left: 10px;
+    font-size: 1.4rem;
+    width: 90%;
 `
 
 export const GitHubContainer = styled.div`

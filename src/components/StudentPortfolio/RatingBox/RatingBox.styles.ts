@@ -5,5 +5,4 @@ export const RatingContainer = styled.div`
    flex-direction: row;
    flex-wrap: wrap;
    padding: 10px;
-   gap: 20px;
 `

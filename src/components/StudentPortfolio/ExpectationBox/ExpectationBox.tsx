@@ -1,8 +1,8 @@
 import React from 'react'
 import { SubtitlesSection } from '../SubtitlesSection/SubtitlesSection'
-import { MoreInfoBox } from '../../recruiters/OneUser/OneUser.styles'
 import { InterViewMeBox } from '../../recruiters/OneUser/InterViewMeBox/InterViewMeBox'
 import { description } from '../../../constants/description/description'
+import { ExpectationSection } from './ExpectationBox.styles'
 
 export const ExpectationBox = () => {
    const {
@@ -18,7 +18,8 @@ export const ExpectationBox = () => {
    return (
       <>
          <SubtitlesSection text={expectation} />
-         <MoreInfoBox>
+
+         <ExpectationSection>
             <InterViewMeBox
                ratingBox={false}
                boxTitle={preferWork}
@@ -50,7 +51,7 @@ export const ExpectationBox = () => {
                boxTitle={experience}
                point={'6 mies'}
             />
-         </MoreInfoBox>
+         </ExpectationSection>
       </>
    )
 }

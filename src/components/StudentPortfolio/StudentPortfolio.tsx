@@ -31,7 +31,7 @@ export const StudentPortfolio = () => {
             <AsideUserBox
                name="jankowalski"
                phone="+48 393 393 393"
-               email="test@przyklad.com"
+               email="przykladowyemail@gmail.com"
                desc={`${loremText}`}
             />
          </AsideSection>
