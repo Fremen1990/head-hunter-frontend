@@ -1,38 +1,39 @@
 import styled from 'styled-components'
+import { appColors } from '../../../../constants/Layout/app.colors'
 
 export const RatingViewBoxContainer = styled.div`
    display: flex;
    flex-direction: column;
-   justify-content: center;
+   justify-content: space-between;
    flex-wrap: wrap;
    width: 164px;
    gap: 10px;
+   margin: 0 40px 10px 0;
 
    & p {
-      font-size: 14px;
-      color: #cfcfcf;
-      flex-wrap: wrap;
+      font-size: 1.4rem;
+      color: ${appColors.descriptionColor};
    }
 `
 export const RatingContainer = styled.div`
    display: flex;
    flex-direction: row;
    flex-wrap: wrap;
-   gap: 10px;
 
    & p {
-      color: #cfcfcf;
-      font-size: 16px;
+      color: ${appColors.descriptionColor};
+      font-size: 1.6rem;
    }
 
    & span {
-      color: #f7f7f7;
+      color: ${appColors.userPointColor};
+      font-size: 1.6rem;
       margin-right: 5px;
    }
 `
 
 export const StarContainer = styled.div`
-   line-height: 33px;
+   margin-left: 10px;
 
    & .star-container {
       padding: 0 !important;
