@@ -1,5 +1,5 @@
-import { AiOutlineStar } from 'react-icons/ai'
 import styled from 'styled-components'
+import { appColors } from '../../constants/Layout/app.colors'
 import { device } from '../../constants/mediaQueries'
 
 export const UserPortfolioContainer = styled.div`
@@ -13,26 +13,32 @@ export const AsideSection = styled.aside`
    align-items: center;
    flex-wrap: wrap;
    width: 100px;
-
-   background-color: #292a2b;
-
+   background-color: ${appColors.pageContainerColor};
    ${device.desktop} {
       width: 255px;
    }
 
    & div {
       width: 80%;
-      background-color: #292a2b;
+      background-color: ${appColors.pageContainerColor};
+      font-size: 1.6rem;
+   }
+
+   & h2 {
+      font-size: 2.4rem;
+      background-color: ${appColors.pageContainerColor};
    }
 
    & p {
-      background-color: #292a2b;
+      background-color: ${appColors.pageContainerColor};
+      font-size: 1.6rem;
    }
 
    & a {
       text-decoration: none;
-      background-color: #292a2b;
+      background-color: ${appColors.pageContainerColor};
       color: #0b8bd4;
+      font-size: 1.6rem;
    }
 
    & img {
@@ -57,7 +63,6 @@ export const AsideSection = styled.aside`
 `
 
 export const MainSection = styled.main`
-   background-color: #222324;
    padding: 0 10px;
    width: 250px;
 
@@ -67,8 +72,7 @@ export const MainSection = styled.main`
 
    & a {
       text-decoration: none;
-      background-color: #292a2b;
-      color: #0b8bd4;
+      color: ${appColors.linksColor};
    }
 `
 
@@ -82,48 +86,4 @@ export const RatingContainer = styled.div`
       flex-direction: column;
       padding: 10px;
    }
-
-   & div.star-container {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-   }
-
-   & div .rating-container {
-      display: flex;
-      flex-direction: row;
-   }
-
-   & span {
-      display: flex;
-   }
-
-   & h2 {
-      color: #cfcfcf;
-      font-size: 16px;
-   }
 `
-
-export const ExpectationContainer = styled.div`
-   display: flex;
-   gap: 5px;
-   background-color: #292a2b;
-
-   & div.container {
-      padding: 10px;
-   }
-
-   & h2 {
-      font-size: 14px;
-      color: #cfcfcf;
-   }
-
-   & p {
-   }
-`
-
-export const DescriptionSection = styled.div`
-   padding: 10px;
-`
-
-export const StarIcon = styled(AiOutlineStar)``
