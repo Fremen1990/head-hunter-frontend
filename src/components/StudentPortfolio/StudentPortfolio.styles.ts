@@ -14,6 +14,7 @@ export const AsideSection = styled.aside`
    flex-wrap: wrap;
    width: 100px;
    background-color: ${appColors.pageContainerColor};
+
    ${device.desktop} {
       width: 255px;
    }
@@ -37,7 +38,7 @@ export const AsideSection = styled.aside`
    & a {
       text-decoration: none;
       background-color: ${appColors.pageContainerColor};
-      color: #0b8bd4;
+      color: ${appColors.linksColor};
       font-size: 1.6rem;
    }
 
@@ -67,23 +68,11 @@ export const MainSection = styled.main`
    width: 250px;
 
    ${device.desktop} {
-      width: 1176px;
+      width: calc(100% - 255px);
    }
 
    & a {
       text-decoration: none;
       color: ${appColors.linksColor};
-   }
-`
-
-export const RatingContainer = styled.div`
-   display: flex;
-   background-color: #292a2b;
-
-   & div {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      padding: 10px;
    }
 `

@@ -9,12 +9,22 @@ import { AsideUserBox } from './AsideUserBox/AsideUserBox'
 import { DescriptionBox } from './DescriptionBox/DescriptionBox'
 import { RatingBox } from './RatingBox/RatingBox'
 import { ExpectationBox } from './ExpectationBox/ExpectationBox'
+import { description } from '../../constants/description/description'
 
 export const loremText =
    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt\n' +
    '                        ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo'
 
 export const StudentPortfolio = () => {
+   const {
+      education,
+      courses,
+      experience,
+      portfolio,
+      groupProject,
+      ownProject,
+   } = description.studentPortfolio
+
    return (
       <UserPortfolioContainer>
          <AsideSection>
@@ -28,19 +38,13 @@ export const StudentPortfolio = () => {
          <MainSection>
             <RatingBox />
             <ExpectationBox />
-            <DescriptionBox text="Edukacja" desc={loremText} />
-            <DescriptionBox text="Kursy" desc={loremText} />
-            <DescriptionBox text="Doświadczenie zawodowe" desc={loremText} />
-            <LinksBox text={'Portfolio'} link="https://github.com" />
-            <LinksBox
-               text="Projekt w zespole scrumowym"
-               link="https://github.com"
-            />
+            <DescriptionBox text={education} desc={loremText} />
+            <DescriptionBox text={courses} desc={loremText} />
+            <DescriptionBox text={experience} desc={loremText} />
+            <LinksBox text={portfolio} link="https://github.com" />
+            <LinksBox text={groupProject} link="https://github.com" />
             <LinksBox link="https://github.com" />
-            <LinksBox
-               text={' Projekt na zaliczenie'}
-               link="https://github.com"
-            />
+            <LinksBox text={ownProject} link="https://github.com" />
          </MainSection>
       </UserPortfolioContainer>
    )
