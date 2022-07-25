@@ -4,20 +4,20 @@ import * as ROUTES from './constants/routes'
 import { UserPage } from './pages/User.page'
 import { AdminPage } from './pages/Admin.page'
 import { NotFoundPage } from './pages/NotFound.page'
-import { Home } from './pages/Home.page'
+import { HrPage } from './pages/Hr.page'
 import { LoginPage } from './pages/Login.page'
+import { TestPage } from './pages/Test.page'
 
-export interface IAppProps {}
-
-export const App: React.FunctionComponent<IAppProps> = () => {
+export const App = () => {
    return (
       <BrowserRouter>
          <Routes>
-            <Route path={ROUTES.HOME} element={<Home />} />
+            <Route path={ROUTES.HR_PAGE} element={<HrPage />} />
             <Route path={ROUTES.USER_PAGE} element={<UserPage />} />
             <Route path={ROUTES.ADMIN_PAGE} element={<AdminPage />} />
             <Route path={ROUTES.LOGIN} element={<LoginPage />} />
             <Route path={ROUTES.NOT_FOUND} element={<NotFoundPage />} />
+            <Route path={'/test'} element={<TestPage />} />
          </Routes>
       </BrowserRouter>
    )

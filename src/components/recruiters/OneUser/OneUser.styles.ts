@@ -43,10 +43,11 @@ export const InfoBox = styled.div`
 
    & p {
       background-color: transparent;
+      font-size: 1.4rem;
    }
 
    & p:nth-child(1) {
-      font-size: 0.8rem;
+      font-size: 1.2rem;
    }
 `
 export const UserBox = styled.div`
@@ -58,6 +59,7 @@ export const UserBox = styled.div`
    background-color: transparent;
 
    & p {
+      font-size: 1.4rem;
       background-color: transparent;
    }
 
@@ -76,6 +78,7 @@ export const ButtonsBox = styled.div<Props>`
     background-color: transparent;
     margin: 5px;
     cursor: pointer;
+    font-size: 1.4rem;
     transition: 0.3s;
     ${({ isOpen }) =>
        isOpen &&

@@ -6,17 +6,17 @@ interface Props {
 }
 
 export const LogoContainer = styled.div<Props>`
-   width: ${(props) => props.logoWidth ?? '40px'};
+   width: ${(props) => props.logoWidth || '40px'};
    display: flex;
    justify-content: center;
    align-items: center;
 
    ${device.mobile} {
-      width: ${(props) => props.logoWidth ?? '60px'};
+      width: ${(props) => props.logoWidth || '60px'};
    }
 
    ${device.desktop} {
-      width: ${(props) => props.logoWidth ?? '50px'};
+      width: ${(props) => props.logoWidth || '50px'};
    }
 
    & img {

@@ -1,14 +1,13 @@
 import React from 'react'
-import { PageContainer } from '../constants/Layout/Container.styles'
 import { Header } from '../components/Header/Header'
-import { NotFound } from '../components/NotFound/NotFound'
+import { PageContainer } from '../constants/Layout/Container.styles'
 
-export const NotFoundPage = () => {
+export const TestPage = () => {
    return (
       <>
          <Header />
          <PageContainer>
-            <NotFound />
+            <h1> TEST PAGE </h1>
          </PageContainer>
       </>
    )
