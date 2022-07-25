@@ -31,10 +31,35 @@ export const importStudentsCall = async (formData: any) => {
    }
 }
 
+export const importHrCall = async (formData: any) => {
+   console.log('FORM DATA', formData)
+   try {
+      const { data } = await axios.post(
+         `${process.env.REACT_APP_BACKEND_URL}/admin/import-hr`,
+         formData
+      )
+      return data
+   } catch (error) {
+      return error
+   }
+}
+
 export const getStudents = async () => {
    try {
       const { data } = await axios.get(
          `${process.env.REACT_APP_BACKEND_URL}/admin/students/all`
+      )
+      console.log(data)
+      return data
+   } catch (error) {
+      return error
+   }
+}
+
+export const getHr = async () => {
+   try {
+      const { data } = await axios.get(
+         `${process.env.REACT_APP_BACKEND_URL}/admin/hr/all`
       )
       console.log(data)
       return data
