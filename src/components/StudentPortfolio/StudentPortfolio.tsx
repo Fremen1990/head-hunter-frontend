@@ -1,6 +1,9 @@
 import React from 'react'
 import {
    AsideSection,
+   BackContainer,
+   BackIcon,
+   BackLink,
    MainSection,
    UserPortfolioContainer,
 } from './StudentPortfolio.styles'
@@ -27,6 +30,10 @@ export const StudentPortfolio = () => {
 
    return (
       <UserPortfolioContainer>
+         <BackContainer>
+            <BackIcon />
+            <BackLink to="/">Wróć</BackLink>
+         </BackContainer>
          <AsideSection>
             <AsideUserBox
                name="jankowalski"
