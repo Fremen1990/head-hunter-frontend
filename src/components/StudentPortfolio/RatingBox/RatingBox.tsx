@@ -2,19 +2,25 @@ import React from 'react'
 import { RatingContainer } from './RatingBox.styles'
 import { SubtitlesSection } from '../SubtitlesSection/SubtitlesSection'
 import { RatingViewBox } from './RatingViewBox/RatingViewBox'
+import { description } from '../../../constants/description/description'
 
 export const RatingBox = () => {
+   const { rating } = description.studentPortfolio
+   const {
+      courseEvaluation,
+      activityAssessment,
+      codeEvaluation,
+      scrumAssessment,
+   } = description.userInterview
+
    return (
       <>
-         <SubtitlesSection text="Oceny" />
+         <SubtitlesSection text={rating} />
          <RatingContainer>
-            <RatingViewBox rating={3} title="Ocena przejścia kursu" />
-            <RatingViewBox
-               rating={5}
-               title="Ocena aktywności i zaangażowania na kursie"
-            />
-            <RatingViewBox rating={2} title="Ocena kodu w projekcie własnym" />
-            <RatingViewBox rating={4} title="Ocena pracy w zespole w Scrum" />
+            <RatingViewBox rating={3} title={courseEvaluation} />
+            <RatingViewBox rating={5} title={activityAssessment} />
+            <RatingViewBox rating={2} title={codeEvaluation} />
+            <RatingViewBox rating={4} title={scrumAssessment} />
          </RatingContainer>
       </>
    )
