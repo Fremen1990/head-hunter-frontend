@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { IoMdMail } from 'react-icons/io'
 import { FaPhoneAlt } from 'react-icons/fa'
 import { AiFillGithub } from 'react-icons/ai'
+import { appColors } from '../../../constants/Layout/app.colors'
 
 export const RowContainer = styled.div`
    display: flex;
@@ -9,7 +10,6 @@ export const RowContainer = styled.div`
    justify-content: flex-start;
    flex-wrap: wrap;
    margin: 5px 0;
-
    align-items: center;
 
    & p {
@@ -37,20 +37,22 @@ export const DescriptionContainer = styled.div`
    }
 
    & p {
-      align-self: flex-start;
-      color: #4d4d4d;
+      color: ${appColors.iconColor};
    }
 `
 
 export const GithubIcon = styled(AiFillGithub)`
-   color: #0b8bd4;
-   background-color: #292a2b;
+   color: ${appColors.linksColor};
+   font-size: 1.4rem;
+   background-color: ${appColors.borderColor};
 `
 export const MailIcon = styled(IoMdMail)`
-   color: #4d4d4d;
-   background-color: #292a2b;
+   color: ${appColors.iconColor};
+   font-size: 1.4rem;
+   background-color: ${appColors.borderColor};
 `
 export const PhoneIcon = styled(FaPhoneAlt)`
-   color: #4d4d4d;
-   background-color: #292a2b;
+   color: ${appColors.iconColor};
+   font-size: 1.4rem;
+   background-color: ${appColors.borderColor};
 `
