@@ -1,9 +1,8 @@
 import React from 'react'
 import {
    AsideSection,
-   BackContainer,
+   BackButton,
    BackIcon,
-   BackLink,
    MainSection,
    UserPortfolioContainer,
 } from './StudentPortfolio.styles'
@@ -26,14 +25,15 @@ export const StudentPortfolio = () => {
       portfolio,
       groupProject,
       ownProject,
+      backFromModal,
    } = description.studentPortfolio
 
    return (
       <UserPortfolioContainer>
-         <BackContainer>
+         <BackButton>
             <BackIcon />
-            <BackLink to="/">Wróć</BackLink>
-         </BackContainer>
+            {backFromModal}
+         </BackButton>
          <AsideSection>
             <AsideUserBox
                name="jankowalski"

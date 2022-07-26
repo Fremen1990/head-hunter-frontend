@@ -42,5 +42,6 @@ export const description = {
       groupProject: 'projekt w zespole scrumowym',
       ownProject: 'projekt na zaliczenie',
       aboutMe: 'o mnie',
+      backFromModal: 'Wróć',
    },
 }
