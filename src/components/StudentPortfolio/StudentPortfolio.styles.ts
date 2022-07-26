@@ -3,6 +3,17 @@ import { appColors } from '../../constants/Layout/app.colors'
 import { device } from '../../constants/mediaQueries'
 import { MdArrowBackIosNew } from 'react-icons/md'
 
+export const ModalContainer = styled.div`
+   position: absolute;
+   top: 60px;
+   left: 0;
+   max-width: 100vw;
+
+   ${`@media (min-width: 1200px)`} {
+      left: 5%;
+   }
+`
+
 export const UserPortfolioContainer = styled.div`
    display: flex;
    flex-wrap: wrap;
