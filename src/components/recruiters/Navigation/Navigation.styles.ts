@@ -19,6 +19,7 @@ export const Tab = styled.a<{ active: boolean }>`
    font-size: 18px;
    text-align: center;
    cursor: pointer;
+
    ${({ active }) =>
       active &&
       `

@@ -1,12 +1,26 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { PageContainer } from '../../constants/Layout/Container.styles'
+import {
+   BackOnePage,
+   NavLinkStyled,
+   NotFoundCode,
+   NotFoundText,
+} from './NotFound.styles'
+import { useNavigate } from 'react-router-dom'
 
 export const NotFound = () => {
+   const navigate = useNavigate()
+
+   const handleBackOnePage = () => {
+      navigate(-1)
+   }
+
    return (
-      <>
-         <h1>404</h1>
-         <p> Not found page</p>
-         <NavLink to={'/'}> home </NavLink>
-      </>
+      <PageContainer style={{ height: '80vh' }}>
+         <NotFoundCode>Kod 404</NotFoundCode>
+         <NotFoundText>Oops! Nie znaleziono takiej strony...</NotFoundText>
+         <NavLinkStyled to={'/'}> Powrót do strony głownej</NavLinkStyled>
+         <BackOnePage onClick={handleBackOnePage}>Wstecz</BackOnePage>
+      </PageContainer>
    )
 }
