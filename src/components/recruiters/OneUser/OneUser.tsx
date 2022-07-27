@@ -9,8 +9,8 @@ import {
 import { Button } from '../../commons/Button/Button'
 import { AiOutlineCaretDown } from 'react-icons/ai'
 import { InterViewMeBox } from './InterViewMeBox/InterViewMeBox'
+import { StudentPortfolioModal } from '../../../modals/StudentPortfolioModal/StudentPortfolioModal'
 import { description } from '../../../constants/description/description'
-import { StudentPortfolio } from '../../StudentPortfolio/StudentPortfolio'
 
 interface Props {
    layout: string
@@ -31,7 +31,7 @@ export const OneUser = (props: Props) => {
    return (
       <>
          {showCv ? (
-            <StudentPortfolio changeShowCv={setShowCv} />
+            <StudentPortfolioModal changeShowCv={setShowCv} />
          ) : (
             <>
                <UserContainer isOpen={isOpen}>
@@ -44,7 +44,7 @@ export const OneUser = (props: Props) => {
                      )}
                      <UserBox>
                         {props.layout === 'simple' ? null : (
-                           <div className="avatar"></div>
+                           <div className="avatar" />
                         )}
                         <p>Jan kowalski</p>
                      </UserBox>
