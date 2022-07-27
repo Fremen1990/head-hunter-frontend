@@ -4,8 +4,9 @@ import { appColors } from '../../../../constants/Layout/app.colors'
 export const Form = styled.form`
   background-color: transparent;
 
-  & h2 {
-    font-size: 3rem
+  & p {
+    margin-right: 2px;
+    font-size: 2rem
   }
 }
 
