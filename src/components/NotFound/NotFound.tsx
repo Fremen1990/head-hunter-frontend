@@ -16,7 +16,7 @@ export const NotFound = () => {
    }
 
    return (
-      <PageContainer style={{ height: '80vh' }}>
+      <PageContainer style={{ height: '75vh' }}>
          <NotFoundCode>Kod 404</NotFoundCode>
          <NotFoundText>Oops! Nie znaleziono takiej strony...</NotFoundText>
          <NavLinkStyled to={'/'}> Powrót do strony głownej</NavLinkStyled>
