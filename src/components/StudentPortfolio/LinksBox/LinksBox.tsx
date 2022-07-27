@@ -7,16 +7,14 @@ interface Props {
    link?: string
 }
 
-export const LinksBox = (props: Props) => {
+export const LinksBox = ({ link, text }: Props) => {
    return (
       <>
-         {props.text === undefined ? null : (
-            <SubtitlesSection text={props.text} />
-         )}
-         {props.link === undefined ? null : (
+         {text === undefined ? null : <SubtitlesSection text={text} />}
+         {link === undefined ? null : (
             <LinksSection>
                <ClipIcon />
-               <a href={`${props.link}`}>{props.link}</a>
+               <a href={`${link}`}>{link}</a>
             </LinksSection>
          )}
       </>

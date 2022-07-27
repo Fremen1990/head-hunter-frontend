@@ -50,6 +50,8 @@ export const StudentPortfolio = ({ changeShowCv, student }: Props) => {
       education,
       courses,
       workExperience,
+      portfolioUrls,
+      projectUrls,
    } = student
 
    return (
@@ -81,10 +83,10 @@ export const StudentPortfolio = ({ changeShowCv, student }: Props) => {
             <DescriptionBox text={educationDescribe} desc={education} />
             <DescriptionBox text={coursesDescribe} desc={courses} />
             <DescriptionBox text={experienceDescribe} desc={workExperience} />
-            <LinksBox text={portfolio} link="https://github.com" />
+            <LinksBox text={portfolio} link={portfolioUrls} />
             <LinksBox text={groupProject} link="https://github.com" />
             <LinksBox link="https://github.com" />
-            <LinksBox text={ownProject} link="https://github.com" />
+            <LinksBox text={ownProject} link={projectUrls} />
          </MainSection>
       </UserPortfolioContainer>
    )
