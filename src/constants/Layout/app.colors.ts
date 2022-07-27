@@ -8,4 +8,6 @@ export const appColors = {
    descriptionColor: '#CFCFCF',
    descriptionColorPoints: '#9E9E9E',
    userPointColor: '#F7F7F7',
+   linksColor: '#0B8BD4',
+   iconColor: '#4D4D4D',
 }
