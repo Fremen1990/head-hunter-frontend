@@ -3,7 +3,7 @@ import { AiFillStar } from 'react-icons/ai'
 import { StarInput } from './OneInput.styles'
 
 interface Props {
-   onChange: (e: any) => void
+   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
    name: string
    value: string
 }
