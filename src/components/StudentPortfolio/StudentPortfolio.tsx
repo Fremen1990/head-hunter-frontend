@@ -25,9 +25,9 @@ interface Props {
 
 export const StudentPortfolio = ({ changeShowCv, student }: Props) => {
    const {
-      education,
-      courses,
-      experience,
+      educationDescribe,
+      coursesDescribe,
+      experienceDescribe,
       portfolio,
       groupProject,
       ownProject,
@@ -47,6 +47,9 @@ export const StudentPortfolio = ({ changeShowCv, student }: Props) => {
       canTakeApprenticeship,
       monthsOfCommercialExp,
       expectedTypeOfWork,
+      education,
+      courses,
+      workExperience,
    } = student
 
    return (
@@ -75,9 +78,9 @@ export const StudentPortfolio = ({ changeShowCv, student }: Props) => {
                monthsOfCommercialExp={monthsOfCommercialExp}
                expectedTypeOfWork={expectedTypeOfWork}
             />
-            <DescriptionBox text={education} desc={loremText} />
-            <DescriptionBox text={courses} desc={loremText} />
-            <DescriptionBox text={experience} desc={loremText} />
+            <DescriptionBox text={educationDescribe} desc={education} />
+            <DescriptionBox text={coursesDescribe} desc={courses} />
+            <DescriptionBox text={experienceDescribe} desc={workExperience} />
             <LinksBox text={portfolio} link="https://github.com" />
             <LinksBox text={groupProject} link="https://github.com" />
             <LinksBox link="https://github.com" />
