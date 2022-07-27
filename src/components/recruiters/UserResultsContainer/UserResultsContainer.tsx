@@ -1,16 +1,18 @@
 import React from 'react'
-import { ResultsContainer } from './UserResultsContainer.styles'
 import { OneUser } from '../OneUser/OneUser'
+import { studentsInterface } from 'src/pages/Hr.page'
 
-export const UserResultsContainer = () => {
+interface Props {
+   students: studentsInterface[]
+   layout: string
+}
+
+export const UserResultsContainer = ({ students, layout }: Props) => {
    return (
-      <ResultsContainer>
-         <OneUser layout={'simple'} />
-         <OneUser layout={'simple'} />
-         <OneUser layout={'simple'} />
-         <OneUser layout={'extended'} />
-         <OneUser layout={'extended'} />
-         <OneUser layout={'extended'} />
-      </ResultsContainer>
+      <>
+         {students.map((student: studentsInterface) => (
+            <OneUser layout={layout} key={student.id} student={student} />
+         ))}
+      </>
    )
 }

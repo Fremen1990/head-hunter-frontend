@@ -12,6 +12,7 @@ import { DescriptionBox } from './DescriptionBox/DescriptionBox'
 import { RatingBox } from './RatingBox/RatingBox'
 import { ExpectationBox } from './ExpectationBox/ExpectationBox'
 import { description } from '../../constants/description/description'
+import { studentsInterface } from 'src/pages/Hr.page'
 
 export const loremText =
    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt\n' +
@@ -19,9 +20,10 @@ export const loremText =
 
 interface Props {
    changeShowCv: (arg: boolean) => void
+   student: studentsInterface
 }
 
-export const StudentPortfolio = ({ changeShowCv }: Props) => {
+export const StudentPortfolio = ({ changeShowCv, student }: Props) => {
    const {
       education,
       courses,
@@ -32,6 +34,8 @@ export const StudentPortfolio = ({ changeShowCv }: Props) => {
       backFromModal,
    } = description.studentPortfolio
 
+   const { firstName, tel, email, githubUserName, lastName, bio } = student
+
    return (
       <UserPortfolioContainer>
          <BackButton onClick={() => changeShowCv(false)}>
@@ -40,10 +44,12 @@ export const StudentPortfolio = ({ changeShowCv }: Props) => {
          </BackButton>
          <AsideSection>
             <AsideUserBox
-               name="jankowalski"
-               phone="+48 393 393 393"
-               email="przykladowyemail@gmail.com"
-               desc={`${loremText}`}
+               firstName={firstName}
+               lastName={lastName}
+               githubNick={githubUserName}
+               phone={tel}
+               email={email}
+               desc={bio}
             />
          </AsideSection>
          <MainSection>
