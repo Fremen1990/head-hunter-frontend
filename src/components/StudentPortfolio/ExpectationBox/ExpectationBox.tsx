@@ -18,7 +18,6 @@ export const ExpectationBox = () => {
    return (
       <>
          <SubtitlesSection text={expectation} />
-
          <ExpectationSection>
             <InterViewMeBox
                ratingBox={false}

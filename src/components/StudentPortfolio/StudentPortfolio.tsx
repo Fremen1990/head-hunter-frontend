@@ -1,9 +1,8 @@
 import React from 'react'
 import {
    AsideSection,
-   BackContainer,
+   BackButton,
    BackIcon,
-   BackLink,
    MainSection,
    UserPortfolioContainer,
 } from './StudentPortfolio.styles'
@@ -18,7 +17,11 @@ export const loremText =
    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt\n' +
    '                        ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo'
 
-export const StudentPortfolio = () => {
+interface Props {
+   changeShowCv: (arg: boolean) => void
+}
+
+export const StudentPortfolio = ({ changeShowCv }: Props) => {
    const {
       education,
       courses,
@@ -26,14 +29,15 @@ export const StudentPortfolio = () => {
       portfolio,
       groupProject,
       ownProject,
+      backFromModal,
    } = description.studentPortfolio
 
    return (
       <UserPortfolioContainer>
-         <BackContainer>
+         <BackButton onClick={() => changeShowCv(false)}>
             <BackIcon />
-            <BackLink to="/">Wróć</BackLink>
-         </BackContainer>
+            {backFromModal}
+         </BackButton>
          <AsideSection>
             <AsideUserBox
                name="jankowalski"

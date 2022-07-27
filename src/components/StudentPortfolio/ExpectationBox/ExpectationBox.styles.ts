@@ -9,7 +9,6 @@ export const ExpectationSection = styled.div`
    flex-wrap: nowrap;
    justify-content: space-between;
    background-color: ${appColors.headerColor};
-   width: 100%;
    margin: 10px 0;
 
    ${device.tablet} {
