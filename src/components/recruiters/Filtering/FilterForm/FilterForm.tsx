@@ -1,13 +1,63 @@
 import React, { useState } from 'react'
-import { Form, StarInput } from './FilterForm.styles'
-import { AiOutlineStar } from 'react-icons/ai'
+import { Form } from './FilterForm.styles'
+import { OneInput } from './OneInput/OneInput'
+
+interface ElementsInterface {
+   name: string
+   value: string
+}
+
+const courseEvaluation: ElementsInterface[] = [
+   {
+      name: 'courseEvaluation',
+      value: '1',
+   },
+   {
+      name: 'courseEvaluation',
+      value: '2',
+   },
+   {
+      name: 'courseEvaluation',
+      value: '3',
+   },
+   {
+      name: 'courseEvaluation',
+      value: '4',
+   },
+   {
+      name: 'courseEvaluation',
+      value: '5',
+   },
+]
+const activityAssessment: ElementsInterface[] = [
+   {
+      name: 'activityAssessment',
+      value: '1',
+   },
+   {
+      name: 'activityAssessment',
+      value: '2',
+   },
+   {
+      name: 'activityAssessment',
+      value: '3',
+   },
+   {
+      name: 'activityAssessment',
+      value: '4',
+   },
+   {
+      name: 'activityAssessment',
+      value: '5',
+   },
+]
 
 export const FilterForm = () => {
    const [filter, setFilter] = useState<any>({
       courseEvaluation: [],
    })
 
-   const handleChange = (e: any) => {
+   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const { value, checked } = e.target
       const { courseEvaluation } = filter
 
@@ -17,7 +67,9 @@ export const FilterForm = () => {
          })
       } else {
          setFilter({
-            courseEvaluation: courseEvaluation.filter((e: any) => e !== value),
+            courseEvaluation: courseEvaluation.filter(
+               (e: boolean | string) => e !== value
+            ),
          })
       }
    }
@@ -27,66 +79,25 @@ export const FilterForm = () => {
          <h2>courseEvaluation: {filter.courseEvaluation}</h2>
          <div>
             <p>Ocena przjścia kursu</p>
-            <StarInput>
-               <input
-                  type="checkbox"
-                  id={'mark1'}
-                  name="courseEvaluation"
-                  value="1"
+            {courseEvaluation.map((el) => (
+               <OneInput
+                  key={`${el.name}${el.value}`}
                   onChange={handleChange}
+                  name={el.name}
+                  value={el.value}
                />
-               <label htmlFor="mark1">
-                  1 <AiOutlineStar />
-               </label>
-            </StarInput>
-            <StarInput>
-               <input
-                  type="checkbox"
-                  id={'mark2'}
-                  name="courseEvaluation"
-                  value="2"
+            ))}
+         </div>
+         <div>
+            <p>Ocena aktywności</p>
+            {activityAssessment.map((el) => (
+               <OneInput
+                  key={`${el.name}${el.value}`}
                   onChange={handleChange}
+                  name={el.name}
+                  value={el.value}
                />
-               <label htmlFor="mark2">
-                  2 <AiOutlineStar />
-               </label>
-            </StarInput>
-            <StarInput>
-               <input
-                  type="checkbox"
-                  id={'mark3'}
-                  name="courseEvaluation"
-                  value="3"
-                  onChange={handleChange}
-               />
-               <label htmlFor="mark3">
-                  3 <AiOutlineStar />
-               </label>
-            </StarInput>
-            <StarInput>
-               <input
-                  type="checkbox"
-                  id={'mark4'}
-                  name="courseEvaluation"
-                  value="4"
-                  onChange={handleChange}
-               />
-               <label htmlFor="mark4">
-                  4 <AiOutlineStar />
-               </label>
-            </StarInput>
-            <StarInput>
-               <input
-                  type="checkbox"
-                  id={'mark5'}
-                  name="courseEvaluation"
-                  value="5"
-                  onChange={handleChange}
-               />
-               <label htmlFor="mark5">
-                  5 <AiOutlineStar />
-               </label>
-            </StarInput>
+            ))}
          </div>
       </Form>
    )
