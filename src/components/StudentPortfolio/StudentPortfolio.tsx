@@ -34,7 +34,20 @@ export const StudentPortfolio = ({ changeShowCv, student }: Props) => {
       backFromModal,
    } = description.studentPortfolio
 
-   const { firstName, tel, email, githubUserName, lastName, bio } = student
+   const {
+      firstName,
+      tel,
+      email,
+      githubUserName,
+      lastName,
+      bio,
+      expectedContractType,
+      targetWorkCity,
+      expectedSalary,
+      canTakeApprenticeship,
+      monthsOfCommercialExp,
+      expectedTypeOfWork,
+   } = student
 
    return (
       <UserPortfolioContainer>
@@ -54,7 +67,14 @@ export const StudentPortfolio = ({ changeShowCv, student }: Props) => {
          </AsideSection>
          <MainSection>
             <RatingBox />
-            <ExpectationBox />
+            <ExpectationBox
+               expectedContractType={expectedContractType}
+               targetWorkCity={targetWorkCity}
+               expectedSalary={expectedSalary}
+               canTakeApprenticeship={canTakeApprenticeship}
+               monthsOfCommercialExp={monthsOfCommercialExp}
+               expectedTypeOfWork={expectedTypeOfWork}
+            />
             <DescriptionBox text={education} desc={loremText} />
             <DescriptionBox text={courses} desc={loremText} />
             <DescriptionBox text={experience} desc={loremText} />

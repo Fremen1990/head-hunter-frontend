@@ -4,7 +4,23 @@ import { InterViewMeBox } from '../../recruiters/OneUser/InterViewMeBox/InterVie
 import { description } from '../../../constants/description/description'
 import { ExpectationSection } from './ExpectationBox.styles'
 
-export const ExpectationBox = () => {
+interface Props {
+   expectedContractType: string
+   targetWorkCity: string
+   expectedSalary: string
+   canTakeApprenticeship: string
+   monthsOfCommercialExp: string
+   expectedTypeOfWork: string
+}
+
+export const ExpectationBox = ({
+   expectedContractType,
+   targetWorkCity,
+   expectedTypeOfWork,
+   monthsOfCommercialExp,
+   canTakeApprenticeship,
+   expectedSalary,
+}: Props) => {
    const {
       preferWork,
       targetPlace,
@@ -22,33 +38,33 @@ export const ExpectationBox = () => {
             <InterViewMeBox
                ratingBox={false}
                boxTitle={preferWork}
-               point={'Biuro'}
+               point={expectedTypeOfWork}
             />
 
             <InterViewMeBox
                ratingBox={false}
                boxTitle={targetPlace}
-               point={'WARSZAWA'}
+               point={targetWorkCity}
             />
             <InterViewMeBox
                ratingBox={false}
                boxTitle={contractType}
-               point={'Umowa o prace'}
+               point={expectedContractType}
             />
             <InterViewMeBox
                ratingBox={false}
                boxTitle={targetSalary}
-               point={'8000 zł'}
+               point={expectedSalary}
             />
             <InterViewMeBox
                ratingBox={false}
                boxTitle={practice}
-               point={'tak'}
+               point={canTakeApprenticeship}
             />
             <InterViewMeBox
                ratingBox={false}
                boxTitle={experience}
-               point={'6 mies'}
+               point={monthsOfCommercialExp}
             />
          </ExpectationSection>
       </>
