@@ -6,9 +6,9 @@ export const StarInput = styled.div`
    margin-right: 5px;
 
    & label {
-      height: 30px;
-      width: 45px;
-      font-size: 2rem;
+      height: 25px;
+      width: 40px;
+      font-size: 1.6rem;
       border-radius: 2px;
       display: flex;
       flex-direction: row;
@@ -26,7 +26,7 @@ export const StarInput = styled.div`
       }
 
       & svg {
-         font-size: 2rem;
+         font-size: 1.6rem;
          background-color: transparent;
          margin-left: 5px;
          color: ${appColors.buttonColor};
