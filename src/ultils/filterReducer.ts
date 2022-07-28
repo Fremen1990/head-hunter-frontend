@@ -28,6 +28,11 @@ interface ChangetypeOfContract {
    payload: any
 }
 
+interface ChangeMinSalary {
+   type: 'SALARY'
+   payload: any
+}
+
 type FilterActions =
    | ChangeCourseEvaluation
    | ChangeActivityAssessment
@@ -35,6 +40,7 @@ type FilterActions =
    | ChangeJobEvaluation
    | ChangeTypeOfWork
    | ChangetypeOfContract
+   | ChangeMinSalary
 
 export const filterReducer = (state: any, action: FilterActions) => {
    switch (action.type) {
@@ -135,6 +141,15 @@ export const filterReducer = (state: any, action: FilterActions) => {
                   (e: any) => e !== action.payload.value
                ),
             }
+         }
+      }
+      case 'SALARY': {
+         return {
+            ...state,
+            salary: {
+               ...state.salary,
+               [action.payload.name]: action.payload.value,
+            },
          }
       }
       default:
