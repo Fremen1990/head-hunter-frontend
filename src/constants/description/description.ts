@@ -84,4 +84,16 @@ export const description = {
       filterName: 'Filtrowanie',
       clearAll: 'Wyczyść wszystko',
    },
+   filterModal: {
+      courseEvaluation: 'ocena przejścia kursu',
+      activityAssessment: 'ocena aktywności na kursie',
+      codeEvaluation: 'ocena kodu w pojekcie własnym',
+      jobEvaluation: 'ocena pracy w zespole SCRUM',
+      typeOfWork: 'preferowane miejsce pracy',
+      typeOfContract: 'preferowany typ kontraktu',
+      salary: 'Oczekiwane wynagrodzenie miesięczne netto',
+      internship: 'zgoda na odbycie bezpłatnych praktyk/stażu na początek',
+      experience:
+         'Ilośc miesięcy doświacznia komercyjnego kandydata w programowaniu',
+   },
 }
