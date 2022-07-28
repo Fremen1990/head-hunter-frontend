@@ -33,6 +33,20 @@ interface ChangeMinSalary {
    payload: any
 }
 
+interface ChangeExperience {
+   type: 'EXPERIENCE'
+   payload: any
+}
+
+interface ChangeInternship {
+   type: 'INTERNSHIP'
+   payload: any
+}
+
+interface ClearForm {
+   type: 'CLEAR'
+}
+
 type FilterActions =
    | ChangeCourseEvaluation
    | ChangeActivityAssessment
@@ -41,6 +55,9 @@ type FilterActions =
    | ChangeTypeOfWork
    | ChangetypeOfContract
    | ChangeMinSalary
+   | ChangeExperience
+   | ChangeInternship
+   | ClearForm
 
 export const filterReducer = (state: any, action: FilterActions) => {
    switch (action.type) {
@@ -152,6 +169,38 @@ export const filterReducer = (state: any, action: FilterActions) => {
             },
          }
       }
+      case 'INTERNSHIP': {
+         return {
+            ...state,
+            internship: {
+               internship: action.payload.value,
+            },
+         }
+      }
+      case 'EXPERIENCE': {
+         return {
+            ...state,
+            experience: {
+               ...state.experience,
+               month: action.payload.value,
+            },
+         }
+      }
+
+      case 'CLEAR': {
+         return {
+            ...state,
+            courseEvaluation: [],
+            activityAssessment: [],
+            codeEvaluation: [],
+            jobEvaluation: [],
+            typeOfWork: [],
+            typeOfContract: [],
+            salary: { min: 0, max: 0 },
+            experience: { month: 0 },
+         }
+      }
+
       default:
          return state
    }
