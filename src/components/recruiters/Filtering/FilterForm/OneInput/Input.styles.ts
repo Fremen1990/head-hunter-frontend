@@ -7,7 +7,7 @@ export const StarInput = styled.div`
 
    & label {
       height: 30px;
-      width: 40px;
+      width: 45px;
       font-size: 2rem;
       border-radius: 2px;
       display: flex;
