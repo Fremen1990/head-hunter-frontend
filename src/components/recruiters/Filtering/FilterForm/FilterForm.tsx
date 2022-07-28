@@ -101,7 +101,6 @@ export const FilterForm = () => {
          <div>
             <p>{describe.salary}</p>
             <SalaryInput>
-               {' '}
                od:
                <input
                   type="number"
@@ -113,7 +112,6 @@ export const FilterForm = () => {
                />
             </SalaryInput>
             <SalaryInput>
-               {' '}
                do:
                <input
                   type="number"
@@ -127,17 +125,22 @@ export const FilterForm = () => {
          </div>
          <div>
             <p>{describe.internship}</p>
-            <label>
-               Tak
-               <input type={'radio'} name={'internship'} />
-            </label>
-            <label>
-               Nie
-               <input type="radio" name="internship" value="no" />
-            </label>
+            <div className={'internshipBox'}>
+               <label>
+                  Tak
+                  <input type={'radio'} name={'internship'} value={'yes'} />
+               </label>
+               <label>
+                  Nie
+                  <input type="radio" name="internship" value="no" />
+               </label>
+            </div>
          </div>
          <div>
             <p>{describe.experience}</p>
+            <SalaryInput>
+               <input type="number" />
+            </SalaryInput>
          </div>
       </Form>
    )
