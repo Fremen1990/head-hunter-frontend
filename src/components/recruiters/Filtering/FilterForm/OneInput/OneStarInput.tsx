@@ -1,6 +1,6 @@
 import React from 'react'
 import { AiFillStar } from 'react-icons/ai'
-import { StarInput } from './OneInput.styles'
+import { StarInput } from './Input.styles'
 
 interface Props {
    // @ts-ignore
@@ -9,7 +9,7 @@ interface Props {
    value: string
 }
 
-export const OneInput = (props: Props) => {
+export const OneStarInput = (props: Props) => {
    return (
       <StarInput>
          <input

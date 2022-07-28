@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react'
 import { Form } from './FilterForm.styles'
-import { OneInput } from './OneInput/OneInput'
+import { OneStarInput } from './OneInput/OneStarInput'
 
 interface ElementsInterface {
    name: string
@@ -215,7 +215,7 @@ export const FilterForm = () => {
          <div>
             <p>Ocena przjścia kursu</p>
             {courseEvaluation.map((el) => (
-               <OneInput
+               <OneStarInput
                   key={`${el.name}${el.value}`}
                   onChange={dispatch}
                   name={el.name}
@@ -226,7 +226,7 @@ export const FilterForm = () => {
          <div>
             <p>Ocena aktywności</p>
             {activityAssessment.map((el) => (
-               <OneInput
+               <OneStarInput
                   key={`${el.name}${el.value}`}
                   onChange={dispatch}
                   name={el.name}
@@ -237,7 +237,7 @@ export const FilterForm = () => {
          <div>
             <p>Ocena kodu</p>
             {codeEvaluation.map((el) => (
-               <OneInput
+               <OneStarInput
                   key={`${el.name}${el.value}`}
                   onChange={dispatch}
                   name={el.name}
@@ -248,7 +248,7 @@ export const FilterForm = () => {
          <div>
             <p>Ocena pracy</p>
             {jobEvaluation.map((el) => (
-               <OneInput
+               <OneStarInput
                   key={`${el.name}${el.value}`}
                   onChange={dispatch}
                   name={el.name}
