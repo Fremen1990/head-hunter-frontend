@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React, { SyntheticEvent, useReducer } from 'react'
 import { Form } from './FilterForm.styles'
 import { OneStarInput } from './OneInput/OneStarInput'
 import { OneButtonInput } from './OneInput/OneButtonInput'
@@ -24,12 +24,17 @@ export const FilterForm = () => {
       typeOfWork: [],
       typeOfContract: [],
       salary: { min: 0, max: 0 },
+      internship: {},
+      experience: { month: 0 },
    })
 
-   console.log(filter.salary)
+   const handleSubmit = (e: SyntheticEvent) => {
+      e.preventDefault()
+      console.log(filter)
+   }
 
    return (
-      <Form>
+      <Form onSubmit={handleSubmit}>
          <div>
             <p>{describe.courseEvaluation}</p>
             {courseEvaluation.map((el) => (
@@ -128,20 +133,41 @@ export const FilterForm = () => {
             <div className={'internshipBox'}>
                <label>
                   Tak
-                  <input type={'radio'} name={'internship'} value={'yes'} />
+                  <input
+                     type={'radio'}
+                     name={'internship'}
+                     value={'yes'}
+                     onChange={(e) =>
+                        dispatch({ type: 'INTERNSHIP', payload: e.target })
+                     }
+                  />
                </label>
                <label>
                   Nie
-                  <input type="radio" name="internship" value="no" />
+                  <input
+                     type="radio"
+                     name="internship"
+                     value="no"
+                     onChange={(e) =>
+                        dispatch({ type: 'INTERNSHIP', payload: e.target })
+                     }
+                  />
                </label>
             </div>
          </div>
          <div>
             <p>{describe.experience}</p>
             <SalaryInput>
-               <input type="number" />
+               <input
+                  type="number"
+                  value={filter.experience.month}
+                  onChange={(e) =>
+                     dispatch({ type: 'EXPERIENCE', payload: e.target })
+                  }
+               />
             </SalaryInput>
          </div>
+         <button>test</button>
       </Form>
    )
 }
