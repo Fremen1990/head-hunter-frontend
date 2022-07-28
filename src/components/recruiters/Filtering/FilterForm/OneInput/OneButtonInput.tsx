@@ -10,7 +10,6 @@ interface Props {
 }
 
 export const OneButtonInput = (props: Props) => {
-   console.log(props.name, props.value)
    return (
       <ButtonInput>
          <input

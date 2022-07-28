@@ -75,3 +75,17 @@ export const ButtonBox = styled.div`
       }
    }
 `
+export const SalaryInput = styled.label`
+   background-color: transparent;
+   font-size: 1.4rem;
+   margin-right: 5px;
+
+   & input {
+      margin-left: 5px;
+      background-color: ${appColors.backgroundColor};
+      padding: 5px;
+      font-size: 1.4rem;
+      color: ${appColors.fontColor};
+      border: none;
+   }
+`
