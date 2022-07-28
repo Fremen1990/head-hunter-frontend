@@ -15,7 +15,7 @@ export const FilteringContainer = styled.div`
 
 export const FilteringBox = styled.div`
    width: 30%;
-   height: 80%;
+   height: 95%;
    background-color: black;
    padding: 5px;
    display: flex;
@@ -86,6 +86,12 @@ export const SalaryInput = styled.label`
       padding: 5px;
       font-size: 1.4rem;
       color: ${appColors.fontColor};
-      border: none;
+      border: 1px solid transparent;
+      border-radius: 2px;
+      transition: 0.2s;
+
+      &:focus {
+         border: 1px solid ${appColors.buttonColor};
+      }
    }
 `
