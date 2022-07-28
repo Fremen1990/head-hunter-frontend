@@ -1,10 +1,15 @@
 import React, { useReducer } from 'react'
 import { Form } from './FilterForm.styles'
 import { OneStarInput } from './OneInput/OneStarInput'
+import { OneButtonInput } from './OneInput/OneButtonInput'
 
 interface ElementsInterface {
    name: string
    value: string
+}
+
+interface ElementsButtonsInterface extends ElementsInterface {
+   inputTitle: string
 }
 
 interface ChangeCourseEvaluation {
@@ -27,11 +32,23 @@ interface ChangeJobEvaluation {
    payload: any
 }
 
+interface ChangeTypeOfWork {
+   type: 'TYPEOFWORK_UPDATE'
+   payload: any
+}
+
+interface ChangetypeOfContract {
+   type: 'TYPEOFCONTRACT_UPDATE'
+   payload: any
+}
+
 type FilterActions =
    | ChangeCourseEvaluation
    | ChangeActivityAssessment
    | ChangeCodeEvaluation
    | ChangeJobEvaluation
+   | ChangeTypeOfWork
+   | ChangetypeOfContract
 
 const courseEvaluation: ElementsInterface[] = [
    {
@@ -121,6 +138,40 @@ const jobEvaluation: ElementsInterface[] = [
       value: '5',
    },
 ]
+const typeOfWork: ElementsButtonsInterface[] = [
+   {
+      name: 'typeOfWork',
+      value: 'workOffice',
+      inputTitle: 'praca z biura',
+   },
+   {
+      name: 'typeOfWork',
+      value: 'homeoffice',
+      inputTitle: 'praca z domu',
+   },
+]
+const typeOfContract: ElementsButtonsInterface[] = [
+   {
+      name: 'typeOfContract',
+      value: 'contractOfEmployment',
+      inputTitle: 'umowa o prace',
+   },
+   {
+      name: 'typeOfContract',
+      value: 'b2b',
+      inputTitle: 'b2b',
+   },
+   {
+      name: 'typeOfContract',
+      value: 'contractOfMandate',
+      inputTitle: 'umowa zlecenie',
+   },
+   {
+      name: 'typeOfContract',
+      value: 'workContract',
+      inputTitle: 'umowa o dzieło',
+   },
+]
 
 const filterReducer = (state: any, action: FilterActions) => {
    switch (action.type) {
@@ -193,6 +244,36 @@ const filterReducer = (state: any, action: FilterActions) => {
             }
          }
       }
+      case 'TYPEOFWORK_UPDATE': {
+         if (action.payload.checked) {
+            return {
+               ...state,
+               typeOfWork: [...state.typeOfWork, action.payload.value],
+            }
+         } else {
+            return {
+               ...state,
+               typeOfWork: state.typeOfWork.filter(
+                  (e: any) => e !== action.payload.value
+               ),
+            }
+         }
+      }
+      case 'TYPEOFCONTRACT_UPDATE': {
+         if (action.payload.checked) {
+            return {
+               ...state,
+               typeOfContract: [...state.typeOfContract, action.payload.value],
+            }
+         } else {
+            return {
+               ...state,
+               typeOfContract: state.typeOfContract.filter(
+                  (e: any) => e !== action.payload.value
+               ),
+            }
+         }
+      }
       default:
          return state
    }
@@ -204,14 +285,13 @@ export const FilterForm = () => {
       activityAssessment: [],
       codeEvaluation: [],
       jobEvaluation: [],
+      typeOfWork: [],
+      typeOfContract: [],
    })
 
    return (
       <Form>
-         <p>course: {filter.courseEvaluation}</p>
-         <p>activity: {filter.activityAssessment}</p>
-         <p>code: {filter.codeEvaluation}</p>
-         <p>job: {filter.jobEvaluation}</p>
+         <p>kontrakt:{filter.typeOfContract}</p>
          <div>
             <p>Ocena przjścia kursu</p>
             {courseEvaluation.map((el) => (
@@ -253,6 +333,30 @@ export const FilterForm = () => {
                   onChange={dispatch}
                   name={el.name}
                   value={el.value}
+               />
+            ))}
+         </div>
+         <div>
+            <p>Rodzaj pracy</p>
+            {typeOfWork.map((el) => (
+               <OneButtonInput
+                  key={`${el.name}${el.value}`}
+                  onChange={dispatch}
+                  name={el.name}
+                  value={el.value}
+                  inputName={el.inputTitle}
+               />
+            ))}
+         </div>
+         <div>
+            <p>Oczekiwany tryb kontraktu</p>
+            {typeOfContract.map((el) => (
+               <OneButtonInput
+                  key={`${el.name}${el.value}`}
+                  onChange={dispatch}
+                  name={el.name}
+                  value={el.value}
+                  inputName={el.inputTitle}
                />
             ))}
          </div>
