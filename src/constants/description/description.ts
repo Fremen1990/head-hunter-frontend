@@ -35,9 +35,9 @@ export const description = {
    studentPortfolio: {
       rating: 'oceny',
       expectation: 'oczekiwanie w stosunku do zatrudnienia',
-      education: 'edukacja',
-      courses: 'kursy',
-      experience: 'doświadczenie zawodowe',
+      educationDescribe: 'edukacja',
+      coursesDescribe: 'kursy',
+      experienceDescribe: 'doświadczenie zawodowe',
       portfolio: 'portfolio',
       groupProject: 'projekt w zespole scrumowym',
       ownProject: 'projekt na zaliczenie',
