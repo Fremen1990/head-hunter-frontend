@@ -21,7 +21,40 @@ export const userLogin = createAsyncThunk(
             config
          )
          localStorage.setItem('userToken', data.token)
-         localStorage.setItem('user', data.user)
+         return data
+      } catch (error: any) {
+         if (error.response && error.response.data.message) {
+            return rejectWithValue(error.response.data.message)
+         } else {
+            return rejectWithValue(error.message)
+         }
+      }
+   }
+)
+
+export const getUserDetails = createAsyncThunk(
+   'user/getUserDetails',
+   async (arg, { getState, rejectWithValue }) => {
+      try {
+         // get user data from  store
+         const { user } = getState()
+
+         console.log(user.userToken)
+
+         const bearer = `Bearer ${user.userToken}`
+         console.log('bearer', bearer)
+
+         const config = {
+            headers: {
+               'Content-Type': 'application/json',
+               Authorization: `Bearer ${user.userToken}`,
+               withCredentials: true,
+            },
+         }
+         const { data } = await axios.get(
+            `${process.env.REACT_APP_BACKEND_URL}/user/profile`,
+            config
+         )
          return data
       } catch (error: any) {
          if (error.response && error.response.data.message) {

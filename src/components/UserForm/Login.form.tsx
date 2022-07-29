@@ -30,7 +30,7 @@ export const LoginForm = () => {
    const successMessage = () =>
       toast.success('Login Successful 👍', {
          position: 'top-center',
-         autoClose: 2000,
+         autoClose: 1500,
          hideProgressBar: false,
          closeOnClick: true,
          pauseOnHover: true,
@@ -54,13 +54,13 @@ export const LoginForm = () => {
          successMessage()
          setTimeout(() => {
             navigate('/user')
-         }, 2000)
+         }, 3000)
       }
    }
 
    // redirect authenticated user to profile screen
    useEffect(() => {
-      if (userInfo) {
+      if (userInfo.active) {
          navigate('/user-profile')
       }
    }, [navigate, userInfo])
@@ -106,7 +106,7 @@ export const LoginForm = () => {
 
             <ToastContainer
                position="top-center"
-               autoClose={2000}
+               autoClose={1500}
                hideProgressBar={false}
                newestOnTop={false}
                closeOnClick

@@ -6,6 +6,7 @@ import { AdminPage } from './pages/Admin.page'
 import { NotFoundPage } from './pages/NotFound.page'
 import { LoginPage } from './pages/Login.page'
 import { HrPage } from './pages/Hr.page'
+import ProtectedRoute from './routing/ProtectedRoute'
 
 export interface IAppProps {}
 
@@ -15,7 +16,10 @@ export const App: React.FunctionComponent<IAppProps> = () => {
          <Routes>
             <Route path={ROUTES.HR_PAGE} element={<HrPage />} />
             <Route path={ROUTES.USER_PAGE} element={<UserPage />} />
-            <Route path={ROUTES.ADMIN_PAGE} element={<AdminPage />} />
+
+            <Route element={<ProtectedRoute />}>
+               <Route path={ROUTES.ADMIN_PAGE} element={<AdminPage />} />
+            </Route>
             <Route path={ROUTES.LOGIN} element={<LoginPage />} />
             <Route path={ROUTES.NOT_FOUND} element={<NotFoundPage />} />
          </Routes>
