@@ -4,11 +4,12 @@ import * as ROUTES from './constants/routes'
 import { UserPage } from './pages/User.page'
 import { AdminPage } from './pages/Admin.page'
 import { NotFoundPage } from './pages/NotFound.page'
-import { HrPage } from './pages/Hr.page'
 import { LoginPage } from './pages/Login.page'
-import { TestPage } from './pages/Test.page'
+import { HrPage } from './pages/Hr.page'
 
-export const App = () => {
+export interface IAppProps {}
+
+export const App: React.FunctionComponent<IAppProps> = () => {
    return (
       <BrowserRouter>
          <Routes>
@@ -17,7 +18,6 @@ export const App = () => {
             <Route path={ROUTES.ADMIN_PAGE} element={<AdminPage />} />
             <Route path={ROUTES.LOGIN} element={<LoginPage />} />
             <Route path={ROUTES.NOT_FOUND} element={<NotFoundPage />} />
-            <Route path={'/test'} element={<TestPage />} />
          </Routes>
       </BrowserRouter>
    )

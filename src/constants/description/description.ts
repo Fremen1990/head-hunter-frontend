@@ -19,8 +19,8 @@ export const description = {
       targetPlace: 'docelowe miasto, gdzie kandydat chce pracować',
       contractType: 'oczekiwany typ kontraktu',
       targetSalary: 'oczekiwanie miesięcczne wynagrodzenie netto',
-      practice: 'Zgoda na odbycie bezpłatnych praktyk/stażu na początek',
-      experience: 'Komercyjne dościadcznie w programowaniu',
+      practice: 'zgoda na odbycie bezpłatnych praktyk/stażu na początek',
+      experience: 'komercyjne dościadcznie w programowaniu',
    },
    buttons: {
       showCv: 'pokaż cv',
@@ -31,5 +31,17 @@ export const description = {
       logIn: 'Zaloguj się',
       account: 'konto',
       forgotPass: 'zapomniałeś hasła ?',
+   },
+   studentPortfolio: {
+      rating: 'oceny',
+      expectation: 'oczekiwanie w stosunku do zatrudnienia',
+      education: 'edukacja',
+      courses: 'kursy',
+      experience: 'doświadczenie zawodowe',
+      portfolio: 'portfolio',
+      groupProject: 'projekt w zespole scrumowym',
+      ownProject: 'projekt na zaliczenie',
+      aboutMe: 'o mnie',
+      backFromModal: 'Wróć',
    },
 }
