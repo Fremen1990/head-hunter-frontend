@@ -53,6 +53,7 @@ export const BackOnePage = styled.a`
    text-align: center;
    color: ${appColors.fontColor};
    background: transparent;
+   cursor: pointer;
    text-decoration: underline;
 
    ${device.mobile} {

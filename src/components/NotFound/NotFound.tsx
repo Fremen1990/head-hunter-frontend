@@ -8,7 +8,7 @@ import {
 } from './NotFound.styles'
 import { useNavigate } from 'react-router-dom'
 
-export const NotFound = () => {
+export const NotFound = async () => {
    const navigate = useNavigate()
 
    const handleBackOnePage = () => {
