@@ -1,5 +1,5 @@
 import React from 'react'
-import { BoxContainer } from '../EditExpectationBox/EditExpectationBox.styles'
+import { BoxContainer } from '../EditStudentPortfolio.styles'
 
 interface Props {
    title: string

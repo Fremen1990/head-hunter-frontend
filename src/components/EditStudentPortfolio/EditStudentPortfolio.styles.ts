@@ -42,13 +42,16 @@ export const AsideSection = styled.div`
    }
 
    & textarea {
-      width: 90vw;
+      width: 80vw;
       padding: 20px;
       color: ${appColors.userPointColor};
       font-size: 1.6rem;
       background-color: ${appColors.pageContainerColor};
+
       ${device.desktop} {
-         width: 100%;
+         padding: 15px;
+         height: 300px;
+         width: 20vw;
       }
    }
 `
@@ -56,38 +59,53 @@ export const AsideSection = styled.div`
 export const MainSection = styled.div`
    display: flex;
    flex-direction: column;
-   align-items: center;
    width: 100%;
 
    ${device.desktop} {
-      width: calc(70%);
+      width: 70%;
    }
 
    & textarea {
       color: ${appColors.userPointColor};
       font-size: 1.5rem;
-      width: 100%;
+      width: 90%;
       margin: 10px 0;
       padding: 5px;
    }
 
+   & select {
+      font-size: 1.6rem;
+      padding: 5px;
+      color: ${appColors.userPointColor};
+      background-color: ${appColors.pageContainerColor};
+   }
+
    & label {
       width: 100%;
+      text-align: center;
    }
+
    & input {
       font-size: 1.6rem;
       background-color: ${appColors.pageContainerColor};
       border: 1px solid ${appColors.userPointColor};
       color: ${appColors.userPointColor};
       margin: 20px 0;
+      padding: 5px;
    }
 
    & button {
       margin-left: 10px;
       padding: 5px;
+      font-size: 1.6rem;
       color: ${appColors.fontColor};
       border: 1px solid ${appColors.userPointColor};
       cursor: pointer;
+      transition: 0.5s;
+
+      &:hover {
+         border: 1px solid ${appColors.buttonColor};
+      }
    }
 
    & p {
@@ -102,7 +120,21 @@ export const EditExpectationBoxContainer = styled.div`
    align-items: center;
    flex-wrap: wrap;
 
+   ${device.tablet} {
+      justify-content: center;
+      flex-direction: column;
+   }
+
    ${device.desktop} {
-      justify-content: space-between;
+      flex-direction: row;
+   }
+`
+
+export const BoxContainer = styled.div`
+   margin: 15px;
+   color: ${appColors.descriptionColor};
+
+   ${device.desktop} {
+      width: 40%;
    }
 `

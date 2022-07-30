@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
 import {
    Form,
    MainSection,
@@ -7,102 +7,270 @@ import {
 } from './EditStudentPortfolio.styles'
 import { description } from '../../constants/description/description'
 import { SubtitlesSection } from '../StudentPortfolio/SubtitlesSection/SubtitlesSection'
-import { EditExpectationBox } from './EditExpectationBox/EditExpectationBox'
 import { Button } from '../commons/Button/Button'
 import { Header } from '../Header/Header'
 import { PageContainer } from '../../constants/Layout/Container.styles'
+import { InputTextBox } from './InputTextBox/InputTextBox'
+import { SelectBox } from './SelectBox/SelectBox'
+import { NumberInputBox } from './NumberInputBox/NumberInputBox'
+import { TextAreaBox } from './TextAreaBox/TextAreaBox'
 
-// const portfolioProjects: string[] = ['http:github', 'http:github'];
+interface formInterface {
+   email: string
+   firstName: string
+   lastName: string
+   githubUserName: string
+   tel: string
+   bio: string
+   education: string
+   expectedTypeWork: string
+   targetWorkCity: string
+   expectedContractType: string
+   expectedSalary: string
+   canTakeApprenticeship: string
+   monthsOfCommercialExp: number
+   courses: string
+   workExperience: string
+   portfolioUrls: string[]
+   projectUrls: string[]
+}
 
 export const EditStudentPortfolio = () => {
-   // const {preferWork} = description.userInterview
-   const { aboutMe } = description.studentPortfolio
+   const [portfolioUrls, setPortfolioUrls] = useState<string>('')
+   const [projectUrls, setProjectUrls] = useState<string>('')
+   const [form, setForm] = useState<formInterface>({
+      canTakeApprenticeship: 'Nie',
+      expectedContractType: 'Brak preferencji',
+      expectedSalary: '',
+      expectedTypeWork: 'Bez znaczenia',
+      monthsOfCommercialExp: 0,
+      targetWorkCity: '',
+      email: '',
+      firstName: '',
+      lastName: '',
+      githubUserName: '',
+      tel: '',
+      bio: '',
+      education: '',
+      courses: '',
+      workExperience: '',
+      portfolioUrls: [],
+      projectUrls: [],
+   })
 
-   const [title, setTitle] = useState('')
-   const [portfolioProjects, setPortfolioProjects] = useState<string[]>([])
-
-   const handleClick = (e: any) => {
+   const handlePortfolioClick = (e: React.MouseEvent<HTMLElement>) => {
       e.preventDefault()
-      setPortfolioProjects((portfolioProjects) => [...portfolioProjects, title])
-      console.log(portfolioProjects)
+      setPortfolioUrls('')
+      setForm((form) => ({
+         ...form,
+         portfolioUrls: [...form.portfolioUrls, portfolioUrls],
+      }))
    }
 
+   const handleProjectClick = (e: React.MouseEvent<HTMLElement>) => {
+      e.preventDefault()
+      setProjectUrls('')
+      setForm((form) => ({
+         ...form,
+         projectUrls: [...form.projectUrls, projectUrls],
+      }))
+   }
+
+   const updateForm = (key: string, value: string) => {
+      setForm((form) => ({
+         ...form,
+         [key]: value,
+      }))
+   }
+
+   const updatePortfolioForm = (e: ChangeEvent<HTMLInputElement>) => {
+      setPortfolioUrls(e.target.value)
+   }
+
+   const updateProjectChange = (e: ChangeEvent<HTMLInputElement>) => {
+      setProjectUrls(e.target.value)
+   }
+
+   const submit = (e: SyntheticEvent) => {
+      e.preventDefault()
+      console.log(form)
+   }
+
+   const { aboutMe } = description.studentPortfolio
    const {
       preferWork,
-      targetPlace,
       contractType,
-      targetSalary,
       practice,
+      targetPlace,
       experience,
+      targetSalary,
    } = description.userInterview
 
    return (
       <>
          <Header />
          <PageContainer>
-            <Form>
+            <Form onSubmit={submit}>
                <AsideSection>
-                  <label>
-                     <p>Imię:</p>
-                     <input type="text" />
-                  </label>
-                  <label>
-                     <p>Nazwisko:</p>
-                     <input type="text" />
-                  </label>
-                  <label>
-                     <p>Nick na githubie:</p>
-                     <input type="text" />
-                  </label>
-                  <label>
-                     <p>Telefon:</p>
-                     <input type="text" />
-                  </label>
+                  <InputTextBox
+                     layout="simple"
+                     title="Imię"
+                     method={(e) => updateForm('firstName', e.target.value)}
+                  />
+                  <InputTextBox
+                     layout="simple"
+                     title="Nazwisko"
+                     method={(e) => updateForm('lastName', e.target.value)}
+                  />
+                  <InputTextBox
+                     layout="simple"
+                     title="Nick na githubie"
+                     method={(e) =>
+                        updateForm('githubUserName', e.target.value)
+                     }
+                  />
+                  <InputTextBox
+                     layout="simple"
+                     title="E-mail"
+                     method={(e) => updateForm('email', e.target.value)}
+                  />
+                  <InputTextBox
+                     layout="simple"
+                     title="Telefon:"
+                     method={(e) => updateForm('tel', e.target.value)}
+                  />
                   <label>
                      <p>{aboutMe}</p>
-                     <textarea />
+                     <textarea
+                        name="bio"
+                        onChange={(e) => updateForm('bio', e.target.value)}
+                     />
                   </label>
-                  <Button buttonTitle="Wyślij zmiany" />
                </AsideSection>
                <MainSection>
                   <label>
-                     <SubtitlesSection text="Oczekiwanie w stosunku do zatrudnienia" />
+                     <SubtitlesSection text="Oczekiwanie w stosunku do zatrudnienia " />
                      <EditExpectationBoxContainer>
-                        <EditExpectationBox title={preferWork} />
-                        <EditExpectationBox title={targetPlace} />
-                        <EditExpectationBox title={contractType} />
-                        <EditExpectationBox title={targetSalary} />
-                        <EditExpectationBox title={practice} />
-                        <EditExpectationBox title={experience} />
+                        <InputTextBox
+                           layout="extended"
+                           method={(e) =>
+                              updateForm('targetWorkCity', e.target.value)
+                           }
+                           title={targetPlace}
+                        />
+                        <InputTextBox
+                           layout="extended"
+                           method={(e) =>
+                              updateForm('expectedSalary', e.target.value)
+                           }
+                           title={targetSalary}
+                        />
+                        <SelectBox
+                           title={preferWork}
+                           method={(e) =>
+                              updateForm('expectedTypeWork', e.target.value)
+                           }
+                           options={[
+                              { value: 'Bez znaczenia', text: 'Bez znaczenia' },
+                              { value: 'Na miejscu', text: 'Na miejscu' },
+                              {
+                                 value: 'Gotowość do przeprawadzki',
+                                 text: 'Gotowość do przeprawadzki',
+                              },
+                              {
+                                 value: 'Wyłącznie zdalnie',
+                                 text: 'Wyłącznie zdalnie',
+                              },
+                              { value: 'Hybrydowo', text: 'Hybrydowo' },
+                           ]}
+                        />
+                        <SelectBox
+                           title={contractType}
+                           method={(e) =>
+                              updateForm('expectedContractType', e.target.value)
+                           }
+                           options={[
+                              { value: 'Brak', text: 'Brak preferecji' },
+                              { value: 'UoP', text: 'Tylko Umowa o pracę' },
+                              { value: 'b2v', text: 'Możliwe B2B' },
+                              {
+                                 value: 'UZ/UoD',
+                                 text: 'Możliwe umowa o zlecenie/umowa o dzieło',
+                              },
+                           ]}
+                        />
+                        <NumberInputBox
+                           layout="extended"
+                           method={(e) =>
+                              updateForm(
+                                 'monthsOfCommercialExp',
+                                 e.target.value
+                              )
+                           }
+                           title={experience}
+                        />
+                        <SelectBox
+                           title={practice}
+                           options={[
+                              { value: 'nie', text: 'Nie' },
+                              { value: 'tak', text: 'Tak' },
+                           ]}
+                           method={(e) =>
+                              updateForm(
+                                 'canTakeApprenticeship',
+                                 e.target.value
+                              )
+                           }
+                        />
                      </EditExpectationBoxContainer>
                   </label>
-                  <label>
-                     <SubtitlesSection text="Edukacja" />
-                     <textarea />
-                  </label>
-                  <label>
-                     <SubtitlesSection text="Kursy" />
-                     <textarea />
-                  </label>
-                  <label>
-                     <SubtitlesSection text="Doświadczenie zawodowe" />
-                     <textarea />
-                  </label>
+                  <TextAreaBox
+                     method={(e) => updateForm('education', e.target.value)}
+                     title="Edukacja"
+                  />
+                  <TextAreaBox
+                     title="Kursy"
+                     method={(e) => updateForm('courses', e.target.value)}
+                  />
+                  <TextAreaBox
+                     title="Doświadczenie zawodowe"
+                     method={(e) =>
+                        updateForm('workExperience', e.target.value)
+                     }
+                  />
                   <label>
                      <SubtitlesSection text="Portfolio" />
-                     {portfolioProjects.map(
+                     {form.portfolioUrls.map(
                         (project: string, index: number) => (
                            <p key={index}>{project}</p>
                         )
                      )}
                      <input
                         type="text"
-                        onChange={(event) => setTitle(event.target.value)}
+                        name="portfolioUrls"
+                        value={portfolioUrls}
+                        onChange={(e) => updatePortfolioForm(e)}
                      />
-                     <button onClick={(e) => handleClick(e)}>
+                     <button onClick={(e) => handlePortfolioClick(e)}>
                         Dodaj nowy projekt
                      </button>
                   </label>
+                  <label>
+                     <SubtitlesSection text="Projekt na zaliczenie" />
+                     {form.projectUrls.map((project: string, index: number) => (
+                        <p key={index}>{project}</p>
+                     ))}
+                     <input
+                        type="text"
+                        name="projectUrls"
+                        value={projectUrls}
+                        onChange={(e) => updateProjectChange(e)}
+                     />
+                     <button onClick={handleProjectClick}>
+                        Dodaj nowy projekt
+                     </button>
+                  </label>
+                  <Button buttonTitle="Wyślij zmiany" />
                </MainSection>
             </Form>
          </PageContainer>
