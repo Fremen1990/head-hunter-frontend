@@ -1,32 +1,28 @@
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { appColors } from '../../constants/Layout/app.colors'
 import { device } from '../../constants/mediaQueries'
 import { MdArrowBackIosNew } from 'react-icons/md'
-
-export const BackContainer = styled.div`
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   margin-right: 5px;
-   width: 35px;
-`
-
-export const BackLink = styled(Link)`
-   color: ${appColors.fontColor};
-   text-decoration: none;
-   font-weight: bold;
-`
-
-export const BackIcon = styled(MdArrowBackIosNew)`
-   color: ${appColors.pageContainerColor};
-`
 
 export const UserPortfolioContainer = styled.div`
    display: flex;
    flex-wrap: wrap;
    align-items: flex-start;
 `
+export const BackButton = styled.button`
+   display: flex;
+   align-items: center;
+   color: ${appColors.fontColor};
+   border: none;
+   margin: 5px 0;
+   width: 35px;
+   font-weight: bold;
+   cursor: pointer;
+`
+
+export const BackIcon = styled(MdArrowBackIosNew)`
+   color: ${appColors.iconColor};
+`
+
 export const AsideSection = styled.aside`
    display: flex;
    flex-direction: column;

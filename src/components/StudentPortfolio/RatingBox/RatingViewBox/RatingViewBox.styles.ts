@@ -10,6 +10,15 @@ export const RatingViewBoxContainer = styled.div`
    gap: 10px;
    margin: 0 40px 10px 0;
 
+  & h2 {
+    font-size: 1.4rem;
+    color: ${appColors.descriptionColor};
+    margin-bottom: 10px;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  
    & p {
       font-size: 1.4rem;
       color: ${appColors.descriptionColor};

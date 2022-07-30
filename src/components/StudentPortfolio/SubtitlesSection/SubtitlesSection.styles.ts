@@ -6,4 +6,8 @@ export const SubtitleSection = styled.div`
    font-size: 20px;
    font-weight: bold;
    color: #f7f7f7;
+
+   &::first-letter {
+      text-transform: uppercase;
+   }
 `
