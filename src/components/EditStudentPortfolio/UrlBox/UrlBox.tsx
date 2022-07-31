@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react'
-import { SubtitlesSection } from '../../../components/StudentPortfolio/SubtitlesSection/SubtitlesSection'
+import { SubtitlesSection } from '../../StudentPortfolio/SubtitlesSection/SubtitlesSection'
 
 interface Props {
    urlBoxArray: string[]

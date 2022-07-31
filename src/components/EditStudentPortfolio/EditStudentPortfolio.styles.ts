@@ -2,13 +2,6 @@ import styled from 'styled-components'
 import { appColors } from '../../constants/Layout/app.colors'
 import { device } from '../../constants/mediaQueries'
 
-export const ModalContainer = styled.div`
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 100%;
-`
-
 export const BackButton = styled.button`
    width: 100%;
    margin: 5px 5px 0;
