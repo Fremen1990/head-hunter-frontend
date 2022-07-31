@@ -8,6 +8,9 @@ export const description = {
       requiredEmail: 'Email jest wymagany',
       messageEmail: 'Podaj swój adres email',
       requiredPass: 'Hasło jest wymagane',
+      requiredFullName: 'Imię i nazwisko jest wymagane',
+      requiredCompany: 'Nazwa firmy jest wymagana',
+      requiredMaxReservedStudents: 'Liczba osób do rozmowy jest wymagana',
    },
    userInterview: {
       userReservation: 'rezerwacja do:',
