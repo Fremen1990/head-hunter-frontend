@@ -1,19 +1,19 @@
 export const expectedTypeWorkOptions = [
-   { value: 'bez', text: 'Bez znaczenia' },
-   { value: 'miejsce', text: 'Na miejscu' },
-   { value: 'przeprwoadzka', text: 'Gotowość do przeprawadzki' },
-   { value: 'zdalnie', text: 'Wyłącznie zdalnie' },
-   { value: 'Hybrydowo', text: 'Hybrydowo' },
+   { value: 'ANY', text: 'Bez znaczenia' },
+   { value: 'OFFICE', text: 'Na miejscu' },
+   { value: 'READY_TO_MOVE', text: 'Gotowość do przeprawadzki' },
+   { value: 'REMOTE', text: 'Wyłącznie zdalnie' },
+   { value: 'HYBRID', text: 'Hybrydowo' },
 ]
 
 export const expectedContractTypeOptions = [
-   { value: 'brak', text: 'Brak preferecji' },
-   { value: 'UoP', text: 'Tylko Umowa o pracę' },
-   { value: 'b2v', text: 'Możliwe B2B' },
-   { value: 'UZ/UoD', text: 'Możliwe umowa o zlecenie/umowa o dzieło' },
+   { value: 'ANY', text: 'Brak preferecji' },
+   { value: 'UOP', text: 'Tylko Umowa o pracę' },
+   { value: 'B2B', text: 'Możliwe B2B' },
+   { value: 'UZ_UOD', text: 'Możliwe umowa o zlecenie/umowa o dzieło' },
 ]
 
 export const canTakeApprenticeshipOptions = [
-   { value: 'nie', text: 'Nie' },
-   { value: 'tak', text: 'Tak' },
+   { value: 'NO', text: 'Nie' },
+   { value: 'YES', text: 'Tak' },
 ]
