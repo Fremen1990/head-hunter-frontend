@@ -1,4 +1,14 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
+import { SubtitlesSection } from '../../components/StudentPortfolio/SubtitlesSection/SubtitlesSection'
+import { Button } from '../../components/commons/Button/Button'
+import { Header } from '../../components/Header/Header'
+import { InputTextBox } from './InputTextBox/InputTextBox'
+import { SelectBox } from './SelectBox/SelectBox'
+import { NumberInputBox } from './NumberInputBox/NumberInputBox'
+import { TextAreaBox } from './TextAreaBox/TextAreaBox'
+import { UrlBox } from './UrlBox/UrlBox'
+import { description } from '../../constants/description/description'
+import { PageContainer } from '../../constants/Layout/Container.styles'
 import {
    Form,
    MainSection,
@@ -7,15 +17,6 @@ import {
    ModalContainer,
    BackButton,
 } from './EditStudentPortfolio.styles'
-import { description } from '../../constants/description/description'
-import { SubtitlesSection } from '../../components/StudentPortfolio/SubtitlesSection/SubtitlesSection'
-import { Button } from '../../components/commons/Button/Button'
-import { Header } from '../../components/Header/Header'
-import { PageContainer } from '../../constants/Layout/Container.styles'
-import { InputTextBox } from './InputTextBox/InputTextBox'
-import { SelectBox } from './SelectBox/SelectBox'
-import { NumberInputBox } from './NumberInputBox/NumberInputBox'
-import { TextAreaBox } from './TextAreaBox/TextAreaBox'
 import {
    canTakeApprenticeshipOptions,
    expectedContractTypeOptions,
@@ -83,7 +84,7 @@ export const EditStudentPortfolio = () => {
       }))
    }
 
-   const updateForm = (key: string, value: string) => {
+   const updateForm = (key: string, value: string | number) => {
       setForm((form) => ({
          ...form,
          [key]: value,
@@ -204,7 +205,7 @@ export const EditStudentPortfolio = () => {
                            method={(e: ChangeEvent<HTMLInputElement>) =>
                               updateForm(
                                  'monthsOfCommercialExp',
-                                 e.target.value
+                                 Number(e.target.value)
                               )
                            }
                         />
@@ -238,42 +239,20 @@ export const EditStudentPortfolio = () => {
                         updateForm('workExperience', e.target.value)
                      }
                   />
-                  <label>
-                     <SubtitlesSection text="Portfolio" />
-                     {form.portfolioUrls.map(
-                        (project: string, index: number) => (
-                           <p key={index}>{project}</p>
-                        )
-                     )}
-                     <input
-                        type="text"
-                        name="portfolioUrls"
-                        value={portfolioUrls}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                           updatePortfolioForm(e)
-                        }
-                     />
-                     <button onClick={handlePortfolioClick}>
-                        {addProjectBtn}
-                     </button>
-                  </label>
-                  <label>
-                     <SubtitlesSection text="Projekt na zaliczenie" />
-                     {form.projectUrls.map((project: string, index: number) => (
-                        <p key={index}>{project}</p>
-                     ))}
-                     <input
-                        type="text"
-                        name="projectUrls"
-                        value={projectUrls}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                           updateProjectChange(e)
-                        }
-                     />
-                     <button onClick={handleProjectClick}>
-                        {addProjectBtn}
-                     </button>
-                  </label>
+                  <UrlBox
+                     urlBoxArray={form.portfolioUrls}
+                     value={portfolioUrls}
+                     inputMethod={updatePortfolioForm}
+                     btnMethod={handlePortfolioClick}
+                     btnText={addProjectBtn}
+                  />
+                  <UrlBox
+                     urlBoxArray={form.projectUrls}
+                     value={projectUrls}
+                     btnText={addProjectBtn}
+                     btnMethod={handleProjectClick}
+                     inputMethod={updateProjectChange}
+                  />
                   <Button buttonTitle={sendFormBtn} />
                </MainSection>
             </Form>
