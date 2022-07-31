@@ -7,11 +7,11 @@ interface Props {
    desc: string
 }
 
-export const DescriptionBox = (props: Props) => {
+export const DescriptionBox = ({ desc, text }: Props) => {
    return (
       <>
-         <SubtitlesSection text={props.text} />
-         <DescriptionSection>{props.desc}</DescriptionSection>
+         <SubtitlesSection text={text} />
+         <DescriptionSection>{desc}</DescriptionSection>
       </>
    )
 }
