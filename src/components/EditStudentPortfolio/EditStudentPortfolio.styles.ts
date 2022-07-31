@@ -103,6 +103,10 @@ export const MainSection = styled.div`
       cursor: pointer;
       transition: 0.5s;
 
+      &::first-letter {
+         text-transform: uppercase;
+      }
+
       &:hover {
          border: 1px solid ${appColors.buttonColor};
       }

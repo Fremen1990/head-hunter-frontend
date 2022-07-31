@@ -14,6 +14,11 @@ import { InputTextBox } from './InputTextBox/InputTextBox'
 import { SelectBox } from './SelectBox/SelectBox'
 import { NumberInputBox } from './NumberInputBox/NumberInputBox'
 import { TextAreaBox } from './TextAreaBox/TextAreaBox'
+import {
+   canTakeApprenticeshipOptions,
+   expectedContractTypeOptions,
+   expectedTypeWorkOptions,
+} from '../../constants/secletOptions'
 
 interface formInterface {
    email: string
@@ -106,6 +111,7 @@ export const EditStudentPortfolio = () => {
       targetSalary,
    } = description.userInterview
 
+   const { addProjectBtn, sendFormBtn } = description.editCv
    return (
       <>
          <Header />
@@ -113,30 +119,30 @@ export const EditStudentPortfolio = () => {
             <Form onSubmit={submit}>
                <AsideSection>
                   <InputTextBox
-                     layout="simple"
                      title="Imię"
+                     layout="simple"
                      method={(e) => updateForm('firstName', e.target.value)}
                   />
                   <InputTextBox
-                     layout="simple"
                      title="Nazwisko"
+                     layout="simple"
                      method={(e) => updateForm('lastName', e.target.value)}
                   />
                   <InputTextBox
-                     layout="simple"
                      title="Nick na githubie"
+                     layout="simple"
                      method={(e) =>
                         updateForm('githubUserName', e.target.value)
                      }
                   />
                   <InputTextBox
-                     layout="simple"
                      title="E-mail"
+                     layout="simple"
                      method={(e) => updateForm('email', e.target.value)}
                   />
                   <InputTextBox
-                     layout="simple"
                      title="Telefon:"
+                     layout="simple"
                      method={(e) => updateForm('tel', e.target.value)}
                   />
                   <label>
@@ -152,54 +158,35 @@ export const EditStudentPortfolio = () => {
                      <SubtitlesSection text="Oczekiwanie w stosunku do zatrudnienia " />
                      <EditExpectationBoxContainer>
                         <InputTextBox
+                           title={targetPlace}
                            layout="extended"
                            method={(e) =>
                               updateForm('targetWorkCity', e.target.value)
                            }
-                           title={targetPlace}
                         />
                         <InputTextBox
+                           title={targetSalary}
                            layout="extended"
                            method={(e) =>
                               updateForm('expectedSalary', e.target.value)
                            }
-                           title={targetSalary}
                         />
                         <SelectBox
                            title={preferWork}
+                           options={expectedTypeWorkOptions}
                            method={(e) =>
                               updateForm('expectedTypeWork', e.target.value)
                            }
-                           options={[
-                              { value: 'Bez znaczenia', text: 'Bez znaczenia' },
-                              { value: 'Na miejscu', text: 'Na miejscu' },
-                              {
-                                 value: 'Gotowość do przeprawadzki',
-                                 text: 'Gotowość do przeprawadzki',
-                              },
-                              {
-                                 value: 'Wyłącznie zdalnie',
-                                 text: 'Wyłącznie zdalnie',
-                              },
-                              { value: 'Hybrydowo', text: 'Hybrydowo' },
-                           ]}
                         />
                         <SelectBox
                            title={contractType}
+                           options={expectedContractTypeOptions}
                            method={(e) =>
                               updateForm('expectedContractType', e.target.value)
                            }
-                           options={[
-                              { value: 'Brak', text: 'Brak preferecji' },
-                              { value: 'UoP', text: 'Tylko Umowa o pracę' },
-                              { value: 'b2v', text: 'Możliwe B2B' },
-                              {
-                                 value: 'UZ/UoD',
-                                 text: 'Możliwe umowa o zlecenie/umowa o dzieło',
-                              },
-                           ]}
                         />
                         <NumberInputBox
+                           title={experience}
                            layout="extended"
                            method={(e) =>
                               updateForm(
@@ -207,14 +194,10 @@ export const EditStudentPortfolio = () => {
                                  e.target.value
                               )
                            }
-                           title={experience}
                         />
                         <SelectBox
                            title={practice}
-                           options={[
-                              { value: 'nie', text: 'Nie' },
-                              { value: 'tak', text: 'Tak' },
-                           ]}
+                           options={canTakeApprenticeshipOptions}
                            method={(e) =>
                               updateForm(
                                  'canTakeApprenticeship',
@@ -225,8 +208,8 @@ export const EditStudentPortfolio = () => {
                      </EditExpectationBoxContainer>
                   </label>
                   <TextAreaBox
-                     method={(e) => updateForm('education', e.target.value)}
                      title="Edukacja"
+                     method={(e) => updateForm('education', e.target.value)}
                   />
                   <TextAreaBox
                      title="Kursy"
@@ -251,8 +234,8 @@ export const EditStudentPortfolio = () => {
                         value={portfolioUrls}
                         onChange={(e) => updatePortfolioForm(e)}
                      />
-                     <button onClick={(e) => handlePortfolioClick(e)}>
-                        Dodaj nowy projekt
+                     <button onClick={handlePortfolioClick}>
+                        {addProjectBtn}
                      </button>
                   </label>
                   <label>
@@ -267,10 +250,10 @@ export const EditStudentPortfolio = () => {
                         onChange={(e) => updateProjectChange(e)}
                      />
                      <button onClick={handleProjectClick}>
-                        Dodaj nowy projekt
+                        {addProjectBtn}
                      </button>
                   </label>
-                  <Button buttonTitle="Wyślij zmiany" />
+                  <Button buttonTitle={sendFormBtn} />
                </MainSection>
             </Form>
          </PageContainer>
