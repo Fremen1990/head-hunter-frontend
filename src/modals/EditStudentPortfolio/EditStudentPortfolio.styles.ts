@@ -1,6 +1,28 @@
 import styled from 'styled-components'
 import { appColors } from '../../constants/Layout/app.colors'
 import { device } from '../../constants/mediaQueries'
+import { NavLink } from 'react-router-dom'
+
+export const BackNavLink = styled(NavLink)`
+   width: 100%;
+   margin: 5px 5px 0;
+   padding: 5px;
+   font-size: 1.5rem;
+   text-align: center;
+   border: 1px solid ${appColors.userPointColor};
+   color: ${appColors.userPointColor};
+   text-decoration: none;
+   transition: 0.5s;
+
+   ${device.desktop} {
+      width: 50px;
+   }
+
+   &:hover {
+      color: ${appColors.buttonColor};
+      border: 1px solid ${appColors.buttonColor};
+   }
+`
 
 export const Form = styled.form`
    display: flex;
@@ -62,7 +84,7 @@ export const MainSection = styled.div`
    width: 100%;
 
    ${device.desktop} {
-      width: 70%;
+      width: calc(70% - 60px);
    }
 
    & textarea {

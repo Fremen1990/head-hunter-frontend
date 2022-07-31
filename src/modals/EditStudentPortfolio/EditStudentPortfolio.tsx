@@ -4,11 +4,12 @@ import {
    MainSection,
    AsideSection,
    EditExpectationBoxContainer,
+   BackNavLink,
 } from './EditStudentPortfolio.styles'
 import { description } from '../../constants/description/description'
-import { SubtitlesSection } from '../StudentPortfolio/SubtitlesSection/SubtitlesSection'
-import { Button } from '../commons/Button/Button'
-import { Header } from '../Header/Header'
+import { SubtitlesSection } from '../../components/StudentPortfolio/SubtitlesSection/SubtitlesSection'
+import { Button } from '../../components/commons/Button/Button'
+import { Header } from '../../components/Header/Header'
 import { PageContainer } from '../../constants/Layout/Container.styles'
 import { InputTextBox } from './InputTextBox/InputTextBox'
 import { SelectBox } from './SelectBox/SelectBox'
@@ -117,78 +118,89 @@ export const EditStudentPortfolio = () => {
          <Header />
          <PageContainer>
             <Form onSubmit={submit}>
+               <BackNavLink to="/user">Wróc</BackNavLink>
                <AsideSection>
                   <InputTextBox
                      title="Imię"
                      layout="simple"
-                     method={(e) => updateForm('firstName', e.target.value)}
+                     method={(e: ChangeEvent<HTMLInputElement>) =>
+                        updateForm('firstName', e.target.value)
+                     }
                   />
                   <InputTextBox
                      title="Nazwisko"
                      layout="simple"
-                     method={(e) => updateForm('lastName', e.target.value)}
+                     method={(e: ChangeEvent<HTMLInputElement>) =>
+                        updateForm('lastName', e.target.value)
+                     }
                   />
                   <InputTextBox
                      title="Nick na githubie"
                      layout="simple"
-                     method={(e) =>
+                     method={(e: ChangeEvent<HTMLInputElement>) =>
                         updateForm('githubUserName', e.target.value)
                      }
                   />
                   <InputTextBox
                      title="E-mail"
                      layout="simple"
-                     method={(e) => updateForm('email', e.target.value)}
+                     method={(e: ChangeEvent<HTMLInputElement>) =>
+                        updateForm('email', e.target.value)
+                     }
                   />
                   <InputTextBox
                      title="Telefon:"
                      layout="simple"
-                     method={(e) => updateForm('tel', e.target.value)}
+                     method={(e: ChangeEvent<HTMLInputElement>) =>
+                        updateForm('tel', e.target.value)
+                     }
                   />
                   <label>
                      <p>{aboutMe}</p>
                      <textarea
                         name="bio"
-                        onChange={(e) => updateForm('bio', e.target.value)}
+                        onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                           updateForm('bio', e.target.value)
+                        }
                      />
                   </label>
                </AsideSection>
                <MainSection>
                   <label>
-                     <SubtitlesSection text="Oczekiwanie w stosunku do zatrudnienia " />
+                     <SubtitlesSection text="Oczekiwanie w stosunku do zatrudnienia" />
                      <EditExpectationBoxContainer>
                         <InputTextBox
                            title={targetPlace}
                            layout="extended"
-                           method={(e) =>
+                           method={(e: ChangeEvent<HTMLInputElement>) =>
                               updateForm('targetWorkCity', e.target.value)
                            }
                         />
                         <InputTextBox
                            title={targetSalary}
                            layout="extended"
-                           method={(e) =>
+                           method={(e: ChangeEvent<HTMLInputElement>) =>
                               updateForm('expectedSalary', e.target.value)
                            }
                         />
                         <SelectBox
                            title={preferWork}
                            options={expectedTypeWorkOptions}
-                           method={(e) =>
+                           method={(e: ChangeEvent<HTMLSelectElement>) =>
                               updateForm('expectedTypeWork', e.target.value)
                            }
                         />
                         <SelectBox
                            title={contractType}
                            options={expectedContractTypeOptions}
-                           method={(e) =>
+                           method={(e: ChangeEvent<HTMLSelectElement>) =>
                               updateForm('expectedContractType', e.target.value)
                            }
                         />
                         <NumberInputBox
                            title={experience}
                            layout="extended"
-                           method={(e) =>
+                           method={(e: ChangeEvent<HTMLInputElement>) =>
                               updateForm(
                                  'monthsOfCommercialExp',
                                  e.target.value
@@ -198,7 +210,7 @@ export const EditStudentPortfolio = () => {
                         <SelectBox
                            title={practice}
                            options={canTakeApprenticeshipOptions}
-                           method={(e) =>
+                           method={(e: ChangeEvent<HTMLSelectElement>) =>
                               updateForm(
                                  'canTakeApprenticeship',
                                  e.target.value
@@ -209,15 +221,19 @@ export const EditStudentPortfolio = () => {
                   </label>
                   <TextAreaBox
                      title="Edukacja"
-                     method={(e) => updateForm('education', e.target.value)}
+                     method={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                        updateForm('education', e.target.value)
+                     }
                   />
                   <TextAreaBox
                      title="Kursy"
-                     method={(e) => updateForm('courses', e.target.value)}
+                     method={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                        updateForm('courses', e.target.value)
+                     }
                   />
                   <TextAreaBox
                      title="Doświadczenie zawodowe"
-                     method={(e) =>
+                     method={(e: ChangeEvent<HTMLTextAreaElement>) =>
                         updateForm('workExperience', e.target.value)
                      }
                   />
@@ -232,7 +248,9 @@ export const EditStudentPortfolio = () => {
                         type="text"
                         name="portfolioUrls"
                         value={portfolioUrls}
-                        onChange={(e) => updatePortfolioForm(e)}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                           updatePortfolioForm(e)
+                        }
                      />
                      <button onClick={handlePortfolioClick}>
                         {addProjectBtn}
@@ -247,7 +265,9 @@ export const EditStudentPortfolio = () => {
                         type="text"
                         name="projectUrls"
                         value={projectUrls}
-                        onChange={(e) => updateProjectChange(e)}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                           updateProjectChange(e)
+                        }
                      />
                      <button onClick={handleProjectClick}>
                         {addProjectBtn}

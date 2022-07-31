@@ -1,5 +1,5 @@
 import React from 'react'
-import { SubtitlesSection } from '../../StudentPortfolio/SubtitlesSection/SubtitlesSection'
+import { SubtitlesSection } from '../../../components/StudentPortfolio/SubtitlesSection/SubtitlesSection'
 
 interface Props {
    title: string
