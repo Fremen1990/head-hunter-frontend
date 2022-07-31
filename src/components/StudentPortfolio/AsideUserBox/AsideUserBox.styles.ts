@@ -11,8 +11,6 @@ export const RowContainer = styled.div`
   align-items: center;
   flex-wrap: wrap;
   margin: 5px 0;
-  
-
 
   & p {
     margin-left: 10px;
@@ -41,6 +39,10 @@ export const DescriptionContainer = styled.div`
 
    & p {
       color: ${appColors.iconColor};
+
+      &::first-letter {
+         text-transform: uppercase;
+      }
    }
 `
 

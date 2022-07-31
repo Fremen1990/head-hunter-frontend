@@ -1,11 +1,15 @@
 import React from 'react'
 import { Tab, StudentsTabs } from './Navigation.styles'
 
-export const StudentsNavigation = () => {
+interface NavigationInterface {
+   setToInterview: (arg: boolean) => void
+}
+
+export const StudentsNavigation = ({ setToInterview }: NavigationInterface) => {
    return (
       <StudentsTabs>
-         <Tab>Dostępni kursanci</Tab>
-         <Tab>Do rozmowy</Tab>
+         <Tab onClick={() => setToInterview(false)}>Dostępni kursanci</Tab>
+         <Tab onClick={() => setToInterview(true)}>Do rozmowy</Tab>
       </StudentsTabs>
    )
 }

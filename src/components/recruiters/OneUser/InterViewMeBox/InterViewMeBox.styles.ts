@@ -25,6 +25,10 @@ export const BoxContainer = styled.div`
       color: ${appColors.descriptionColor};
       text-align: left;
       width: 100%;
+
+      &::first-letter {
+         text-transform: uppercase;
+      }
    }
 
    & p:nth-child(1) {

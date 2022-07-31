@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { PageContainer } from '../constants/Layout/Container.styles'
 import { Header } from '../components/Header/Header'
+
+import { Admin } from '../components/AccountProfile/Admin/Admin'
+
 // eslint-disable-next-line no-unused-vars
 import {
    getStudents,
@@ -99,6 +102,8 @@ export const AdminPage = () => {
       <>
          <Header />
          <PageContainer>
+            <Admin />
+
             <h1>Admin Page</h1>
             <p>
                For example how to use page container with header component :)
