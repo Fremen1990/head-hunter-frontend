@@ -7,6 +7,7 @@ import { SelectBox } from './SelectBox/SelectBox'
 import { NumberInputBox } from './NumberInputBox/NumberInputBox'
 import { TextAreaBox } from './TextAreaBox/TextAreaBox'
 import { UrlBox } from './UrlBox/UrlBox'
+import { FormCVInterface } from '../../constants/types/formInterface'
 import { description } from '../../constants/description/description'
 import { PageContainer } from '../../constants/Layout/Container.styles'
 import {
@@ -23,30 +24,10 @@ import {
    expectedTypeWorkOptions,
 } from '../../constants/secletOptions'
 
-interface formInterface {
-   email: string
-   firstName: string
-   lastName: string
-   githubUserName: string
-   tel: string
-   bio: string
-   education: string
-   expectedTypeWork: string
-   targetWorkCity: string
-   expectedContractType: string
-   expectedSalary: string
-   canTakeApprenticeship: string
-   monthsOfCommercialExp: number
-   courses: string
-   workExperience: string
-   portfolioUrls: string[]
-   projectUrls: string[]
-}
-
 export const EditStudentPortfolio = () => {
    const [portfolioUrls, setPortfolioUrls] = useState<string>('')
    const [projectUrls, setProjectUrls] = useState<string>('')
-   const [form, setForm] = useState<formInterface>({
+   const [form, setForm] = useState<FormCVInterface>({
       canTakeApprenticeship: 'Nie',
       expectedContractType: 'Brak preferencji',
       expectedSalary: '',
