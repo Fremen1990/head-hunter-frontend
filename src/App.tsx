@@ -17,9 +17,9 @@ export const App: React.FunctionComponent<IAppProps> = () => {
             <Route path={ROUTES.HR_PAGE} element={<HrPage />} />
             <Route path={ROUTES.USER_PAGE} element={<UserPage />} />
 
-            <Route element={<ProtectedRoute />}>
-               <Route path={ROUTES.ADMIN_PAGE} element={<AdminPage />} />
-            </Route>
+            {/* <Route element={<ProtectedRoute />}> */}
+            <Route path={ROUTES.ADMIN_PAGE} element={<AdminPage />} />
+            {/* </Route> */}
             <Route path={ROUTES.LOGIN} element={<LoginPage />} />
             <Route path={ROUTES.NOT_FOUND} element={<NotFoundPage />} />
          </Routes>

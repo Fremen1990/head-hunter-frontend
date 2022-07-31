@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUserDetails } from '../../features/user/userActions'
 
 export const Header = () => {
-   const { userInfo, userToken } = useSelector((state) => state.user)
+   const { userToken } = useSelector((state) => state.user)
    const dispatch = useDispatch()
 
    // automatically authenticate user if token is found
