@@ -1,6 +1,7 @@
 import React from 'react'
 import { AccountContainer, AccountAvatar } from '../AccountContainer.styles'
 import { AccountBox } from '../AccountBox'
+import { AddHumanResources } from './AddHumanResources/AddHumanResources'
 
 export const Admin = () => {
    return (
@@ -10,6 +11,7 @@ export const Admin = () => {
             alt="avatar profilu użytkownika"
          />
          <AccountBox accountName={'Jan Kowalski'} />
+         <AddHumanResources />
       </AccountContainer>
    )
 }
