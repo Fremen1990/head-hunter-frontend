@@ -1,9 +1,15 @@
 import styled from 'styled-components'
 import { appColors } from '../../constants/Layout/app.colors'
 import { device } from '../../constants/mediaQueries'
-import { NavLink } from 'react-router-dom'
 
-export const BackNavLink = styled(NavLink)`
+export const ModalContainer = styled.div`
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+`
+
+export const BackButton = styled.button`
    width: 100%;
    margin: 5px 5px 0;
    padding: 5px;
@@ -11,7 +17,7 @@ export const BackNavLink = styled(NavLink)`
    text-align: center;
    border: 1px solid ${appColors.userPointColor};
    color: ${appColors.userPointColor};
-   text-decoration: none;
+   cursor: pointer;
    transition: 0.5s;
 
    ${device.desktop} {

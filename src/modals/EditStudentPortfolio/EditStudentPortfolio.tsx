@@ -4,7 +4,8 @@ import {
    MainSection,
    AsideSection,
    EditExpectationBoxContainer,
-   BackNavLink,
+   ModalContainer,
+   BackButton,
 } from './EditStudentPortfolio.styles'
 import { description } from '../../constants/description/description'
 import { SubtitlesSection } from '../../components/StudentPortfolio/SubtitlesSection/SubtitlesSection'
@@ -114,11 +115,11 @@ export const EditStudentPortfolio = () => {
 
    const { addProjectBtn, sendFormBtn } = description.editCv
    return (
-      <>
+      <ModalContainer>
          <Header />
          <PageContainer>
             <Form onSubmit={submit}>
-               <BackNavLink to="/user">Wróc</BackNavLink>
+               <BackButton>Wróc</BackButton>
                <AsideSection>
                   <InputTextBox
                      title="Imię"
@@ -277,6 +278,6 @@ export const EditStudentPortfolio = () => {
                </MainSection>
             </Form>
          </PageContainer>
-      </>
+      </ModalContainer>
    )
 }
