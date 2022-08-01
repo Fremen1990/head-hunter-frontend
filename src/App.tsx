@@ -21,11 +21,13 @@ export const App: React.FunctionComponent<IAppProps> = () => {
             <Route path={ROUTES.STUDENT_REGISTER} element={<RegisterPage />} />
             <Route path={ROUTES.NOT_FOUND} element={<NotFoundPage />} />
 
-            <Route element={<ProtectedRoute allowedRoles={['hr']} />}>
+            <Route element={<ProtectedRoute allowedRoles={['hr', 'admin']} />}>
                <Route path={ROUTES.HR_PAGE} element={<HrPage />} />
             </Route>
 
-            <Route element={<ProtectedRoute allowedRoles={['student']} />}>
+            <Route
+               element={<ProtectedRoute allowedRoles={['student', 'admin']} />}
+            >
                <Route path={ROUTES.USER_PAGE} element={<UserPage />} />
             </Route>
 

@@ -64,7 +64,7 @@ export const LoginForm = () => {
       if (userInfo.role === 'student') {
          navigate('/user')
       } else if (userInfo.role === 'hr') {
-         navigate('/')
+         navigate('/hr')
       } else if (userInfo.role === 'admin') {
          navigate('/admin')
       }
@@ -75,7 +75,7 @@ export const LoginForm = () => {
          <Form onSubmit={handleSubmit(onSubmit)} noValidate={true}>
             <InputWrap>
                <Input
-                  value="student@test.com"
+                  value={email}
                   err={email}
                   type="email"
                   {...register('email', {
@@ -96,7 +96,7 @@ export const LoginForm = () => {
                   {...register('password', {
                      required: `${description.form.requiredPass}`,
                   })}
-                  value="Password123!"
+                  value={password}
                   placeholder={description.inputsFields.passwordPlaceholder}
                />
                {password && <div>{password.message}</div>}
