@@ -1,5 +1,8 @@
 export const HOME = '/'
+export const HR_PAGE = '/hr'
 export const LOGIN = '/login'
+export const STUDENT_REGISTER = '/user/register/:studentId/:registerToken'
 export const USER_PAGE = '/user'
 export const ADMIN_PAGE = '/admin'
+export const STUDENT_PAGE = '/student'
 export const NOT_FOUND = '*'

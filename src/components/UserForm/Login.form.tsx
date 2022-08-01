@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
    ForgetPasswordLink,
    Form,
@@ -10,6 +10,11 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { emailValidate } from '../../constants/validation'
 import { Button } from '../commons/Button/Button'
+import { description } from '../../constants/description/description'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { userLogin } from '../../features/user/userActions'
 
 type Login = {
    email: string
@@ -17,7 +22,21 @@ type Login = {
 }
 
 export const LoginForm = () => {
+   // eslint-disable-next-line no-unused-vars
+   const { loading, userInfo, error } = useSelector((state) => state.user)
+   const dispatch = useDispatch()
    const navigate = useNavigate()
+
+   const successMessage = () =>
+      toast.success('Login Successful 👍', {
+         position: 'top-center',
+         autoClose: 1500,
+         hideProgressBar: false,
+         closeOnClick: true,
+         pauseOnHover: true,
+         draggable: true,
+         progress: undefined,
+      })
 
    const {
       handleSubmit,
@@ -27,27 +46,46 @@ export const LoginForm = () => {
       },
    } = useForm<Login>()
 
-   const onSubmit = (data: Login) => {
-      if (data.email && data.password) {
-         navigate('/user')
+   const onSubmit = async (data: Login) => {
+      const { email, password } = data
+      if (email && password) {
+         // @ts-ignore
+         dispatch(userLogin({ email, pwd: password }))
+         successMessage()
+         // setTimeout(() => {
+         //    navigate('/')
+         // }, 2000)
       }
    }
+   console.log(userInfo)
+
+   // redirect authenticated user to profile screen
+   useEffect(() => {
+      if (userInfo.role === 'student') {
+         navigate('/user')
+      } else if (userInfo.role === 'hr') {
+         navigate('/')
+      } else if (userInfo.role === 'admin') {
+         navigate('/admin')
+      }
+   }, [userInfo])
 
    return (
       <FormContainer>
-         <Form onSubmit={handleSubmit(onSubmit)}>
+         <Form onSubmit={handleSubmit(onSubmit)} noValidate={true}>
             <InputWrap>
                <Input
+                  value="student@test.com"
                   err={email}
                   type="email"
                   {...register('email', {
-                     required: 'Email jest wymagany',
+                     required: `${description.form.requiredEmail}`,
                      pattern: {
                         value: emailValidate,
-                        message: 'Podaj swój adres email',
+                        message: `${description.form.messageEmail}`,
                      },
                   })}
-                  placeholder="E-mail"
+                  placeholder={description.inputsFields.emailPlaceholder}
                />
                {email && <div>{email.message}</div>}
             </InputWrap>
@@ -55,13 +93,21 @@ export const LoginForm = () => {
                <Input
                   err={password}
                   type="password"
-                  {...register('password', { required: 'Hasło jest wymagane' })}
-                  placeholder="Hasło"
+                  {...register('password', {
+                     required: `${description.form.requiredPass}`,
+                  })}
+                  value="Password123!"
+                  placeholder={description.inputsFields.passwordPlaceholder}
                />
                {password && <div>{password.message}</div>}
             </InputWrap>
-            <ForgetPasswordLink to="#">Zapomniałeś hasła?</ForgetPasswordLink>
-            <Button buttonTitle="Zaloguj się" />
+            <ForgetPasswordLink to="#">
+               {description.buttons.forgotPass}
+            </ForgetPasswordLink>
+
+            <Button
+               buttonTitle={loading ? 'loading...' : description.buttons.logIn}
+            />
          </Form>
       </FormContainer>
    )

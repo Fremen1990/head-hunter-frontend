@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { appColors } from '../../constants/Layout/app.colors'
 
+import { device } from '../../constants/mediaQueries'
+
 interface Props {
    err: {} | undefined
 }
@@ -13,15 +15,29 @@ export const FormContainer = styled.div`
    align-items: center;
    flex-wrap: wrap;
    height: 50%;
+   width: 95%;
    padding: 5px;
+   overflow: hidden;
 `
 export const Form = styled.form`
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   width: 350px;
    padding: 10px;
+   width: 100%;
+
+   ${device.tablet} {
+      width: 50%;
+   }
+
+   ${device.desktop} {
+      width: 20%;
+   }
+
+   & * {
+      font-size: 1.4rem;
+   }
 
    & button {
       align-self: flex-end;
@@ -29,7 +45,7 @@ export const Form = styled.form`
 `
 
 export const Input = styled.input<Props>`
-   width: 350px;
+   width: 100%;
    ${(props) => props.theme.main}
    border: 1px solid ${({ err }) =>
       err ? `${appColors.buttonColor}` : 'transparent'};
@@ -59,18 +75,32 @@ export const InputWrap = styled.div`
    flex-direction: column;
    align-items: center;
    user-select: none;
+   width: 100%;
 
    & div {
       position: absolute;
-      width: 200px;
+      width: 80px;
       height: 35px;
-      left: -220px;
+      left: -100px;
       top: 13px;
-      font-size: 14px;
+      text-align: start;
+      font-size: 8px;
       padding: 6px 5px;
       background: ${appColors.buttonColor};
       color: ${appColors.fontColor};
       border-radius: 6px;
+
+      ${device.tablet} {
+         width: 150px;
+         left: -170px;
+         font-size: 12px;
+      }
+
+      ${device.desktop} {
+         width: 200px;
+         left: -220px;
+         font-size: 14px;
+      }
 
       &:after {
          content: '';

@@ -3,8 +3,13 @@ import { PrimaryButton } from './Button.styles'
 
 interface Props {
    buttonTitle: string
+   method?: () => void
 }
 
-export const Button = (props: Props) => {
-   return <PrimaryButton>{props.buttonTitle}</PrimaryButton>
+export const Button = ({ method, buttonTitle, ...restProps }: Props) => {
+   return (
+      <PrimaryButton onClick={method} {...restProps}>
+         {buttonTitle}
+      </PrimaryButton>
+   )
 }
