@@ -48,4 +48,8 @@ export const description = {
       availableStudents: 'Dostępni kursanci',
       toReview: 'Do rozmowy',
    },
+   editCv: {
+      addProjectBtn: 'dodaj nowy projekt',
+      sendFormBtn: 'wyślij zmiany',
+   },
 }
