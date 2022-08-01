@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getUserDetails, userLogin } from './userActions'
+import { getUserDetails, userLogin, userLogout } from './userActions'
 
 export interface UserInfo {
    active: boolean
@@ -33,17 +33,9 @@ const initialState: UserState = {
 const userSlice = createSlice({
    name: 'user',
    initialState,
-   reducers: {
-      logout: (state) => {
-         localStorage.removeItem('userToken') // delete token from storage
-         state.loading = false
-         state.userInfo = {}
-         state.userToken = null
-         state.error = null
-      },
-   },
+   reducers: {},
    extraReducers: {
-      // login user
+      // LOGIN USER
       [userLogin.pending]: (state: UserState) => {
          state.loading = true
          state.error = null
@@ -57,6 +49,22 @@ const userSlice = createSlice({
          state.loading = false
          state.error = payload
       },
+      // LOGOUT USER
+      [userLogout.pending]: (state: UserState) => {
+         state.loading = true
+         state.error = null
+      },
+      [userLogout.fulfilled]: (state: UserState) => {
+         localStorage.clear()
+         state.userInfo = {}
+         state.userToken = null
+         state.error = null
+      },
+      [userLogout.rejected]: (state: UserState, { payload }) => {
+         state.loading = false
+         state.error = payload
+      },
+      // GET USER DETAILS ON HEADER
       [getUserDetails.pending]: (state) => {
          state.loading = true
          state.error = null

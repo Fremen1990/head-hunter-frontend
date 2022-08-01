@@ -1,24 +1,23 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { Navigate, Outlet, useLocation } from 'react-router-dom'
 
-import { useSelector } from 'react-redux'
-import { NavLink, Outlet } from 'react-router-dom'
+interface Props {
+   allowedRoles: string[]
+}
 
-const ProtectedRoute = () => {
-   const { userInfo } = useSelector((state) => state.user)
+// initialize role from local storage
+const role = localStorage.getItem('userRole')
+   ? localStorage.getItem('userRole')
+   : null
 
-   // show unauthorized screen if no user is found in redux store
-   if (!userInfo) {
-      return (
-         <div className="unauthorized">
-            <h1>Unauthorized :(</h1>
-            <span>
-               <NavLink to="/login">Login</NavLink> to gain access
-            </span>
-         </div>
-      )
-   }
+const ProtectedRoute = ({ allowedRoles }: Props) => {
+   // const state = useSelector((state) => state.user)
 
-   // returns child route elements
-   return <Outlet />
+   const rolesArray = Array(role)
+   return rolesArray?.find((r) => allowedRoles.includes(r)) ? (
+      <Outlet />
+   ) : (
+      <Navigate to="/login" />
+   )
 }
 export default ProtectedRoute

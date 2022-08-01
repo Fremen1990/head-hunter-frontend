@@ -1,5 +1,5 @@
+import { api } from '../../utils/axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
 
 type Login = {
    email: string
@@ -10,13 +10,10 @@ export const userLogin = createAsyncThunk(
    'user/login',
    async ({ email, pwd }: Login, { rejectWithValue }) => {
       try {
-         const { data } = await axios.post(
-            `${process.env.REACT_APP_BACKEND_URL}/auth/login`,
-            { email, pwd },
-            { withCredentials: true }
-         )
+         const { data } = await api.post('/auth/login', { email, pwd })
          localStorage.setItem('userToken', data.token)
-         localStorage.setItem('id', data.user)
+         localStorage.setItem('userId', data.user.id)
+         localStorage.setItem('userRole', data.user.role)
          return data
       } catch (error: any) {
          if (error.response && error.response.data.message) {
@@ -28,20 +25,20 @@ export const userLogin = createAsyncThunk(
    }
 )
 
-// todo authorization
+export const userLogout = createAsyncThunk('user/logout', async () => {
+   try {
+      await api.get('/auth/logout')
+   } catch (error: any) {
+      return error
+   }
+})
+
 export const getUserDetails = createAsyncThunk(
    'user/getUserDetails',
    async (arg, { getState, rejectWithValue }) => {
       try {
-         const { user } = getState()
-
-         const { data } = await axios.get(
-            `${process.env.REACT_APP_BACKEND_URL}/user/profile`,
-            { withCredentials: true }
-         )
-
-         console.log('DATA USER', data)
-
+         // const { user } = getState()
+         const { data } = await api.get('/user/current/profile')
          return data
       } catch (error: any) {
          if (error.response && error.response.data.message) {

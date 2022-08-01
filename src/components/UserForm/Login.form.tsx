@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom'
 import { emailValidate } from '../../constants/validation'
 import { Button } from '../commons/Button/Button'
 import { description } from '../../constants/description/description'
-import { toast, ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { userLogin } from '../../features/user/userActions'
@@ -52,18 +52,23 @@ export const LoginForm = () => {
          // @ts-ignore
          dispatch(userLogin({ email, pwd: password }))
          successMessage()
-         setTimeout(() => {
-            navigate('/user')
-         }, 3000)
+         // setTimeout(() => {
+         //    navigate('/')
+         // }, 2000)
       }
    }
+   console.log(userInfo)
 
    // redirect authenticated user to profile screen
    useEffect(() => {
-      if (userInfo.active) {
-         navigate('/user-profile')
+      if (userInfo.role === 'student') {
+         navigate('/user')
+      } else if (userInfo.role === 'hr') {
+         navigate('/')
+      } else if (userInfo.role === 'admin') {
+         navigate('/admin')
       }
-   }, [navigate, userInfo])
+   }, [userInfo])
 
    return (
       <FormContainer>
@@ -102,18 +107,6 @@ export const LoginForm = () => {
 
             <Button
                buttonTitle={loading ? 'loading...' : description.buttons.logIn}
-            />
-
-            <ToastContainer
-               position="top-center"
-               autoClose={1500}
-               hideProgressBar={false}
-               newestOnTop={false}
-               closeOnClick
-               rtl={false}
-               pauseOnFocusLoss
-               draggable
-               pauseOnHover
             />
          </Form>
       </FormContainer>
