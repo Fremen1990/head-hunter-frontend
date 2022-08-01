@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { appColors } from '../../../constants/Layout/app.colors'
+import { device } from '../../../constants/mediaQueries'
 
 export const FilteringContainer = styled.div`
    position: fixed;
@@ -14,14 +15,24 @@ export const FilteringContainer = styled.div`
 `
 
 export const FilteringBox = styled.div`
-   width: 30%;
-   height: 95%;
+   width: 100%;
+   height: 100%;
    background-color: black;
    padding: 5px;
    display: flex;
    flex-direction: column;
-   justify-content: space-between;
+   justify-content: flex-start;
    position: relative;
+
+   ${device.tablet} {
+      width: 70%;
+      height: 80%;
+   }
+
+   ${device.desktop} {
+      width: 30%;
+      height: 90%;
+   }
 
    & > div {
       display: flex;
