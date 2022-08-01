@@ -129,3 +129,15 @@ export const typeOfContract: ElementsButtonsInterface[] = [
       inputTitle: 'umowa o dzieło',
    },
 ]
+
+export const initialState = {
+   courseEvaluation: [],
+   activityAssessment: [],
+   codeEvaluation: [],
+   jobEvaluation: [],
+   typeOfWork: [],
+   typeOfContract: [],
+   salary: { min: 0, max: 0 },
+   internship: {},
+   experience: { month: 0 },
+}
