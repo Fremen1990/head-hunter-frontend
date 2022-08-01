@@ -21,4 +21,8 @@ export const description = {
       hired: 'zatrudniony',
       bookCall: 'zarezerwuj rozmowe',
    },
+   navigation: {
+      availableStudents: 'Dostępni kursanci',
+      toReview: 'Do rozmowy',
+   },
 }

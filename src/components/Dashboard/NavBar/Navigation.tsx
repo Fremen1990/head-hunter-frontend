@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import { NavBar, Tab } from './Navigation.styles'
+import { description } from '../../../constants/description/description'
 
-const types = ['Dostępni studenci', 'Do rozmowy']
+const tabs: string[] = Object.values(description.navigation)
 
 export function NavigationBar() {
-   const [active, setActive] = useState(types[0])
+   const [active, setActive] = useState(tabs[0])
 
    return (
       <>
          <NavBar>
-            {types.map((type) => (
+            {tabs.map((type) => (
                <Tab
                   key={type}
                   active={active === type}
