@@ -33,7 +33,7 @@ export const FilteringBox = styled.div`
 `
 
 export const TitleBox = styled.div`
-   justify-content: space-between;
+   justify-content: flex-start;
 
    & p {
       margin-left: 5px;
