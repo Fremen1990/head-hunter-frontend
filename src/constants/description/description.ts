@@ -8,9 +8,8 @@ export const description = {
       requiredEmail: 'Email jest wymagany',
       messageEmail: 'Podaj swój adres email',
       requiredPass: 'Hasło jest wymagane',
-      requiredFullName: 'Imię i nazwisko jest wymagane',
-      requiredCompany: 'Nazwa firmy jest wymagana',
-      requiredMaxReservedStudents: 'Liczba osób do rozmowy jest wymagana',
+      requiredField: 'Pole obowiązkowe',
+      messageMaxReservedStudents: 'Podaj liczbę z zakresu 1-999',
    },
    userInterview: {
       userReservation: 'rezerwacja do:',
@@ -34,6 +33,7 @@ export const description = {
       logIn: 'Zaloguj się',
       account: 'konto',
       forgotPass: 'zapomniałeś hasła ?',
+      addHr: 'dodaj nowego HR',
    },
    studentPortfolio: {
       rating: 'oceny',
