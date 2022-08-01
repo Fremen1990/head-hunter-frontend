@@ -2,9 +2,13 @@ import React from 'react'
 import { AiFillStar } from 'react-icons/ai'
 import { StarInput } from './Input.styles'
 
+type DispatchType = {
+   type: string
+   payload: EventTarget | HTMLInputElement
+}
+
 interface Props {
-   // @ts-ignore
-   onChange: ({ type, payload }) => void
+   onChange: (arg0: DispatchType) => void
    name: string
    value: string
 }
