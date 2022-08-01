@@ -6,6 +6,10 @@ interface Props {
    method?: () => void
 }
 
-export const Button = ({ method, buttonTitle }: Props) => {
-   return <PrimaryButton onClick={method}>{buttonTitle}</PrimaryButton>
+export const Button = ({ method, buttonTitle, ...restProps }: Props) => {
+   return (
+      <PrimaryButton onClick={method} {...restProps}>
+         {buttonTitle}
+      </PrimaryButton>
+   )
 }
