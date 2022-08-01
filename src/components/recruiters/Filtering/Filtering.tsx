@@ -1,11 +1,10 @@
 import React from 'react'
 import { FilteringBox, FilteringContainer, TitleBox } from './Filtering.styles'
-
 import { FilterForm } from './FilterForm/FilterForm'
+import { description } from '../../../constants/description/description'
 
 interface Props {
    hiddenModal: () => void
-   clear?: () => void
 }
 
 export const Filtering = (props: Props) => {
@@ -13,7 +12,7 @@ export const Filtering = (props: Props) => {
       <FilteringContainer>
          <FilteringBox>
             <TitleBox>
-               <p>Filtrowanie</p>
+               <p>{description.filterModal.filterName}</p>
             </TitleBox>
             <FilterForm hiddenModal={props.hiddenModal} />
          </FilteringBox>
