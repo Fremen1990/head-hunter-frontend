@@ -21,6 +21,7 @@ export const FilteringBox = styled.div`
    display: flex;
    flex-direction: column;
    justify-content: space-between;
+   position: relative;
 
    & > div {
       display: flex;
@@ -39,42 +40,8 @@ export const TitleBox = styled.div`
       font-size: 3rem;
       background-color: transparent;
    }
-
-   & .clearForm {
-      padding: 5px 10px;
-      font-size: 1.4rem;
-      color: ${appColors.fontColor};
-      border: 1px solid transparent;
-      border-radius: 4px;
-      background-color: rgba(30, 144, 255, 0.3);
-      cursor: pointer;
-      transition: 0.3s;
-
-      &:hover {
-         border-color: ${appColors.fontColor};
-      }
-   }
 `
 
-export const ButtonBox = styled.div`
-   justify-content: flex-end;
-
-   & .annualBtn {
-      padding: 5px 10px;
-      font-size: 1.4rem;
-      text-transform: capitalize;
-      color: ${appColors.fontColor};
-      border: 1px solid transparent;
-      border-radius: 4px;
-      background-color: transparent;
-      cursor: pointer;
-      transition: 0.3s;
-
-      &:hover {
-         border-color: ${appColors.fontColor};
-      }
-   }
-`
 export const SalaryInput = styled.label`
    background-color: transparent;
    font-size: 1.4rem;
