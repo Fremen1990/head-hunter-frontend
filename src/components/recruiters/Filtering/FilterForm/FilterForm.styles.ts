@@ -61,3 +61,41 @@ export const Form = styled.form`
   }
 
 `
+export const ButtonBox = styled.div`
+   justify-content: flex-end;
+   margin-top: 50px;
+
+   & .annualBtn {
+      padding: 5px 10px;
+      font-size: 1.4rem;
+      text-transform: capitalize;
+      color: ${appColors.fontColor};
+      border: 1px solid transparent;
+      border-radius: 4px;
+      background-color: transparent;
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:hover {
+         border-color: ${appColors.fontColor};
+      }
+   }
+`
+export const ClearBtn = styled.button`
+  position: absolute;
+  top: 2%;
+  right: 5px;
+  padding: 5px 10px;
+  font-size: 1.4rem;
+  color: ${appColors.fontColor};
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: rgba(30, 144, 255, 0.3);
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    border-color: ${appColors.fontColor};
+  }
+}
+`
