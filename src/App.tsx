@@ -9,6 +9,7 @@ import { HrPage } from './pages/Hr.page'
 import { StudentCVPage } from './pages/StudentCV.page'
 import { TestPage } from './pages/Test.page'
 
+
 export interface IAppProps {}
 
 export const App: React.FunctionComponent<IAppProps> = () => {

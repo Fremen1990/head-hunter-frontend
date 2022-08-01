@@ -14,7 +14,7 @@ interface Props {
 export const RatingViewBox = (props: Props) => {
    return (
       <RatingViewBoxContainer>
-         <p>{props.title}</p>
+         <h2>{props.title}</h2>
          <RatingContainer>
             <p>
                <span>{props.rating}</span>/5
