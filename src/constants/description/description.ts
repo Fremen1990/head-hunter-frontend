@@ -56,5 +56,7 @@ export const description = {
       internship: 'zgoda na odbycie bezpłatnych praktyk/stażu na początek',
       experience:
          'Ilośc miesięcy doświacznia komercyjnego kandydata w programowaniu',
+      filterName: 'Filtrowanie',
+      clearAll: 'Wyczyść wszystko',
    },
 }
