@@ -3,7 +3,7 @@ import { NavBar, Tab } from './Navigation.styles'
 import { description } from '../../../constants/description/description'
 
 interface NavigationInterface {
-   setToInterview: (arg: boolean) => void
+   setToInterview: (arg: string) => void
 }
 
 const tabs: string[] = Object.values(description.navigation)
@@ -20,7 +20,7 @@ export function NavigationBar({ setToInterview }: NavigationInterface) {
                   active={active === type}
                   onClick={() => {
                      setActive(type)
-                     setToInterview(true)
+                     setToInterview(active)
                   }}
                >
                   {type}

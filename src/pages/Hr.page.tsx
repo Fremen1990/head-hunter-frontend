@@ -3,7 +3,8 @@ import { PageContainer } from '../constants/Layout/Container.styles'
 import { Header } from '../components/Header/Header'
 import { NavigationBar } from '../components/recruiters/Navigation/Navigation'
 import { UserResultsContainer } from '../components/recruiters/UserResultsContainer/UserResultsContainer'
-import { getStudents } from '../apiCalls'
+import { SearchFilter } from '../components/Dashboard/SearchFilterBar/SearchFilterForm'
+// import { getStudents } from '../apiCalls'
 
 // to remove later
 export interface studentsInterface {
@@ -93,12 +94,12 @@ const availableStudents: studentsInterface[] = [
 
 export const HrPage = () => {
    const [students, setStudents] = useState<studentsInterface[]>([])
-   const [toInterview, setToInterview] = useState<boolean>(false)
+   const [toInterview, setToInterview] = useState<string>('Dostępni kursanci')
 
    useEffect(() => {
       ;(async () => {
-         const newStudents = await getStudents()
-         setStudents(newStudents)
+         // const newStudents = await getStudents()
+         setStudents(availableStudents)
       })()
    }, [])
 
@@ -107,7 +108,8 @@ export const HrPage = () => {
          <Header />
          <PageContainer>
             <NavigationBar setToInterview={setToInterview} />
-            {toInterview ? (
+            <SearchFilter />
+            {toInterview === 'Dostępni kursanci' ? (
                <UserResultsContainer layout={'extened'} students={students} />
             ) : (
                <UserResultsContainer

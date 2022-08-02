@@ -18,12 +18,13 @@ export const UserResultsContainer = ({ students, layout }: Props) => {
    const dispatch = useDispatch()
 
    useEffect(() => {
+      // @ts-ignore
       dispatch(fetchHrCandidates())
    }, [])
 
    return (
       <>
-         {candidates.map((student: studentsInterface) => (
+         {students.map((student: studentsInterface) => (
             <OneUser layout={layout} key={student.id} student={student} />
          ))}
       </>
