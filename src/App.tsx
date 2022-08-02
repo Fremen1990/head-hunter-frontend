@@ -6,7 +6,10 @@ import { AdminPage } from './pages/Admin.page'
 import { NotFoundPage } from './pages/NotFound.page'
 import { LoginPage } from './pages/Login.page'
 import { HrPage } from './pages/Hr.page'
-import { StudentCVPage } from './pages/StudentCV.page'
+// eslint-disable-next-line no-unused-vars
+import ProtectedRoute from './routing/ProtectedRoute'
+import { RegisterPage } from './pages/Register.page'
+import { HomePage } from './pages/HomePage'
 
 export interface IAppProps {}
 
@@ -14,12 +17,24 @@ export const App: React.FunctionComponent<IAppProps> = () => {
    return (
       <BrowserRouter>
          <Routes>
-            <Route path={ROUTES.HR_PAGE} element={<HrPage />} />
-            <Route path={ROUTES.USER_PAGE} element={<UserPage />} />
-            <Route path={ROUTES.ADMIN_PAGE} element={<AdminPage />} />
+            <Route path={ROUTES.HOME} element={<HomePage />} />
             <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+            <Route path={ROUTES.STUDENT_REGISTER} element={<RegisterPage />} />
             <Route path={ROUTES.NOT_FOUND} element={<NotFoundPage />} />
-            <Route path={ROUTES.STUDENT_PAGE} element={<StudentCVPage />} />
+
+            <Route element={<ProtectedRoute allowedRoles={['hr', 'admin']} />}>
+               <Route path={ROUTES.HR_PAGE} element={<HrPage />} />
+            </Route>
+
+            <Route
+               element={<ProtectedRoute allowedRoles={['student', 'admin']} />}
+            >
+               <Route path={ROUTES.USER_PAGE} element={<UserPage />} />
+            </Route>
+
+            <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
+               <Route path={ROUTES.ADMIN_PAGE} element={<AdminPage />} />
+            </Route>
          </Routes>
       </BrowserRouter>
    )
