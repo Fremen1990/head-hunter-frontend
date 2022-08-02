@@ -26,7 +26,7 @@ export const FilterLabel = styled.label`
    height: 30px;
    margin-right: 5px;
    margin-top: 5px;
-   padding-top: 3px;
+   padding-top: 7px;
    padding-right: 10px;
 `
 
