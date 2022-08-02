@@ -48,9 +48,13 @@ export const OneUser = ({ layout, student }: Props) => {
                         {layout === 'simple' ? null : (
                            <div className="avatar" />
                         )}
-                        <p>
-                           {student.firstName} {student.lastName}
-                        </p>
+                        <p>{student.firstName}</p>
+
+                        {layout === 'simple' ? (
+                           <p>{student.lastName.slice(-1)}</p>
+                        ) : (
+                           <p>{student.lastName}</p>
+                        )}
                      </UserBox>
                   </div>
                   {layout === 'simple' ? (
