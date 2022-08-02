@@ -1,5 +1,0 @@
-export const HR_PAGE = '/'
-export const LOGIN = '/login'
-export const USER_PAGE = '/user'
-export const ADMIN_PAGE = '/admin'
-export const NOT_FOUND = '*'
