@@ -19,7 +19,11 @@ export const Header = () => {
       if (currentSessionToken) {
          dispatch(fetchUserByToken())
       }
-   }, [userToken, dispatch])
+   }, [
+      // currentSessionToken,
+      userToken,
+      dispatch,
+   ])
 
    return (
       <HeaderContainer>
