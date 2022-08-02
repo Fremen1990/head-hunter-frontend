@@ -8,44 +8,53 @@ type Login = {
 
 export const userLogin = createAsyncThunk(
    'user/login',
-   async ({ email, pwd }: Login, { rejectWithValue }) => {
+   async ({ email, pwd }: Login, thunkAPI) => {
       try {
-         const { data } = await api.post('/auth/login', { email, pwd })
-         localStorage.setItem('userToken', data.token)
-         localStorage.setItem('userId', data.user.id)
-         localStorage.setItem('userRole', data.user.role)
-         return data
-      } catch (error: any) {
-         if (error.response && error.response.data.message) {
-            return rejectWithValue(error.response.data.message)
+         const response = await api.post('/auth/login', { email, pwd })
+         const data = await response.data
+         console.log(response.status)
+         if (response.status === 201) {
+            localStorage.setItem('userToken', data.token)
+            return data
          } else {
-            return rejectWithValue(error.message)
+            return thunkAPI.rejectWithValue(data.error)
          }
+      } catch (e: any) {
+         console.log('Error', e.response.data)
+         return thunkAPI.rejectWithValue(e.response.data)
       }
    }
 )
 
-export const userLogout = createAsyncThunk('user/logout', async () => {
-   try {
-      await api.get('/auth/logout')
-   } catch (error: any) {
-      return error
-   }
-})
-
-export const getUserDetails = createAsyncThunk(
-   'user/getUserDetails',
-   async (arg, { getState, rejectWithValue }) => {
+export const fetchUserByToken = createAsyncThunk(
+   'user/fetchByToken',
+   async (arg, thunkAPI) => {
       try {
          // const { user } = getState()
          const { data } = await api.get('/user/current/profile')
+         console.log('Data from fetch from token', data)
          return data
-      } catch (error: any) {
-         if (error.response && error.response.data.message) {
-            return rejectWithValue(error.response.data.message)
+      } catch (e: any) {
+         console.log('Error', e.response.data)
+         return thunkAPI.rejectWithValue(e.response.data)
+      }
+   }
+)
+
+export const userLogout = createAsyncThunk(
+   'user/logout',
+   async (arg, thunkAPI) => {
+      try {
+         const response = await api.get('/auth/logout')
+         const { data } = await response
+         if (response.status === 200) {
+            return data
          } else {
-            return rejectWithValue(error.message)
+            return thunkAPI.rejectWithValue(data.error)
          }
+      } catch (e: any) {
+         console.log('Error', e.response.data)
+         return thunkAPI.rejectWithValue(e.response.data)
       }
    }
 )
