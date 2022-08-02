@@ -1,12 +1,19 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-export const NotFound = () => {
+interface Props {
+   header: string
+   description: string
+   to: string
+   linkText: string
+}
+
+export const NotFound = ({ header, description, to, linkText }: Props) => {
    return (
       <>
-         <h1>404</h1>
-         <p> Not found page</p>
-         <NavLink to={'/'}> home </NavLink>
+         <h1>{header}</h1>
+         <p>{description}</p>
+         <NavLink to={to}> {linkText} </NavLink>
       </>
    )
 }

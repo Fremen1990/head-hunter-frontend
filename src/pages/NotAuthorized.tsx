@@ -3,14 +3,14 @@ import { PageContainer } from '../constants/Layout/Container.styles'
 import { Header } from '../components/Header/Header'
 import { NotFound } from '../components/NotFound/NotFound'
 
-export const NotFoundPage = () => {
+export const NotAuthorized = () => {
    return (
       <>
          <Header />
          <PageContainer>
             <NotFound
-               header="404"
-               description="Not found page"
+               header="NotAuthorized"
+               description="You are not authorized for these content"
                to="/"
                linkText="home"
             />

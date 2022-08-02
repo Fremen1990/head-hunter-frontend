@@ -6,6 +6,7 @@ import { AdminPage } from './pages/Admin.page'
 import { NotFoundPage } from './pages/NotFound.page'
 import { LoginPage } from './pages/Login.page'
 import { HrPage } from './pages/Hr.page'
+// eslint-disable-next-line no-unused-vars
 import ProtectedRoute from './routing/ProtectedRoute'
 import { RegisterPage } from './pages/Register.page'
 import { HomePage } from './pages/HomePage'

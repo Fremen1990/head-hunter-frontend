@@ -79,47 +79,47 @@ export const OneUser = ({ layout, student }: Props) => {
                      <InterViewMeBox
                         ratingBox={true}
                         boxTitle={descriptions.courseEvaluation}
-                        point={'4'}
+                        point={student.courseCompletion}
                      />
                      <InterViewMeBox
                         ratingBox={true}
                         boxTitle={descriptions.activityAssessment}
-                        point={'4 '}
+                        point={student.courseEngagement}
                      />
                      <InterViewMeBox
                         ratingBox={true}
                         boxTitle={descriptions.codeEvaluation}
-                        point={'5 '}
+                        point={student.projectDegree}
                      />
                      <InterViewMeBox
                         ratingBox={true}
                         boxTitle={descriptions.scrumAssessment}
-                        point={'4'}
+                        point={student.teamProjectDegree}
                      />
                      <InterViewMeBox
                         ratingBox={false}
                         boxTitle={descriptions.preferWork}
-                        point={'WARSZAWA'}
+                        point={student.targetWorkCity}
                      />
                      <InterViewMeBox
                         ratingBox={false}
                         boxTitle={descriptions.contractType}
-                        point={'Umowa o prace'}
+                        point={student.expectedContractType}
                      />
                      <InterViewMeBox
                         ratingBox={false}
                         boxTitle={descriptions.targetSalary}
-                        point={'8000 zł'}
+                        point={student.expectedSalary}
                      />
                      <InterViewMeBox
                         ratingBox={false}
                         boxTitle={descriptions.practice}
-                        point={'tak'}
+                        point={student.canTakeApprenticeship}
                      />
                      <InterViewMeBox
                         ratingBox={false}
                         boxTitle={descriptions.experience}
-                        point={'6 mies'}
+                        point={student.workExperience}
                      />
                   </MoreInfoBox>
                ) : null}
