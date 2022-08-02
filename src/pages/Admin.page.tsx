@@ -20,11 +20,8 @@ export const AdminPage = () => {
    const TwoCollumnsSplit = styled.div`
       display: grid;
       grid-template-columns: 50% 50%;
-      //display: flex;
-      //flex-direction: row;
-      //align-items: center;
-      //justify-content: center;
       padding: 30px;
+      //background-color: #27292a;
    `
    const ListItem = styled.div`
       font-size: 20px;
@@ -102,144 +99,139 @@ export const AdminPage = () => {
       <>
          <Header />
          <PageContainer>
-            <Admin />
-
-            <h1>Admin Page</h1>
-            <p>
-               For example how to use page container with header component :)
-            </p>
-
-            <TwoCollumnsSplit>
-               <div>
-                  <h2>STUDENTS</h2>
-
-                  <ul>
-                     <ListItem>
-                        1.) Choole File: <br />
-                        <input
-                           style={{ marginLeft: 30 }}
-                           type="file"
-                           name="file"
-                           onChange={uploadFileHandler}
-                        />
-                     </ListItem>
-
-                     <ListItem>
-                        2.) Send File: <br />
-                        <button
-                           style={{ marginLeft: 30, padding: 8 }}
-                           onClick={sendStudentsFileHandler}
-                        >
-                           Upload students import file
-                        </button>
-                     </ListItem>
-
-                     <ListItem>
-                        3.) Click here to import students to Database: <br />
-                        <button
-                           style={{ marginLeft: 30, padding: 8 }}
-                           onClick={importStudentsHandler}
-                        >
-                           Import students to database{' '}
-                        </button>
-                     </ListItem>
-
-                     <ListItem>
-                        4.) Click here see all students in Database: <br />
-                        <button
-                           style={{ marginLeft: 30, padding: 8 }}
-                           onClick={getStudentsHandler}
-                        >
-                           Get All Students
-                        </button>
-                     </ListItem>
-                  </ul>
+            <Admin>
+               <TwoCollumnsSplit>
                   <div>
-                     <h3>Import students JSON:</h3>
-                     <ReactJson src={uploadStudentsJson} />
+                     <h2>STUDENTS</h2>
+
+                     <ul>
+                        <ListItem>
+                           1.) Choole File: <br />
+                           <input
+                              style={{ marginLeft: 30 }}
+                              type="file"
+                              name="file"
+                              onChange={uploadFileHandler}
+                           />
+                        </ListItem>
+
+                        <ListItem>
+                           2.) Send File: <br />
+                           <button
+                              style={{ marginLeft: 30, padding: 8 }}
+                              onClick={sendStudentsFileHandler}
+                           >
+                              Upload students import file
+                           </button>
+                        </ListItem>
+
+                        <ListItem>
+                           3.) Click here to import students to Database: <br />
+                           <button
+                              style={{ marginLeft: 30, padding: 8 }}
+                              onClick={importStudentsHandler}
+                           >
+                              Import students to database{' '}
+                           </button>
+                        </ListItem>
+
+                        <ListItem>
+                           4.) Click here see all students in Database: <br />
+                           <button
+                              style={{ marginLeft: 30, padding: 8 }}
+                              onClick={getStudentsHandler}
+                           >
+                              Get All Students
+                           </button>
+                        </ListItem>
+                     </ul>
+                     <div>
+                        <h3>Import students JSON:</h3>
+                        <ReactJson src={uploadStudentsJson} />
+                     </div>
+
+                     <br />
+                     <div>
+                        <h3>import students status</h3>
+                        {importStudentsStatus && (
+                           <ReactJson src={importStudentsStatus} />
+                        )}
+                     </div>
+
+                     <br />
+
+                     <div>
+                        <h3>Get All Students</h3>
+                        <ReactJson src={getAllStudentsJson} />
+                     </div>
                   </div>
 
-                  <br />
                   <div>
-                     <h3>import students status</h3>
-                     {importStudentsStatus && (
-                        <ReactJson src={importStudentsStatus} />
-                     )}
+                     <h2>HR</h2>
+
+                     <ul>
+                        <ListItem>
+                           1.) Choole File: <br />
+                           <input
+                              style={{ marginLeft: 30 }}
+                              type="file"
+                              name="file"
+                              onChange={uploadFileHandler}
+                           />
+                        </ListItem>
+
+                        <ListItem>
+                           2.) Send File: <br />
+                           <button
+                              style={{ marginLeft: 30, padding: 8 }}
+                              onClick={sendHrsFileHandler}
+                           >
+                              Upload hr import file
+                           </button>
+                        </ListItem>
+
+                        <ListItem>
+                           3.) Click here to import hr to Database: <br />
+                           <button
+                              style={{ marginLeft: 30, padding: 8 }}
+                              onClick={importHrsHandler}
+                           >
+                              Import hr to database{' '}
+                           </button>
+                        </ListItem>
+
+                        <ListItem>
+                           4.) Click here see all hr in Database: <br />
+                           <button
+                              style={{ marginLeft: 30, padding: 8 }}
+                              onClick={getHrsHandler}
+                           >
+                              Get All Hr
+                           </button>
+                        </ListItem>
+                     </ul>
+                     <div>
+                        <h3>Import hr JSON:</h3>
+                        <ReactJson src={uploadHrJson} />
+                     </div>
+
+                     <br />
+                     <div>
+                        <h3>import hr status</h3>
+                        {importStudentsStatus && (
+                           <ReactJson src={importHrStatus} />
+                        )}
+                     </div>
+
+                     <br />
+
+                     <div>
+                        <h3>Get All Hr</h3>
+                        <ReactJson src={getAllHrJson} />
+                     </div>
                   </div>
-
-                  <br />
-
-                  <div>
-                     <h3>Get All Students</h3>
-                     <ReactJson src={getAllStudentsJson} />
-                  </div>
-               </div>
-
-               <div>
-                  <h2>HR</h2>
-
-                  <ul>
-                     <ListItem>
-                        1.) Choole File: <br />
-                        <input
-                           style={{ marginLeft: 30 }}
-                           type="file"
-                           name="file"
-                           onChange={uploadFileHandler}
-                        />
-                     </ListItem>
-
-                     <ListItem>
-                        2.) Send File: <br />
-                        <button
-                           style={{ marginLeft: 30, padding: 8 }}
-                           onClick={sendHrsFileHandler}
-                        >
-                           Upload hr import file
-                        </button>
-                     </ListItem>
-
-                     <ListItem>
-                        3.) Click here to import hr to Database: <br />
-                        <button
-                           style={{ marginLeft: 30, padding: 8 }}
-                           onClick={importHrsHandler}
-                        >
-                           Import hr to database{' '}
-                        </button>
-                     </ListItem>
-
-                     <ListItem>
-                        4.) Click here see all hr in Database: <br />
-                        <button
-                           style={{ marginLeft: 30, padding: 8 }}
-                           onClick={getHrsHandler}
-                        >
-                           Get All Hr
-                        </button>
-                     </ListItem>
-                  </ul>
-                  <div>
-                     <h3>Import hr JSON:</h3>
-                     <ReactJson src={uploadHrJson} />
-                  </div>
-
-                  <br />
-                  <div>
-                     <h3>import hr status</h3>
-                     {importStudentsStatus && (
-                        <ReactJson src={importHrStatus} />
-                     )}
-                  </div>
-
-                  <br />
-
-                  <div>
-                     <h3>Get All Hr</h3>
-                     <ReactJson src={getAllHrJson} />
-                  </div>
-               </div>
-            </TwoCollumnsSplit>
+               </TwoCollumnsSplit>
+            </Admin>
          </PageContainer>
       </>
    )

@@ -2,14 +2,19 @@ import React from 'react'
 import { AccountContainer, AccountAvatar } from '../AccountContainer.styles'
 import { AccountBox } from '../AccountBox'
 
-export const Admin = () => {
+interface Props {
+   children: React.ReactNode
+}
+
+export const Admin = ({ children }: Props) => {
    return (
       <AccountContainer>
          <AccountAvatar
-            src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_640.png"
+            src="https://www.clipartmax.com/png/middle/48-483031_github-logo-black-and-white-github-icon-vector.png"
             alt="avatar profilu użytkownika"
          />
-         <AccountBox accountName={'Jan Kowalski'} />
+         <AccountBox accountName={'Admin'} />
+         {children}
       </AccountContainer>
    )
 }

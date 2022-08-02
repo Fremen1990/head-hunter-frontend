@@ -16,14 +16,10 @@ export const Header = () => {
 
    // automatically authenticate user if token is found
    useEffect(() => {
-      if (currentSessionToken) {
+      if (userToken) {
          dispatch(fetchUserByToken())
       }
-   }, [
-      // currentSessionToken,
-      userToken,
-      dispatch,
-   ])
+   }, [userToken, dispatch])
 
    return (
       <HeaderContainer>
