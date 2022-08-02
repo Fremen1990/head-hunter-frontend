@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { PageContainer } from '../constants/Layout/Container.styles'
 import { Header } from '../components/Header/Header'
-import { StudentsNavigation } from '../components/recruiters/Navigation/Navigation'
+import { NavigationBar } from '../components/recruiters/Navigation/Navigation'
 import { UserResultsContainer } from '../components/recruiters/UserResultsContainer/UserResultsContainer'
 import { getStudents } from '../apiCalls'
 
@@ -106,7 +106,7 @@ export const HrPage = () => {
       <>
          <Header />
          <PageContainer>
-            <StudentsNavigation setToInterview={setToInterview} />
+            <NavigationBar setToInterview={setToInterview} />
             {toInterview ? (
                <UserResultsContainer layout={'extened'} students={students} />
             ) : (
