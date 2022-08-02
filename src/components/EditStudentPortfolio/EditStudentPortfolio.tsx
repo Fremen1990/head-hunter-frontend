@@ -1,4 +1,4 @@
-import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { SubtitlesSection } from '../StudentPortfolio/SubtitlesSection/SubtitlesSection'
 import { Button } from '../commons/Button/Button'
 import { InputTextBox } from './InputTextBox/InputTextBox'
@@ -6,7 +6,7 @@ import { SelectBox } from './SelectBox/SelectBox'
 import { NumberInputBox } from './NumberInputBox/NumberInputBox'
 import { TextAreaBox } from './TextAreaBox/TextAreaBox'
 import { UrlBox } from './UrlBox/UrlBox'
-import { FormCVInterface } from '../../constants/types/formInterface'
+import { FormCVInterface } from '../../types/formInterface'
 import { description } from '../../constants/description/description'
 import { PageContainer } from '../../constants/Layout/Container.styles'
 import {
@@ -21,6 +21,8 @@ import {
    expectedContractTypeOptions,
    expectedTypeWorkOptions,
 } from '../../constants/secletOptions'
+import { useForm } from 'react-hook-form'
+import { emailValidate } from '../../constants/validation'
 
 export const EditStudentPortfolio = () => {
    const [portfolioUrls, setPortfolioUrls] = useState<string>('')
@@ -44,6 +46,23 @@ export const EditStudentPortfolio = () => {
       portfolioUrls: [],
       projectUrls: [],
    })
+
+   const {
+      handleSubmit,
+      register,
+      formState: {
+         errors: {
+            firstName,
+            lastName,
+            githubUserName,
+            email,
+            tel,
+            expectedSalary,
+            targetWorkCity,
+            monthsOfCommercialExp,
+         },
+      },
+   } = useForm()
 
    const handlePortfolioClick = (e: React.MouseEvent<HTMLElement>) => {
       e.preventDefault()
@@ -78,12 +97,18 @@ export const EditStudentPortfolio = () => {
       setProjectUrls(e.target.value)
    }
 
-   const submit = (e: SyntheticEvent) => {
-      e.preventDefault()
+   const submit = () => {
       console.log(form)
    }
 
-   const { aboutMe } = description.studentPortfolio
+   const {
+      aboutMe,
+      educationDescribe,
+      coursesDescribe,
+      experienceDescribe,
+      expectation,
+      backFromModal,
+   } = description.studentPortfolio
    const {
       preferWork,
       contractType,
@@ -93,43 +118,94 @@ export const EditStudentPortfolio = () => {
       targetSalary,
    } = description.userInterview
 
+   const {
+      emailDesc,
+      githubNickDesc,
+      lastNameDesc,
+      firstNameDesc,
+      telDesc,
+      firstNameErrorMessage,
+      githubNickErrorMessage,
+      lastNameErrorMessage,
+      emailErrorMessage,
+      telErrorMessage,
+      targetWorkCityErrorMessage,
+      expectedSalaryErrorMessage,
+      monthsOfCommercialExpErrorMessage,
+   } = description.editCv
+
    const { addProjectBtn, sendFormBtn } = description.editCv
    return (
       <PageContainer>
-         <Form onSubmit={submit}>
-            <BackButton>Wróc</BackButton>
+         <Form onSubmit={handleSubmit(submit)}>
+            <BackButton>{backFromModal}</BackButton>
             <AsideSection>
                <InputTextBox
-                  title="Imię"
+                  title={firstNameDesc}
                   layout="simple"
+                  error={firstName}
+                  validation={register('firstName', {
+                     maxLength: {
+                        value: 18,
+                        message: firstNameErrorMessage,
+                     },
+                  })}
                   method={(e: ChangeEvent<HTMLInputElement>) =>
                      updateForm('firstName', e.target.value)
                   }
                />
                <InputTextBox
-                  title="Nazwisko"
+                  title={lastNameDesc}
                   layout="simple"
+                  error={lastName}
+                  validation={register('lastName', {
+                     maxLength: {
+                        value: 30,
+                        message: lastNameErrorMessage,
+                     },
+                  })}
                   method={(e: ChangeEvent<HTMLInputElement>) =>
                      updateForm('lastName', e.target.value)
                   }
                />
                <InputTextBox
-                  title="Nick na githubie"
+                  title={githubNickDesc}
                   layout="simple"
+                  error={githubUserName}
+                  validation={register('githubUserName', {
+                     maxLength: {
+                        value: 60,
+                        message: githubNickErrorMessage,
+                     },
+                  })}
                   method={(e: ChangeEvent<HTMLInputElement>) =>
                      updateForm('githubUserName', e.target.value)
                   }
                />
                <InputTextBox
-                  title="E-mail"
+                  title={emailDesc}
                   layout="simple"
+                  error={email}
+                  validation={register('email', {
+                     pattern: {
+                        value: emailValidate,
+                        message: emailErrorMessage,
+                     },
+                  })}
                   method={(e: ChangeEvent<HTMLInputElement>) =>
                      updateForm('email', e.target.value)
                   }
                />
                <InputTextBox
-                  title="Telefon:"
+                  title={telDesc}
                   layout="simple"
+                  error={tel}
+                  validation={register('tel', {
+                     maxLength: {
+                        value: 15,
+                        message: telErrorMessage,
+                     },
+                  })}
                   method={(e: ChangeEvent<HTMLInputElement>) =>
                      updateForm('tel', e.target.value)
                   }
@@ -146,11 +222,18 @@ export const EditStudentPortfolio = () => {
             </AsideSection>
             <MainSection>
                <label>
-                  <SubtitlesSection text="Oczekiwanie w stosunku do zatrudnienia" />
+                  <SubtitlesSection text={expectation} />
                   <EditExpectationBoxContainer>
                      <InputTextBox
                         title={targetPlace}
                         layout="extended"
+                        error={targetWorkCity}
+                        validation={register('targetWorkCity', {
+                           maxLength: {
+                              value: 30,
+                              message: targetWorkCityErrorMessage,
+                           },
+                        })}
                         method={(e: ChangeEvent<HTMLInputElement>) =>
                            updateForm('targetWorkCity', e.target.value)
                         }
@@ -158,6 +241,13 @@ export const EditStudentPortfolio = () => {
                      <InputTextBox
                         title={targetSalary}
                         layout="extended"
+                        error={expectedSalary}
+                        validation={register('expectedSalary', {
+                           maxLength: {
+                              value: 5,
+                              message: expectedSalaryErrorMessage,
+                           },
+                        })}
                         method={(e: ChangeEvent<HTMLInputElement>) =>
                            updateForm('expectedSalary', e.target.value)
                         }
@@ -179,6 +269,13 @@ export const EditStudentPortfolio = () => {
                      <NumberInputBox
                         title={experience}
                         layout="extended"
+                        error={monthsOfCommercialExp}
+                        validation={register('monthsOfCommercialExp', {
+                           maxLength: {
+                              value: 11,
+                              message: monthsOfCommercialExpErrorMessage,
+                           },
+                        })}
                         method={(e: ChangeEvent<HTMLInputElement>) =>
                            updateForm(
                               'monthsOfCommercialExp',
@@ -196,19 +293,19 @@ export const EditStudentPortfolio = () => {
                   </EditExpectationBoxContainer>
                </label>
                <TextAreaBox
-                  title="Edukacja"
+                  title={educationDescribe}
                   method={(e: ChangeEvent<HTMLTextAreaElement>) =>
                      updateForm('education', e.target.value)
                   }
                />
                <TextAreaBox
-                  title="Kursy"
+                  title={coursesDescribe}
                   method={(e: ChangeEvent<HTMLTextAreaElement>) =>
                      updateForm('courses', e.target.value)
                   }
                />
                <TextAreaBox
-                  title="Doświadczenie zawodowe"
+                  title={experienceDescribe}
                   method={(e: ChangeEvent<HTMLTextAreaElement>) =>
                      updateForm('workExperience', e.target.value)
                   }
