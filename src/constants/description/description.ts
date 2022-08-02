@@ -6,8 +6,12 @@ export const description = {
    },
    form: {
       requiredEmail: 'Email jest wymagany',
-      messageEmail: 'Podaj swój adres email',
+      messageEmail: 'Podaj poprawny adres email',
       requiredPass: 'Hasło jest wymagane',
+      requiredField: 'Pole obowiązkowe',
+      messageLongText: 'Wpis jest za długi',
+      messageBigNumber: 'Wartość jest za duża',
+      messageSmallNumber: 'Wartość jest za mała',
    },
    userInterview: {
       userReservation: 'rezerwacja do:',
@@ -31,6 +35,7 @@ export const description = {
       logIn: 'Zaloguj się',
       account: 'konto',
       forgotPass: 'zapomniałeś hasła ?',
+      addHr: 'dodaj nowego HR',
    },
    studentPortfolio: {
       rating: 'oceny',
