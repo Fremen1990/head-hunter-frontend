@@ -75,6 +75,7 @@ export const userSlice = createSlice({
          state.errorMessage = payload.error
       },
       [fetchUserByToken.fulfilled]: (state, { payload }) => {
+         console.log('78 USER SLICE PAYLOAD', payload)
          state.id = payload.id
          state.email = payload.email
          state.role = payload.role
@@ -96,8 +97,7 @@ export const userSlice = createSlice({
          state.isError = true
          state.errorMessage = payload
       },
-      [userLogout.fulfilled]: (state, { payload }) => {
-         console.log(payload)
+      [userLogout.fulfilled]: (state) => {
          localStorage.clear()
          state.id = ''
          state.email = ''

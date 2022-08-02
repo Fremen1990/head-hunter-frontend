@@ -25,7 +25,11 @@ export const UserBox = () => {
             <NavLink to={'/user'}>
                <div className={'avatar'}>
                   <img
-                     src={`https://avatars.githubusercontent.com/${userDetails?.githubUserName}`}
+                     src={
+                        userDetails?.githubUserName
+                           ? `https://avatars.githubusercontent.com/${userDetails?.githubUserName}`
+                           : `https://www.clipartmax.com/png/middle/48-483031_github-logo-black-and-white-github-icon-vector.png`
+                     }
                      alt="gitHub avatar"
                      style={{
                         verticalAlign: 'middle',

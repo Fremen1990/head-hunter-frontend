@@ -33,7 +33,7 @@ export const fetchUserByToken = createAsyncThunk(
       try {
          // const { user } = getState()
          const { data } = await api.get('/user/current/profile')
-         return data[0]
+         return data
       } catch (e: any) {
          console.log('Error', e.response.data)
          return thunkAPI.rejectWithValue(e.response.data)

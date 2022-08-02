@@ -1,15 +1,16 @@
 import React from 'react'
-// eslint-disable-next-line no-unused-vars
 import { LoginPageContainer } from '../components/UserForm/Login/Login.styles'
-import { Logo } from '../components/commons/Logo/Logo'
+// import { Logo } from '../components/commons/Logo/Logo'
 import { Button } from '../components/commons/Button/Button'
 import { description } from '../constants/description/description'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { Header } from '../components/Header/Header'
 import { useSelector } from 'react-redux'
+// import { appColors } from '../constants/Layout/app.colors'
 
 export const HomePage = () => {
+   // @ts-ignore
    const { role } = useSelector((state) => state.user)
 
    const Shaky = styled.button`
@@ -21,11 +22,31 @@ export const HomePage = () => {
          perspective: 1000px;
       }
    `
+
+   const HomeLogo = styled.div`
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+   `
+
    return (
       <>
          <Header />
          <LoginPageContainer style={{ height: '90vh' }}>
-            <Logo logoWidth={'50vh'} />
+            {/* <Logo logoWidth={'50vh'} /> */}
+            <HomeLogo>
+               <img
+                  src="/assets/home_logo/Mega.png"
+                  alt="MegaK Logo"
+                  style={{ height: '25vh' }}
+               />
+               <img
+                  src="/assets/home_logo/Head_Hunter.png"
+                  alt="Head Hunter text"
+               />
+               <img src="/assets/home_logo/goal.png" alt="viewfinder" />
+            </HomeLogo>
             <Shaky>
                <NavLink
                   to={
@@ -46,7 +67,7 @@ export const HomePage = () => {
                            : role === 'hr'
                            ? 'Go to candidates list'
                            : role === 'admin'
-                           ? 'Go to admin command ceter'
+                           ? 'Go to admin command center'
                            : description.buttons.logIn
                      }
                   />
