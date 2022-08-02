@@ -15,12 +15,12 @@ export const description = {
       activityAssessment: 'ocena aktywności i zaangażowania na kursie',
       codeEvaluation: 'ocena kodu w projekcie własnym',
       scrumAssessment: 'ocena pracy w zespole Scrum',
-      preferWork: 'preferowane miejscie pracy',
+      preferWork: 'preferowane miejsce pracy',
       targetPlace: 'docelowe miasto, gdzie kandydat chce pracować',
       contractType: 'oczekiwany typ kontraktu',
-      targetSalary: 'oczekiwanie miesięcczne wynagrodzenie netto',
+      targetSalary: 'oczekiwanie miesięczne wynagrodzenie netto',
       practice: 'zgoda na odbycie bezpłatnych praktyk/stażu na początek',
-      experience: 'komercyjne dościadcznie w programowaniu',
+      experience: 'komercyjne doświadczenie w programowaniu',
    },
    buttons: {
       showCv: 'pokaż cv',
@@ -42,10 +42,27 @@ export const description = {
       groupProject: 'projekt w zespole scrumowym',
       ownProject: 'projekt na zaliczenie',
       aboutMe: 'o mnie',
-      backFromModal: 'Wróć',
+      backFromModal: 'wróć',
    },
    editCv: {
       addProjectBtn: 'dodaj nowy projekt',
       sendFormBtn: 'wyślij zmiany',
+      firstNameDesc: 'imię:',
+      lastNameDesc: 'nazwisko:',
+      githubNickDesc: 'nick na githubie:',
+      emailDesc: 'e-mail:',
+      telDesc: 'telefon:',
+      firstNameErrorMessage: 'imię może mieć maksymalnie 18 znaków',
+      lastNameErrorMessage: 'nazwisko może mieć maksymalnie 30 znaków',
+      emailErrorMessage: 'e-mail niepoprawny',
+      githubNickErrorMessage:
+         'Nick na githubie może mieć maksymalnie 60 znaków',
+      telErrorMessage: 'telefon może mieć maksymalnie 15 znaków',
+      targetWorkCityErrorMessage:
+         'docelowe miasto może mieć maksymalnie 30 znaków',
+      expectedSalaryErrorMessage:
+         'wynagrodzenie może mieć maksymalnie 5 znaków',
+      monthsOfCommercialExpErrorMessage:
+         'doświadczenie w programowaniu może mieć maksymalnie 11 znaków',
    },
 }
