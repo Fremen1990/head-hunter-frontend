@@ -7,7 +7,6 @@ import { NotFoundPage } from './pages/NotFound.page'
 import { LoginPage } from './pages/Login.page'
 import { HrPage } from './pages/Hr.page'
 import { StudentCVPage } from './pages/StudentCV.page'
-import { TestPage } from './pages/Test.page'
 
 export interface IAppProps {}
 
@@ -21,7 +20,6 @@ export const App: React.FunctionComponent<IAppProps> = () => {
             <Route path={ROUTES.LOGIN} element={<LoginPage />} />
             <Route path={ROUTES.NOT_FOUND} element={<NotFoundPage />} />
             <Route path={ROUTES.STUDENT_PAGE} element={<StudentCVPage />} />
-            <Route path={'/test'} element={<TestPage />} />
          </Routes>
       </BrowserRouter>
    )

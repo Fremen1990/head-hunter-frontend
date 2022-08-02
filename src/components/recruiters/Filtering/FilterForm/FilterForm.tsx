@@ -2,7 +2,7 @@ import React, { SyntheticEvent, useReducer } from 'react'
 import { ButtonBox, ClearBtn, Form } from './FilterForm.styles'
 import { OneStarInput } from './OneInput/OneStarInput'
 import { OneButtonInput } from './OneInput/OneButtonInput'
-import { filterReducer } from '../../../../ultils/filterReducer'
+import { filterReducer } from '../../../../utils/filterReducer'
 import {
    activityAssessment,
    codeEvaluation,
@@ -50,7 +50,7 @@ export const FilterForm = (props: Props) => {
                {courseEvaluation.map((el) => (
                   <OneStarInput
                      key={`${el.name}${el.value}`}
-                     onChange={() => dispatch}
+                     onChange={dispatch}
                      name={el.name}
                      value={el.value}
                   />
@@ -61,7 +61,7 @@ export const FilterForm = (props: Props) => {
                {activityAssessment.map((el) => (
                   <OneStarInput
                      key={`${el.name}${el.value}`}
-                     onChange={() => dispatch}
+                     onChange={dispatch}
                      name={el.name}
                      value={el.value}
                   />
@@ -72,7 +72,7 @@ export const FilterForm = (props: Props) => {
                {codeEvaluation.map((el) => (
                   <OneStarInput
                      key={`${el.name}${el.value}`}
-                     onChange={() => dispatch}
+                     onChange={dispatch}
                      name={el.name}
                      value={el.value}
                   />
@@ -83,7 +83,7 @@ export const FilterForm = (props: Props) => {
                {jobEvaluation.map((el) => (
                   <OneStarInput
                      key={`${el.name}${el.value}`}
-                     onChange={() => dispatch}
+                     onChange={dispatch}
                      name={el.name}
                      value={el.value}
                   />
@@ -94,7 +94,7 @@ export const FilterForm = (props: Props) => {
                {typeOfWork.map((el) => (
                   <OneButtonInput
                      key={`${el.name}${el.value}`}
-                     onChange={() => dispatch}
+                     onChange={dispatch}
                      name={el.name}
                      value={el.value}
                      inputName={el.inputTitle}
@@ -106,7 +106,7 @@ export const FilterForm = (props: Props) => {
                {typeOfContract.map((el) => (
                   <OneButtonInput
                      key={`${el.name}${el.value}`}
-                     onChange={() => dispatch}
+                     onChange={dispatch}
                      name={el.name}
                      value={el.value}
                      inputName={el.inputTitle}
