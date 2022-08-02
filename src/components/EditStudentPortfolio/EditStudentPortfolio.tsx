@@ -6,7 +6,7 @@ import { SelectBox } from './SelectBox/SelectBox'
 import { NumberInputBox } from './NumberInputBox/NumberInputBox'
 import { TextAreaBox } from './TextAreaBox/TextAreaBox'
 import { UrlBox } from './UrlBox/UrlBox'
-import { FormCVInterface } from '../../constants/types/formInterface'
+import { FormCVInterface } from '../../types/formInterface'
 import { description } from '../../constants/description/description'
 import { PageContainer } from '../../constants/Layout/Container.styles'
 import {
