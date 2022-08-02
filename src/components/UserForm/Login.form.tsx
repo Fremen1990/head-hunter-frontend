@@ -11,6 +11,9 @@ import { useNavigate } from 'react-router-dom'
 import { emailValidate } from '../../constants/validation'
 import { Button } from '../commons/Button/Button'
 import { description } from '../../constants/description/description'
+import 'react-toastify/dist/ReactToastify.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { userLogin } from '../../features/user/userActions'
 
 type Login = {
    email: string
@@ -18,6 +21,8 @@ type Login = {
 }
 
 export const LoginForm = () => {
+   const { isFetching, errorMessage, id } = useSelector((state) => state.user)
+   const dispatch = useDispatch()
    const navigate = useNavigate()
 
    const {
@@ -28,15 +33,22 @@ export const LoginForm = () => {
       },
    } = useForm<Login>()
 
-   const onSubmit = (data: Login) => {
-      if (data.email && data.password) {
-         navigate('/user')
+   const onSubmit = async (data: Login) => {
+      const { email, password } = data
+      if (email && password) {
+         // @ts-ignore
+         dispatch(userLogin({ email, pwd: password }))
       }
+   }
+
+   if (id) {
+      navigate('/')
    }
 
    return (
       <FormContainer>
-         <Form onSubmit={handleSubmit(onSubmit)}>
+         <Form onSubmit={handleSubmit(onSubmit)} noValidate={true}>
+            {errorMessage && <p style={{ color: 'red' }}> {errorMessage}</p>}
             <InputWrap>
                <Input
                   err={email}
@@ -66,7 +78,12 @@ export const LoginForm = () => {
             <ForgetPasswordLink to="#">
                {description.buttons.forgotPass}
             </ForgetPasswordLink>
-            <Button buttonTitle={description.buttons.logIn} />
+
+            <Button
+               buttonTitle={
+                  isFetching ? 'loading...' : description.buttons.logIn
+               }
+            />
          </Form>
       </FormContainer>
    )

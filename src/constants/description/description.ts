@@ -49,4 +49,8 @@ export const description = {
       aboutMe: 'o mnie',
       backFromModal: 'Wróć',
    },
+   editCv: {
+      addProjectBtn: 'dodaj nowy projekt',
+      sendFormBtn: 'wyślij zmiany',
+   },
 }

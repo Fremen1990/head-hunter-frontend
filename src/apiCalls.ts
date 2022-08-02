@@ -47,9 +47,9 @@ export const importHrCall = async (formData: any) => {
 export const getStudents = async () => {
    try {
       const { data } = await axios.get(
-         `${process.env.REACT_APP_BACKEND_URL}/admin/students/all`
+         `${process.env.REACT_APP_BACKEND_URL}/admin/students/all`,
+         { withCredentials: true }
       )
-      console.log(data)
       return data
    } catch (error) {
       return error
