@@ -4,10 +4,9 @@ import { emailValidate } from '../../../../constants/validation'
 import { description } from '../../../../constants/description/description'
 import { Form, FormTitle, Input, InputWrap, Label } from './AddHrForm.styles'
 import { Button } from '../../../commons/Button/Button'
-import { useNavigate } from 'react-router-dom'
 import { RiCloseCircleFill as CloseIcon } from 'react-icons/ri'
 
-interface formInterface {
+interface HrInterface {
    email: string
    fullName: string
    company: string
@@ -15,32 +14,22 @@ interface formInterface {
 }
 
 export const AddHrForm = () => {
-   const navigate = useNavigate()
-
    const {
       handleSubmit,
       register,
       formState: {
          errors: { email, fullName, company, maxReservedStudents },
       },
-   } = useForm<formInterface>()
+   } = useForm<HrInterface>()
 
-   const sendForm = (data: formInterface) => {
-      if (
-         data.email &&
-         data.company &&
-         data.fullName &&
-         data.maxReservedStudents
-      ) {
-         navigate('/')
-      }
-   }
+   const sendForm = () => {}
 
    return (
       <Form onSubmit={handleSubmit(sendForm)}>
          <FormTitle>Dodaj nowego HR</FormTitle>
+
          <Label>
-            <p>Adres e-mail:</p>
+            <p>*Adres e-mail</p>
             <InputWrap>
                <Input
                   err={email}
@@ -53,51 +42,68 @@ export const AddHrForm = () => {
                      },
                   })}
                />
-               {email && (
-                  <div>
-                     <CloseIcon className="close-icon" /> {email.message}
-                  </div>
-               )}
+               <div>
+                  {email && (
+                     <div>
+                        <CloseIcon className="close-icon" /> {email.message}
+                     </div>
+                  )}
+               </div>
             </InputWrap>
          </Label>
+
          <Label>
-            <p>Imię i nazwisko:</p>
+            <p>*Imię i nazwisko</p>
             <InputWrap>
                <Input
                   err={fullName}
                   type="text"
                   {...register('fullName', {
                      required: `${description.form.requiredField}`,
+                     maxLength: {
+                        value: 50,
+                        message: `${description.form.messageLongText}`,
+                     },
                   })}
                />
-               {fullName && (
-                  <div>
-                     <CloseIcon className="close-icon" /> {fullName.message}
-                  </div>
-               )}
+               <div>
+                  {fullName && (
+                     <div>
+                        <CloseIcon className="close-icon" /> {fullName.message}
+                     </div>
+                  )}
+               </div>
             </InputWrap>
          </Label>
+
          <Label>
-            <p>Nazwa firmy:</p>
+            <p>*Nazwa firmy</p>
             <InputWrap>
                <Input
                   err={company}
                   type="text"
                   {...register('company', {
                      required: `${description.form.requiredField}`,
+                     maxLength: {
+                        value: 50,
+                        message: `${description.form.messageLongText}`,
+                     },
                   })}
                />
-               {company && (
-                  <div>
-                     <CloseIcon className="close-icon" /> {company.message}
-                  </div>
-               )}
+               <div>
+                  {company && (
+                     <div>
+                        <CloseIcon className="close-icon" /> {company.message}
+                     </div>
+                  )}
+               </div>
             </InputWrap>
          </Label>
+
          <Label>
             <p>
-               Maks. liczba osób, jakie może dodać do {'"Do rozmowy"'}{' '}
-               jednocześnie:
+               *Maksymalna liczba osób, jakie może dodać do {'"Do rozmowy"'}{' '}
+               jednocześnie
             </p>
             <InputWrap>
                <Input
@@ -107,23 +113,25 @@ export const AddHrForm = () => {
                      required: `${description.form.requiredField}`,
                      min: {
                         value: 1,
-                        message: `${description.form.messageMaxReservedStudents}`,
+                        message: `${description.form.messageSmallNumber}`,
                      },
                      max: {
                         value: 999,
-                        message: `${description.form.messageMaxReservedStudents}`,
+                        message: `${description.form.messageBigNumber}`,
                      },
                   })}
                />
-
-               {maxReservedStudents && (
-                  <div>
-                     <CloseIcon className="close-icon" />{' '}
-                     {maxReservedStudents.message}
-                  </div>
-               )}
+               <div>
+                  {maxReservedStudents && (
+                     <div>
+                        <CloseIcon className="close-icon" />{' '}
+                        {maxReservedStudents.message}
+                     </div>
+                  )}
+               </div>
             </InputWrap>
          </Label>
+
          <Button buttonTitle={description.buttons.addHr} />
       </Form>
    )

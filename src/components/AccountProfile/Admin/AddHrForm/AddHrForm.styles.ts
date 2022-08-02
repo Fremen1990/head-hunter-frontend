@@ -33,7 +33,6 @@ export const Label = styled.label`
    display: flex;
    flex-direction: column;
    justify-content: center;
-   padding: 5px;
 
    & > p {
       font-size: 1.5rem;
@@ -53,7 +52,7 @@ export const InputWrap = styled.div`
       display: flex;
       align-items: center;
       font-size: 13px;
-      height: 35px;
+      height: 30px;
       padding: 3px 5px;
       color: ${appColors.buttonColor};
    }
@@ -74,7 +73,7 @@ export const Input = styled.input<Props>`
    font-size: 1.4rem;
    background-color: ${appColors.pageContainerColor};
    height: 40px;
-   margin: 4px 0;
+   margin: 5px 0;
 
    &:focus {
       background-color: rgb(256, 256, 256);

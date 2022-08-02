@@ -6,10 +6,12 @@ export const description = {
    },
    form: {
       requiredEmail: 'Email jest wymagany',
-      messageEmail: 'Podaj swój adres email',
+      messageEmail: 'Podaj poprawny adres email',
       requiredPass: 'Hasło jest wymagane',
       requiredField: 'Pole obowiązkowe',
-      messageMaxReservedStudents: 'Podaj liczbę z zakresu 1-999',
+      messageLongText: 'Wpis jest za długi',
+      messageBigNumber: 'Wartość jest za duża',
+      messageSmallNumber: 'Wartość jest za mała',
    },
    userInterview: {
       userReservation: 'rezerwacja do:',
