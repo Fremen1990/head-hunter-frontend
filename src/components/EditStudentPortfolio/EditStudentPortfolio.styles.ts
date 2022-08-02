@@ -154,6 +154,19 @@ export const EditExpectationBoxContainer = styled.div`
       flex-direction: row;
    }
 `
+export const ErrorSimpleLayoutMessage = styled.div`
+   color: ${appColors.buttonColor};
+   font-size: 1.4rem;
+   background-color: ${appColors.pageContainerColor};
+   margin-top: 10px;
+   margin-left: 10px;
+`
+
+export const ErrorExtendedLayoutMessage = styled.div`
+   color: ${appColors.buttonColor};
+   font-size: 1.4rem;
+   background-color: ${appColors.backgroundColor};
+`
 
 export const BoxContainer = styled.div`
    margin: 15px;

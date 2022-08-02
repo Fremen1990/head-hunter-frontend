@@ -1,4 +1,4 @@
-import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { SubtitlesSection } from '../StudentPortfolio/SubtitlesSection/SubtitlesSection'
 import { Button } from '../commons/Button/Button'
 import { InputTextBox } from './InputTextBox/InputTextBox'
@@ -21,6 +21,8 @@ import {
    expectedContractTypeOptions,
    expectedTypeWorkOptions,
 } from '../../constants/secletOptions'
+import { useForm } from 'react-hook-form'
+import { emailValidate } from '../../constants/validation'
 
 export const EditStudentPortfolio = () => {
    const [portfolioUrls, setPortfolioUrls] = useState<string>('')
@@ -44,6 +46,23 @@ export const EditStudentPortfolio = () => {
       portfolioUrls: [],
       projectUrls: [],
    })
+
+   const {
+      handleSubmit,
+      register,
+      formState: {
+         errors: {
+            firstName,
+            lastName,
+            githubUserName,
+            email,
+            tel,
+            expectedSalary,
+            targetWorkCity,
+            monthsOfCommercialExp,
+         },
+      },
+   } = useForm()
 
    const handlePortfolioClick = (e: React.MouseEvent<HTMLElement>) => {
       e.preventDefault()
@@ -78,8 +97,7 @@ export const EditStudentPortfolio = () => {
       setProjectUrls(e.target.value)
    }
 
-   const submit = (e: SyntheticEvent) => {
-      e.preventDefault()
+   const submit = () => {
       console.log(form)
    }
 
@@ -96,12 +114,19 @@ export const EditStudentPortfolio = () => {
    const { addProjectBtn, sendFormBtn } = description.editCv
    return (
       <PageContainer>
-         <Form onSubmit={submit}>
+         <Form onSubmit={handleSubmit(submit)}>
             <BackButton>Wróc</BackButton>
             <AsideSection>
                <InputTextBox
                   title="Imię"
                   layout="simple"
+                  error={firstName}
+                  validation={register('firstName', {
+                     maxLength: {
+                        value: 18,
+                        message: 'Imię może mieć maksymalnie 18 znaków',
+                     },
+                  })}
                   method={(e: ChangeEvent<HTMLInputElement>) =>
                      updateForm('firstName', e.target.value)
                   }
@@ -109,6 +134,13 @@ export const EditStudentPortfolio = () => {
                <InputTextBox
                   title="Nazwisko"
                   layout="simple"
+                  error={lastName}
+                  validation={register('lastName', {
+                     maxLength: {
+                        value: 30,
+                        message: 'Nazwisko może mieć maksymalnie 30 znaków',
+                     },
+                  })}
                   method={(e: ChangeEvent<HTMLInputElement>) =>
                      updateForm('lastName', e.target.value)
                   }
@@ -116,6 +148,13 @@ export const EditStudentPortfolio = () => {
                <InputTextBox
                   title="Nick na githubie"
                   layout="simple"
+                  error={githubUserName}
+                  validation={register('githubUserName', {
+                     maxLength: {
+                        value: 60,
+                        message: 'Nazwisko może mieć maksymalnie 60 znaków',
+                     },
+                  })}
                   method={(e: ChangeEvent<HTMLInputElement>) =>
                      updateForm('githubUserName', e.target.value)
                   }
@@ -123,6 +162,13 @@ export const EditStudentPortfolio = () => {
                <InputTextBox
                   title="E-mail"
                   layout="simple"
+                  error={email}
+                  validation={register('emial', {
+                     pattern: {
+                        value: emailValidate,
+                        message: 'Email musi zawierać @',
+                     },
+                  })}
                   method={(e: ChangeEvent<HTMLInputElement>) =>
                      updateForm('email', e.target.value)
                   }
@@ -130,6 +176,13 @@ export const EditStudentPortfolio = () => {
                <InputTextBox
                   title="Telefon:"
                   layout="simple"
+                  error={tel}
+                  validation={register('tel', {
+                     maxLength: {
+                        value: 15,
+                        message: 'Telefon może mieć maksymalnie 15 znaków',
+                     },
+                  })}
                   method={(e: ChangeEvent<HTMLInputElement>) =>
                      updateForm('tel', e.target.value)
                   }
@@ -151,6 +204,14 @@ export const EditStudentPortfolio = () => {
                      <InputTextBox
                         title={targetPlace}
                         layout="extended"
+                        error={targetWorkCity}
+                        validation={register('targetWorkCity', {
+                           maxLength: {
+                              value: 30,
+                              message:
+                                 'Docelowe miasto może mieć maksymalnie 30 znaków',
+                           },
+                        })}
                         method={(e: ChangeEvent<HTMLInputElement>) =>
                            updateForm('targetWorkCity', e.target.value)
                         }
@@ -158,6 +219,14 @@ export const EditStudentPortfolio = () => {
                      <InputTextBox
                         title={targetSalary}
                         layout="extended"
+                        error={expectedSalary}
+                        validation={register('expectedSalary', {
+                           maxLength: {
+                              value: 5,
+                              message:
+                                 'Wynagrodzenie może mieć maksymalnie 5 znaków',
+                           },
+                        })}
                         method={(e: ChangeEvent<HTMLInputElement>) =>
                            updateForm('expectedSalary', e.target.value)
                         }
@@ -179,6 +248,14 @@ export const EditStudentPortfolio = () => {
                      <NumberInputBox
                         title={experience}
                         layout="extended"
+                        error={monthsOfCommercialExp}
+                        validation={register('monthsOfCommercialExp', {
+                           maxLength: {
+                              value: 11,
+                              message:
+                                 'Doświadczenie w programowaniu może mieć maksymalnie 11 znaków',
+                           },
+                        })}
                         method={(e: ChangeEvent<HTMLInputElement>) =>
                            updateForm(
                               'monthsOfCommercialExp',
