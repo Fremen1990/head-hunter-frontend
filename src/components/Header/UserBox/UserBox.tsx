@@ -51,7 +51,7 @@ export const UserBox = () => {
          {isOpen && (
             <div>
                <NavLink to={'/user'}>{description.buttons.account}</NavLink>
-               <p onClick={handleLogout}>wyloguj</p>
+               <p onClick={handleLogout}>{description.buttons.logOut}</p>
             </div>
          )}
       </UserContainer>
