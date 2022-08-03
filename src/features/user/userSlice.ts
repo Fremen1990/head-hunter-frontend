@@ -80,7 +80,6 @@ export const userSlice = createSlice({
          state.errorMessage = payload.error
       },
       [fetchUserByToken.fulfilled]: (state, { payload }) => {
-         console.log('78 USER SLICE PAYLOAD', payload)
          state.id = payload.id
          state.email = payload.email
          state.role = payload.role
@@ -97,7 +96,6 @@ export const userSlice = createSlice({
          state.isFetching = true
       },
       [userLogout.rejected]: (state, { payload }) => {
-         console.log('payload', payload)
          state.isFetching = false
          state.isError = true
          state.errorMessage = payload
@@ -124,7 +122,6 @@ export const userSlice = createSlice({
          state.errorMessage = payload.error
       },
       [userUpdateProfile.fulfilled]: (state, { payload }) => {
-         console.log('USER UPDATE PROFILE PAYLOAD', payload)
          state.message = payload // HERE should be data return
          state.isFetching = false
          state.isSuccess = true

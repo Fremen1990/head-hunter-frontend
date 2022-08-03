@@ -1,7 +1,6 @@
 import axios from 'axios'
 
 export const uploadFileCall = async (formData: any) => {
-   console.log('FORM DATA', formData)
    try {
       const { data } = await axios.post(
          `${process.env.REACT_APP_BACKEND_URL}/admin/upload`,
@@ -19,7 +18,6 @@ export const uploadFileCall = async (formData: any) => {
 }
 
 export const importStudentsCall = async (formData: any) => {
-   console.log('FORM DATA', formData)
    try {
       const { data } = await axios.post(
          `${process.env.REACT_APP_BACKEND_URL}/admin/import-students`,
@@ -32,7 +30,6 @@ export const importStudentsCall = async (formData: any) => {
 }
 
 export const importHrCall = async (formData: any) => {
-   console.log('FORM DATA', formData)
    try {
       const { data } = await axios.post(
          `${process.env.REACT_APP_BACKEND_URL}/admin/import-hr`,
@@ -61,7 +58,6 @@ export const getHr = async () => {
       const { data } = await axios.get(
          `${process.env.REACT_APP_BACKEND_URL}/admin/hr/all`
       )
-      console.log(data)
       return data
    } catch (error) {
       return error

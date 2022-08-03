@@ -12,7 +12,6 @@ export const userLogin = createAsyncThunk(
       try {
          const response = await api.post('/auth/login', { email, pwd })
          const data = await response.data
-         console.log(response.status)
          if (response.status === 201) {
             localStorage.setItem('userToken', data.token)
             return data
@@ -20,7 +19,6 @@ export const userLogin = createAsyncThunk(
             return thunkAPI.rejectWithValue(data.error)
          }
       } catch (e: any) {
-         console.log('Error', e.response.data)
          return thunkAPI.rejectWithValue(e.response.data)
       }
    }
@@ -32,10 +30,8 @@ export const fetchUserByToken = createAsyncThunk(
       try {
          // const { user } = getState()
          const { data } = await api.get('/user/current/profile')
-         console.log('Data from fetch from token', data)
          return data
       } catch (e: any) {
-         console.log('Error', e.response.data)
          return thunkAPI.rejectWithValue(e.response.data)
       }
    }
@@ -53,7 +49,6 @@ export const userLogout = createAsyncThunk(
             return thunkAPI.rejectWithValue(data.error)
          }
       } catch (e: any) {
-         console.log('Error', e.response.data)
          return thunkAPI.rejectWithValue(e.response.data)
       }
    }
@@ -72,7 +67,6 @@ export const userUpdateProfile = createAsyncThunk(
             return thunkAPI.rejectWithValue(data.error)
          }
       } catch (e: any) {
-         console.log('Error', e.response.data)
          return thunkAPI.rejectWithValue(e.response.data)
       }
    }
