@@ -12,12 +12,12 @@ export const NumberInputBox = ({ title, method, layout }: Props) => {
    return layout === 'simple' ? (
       <label>
          <p>{title}</p>
-         <input type="number" onChange={method} />
+         <input type="number" min={0} onChange={method} />
       </label>
    ) : (
       <BoxContainer>
          <p>{title}</p>
-         <input type="number" onChange={method} />
+         <input type="number" min={0} onChange={method} />
       </BoxContainer>
    )
 }
