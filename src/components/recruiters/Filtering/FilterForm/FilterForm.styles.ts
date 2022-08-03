@@ -62,7 +62,7 @@ export const Form = styled.form`
 `
 export const ButtonBox = styled.div`
    justify-content: flex-end;
-   margin-top: 50px;
+   margin-top: 20px;
 
    & .annualBtn {
       padding: 5px 10px;

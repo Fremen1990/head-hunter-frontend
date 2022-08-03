@@ -14,7 +14,7 @@ export const FilterSectionBox = styled.div`
    & form {
       background-color: transparent;
 
-      & label {
+      & label.search {
          display: flex;
          align-items: center;
          border: 1px solid rgba(255, 255, 255, 0.2);

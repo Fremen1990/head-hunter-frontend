@@ -20,7 +20,7 @@ export const FilterSection = () => {
    return (
       <FilterSectionBox>
          <form>
-            <label htmlFor={'search'}>
+            <label className={'search'} htmlFor={'search'}>
                <BsSearch onClick={handleSearch} />
                <input
                   id={'search'}
