@@ -12,6 +12,12 @@ import { InterViewMeBox } from './InterViewMeBox/InterViewMeBox'
 import { StudentPortfolioModal } from '../../../modals/StudentPortfolioModal/StudentPortfolioModal'
 import { description } from '../../../constants/description/description'
 import { studentsInterface } from 'src/pages/Hr.page'
+import { useDispatch } from 'react-redux'
+import {
+   bookCallCandidate,
+   disinterestCandidate,
+   HiredCandidate,
+} from '../../../features/hr/hrActions'
 
 interface Props {
    layout: string
@@ -21,14 +27,17 @@ interface Props {
 export const OneUser = ({ layout, student }: Props) => {
    const [isOpen, setIsOpen] = useState<boolean>(false)
    const [showCv, setShowCv] = useState<boolean>(false)
+   const dispatch = useDispatch()
 
    const text = description.userInterview
    const buttonsName = description.buttons
    const descriptions = description.userInterview
 
-   const showStudentPortfolio = () => {
-      setShowCv(true)
-   }
+   const showStudentPortfolio = () => setShowCv(!showCv)
+   const handleBookCall = (id: string) => dispatch(bookCallCandidate({ id }))
+   const handleDisinterest = (id: string) =>
+      dispatch(disinterestCandidate({ id }))
+   const handleHired = (id: string) => dispatch(HiredCandidate({ id }))
 
    return (
       <>
@@ -59,7 +68,10 @@ export const OneUser = ({ layout, student }: Props) => {
                   </div>
                   {layout === 'simple' ? (
                      <ButtonsBox isOpen={isOpen}>
-                        <Button buttonTitle={buttonsName.bookCall} />
+                        <Button
+                           method={() => handleBookCall(student.user.id)}
+                           buttonTitle={buttonsName.bookCall}
+                        />
                         <AiOutlineCaretDown
                            onClick={() => setIsOpen(!isOpen)}
                         />
@@ -70,8 +82,14 @@ export const OneUser = ({ layout, student }: Props) => {
                            buttonTitle={buttonsName.showCv}
                            method={() => showStudentPortfolio()}
                         />
-                        <Button buttonTitle={buttonsName.disinterest} />
-                        <Button buttonTitle={buttonsName.hired} />
+                        <Button
+                           method={() => handleDisinterest(student.user.id)}
+                           buttonTitle={buttonsName.disinterest}
+                        />
+                        <Button
+                           method={() => handleHired(student.user.id)}
+                           buttonTitle={buttonsName.hired}
+                        />
                         <AiOutlineCaretDown
                            onClick={() => setIsOpen(!isOpen)}
                         />
