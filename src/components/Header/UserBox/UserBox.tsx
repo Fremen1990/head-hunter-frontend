@@ -14,6 +14,10 @@ export const UserBox = () => {
    const dispatch = useDispatch()
    const navigate = useNavigate()
 
+   const { role } = useSelector((state) => state.user)
+
+   console.log(role)
+
    const handleLogout = () => {
       dispatch(userLogout())
       navigate('/login')
@@ -40,7 +44,15 @@ export const UserBox = () => {
                </div>
             </NavLink>
             <p>
-               {userDetails?.firstName} {userDetails?.lastName}
+               {role === 'student' ? (
+                  <>
+                     {userDetails.name} {userDetails.lastName}
+                  </>
+               ) : role === 'hr' ? (
+                  'HR'
+               ) : (
+                  'Admin'
+               )}
             </p>
             <AiOutlineCaretDown onClick={() => setIsOpen(!isOpen)} />
          </div>
