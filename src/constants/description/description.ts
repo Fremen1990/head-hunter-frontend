@@ -1,6 +1,6 @@
 export const description = {
    inputsFields: {
-      placeholder: 'name',
+      filterPlaceholder: 'Wyszukaj...',
       passwordPlaceholder: 'hasło',
       emailPlaceholder: 'email',
    },
@@ -36,6 +36,9 @@ export const description = {
       account: 'konto',
       forgotPass: 'zapomniałeś hasła ?',
       addHr: 'dodaj nowego HR',
+      annual: 'anuluj',
+      search: 'wyszukaj',
+      filter: 'Filtrowanie',
    },
    studentPortfolio: {
       rating: 'oceny',
@@ -69,5 +72,19 @@ export const description = {
          'wynagrodzenie może mieć maksymalnie 5 znaków',
       monthsOfCommercialExpErrorMessage:
          'doświadczenie w programowaniu może mieć maksymalnie 11 znaków',
+   },
+   filterModal: {
+      courseEvaluation: 'ocena przejścia kursu',
+      activityAssessment: 'ocena aktywności na kursie',
+      codeEvaluation: 'ocena kodu w pojekcie własnym',
+      jobEvaluation: 'ocena pracy w zespole SCRUM',
+      typeOfWork: 'preferowane miejsce pracy',
+      typeOfContract: 'preferowany typ kontraktu',
+      salary: 'Oczekiwane wynagrodzenie miesięczne netto',
+      internship: 'zgoda na odbycie bezpłatnych praktyk/stażu na początek',
+      experience:
+         'Ilośc miesięcy doświacznia komercyjnego kandydata w programowaniu',
+      filterName: 'Filtrowanie',
+      clearAll: 'Wyczyść wszystko',
    },
 }

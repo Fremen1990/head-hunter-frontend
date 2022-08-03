@@ -22,7 +22,6 @@ export const hrSlice = createSlice({
    initialState,
    reducers: {},
    extraReducers: {
-      // FETCH USER BY TOKEN
       [fetchHrCandidates.pending]: (state) => {
          state.isFetching = true
       },
