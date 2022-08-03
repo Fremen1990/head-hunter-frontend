@@ -33,7 +33,6 @@ export const AdminPage = () => {
    const [uploadFile, setUploadFile] = useState('')
    const uploadFileHandler = (e: any) => {
       setUploadFile(e.target.files[0])
-      console.log(uploadFile)
    }
    // --------------------Upload file END ----------------------
 
@@ -51,7 +50,6 @@ export const AdminPage = () => {
       data.append('usersImport', uploadFile)
       const response = await uploadFileCall(data)
       setUploadStudentsJson(response)
-      console.log('UPLOAD JSON', uploadStudentsJson)
    }
 
    const importStudentsHandler = async () => {
@@ -80,7 +78,6 @@ export const AdminPage = () => {
       data.append('usersImport', uploadFile)
       const response = await uploadFileCall(data)
       setUploadHrJson(response)
-      console.log('UPLOAD JSON', uploadStudentsJson)
    }
 
    const importHrsHandler = async () => {
