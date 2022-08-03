@@ -31,6 +31,7 @@ export const description = {
       logIn: 'Zaloguj się',
       account: 'konto',
       forgotPass: 'zapomniałeś hasła ?',
+      confirmDate: 'potwierdź dane',
    },
    studentPortfolio: {
       rating: 'oceny',
