@@ -4,6 +4,7 @@ import { Header } from '../components/Header/Header'
 import { StudentsNavigation } from '../components/recruiters/Navigation/Navigation'
 import { UserResultsContainer } from '../components/recruiters/UserResultsContainer/UserResultsContainer'
 import { getStudents } from '../apiCalls'
+import { FilterSection } from '../components/recruiters/FilterSection/FilterSection'
 
 // to remove later
 export interface studentsInterface {
@@ -107,6 +108,7 @@ export const HrPage = () => {
          <Header />
          <PageContainer>
             <StudentsNavigation setToInterview={setToInterview} />
+            <FilterSection />
             {toInterview ? (
                <UserResultsContainer layout={'extened'} students={students} />
             ) : (
