@@ -44,7 +44,7 @@ export const HiredCandidate = createAsyncThunk(
    async ({ id }: CandidateId, thunkAPI) => {
       try {
          await api.patch('/hr/undefined', { id })
-      } catch (e: any) 
+      } catch (e: any) {
          return thunkAPI.rejectWithValue(e.response.data)
       }
    }
