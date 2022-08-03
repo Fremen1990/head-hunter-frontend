@@ -5,6 +5,7 @@ import { NavigationBar } from '../components/recruiters/Navigation/Navigation'
 import { UserResultsContainer } from '../components/recruiters/UserResultsContainer/UserResultsContainer'
 import { SearchFilter } from '../components/Dashboard/SearchFilterBar/SearchFilterForm'
 import { getStudents } from '../apiCalls'
+import { FilterSection } from '../components/recruiters/FilterSection/FilterSection'
 
 // to remove later
 export interface studentsInterface {

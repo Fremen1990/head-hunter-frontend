@@ -1,6 +1,7 @@
 import React from 'react'
 import { AccountContainer, AccountAvatar } from '../AccountContainer.styles'
 import { AccountBox } from '../AccountBox'
+import { AddHrForm } from './AddHrForm/AddHrForm'
 
 interface Props {
    children: React.ReactNode
@@ -14,6 +15,7 @@ export const Admin = ({ children }: Props) => {
             alt="avatar profilu użytkownika"
          />
          <AccountBox accountName={'Admin'} />
+         <AddHrForm />
          {children}
       </AccountContainer>
    )

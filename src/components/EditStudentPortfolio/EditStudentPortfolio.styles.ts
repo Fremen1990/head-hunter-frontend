@@ -13,6 +13,10 @@ export const BackButton = styled.button`
    cursor: pointer;
    transition: 0.5s;
 
+   &::first-letter {
+      text-transform: uppercase;
+   }
+
    ${device.desktop} {
       width: 50px;
    }
@@ -50,6 +54,10 @@ export const AsideSection = styled.div`
    & p {
       font-size: 1.4rem;
       background-color: ${appColors.pageContainerColor};
+
+      &::first-letter {
+         text-transform: uppercase;
+      }
    }
 
    & input {
@@ -154,10 +162,37 @@ export const EditExpectationBoxContainer = styled.div`
       flex-direction: row;
    }
 `
+export const ErrorSimpleLayoutMessage = styled.div`
+   color: ${appColors.buttonColor};
+   font-size: 1.4rem;
+   background-color: ${appColors.pageContainerColor};
+   margin-top: 10px;
+   margin-left: 10px;
+
+   &::first-letter {
+      text-transform: uppercase;
+   }
+`
+
+export const ErrorExtendedLayoutMessage = styled.div`
+   color: ${appColors.buttonColor};
+   font-size: 1.4rem;
+   background-color: ${appColors.backgroundColor};
+
+   &::first-letter {
+      text-transform: uppercase;
+   }
+`
 
 export const BoxContainer = styled.div`
    margin: 15px;
    color: ${appColors.descriptionColor};
+
+   p {
+      &::first-letter {
+         text-transform: uppercase;
+      }
+   }
 
    ${device.desktop} {
       width: 40%;

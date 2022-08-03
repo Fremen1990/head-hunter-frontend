@@ -58,9 +58,18 @@ export const UserBox = styled.div`
    margin-left: 10px;
    background-color: transparent;
 
+   & p::first-letter {
+      text-transform: capitalize;
+   }
+
    & p {
+      margin-left: 5px;
       font-size: 1.4rem;
       background-color: transparent;
+   }
+
+   & p:nth-child(2) {
+      margin-left: 2px;
    }
 
    & .avatar {

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchHrCandidates } from '../../../features/hr/hrActions'
 // eslint-disable-next-line no-unused-vars
 import { UserState } from '../../../features/user/userSlice'
+import { ResultsContainer } from './UserResultsContainer.styles'
 
 interface Props {
    students: studentsInterface[]
@@ -14,7 +15,6 @@ interface Props {
 
 export const UserResultsContainer = ({ layout }: Props) => {
    const { candidates } = useSelector((state: UserState) => state.hr)
-   console.log('CANDI', candidates)
    const dispatch = useDispatch()
 
    useEffect(() => {
@@ -22,10 +22,10 @@ export const UserResultsContainer = ({ layout }: Props) => {
    }, [])
 
    return (
-      <>
+      <ResultsContainer>
          {candidates.map((student: studentsInterface) => (
             <OneUser layout={layout} key={student.id} student={student} />
          ))}
-      </>
+      </ResultsContainer>
    )
 }
