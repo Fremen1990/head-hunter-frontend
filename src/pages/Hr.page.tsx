@@ -4,7 +4,7 @@ import { Header } from '../components/Header/Header'
 import { NavigationBar } from '../components/recruiters/Navigation/Navigation'
 import { UserResultsContainer } from '../components/recruiters/UserResultsContainer/UserResultsContainer'
 import { SearchFilter } from '../components/Dashboard/SearchFilterBar/SearchFilterForm'
-// import { getStudents } from '../apiCalls'
+import { getStudents } from '../apiCalls'
 
 // to remove later
 export interface studentsInterface {
@@ -36,70 +36,14 @@ export interface studentsInterface {
    updated_at?: Date
 }
 
-// to remove later
-const availableStudents: studentsInterface[] = [
-   {
-      id: 'andrzej',
-      email: 'email@casc.pl',
-      studentStatus: 'string',
-      courseCompletion: 2,
-      courseEngagement: 2,
-      projectDegree: 2,
-      teamProjectDegree: 3,
-      bonusProjectUrls: ['string[]'],
-      tel: '23432',
-      firstName: 'Alicja',
-      lastName: 'Zamachowska',
-      githubUserName: 'string',
-      portfolioUrls: 'string',
-      projectUrls: 'string',
-      bio: 'string',
-      expectedTypeOfWork: 'string',
-      targetWorkCity: 'string',
-      expectedContractType: 'string',
-      expectedSalary: 'string',
-      canTakeApprenticeship: 'string',
-      monthsOfCommercialExp: 'string',
-      education: 'string',
-      workExperience: 'string',
-      courses: 'string',
-   },
-   {
-      id: '324wasdasdas',
-      email: 'email@casc.pl',
-      studentStatus: 'string',
-      courseCompletion: 2,
-      courseEngagement: 2,
-      projectDegree: 2,
-      teamProjectDegree: 3,
-      bonusProjectUrls: ['string[]'],
-      tel: '23432',
-      firstName: 'Roman',
-      lastName: 'Walidowski',
-      githubUserName: 'string',
-      portfolioUrls: 'string',
-      projectUrls: 'string',
-      bio: 'string',
-      expectedTypeOfWork: 'string',
-      targetWorkCity: 'string',
-      expectedContractType: 'string',
-      expectedSalary: 'string',
-      canTakeApprenticeship: 'string',
-      monthsOfCommercialExp: 'string',
-      education: 'string',
-      workExperience: 'string',
-      courses: 'string',
-   },
-]
-
 export const HrPage = () => {
    const [students, setStudents] = useState<studentsInterface[]>([])
-   const [toInterview, setToInterview] = useState<string>('Dostępni kursanci')
+   const [toInterview, setToInterview] = useState<string>('Dotępni kursanci')
 
    useEffect(() => {
       ;(async () => {
-         // const newStudents = await getStudents()
-         setStudents(availableStudents)
+         const newStudents = await getStudents()
+         setStudents(newStudents)
       })()
    }, [])
 
@@ -109,13 +53,10 @@ export const HrPage = () => {
          <PageContainer>
             <NavigationBar setToInterview={setToInterview} />
             <SearchFilter />
-            {toInterview === 'Dostępni kursanci' ? (
-               <UserResultsContainer layout={'extened'} students={students} />
+            {toInterview === 'Do rozmowy' ? (
+               <UserResultsContainer layout={'extended'} students={students} />
             ) : (
-               <UserResultsContainer
-                  layout={'simple'}
-                  students={availableStudents}
-               />
+               <UserResultsContainer layout={'simple'} students={students} />
             )}
          </PageContainer>
       </>

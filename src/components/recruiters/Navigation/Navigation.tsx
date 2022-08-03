@@ -20,7 +20,7 @@ export function NavigationBar({ setToInterview }: NavigationInterface) {
                   active={active === type}
                   onClick={() => {
                      setActive(type)
-                     setToInterview(active)
+                     setToInterview(type)
                   }}
                >
                   {type}
