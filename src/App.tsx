@@ -8,7 +8,7 @@ import { LoginPage } from './pages/Login.page'
 import { HrPage } from './pages/Hr.page'
 // eslint-disable-next-line no-unused-vars
 import ProtectedRoute from './routing/ProtectedRoute'
-import { RegisterPage } from './pages/Register.page'
+import { ActivationPage } from './pages/Activation.page'
 import { HomePage } from './pages/HomePage'
 
 export interface IAppProps {}
@@ -19,7 +19,10 @@ export const App: React.FunctionComponent<IAppProps> = () => {
          <Routes>
             <Route path={ROUTES.HOME} element={<HomePage />} />
             <Route path={ROUTES.LOGIN} element={<LoginPage />} />
-            <Route path={ROUTES.STUDENT_REGISTER} element={<RegisterPage />} />
+            <Route
+               path={ROUTES.STUDENT_ACTIVATE}
+               element={<ActivationPage />}
+            />
             <Route path={ROUTES.NOT_FOUND} element={<NotFoundPage />} />
 
             <Route element={<ProtectedRoute allowedRoles={['hr', 'admin']} />}>
