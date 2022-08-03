@@ -97,9 +97,7 @@ export const EditStudentPortfolio = () => {
       setProjectUrls(e.target.value)
    }
 
-   const submit = () => {
-      console.log(form)
-   }
+   const submit = () => {}
 
    const {
       aboutMe,

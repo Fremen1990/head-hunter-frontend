@@ -14,7 +14,6 @@ interface Props {
 
 export const UserResultsContainer = ({ students, layout }: Props) => {
    const { candidates } = useSelector((state: UserState) => state.hr)
-   console.log('CANDI', candidates)
    const dispatch = useDispatch()
 
    useEffect(() => {

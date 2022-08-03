@@ -27,13 +27,11 @@ export const hrSlice = createSlice({
          state.isFetching = true
       },
       [fetchHrCandidates.rejected]: (state, { payload }) => {
-         console.log('FETCH HR REJECT PAYLOAD', payload)
          state.isFetching = false
          state.isError = true
          state.errorMessage = payload.error
       },
       [fetchHrCandidates.fulfilled]: (state, { payload }) => {
-         console.log('FETCH HR  PAYLOAD', payload)
          state.candidates = payload
          state.isFetching = false
          state.isSuccess = true

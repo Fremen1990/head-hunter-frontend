@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { fetchUserByToken, userLogin, userLogout } from './userActions'
+import {
+   fetchUserByToken,
+   userLogin,
+   userLogout,
+   userUpdateProfile,
+} from './userActions'
 // import { getUserDetails, userLogin, userLogout } from './userActions'
 
 export interface UserInfo {
@@ -44,7 +49,7 @@ export const userSlice = createSlice({
    initialState,
    reducers: {},
    extraReducers: {
-      // LOGIN USER
+      // ===================LOGIN USER=================================
       [userLogin.pending]: (state) => {
          state.isFetching = true
       },
@@ -65,7 +70,7 @@ export const userSlice = createSlice({
          state.errorMessage = ''
          return state
       },
-      // FETCH USER BY TOKEN
+      // ===============FETCH USER BY TOKEN TO HEADER=======================
       [fetchUserByToken.pending]: (state) => {
          state.isFetching = true
       },
@@ -75,7 +80,6 @@ export const userSlice = createSlice({
          state.errorMessage = payload.error
       },
       [fetchUserByToken.fulfilled]: (state, { payload }) => {
-         console.log('78 USER SLICE PAYLOAD', payload)
          state.id = payload.id
          state.email = payload.email
          state.role = payload.role
@@ -87,12 +91,11 @@ export const userSlice = createSlice({
          state.errorMessage = ''
          return state
       },
-      // LOGOUT USER
+      // ===============LOGOUT USER=======================
       [userLogout.pending]: (state) => {
          state.isFetching = true
       },
       [userLogout.rejected]: (state, { payload }) => {
-         console.log('payload', payload)
          state.isFetching = false
          state.isError = true
          state.errorMessage = payload
@@ -108,6 +111,23 @@ export const userSlice = createSlice({
          state.isSuccess = false
          state.isError = false
          state.errorMessage = ''
+      },
+      // =============USER UPDATE PROFILE===============
+      [userUpdateProfile.pending]: (state) => {
+         state.isFetching = true
+      },
+      [userUpdateProfile.rejected]: (state, { payload }) => {
+         state.isFetching = false
+         state.isError = true
+         state.errorMessage = payload.error
+      },
+      [userUpdateProfile.fulfilled]: (state, { payload }) => {
+         state.message = payload // HERE should be data return
+         state.isFetching = false
+         state.isSuccess = true
+         state.isError = false
+         state.errorMessage = ''
+         return state
       },
    },
 })
