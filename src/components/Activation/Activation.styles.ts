@@ -8,11 +8,12 @@ export const Form = styled.form`
    align-items: center;
    text-align: center;
    flex-wrap: wrap;
-   height: 50%;
+   height: 40%;
    width: 350px;
 
    & Button {
       font-size: 1.5rem;
+      margin-top: 20px;
    }
 `
 
@@ -29,4 +30,8 @@ export const Input = styled.input`
       background-color: rgb(256, 256, 256);
       color: #000;
    }
+`
+export const ErrorMessage = styled.div`
+   color: ${appColors.buttonColor};
+   font-size: 1.4rem;
 `
