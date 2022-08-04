@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom'
 import { Header } from '../components/Header/Header'
 import { useAppSelector } from '../app/hooks'
 import { UserState } from '../features/user/userSlice'
-import { HomeLogo, Shaky } from 'src/constants/Layout/HomePage.styles'
+import { HomeLogo, Shaky } from '../constants/Layout/HomePage.styles'
 // import { appColors } from '../constants/Layout/app.colors'
 
 export const HomePage = () => {
