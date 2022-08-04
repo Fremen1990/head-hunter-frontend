@@ -11,6 +11,9 @@ import ProtectedRoute from './routing/ProtectedRoute'
 import { RegisterPage } from './pages/Register.page'
 import { HomePage } from './pages/HomePage'
 import { StudentPortfolioModal } from './modals/StudentPortfolioModal/StudentPortfolioModal'
+import { USER_PORTFOLIO_EDIT, USER_PORTFOLIO_PAGE } from './constants/routes'
+import { StudentPortfolioPage } from './pages/StudentPortfolio.page'
+import { EditStudentPortfolioModal } from './modals/EditStudentPortfoliModal/EditStudentPortfolioModal'
 
 export interface IAppProps {}
 
@@ -31,6 +34,14 @@ export const App: React.FunctionComponent<IAppProps> = () => {
                element={<ProtectedRoute allowedRoles={['student', 'admin']} />}
             >
                <Route path={ROUTES.USER_PAGE} element={<UserPage />} />
+               <Route
+                  path={ROUTES.USER_PORTFOLIO_PAGE}
+                  element={<StudentPortfolioPage />}
+               />{' '}
+               <Route
+                  path={ROUTES.USER_PORTFOLIO_EDIT}
+                  element={<EditStudentPortfolioModal />}
+               />
             </Route>
 
             <Route element={<ProtectedRoute allowedRoles={['admin']} />}>

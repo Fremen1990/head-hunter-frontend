@@ -68,7 +68,6 @@ export const userSlice = createSlice({
          state,
          { payload }: PayloadAction<LoginUserResponse>
       ) => {
-         console.log('PAYLOAD LOGIN', payload)
          state.id = payload.id
          state.email = payload.email
          state.role = payload.role
@@ -88,8 +87,6 @@ export const userSlice = createSlice({
          state: RootState,
          { payload }: PayloadAction<{ message: string; statusCode: number }>
       ) => {
-         console.log('payload Fetch user', payload)
-         console.log('payload Fetch user', payload)
          state.isFetching = false
          state.isError = true
          state.errorMessage = payload.message
@@ -98,7 +95,6 @@ export const userSlice = createSlice({
          state: RootState,
          { payload }: PayloadAction<getUserProfileResponse>
       ) => {
-         console.log('PAYLOAD  FETCH USER', payload)
          state.id = payload.id
          state.email = payload.email
          state.role = payload.role

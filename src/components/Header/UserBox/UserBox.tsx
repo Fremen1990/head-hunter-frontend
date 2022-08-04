@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { UserContainer } from './UserBox.styles'
 import { AiOutlineCaretDown } from 'react-icons/ai'
 import { NavLink, useNavigate } from 'react-router-dom'
@@ -7,11 +7,15 @@ import { description } from '../../../constants/description/description'
 import { useDispatch, useSelector } from 'react-redux'
 import { userLogout } from '../../../features/user/userActions'
 import { UserState } from '../../../features/user/userSlice'
+import useClickOutside from '../../../utils/clickOutsideHook'
+import { useAppSelector } from '../../../app/hooks'
 
 export const UserBox = () => {
-   const { userDetails } = useSelector((state: UserState) => state.user)
-   const { role } = useSelector((state) => state.user)
+   const { role, userDetails } = useAppSelector(
+      (state: UserState) => state.user
+   )
    const [isOpen, setIsOpen] = useState<boolean>(false)
+   const userMenu = useRef(null)
    const dispatch = useDispatch()
    const navigate = useNavigate()
 
@@ -20,8 +24,10 @@ export const UserBox = () => {
       navigate('/login')
    }
 
+   useClickOutside(userMenu, () => setIsOpen(false))
+
    return (
-      <UserContainer isOpen={isOpen}>
+      <UserContainer isOpen={isOpen} ref={userMenu}>
          <div>
             <NavLink to={'/user'}>
                <div className={'avatar'}>
@@ -50,7 +56,9 @@ export const UserBox = () => {
          </div>
          {isOpen && (
             <div>
-               <NavLink to={'/user'}>{description.buttons.account}</NavLink>
+               <NavLink to={'/user'} onClick={() => setIsOpen(false)}>
+                  {description.buttons.account}
+               </NavLink>
                <p onClick={handleLogout}>{description.buttons.logOut}</p>
             </div>
          )}

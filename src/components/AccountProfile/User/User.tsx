@@ -4,10 +4,14 @@ import { Button } from '../../commons/Button/Button'
 import { AccountBox } from '../AccountBox'
 import { useSelector } from 'react-redux'
 import { UserState } from '../../../features/user/userSlice'
+import { EditStudentPortfolioModal } from '../../../modals/EditStudentPortfoliModal/EditStudentPortfolioModal'
+import { StudentPortfolioModal } from '../../../modals/StudentPortfolioModal/StudentPortfolioModal'
+import { NavLink } from 'react-router-dom'
+import { useAppSelector } from '../../../app/hooks'
 
 export const User = () => {
-   const { userDetails } = useSelector((state: UserState) => state.user)
-   // const { firstName, lastName, githubUserName, studentStatus } = userDetails
+   const { userDetails } = useAppSelector((state: UserState) => state.user)
+
    return (
       <AccountContainer>
          <AccountAvatar
@@ -18,6 +22,7 @@ export const User = () => {
             }
             alt="avatar profilu użytkownika"
          />
+
          <AccountBox
             accountName={`${userDetails?.firstName} ${userDetails?.lastName}`}
          />
@@ -25,6 +30,22 @@ export const User = () => {
             <h3>Status</h3>
             <p>{userDetails?.studentStatus}</p>
             <Button buttonTitle="Zmień status" />
+         </div>
+
+         <div
+            className="container-box"
+            style={{ flexDirection: 'row', padding: 20 }}
+         >
+            {/* Student CV */}
+            <NavLink to="/user/profile" style={{ margin: '30px' }}>
+               {/* <StudentPortfolioModal /> */}
+               <Button buttonTitle="Twoje CV" />
+            </NavLink>
+            {/* Update CV */}
+            <NavLink to="/user/edit">
+               {/* <EditStudentPortfolioModal /> */}
+               <Button buttonTitle="Zaktualizuj dane" />
+            </NavLink>
          </div>
       </AccountContainer>
    )

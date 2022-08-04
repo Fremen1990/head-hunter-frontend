@@ -6,6 +6,9 @@ import { UserResultsContainer } from '../components/recruiters/UserResultsContai
 import { SearchFilter } from '../components/Dashboard/SearchFilterBar/SearchFilterForm'
 import { getStudents } from '../apiCalls'
 import { FilterSection } from '../components/recruiters/FilterSection/FilterSection'
+import { useSelector } from 'react-redux'
+import { UserState } from '../features/user/userSlice'
+import { useAppSelector } from '../app/hooks'
 
 // to remove later
 export interface studentsInterface {
@@ -38,26 +41,33 @@ export interface studentsInterface {
 }
 
 export const HrPage = () => {
-   const [students, setStudents] = useState<studentsInterface[]>([])
+   // const [students, setStudents] = useState<studentsInterface[]>([])
    const [toInterview, setToInterview] = useState<string>('Dotępni kursanci')
 
-   useEffect(() => {
-      ;(async () => {
-         const newStudents = await getStudents()
-         setStudents(newStudents)
-      })()
-   }, [])
+   const { candidates } = useAppSelector((state: UserState) => state.hr)
+
+   console.log('candidates ', candidates)
+   // useEffect(() => {
+   //    ;(async () => {
+   //       const newStudents = await getStudents()
+   //       setStudents(newStudents)
+   //    })()
+   // }, [])
 
    return (
       <>
          <Header />
          <PageContainer>
             <NavigationBar setToInterview={setToInterview} />
-            <SearchFilter />
+            {/* <SearchFilter /> */}
+            <FilterSection />
             {toInterview === 'Do rozmowy' ? (
-               <UserResultsContainer layout={'extended'} students={students} />
+               <UserResultsContainer
+                  layout={'extended'}
+                  students={candidates}
+               />
             ) : (
-               <UserResultsContainer layout={'simple'} students={students} />
+               <UserResultsContainer layout={'simple'} students={candidates} />
             )}
          </PageContainer>
       </>

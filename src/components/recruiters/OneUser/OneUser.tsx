@@ -28,7 +28,6 @@ export const OneUser = ({ layout, student }: Props) => {
    const [isOpen, setIsOpen] = useState<boolean>(false)
    const [showCv, setShowCv] = useState<boolean>(false)
    const dispatch = useDispatch()
-
    const text = description.userInterview
    const buttonsName = description.buttons
    const descriptions = description.userInterview
@@ -60,7 +59,7 @@ export const OneUser = ({ layout, student }: Props) => {
                         <p>{student.firstName}</p>
 
                         {layout === 'simple' ? (
-                           <p>{student.lastName.slice(-1)}</p>
+                           <p>{student.lastName?.slice(-1)}</p>
                         ) : (
                            <p>{student.lastName}</p>
                         )}

@@ -26,7 +26,6 @@ export const FilterForm = (props: Props) => {
 
    const handleSubmit = (e: SyntheticEvent) => {
       e.preventDefault()
-      console.log(filter)
    }
 
    const handleClear = () => {

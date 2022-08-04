@@ -7,11 +7,13 @@ import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { Header } from '../components/Header/Header'
 import { useSelector } from 'react-redux'
+import { useAppSelector } from '../app/hooks'
+import { UserState } from '../features/user/userSlice'
 // import { appColors } from '../constants/Layout/app.colors'
 
 export const HomePage = () => {
    // @ts-ignore
-   const { role } = useSelector((state) => state.user)
+   const { role } = useAppSelector((state: UserState) => state.user)
 
    const Shaky = styled.button`
       border-radius: 10px;

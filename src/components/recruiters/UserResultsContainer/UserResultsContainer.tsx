@@ -13,8 +13,7 @@ interface Props {
    layout: string
 }
 
-export const UserResultsContainer = ({ layout }: Props) => {
-   const { candidates } = useSelector((state: UserState) => state.hr)
+export const UserResultsContainer = ({ layout, students }: Props) => {
    const dispatch = useDispatch()
 
    useEffect(() => {
@@ -23,7 +22,7 @@ export const UserResultsContainer = ({ layout }: Props) => {
 
    return (
       <ResultsContainer>
-         {candidates.map((student: studentsInterface) => (
+         {students.map((student: studentsInterface) => (
             <OneUser layout={layout} key={student.id} student={student} />
          ))}
       </ResultsContainer>
