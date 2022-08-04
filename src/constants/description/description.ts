@@ -87,4 +87,8 @@ export const description = {
       filterName: 'Filtrowanie',
       clearAll: 'Wyczyść wszystko',
    },
+   navigation: {
+      availableStudents: 'Dostępni kursanci',
+      toReview: 'Do rozmowy',
+   },
 }

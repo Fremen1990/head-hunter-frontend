@@ -1,18 +1,17 @@
 import styled from 'styled-components'
 import { appColors } from '../../../constants/Layout/app.colors'
 
-export const StudentsTabs = styled.nav`
+export const NavBar = styled.div`
    display: flex;
    flex-direction: row;
    align-items: center;
-   margin-top: 10px;
    background: transparent;
    justify-content: flex-start;
    width: 100%;
    height: 40px;
 `
 
-export const Tab = styled.a`
+export const Tab = styled.a<{ active: boolean }>`
    width: 200px;
    background: transparent;
    font-family: Catamaran, sans-serif;
@@ -20,8 +19,9 @@ export const Tab = styled.a`
    font-size: 18px;
    text-align: center;
    cursor: pointer;
-
-   &:hover {
-      border-bottom: 1px solid red;
-   }
+   ${({ active }) =>
+      active &&
+      `
+    border-bottom: 3px solid ${appColors.buttonColor}
+  `}
 `

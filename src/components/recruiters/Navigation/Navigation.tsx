@@ -1,15 +1,32 @@
-import React from 'react'
-import { Tab, StudentsTabs } from './Navigation.styles'
+import React, { useState } from 'react'
+import { NavBar, Tab } from './Navigation.styles'
+import { description } from '../../../constants/description/description'
 
 interface NavigationInterface {
-   setToInterview: (arg: boolean) => void
+   setToInterview: (arg: string) => void
 }
 
-export const StudentsNavigation = ({ setToInterview }: NavigationInterface) => {
+const tabs: string[] = Object.values(description.navigation)
+
+export function NavigationBar({ setToInterview }: NavigationInterface) {
+   const [active, setActive] = useState(tabs[0])
+
    return (
-      <StudentsTabs>
-         <Tab onClick={() => setToInterview(false)}>Dostępni kursanci</Tab>
-         <Tab onClick={() => setToInterview(true)}>Do rozmowy</Tab>
-      </StudentsTabs>
+      <>
+         <NavBar>
+            {tabs.map((type) => (
+               <Tab
+                  key={type}
+                  active={active === type}
+                  onClick={() => {
+                     setActive(type)
+                     setToInterview(type)
+                  }}
+               >
+                  {type}
+               </Tab>
+            ))}
+         </NavBar>
+      </>
    )
 }
