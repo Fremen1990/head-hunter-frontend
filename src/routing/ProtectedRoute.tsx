@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { NotAuthorized } from '../pages/NotAuthorized'
 import { Outlet } from 'react-router-dom'
+import { useAppSelector } from '../app/hooks'
 
 interface Props {
    allowedRoles: string[]
@@ -13,7 +14,7 @@ interface Props {
 //    : null
 
 const ProtectedRoute = ({ allowedRoles }: Props) => {
-   const { role } = useSelector((state) => state.user)
+   const role = useAppSelector((state) => state.user.role)
 
    const rolesArray = Array(role)
    return rolesArray?.find((r) => allowedRoles.includes(r)) ? (

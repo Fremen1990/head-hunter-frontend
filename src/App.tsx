@@ -10,6 +10,7 @@ import { HrPage } from './pages/Hr.page'
 import ProtectedRoute from './routing/ProtectedRoute'
 import { RegisterPage } from './pages/Register.page'
 import { HomePage } from './pages/HomePage'
+import { StudentPortfolioModal } from './modals/StudentPortfolioModal/StudentPortfolioModal'
 
 export interface IAppProps {}
 

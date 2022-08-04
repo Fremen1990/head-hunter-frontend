@@ -34,10 +34,10 @@ export const OneUser = ({ layout, student }: Props) => {
    const descriptions = description.userInterview
 
    const showStudentPortfolio = () => setShowCv(!showCv)
-   const handleBookCall = (id: string) => dispatch(bookCallCandidate({ id }))
-   const handleDisinterest = (id: string) =>
-      dispatch(disinterestCandidate({ id }))
-   const handleHired = (id: string) => dispatch(HiredCandidate({ id }))
+   // const handleBookCall = (id: string) => dispatch(bookCallCandidate({ id }))
+   // const handleDisinterest = (id: string) =>
+   //    dispatch(disinterestCandidate({ id }))
+   // const handleHired = (id: string) => dispatch(HiredCandidate({ id }))
 
    return (
       <>
@@ -69,7 +69,7 @@ export const OneUser = ({ layout, student }: Props) => {
                   {layout === 'simple' ? (
                      <ButtonsBox isOpen={isOpen}>
                         <Button
-                           method={() => handleBookCall(student.user.id)}
+                           // method={() => handleBookCall(student.user.id)}
                            buttonTitle={buttonsName.bookCall}
                         />
                         <AiOutlineCaretDown
@@ -83,11 +83,11 @@ export const OneUser = ({ layout, student }: Props) => {
                            method={() => showStudentPortfolio()}
                         />
                         <Button
-                           method={() => handleDisinterest(student.user.id)}
+                           // method={() => handleDisinterest(student.user.id)}
                            buttonTitle={buttonsName.disinterest}
                         />
                         <Button
-                           method={() => handleHired(student.user.id)}
+                           // method={() => handleHired(student.user.id)}
                            buttonTitle={buttonsName.hired}
                         />
                         <AiOutlineCaretDown
