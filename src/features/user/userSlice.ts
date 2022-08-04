@@ -1,11 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { getUserProfileResponse, LoginUserResponse } from 'types'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import {
    fetchUserByToken,
    userLogin,
    userLogout,
    userUpdateProfile,
 } from './userActions'
-// import { getUserDetails, userLogin, userLogout } from './userActions'
+import { RootState } from '../../app/store'
 
 export interface UserInfo {
    active: boolean
@@ -20,9 +21,10 @@ export interface UserState {
    email: string
    role: string
    currentSessionToken: string | null
-   userDetails: {} | null
+   userDetails: UserInfo | null | {}
    isFetching: boolean
    isSuccess: boolean
+   message: string
    isError: boolean
    errorMessage: string
 }
@@ -40,6 +42,7 @@ const initialState: UserState = {
    userDetails: {},
    isFetching: false,
    isSuccess: false,
+   message: '',
    isError: false,
    errorMessage: '',
 }
@@ -50,15 +53,22 @@ export const userSlice = createSlice({
    reducers: {},
    extraReducers: {
       // ===================LOGIN USER=================================
-      [userLogin.pending]: (state) => {
+      [userLogin.pending]: (state: RootState) => {
          state.isFetching = true
       },
-      [userLogin.rejected]: (state, { payload }) => {
+      [userLogin.rejected]: (
+         state: RootState,
+         { payload }: PayloadAction<{ error: string }>
+      ) => {
          state.isFetching = false
          state.isError = true
          state.errorMessage = payload.error
       },
-      [userLogin.fulfilled]: (state, { payload }) => {
+      [userLogin.fulfilled]: (
+         state,
+         { payload }: PayloadAction<LoginUserResponse>
+      ) => {
+         console.log('PAYLOAD LOGIN', payload)
          state.id = payload.id
          state.email = payload.email
          state.role = payload.role
@@ -71,15 +81,24 @@ export const userSlice = createSlice({
          return state
       },
       // ===============FETCH USER BY TOKEN TO HEADER=======================
-      [fetchUserByToken.pending]: (state) => {
+      [fetchUserByToken.pending]: (state: RootState) => {
          state.isFetching = true
       },
-      [fetchUserByToken.rejected]: (state, { payload }) => {
+      [fetchUserByToken.rejected]: (
+         state: RootState,
+         { payload }: PayloadAction<{ message: string; statusCode: number }>
+      ) => {
+         console.log('payload Fetch user', payload)
+         console.log('payload Fetch user', payload)
          state.isFetching = false
          state.isError = true
-         state.errorMessage = payload.error
+         state.errorMessage = payload.message
       },
-      [fetchUserByToken.fulfilled]: (state, { payload }) => {
+      [fetchUserByToken.fulfilled]: (
+         state: RootState,
+         { payload }: PayloadAction<getUserProfileResponse>
+      ) => {
+         console.log('PAYLOAD  FETCH USER', payload)
          state.id = payload.id
          state.email = payload.email
          state.role = payload.role
@@ -92,16 +111,18 @@ export const userSlice = createSlice({
          return state
       },
       // ===============LOGOUT USER=======================
-      [userLogout.pending]: (state) => {
+      [userLogout.pending]: (state: RootState) => {
          state.isFetching = true
       },
-      [userLogout.rejected]: (state, { payload }) => {
+      [userLogout.rejected]: (
+         state: RootState,
+         { payload }: PayloadAction<string>
+      ) => {
          state.isFetching = false
          state.isError = true
          state.errorMessage = payload
       },
-      [userLogout.fulfilled]: (state) => {
-         localStorage.clear()
+      [userLogout.fulfilled]: (state: RootState) => {
          state.id = ''
          state.email = ''
          state.role = ''
@@ -113,15 +134,18 @@ export const userSlice = createSlice({
          state.errorMessage = ''
       },
       // =============USER UPDATE PROFILE===============
-      [userUpdateProfile.pending]: (state) => {
+      [userUpdateProfile.pending]: (state: RootState) => {
          state.isFetching = true
       },
-      [userUpdateProfile.rejected]: (state, { payload }) => {
+      [userUpdateProfile.rejected]: (state: RootState, { payload }) => {
          state.isFetching = false
          state.isError = true
-         state.errorMessage = payload.error
+         state.errorMessage = payload.message
       },
-      [userUpdateProfile.fulfilled]: (state, { payload }) => {
+      [userUpdateProfile.fulfilled]: (
+         state: RootState,
+         { payload }: PayloadAction<string>
+      ) => {
          state.message = payload // HERE should be data return
          state.isFetching = false
          state.isSuccess = true
@@ -131,6 +155,3 @@ export const userSlice = createSlice({
       },
    },
 })
-
-// eslint-disable-next-line no-undef
-export const userSelector = (state) => state.user
