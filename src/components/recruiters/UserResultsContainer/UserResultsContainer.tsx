@@ -2,10 +2,9 @@ import React, { useEffect } from 'react'
 import { OneUser } from '../OneUser/OneUser'
 import { studentsInterface } from 'src/pages/Hr.page'
 // eslint-disable-next-line no-unused-vars
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { fetchHrCandidates } from '../../../features/hr/hrActions'
 // eslint-disable-next-line no-unused-vars
-import { UserState } from '../../../features/user/userSlice'
 import { ResultsContainer } from './UserResultsContainer.styles'
 
 interface Props {

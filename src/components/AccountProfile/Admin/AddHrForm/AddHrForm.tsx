@@ -1,6 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { emailValidate } from '../../../../constants/validation'
+import { emailValidate } from '../../../../constants/patterns/pattern_validation'
 import { description } from '../../../../constants/description/description'
 import { Form, FormTitle, Input, InputWrap, Label } from './AddHrForm.styles'
 import { Button } from '../../../commons/Button/Button'

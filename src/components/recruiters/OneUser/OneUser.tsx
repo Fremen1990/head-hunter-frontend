@@ -9,15 +9,9 @@ import {
 import { Button } from '../../commons/Button/Button'
 import { AiOutlineCaretDown } from 'react-icons/ai'
 import { InterViewMeBox } from './InterViewMeBox/InterViewMeBox'
-import { StudentPortfolioModal } from '../../../modals/StudentPortfolioModal/StudentPortfolioModal'
+import { StudentPortfolioModal } from '../../commons/modals/StudentPortfolio/StudentPortfolioModal'
 import { description } from '../../../constants/description/description'
 import { studentsInterface } from 'src/pages/Hr.page'
-import { useDispatch } from 'react-redux'
-import {
-   bookCallCandidate,
-   disinterestCandidate,
-   HiredCandidate,
-} from '../../../features/hr/hrActions'
 
 interface Props {
    layout: string
@@ -27,7 +21,7 @@ interface Props {
 export const OneUser = ({ layout, student }: Props) => {
    const [isOpen, setIsOpen] = useState<boolean>(false)
    const [showCv, setShowCv] = useState<boolean>(false)
-   const dispatch = useDispatch()
+
    const text = description.userInterview
    const buttonsName = description.buttons
    const descriptions = description.userInterview

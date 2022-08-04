@@ -4,33 +4,15 @@ import { LoginPageContainer } from '../components/UserForm/Login/Login.styles'
 import { Button } from '../components/commons/Button/Button'
 import { description } from '../constants/description/description'
 import { NavLink } from 'react-router-dom'
-import styled from 'styled-components'
 import { Header } from '../components/Header/Header'
-import { useSelector } from 'react-redux'
 import { useAppSelector } from '../app/hooks'
 import { UserState } from '../features/user/userSlice'
+import { HomeLogo, Shaky } from 'src/constants/Layout/HomePage.styles'
 // import { appColors } from '../constants/Layout/app.colors'
 
 export const HomePage = () => {
    // @ts-ignore
    const { role } = useAppSelector((state: UserState) => state.user)
-
-   const Shaky = styled.button`
-      border-radius: 10px;
-
-      &:hover {
-         animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-         transform: translate3d(0, 0, 0);
-         perspective: 1000px;
-      }
-   `
-
-   const HomeLogo = styled.div`
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px;
-   `
 
    return (
       <>

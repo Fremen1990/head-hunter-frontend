@@ -1,7 +1,6 @@
 import React from 'react'
 import { PageContainer } from '../constants/Layout/Container.styles'
 import { Header } from '../components/Header/Header'
-import { NotFound } from '../components/NotFound/NotFound'
 import './notAuthorized.css'
 
 export const NotAuthorized = () => {
