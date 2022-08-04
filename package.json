@@ -23,6 +23,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-spinners": "^0.13.3",
+    "react-spring": "6.1.8",
     "react-star-ratings": "^2.3.0",
     "react-toastify": "^9.0.7",
     "styled-components": "^5.3.5",
@@ -41,7 +42,6 @@
     "@types/styled-components": "^5.1.25",
     "@typescript-eslint/eslint-plugin": "^5.30.7",
     "@typescript-eslint/parser": "^5.30.7",
-    "customize-cra": "^1.0.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^17.0.0",
@@ -52,6 +52,7 @@
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
+    "customize-cra": "^1.0.0",
     "react-app-rewire-alias": "^1.1.7",
     "react-app-rewired": "^2.2.1"
   },

@@ -1,10 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { fetchHrCandidates } from './hrActions'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { bookCallCandidate, fetchHrCandidates } from './hrActions'
+import { RootState } from '../../app/store'
 
 export interface CandidateState {
    candidates: []
    isFetching: false
    isSuccess: false
+   message: string
    isError: false
    errorMessage: ''
 }
@@ -13,6 +15,7 @@ const initialState: CandidateState = {
    candidates: [],
    isFetching: false,
    isSuccess: false,
+   message: '',
    isError: false,
    errorMessage: '',
 }
@@ -22,16 +25,40 @@ export const hrSlice = createSlice({
    initialState,
    reducers: {},
    extraReducers: {
-      [fetchHrCandidates.pending]: (state) => {
+      // ===============FETCH HR CANDIDATES=======================
+      [fetchHrCandidates.pending]: (state: RootState) => {
          state.isFetching = true
       },
-      [fetchHrCandidates.rejected]: (state, { payload }) => {
+      [fetchHrCandidates.rejected]: (state: RootState, { payload }) => {
          state.isFetching = false
          state.isError = true
          state.errorMessage = payload.error
       },
-      [fetchHrCandidates.fulfilled]: (state, { payload }) => {
+      [fetchHrCandidates.fulfilled]: (state: RootState, { payload }) => {
          state.candidates = payload
+         state.isFetching = false
+         state.isSuccess = true
+         state.isError = false
+         state.errorMessage = ''
+         return state
+      },
+      // ===============FETCH HR CANDIDATES=======================
+      [bookCallCandidate.pending]: (state: RootState) => {
+         state.isFetching = true
+      },
+      [bookCallCandidate.rejected]: (
+         state: RootState,
+         { payload }: PayloadAction<{ error: string }>
+      ) => {
+         state.isFetching = false
+         state.isError = true
+         state.errorMessage = payload.error
+      },
+      [bookCallCandidate.fulfilled]: (
+         state: RootState,
+         { payload }: PayloadAction<{ message: string }>
+      ) => {
+         state.message = payload
          state.isFetching = false
          state.isSuccess = true
          state.isError = false
