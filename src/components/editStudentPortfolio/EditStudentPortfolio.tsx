@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react'
-import { SubtitlesSection } from '../StudentPortfolio/SubtitlesSection/SubtitlesSection'
+import { SubtitlesSection } from '../studentPortfolio/SubtitlesSection/SubtitlesSection'
 import { Button } from '../commons/Button/Button'
 import { InputTextBox } from './InputTextBox/InputTextBox'
 import { SelectBox } from './SelectBox/SelectBox'
@@ -10,11 +10,11 @@ import { FormCVInterface } from '../../types/formInterface'
 import { description } from '../../constants/description/description'
 import { PageContainer } from '../../constants/Layout/Container.styles'
 import {
+   AsideSection,
+   BackButton,
+   EditExpectationBoxContainer,
    Form,
    MainSection,
-   AsideSection,
-   EditExpectationBoxContainer,
-   BackButton,
 } from './EditStudentPortfolio.styles'
 import {
    canTakeApprenticeshipOptions,
@@ -22,7 +22,7 @@ import {
    expectedTypeWorkOptions,
 } from '../../constants/secletOptions'
 import { useForm } from 'react-hook-form'
-import { emailValidate } from '../../constants/validation'
+import { emailValidate } from '../../constants/patterns/pattern_validation'
 
 export const EditStudentPortfolio = () => {
    const [portfolioUrls, setPortfolioUrls] = useState<string>('')

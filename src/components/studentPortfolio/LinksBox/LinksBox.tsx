@@ -1,6 +1,6 @@
 import React from 'react'
 import { SubtitlesSection } from '../SubtitlesSection/SubtitlesSection'
-import { LinksSection, ClipIcon } from './LinksBox.styles'
+import { ClipIcon, LinksSection } from './LinksBox.styles'
 
 interface Props {
    text?: string

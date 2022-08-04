@@ -1,11 +1,8 @@
 import React from 'react'
-import { AccountContainer, AccountAvatar } from '../AccountContainer.styles'
+import { AccountAvatar, AccountContainer } from '../AccountContainer.styles'
 import { Button } from '../../commons/Button/Button'
 import { AccountBox } from '../AccountBox'
-import { useSelector } from 'react-redux'
 import { UserState } from '../../../features/user/userSlice'
-import { EditStudentPortfolioModal } from '../../../modals/EditStudentPortfoliModal/EditStudentPortfolioModal'
-import { StudentPortfolioModal } from '../../../modals/StudentPortfolioModal/StudentPortfolioModal'
 import { NavLink } from 'react-router-dom'
 import { useAppSelector } from '../../../app/hooks'
 
@@ -38,7 +35,7 @@ export const User = () => {
          >
             {/* Student CV */}
             <NavLink to="/user/profile" style={{ margin: '30px' }}>
-               {/* <StudentPortfolioModal /> */}
+               {/* <studentPortfolio /> */}
                <Button buttonTitle="Twoje CV" />
             </NavLink>
             {/* Update CV */}
