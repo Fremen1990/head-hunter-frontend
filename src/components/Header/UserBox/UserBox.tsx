@@ -10,6 +10,7 @@ import { UserState } from '../../../features/user/userSlice'
 
 export const UserBox = () => {
    const { userDetails } = useSelector((state: UserState) => state.user)
+   const { role } = useSelector((state) => state.user)
    const [isOpen, setIsOpen] = useState<boolean>(false)
    const dispatch = useDispatch()
    const navigate = useNavigate()
@@ -28,26 +29,29 @@ export const UserBox = () => {
                      src={
                         userDetails?.githubUserName
                            ? `https://avatars.githubusercontent.com/${userDetails?.githubUserName}`
-                           : `https://www.clipartmax.com/png/middle/48-483031_github-logo-black-and-white-github-icon-vector.png`
+                           : '/assets/default_avatar/GHLogo.png'
                      }
                      alt="gitHub avatar"
-                     style={{
-                        verticalAlign: 'middle',
-                        height: 35,
-                        width: 35,
-                     }}
                   />
                </div>
             </NavLink>
             <p>
-               {userDetails?.firstName} {userDetails?.lastName}
+               {role === 'student' ? (
+                  <>
+                     {userDetails.name} {userDetails.lastName}
+                  </>
+               ) : role === 'hr' ? (
+                  'HR'
+               ) : (
+                  'Admin'
+               )}
             </p>
             <AiOutlineCaretDown onClick={() => setIsOpen(!isOpen)} />
          </div>
          {isOpen && (
             <div>
                <NavLink to={'/user'}>{description.buttons.account}</NavLink>
-               <button onClick={handleLogout}>WYLOGUJ</button>
+               <p onClick={handleLogout}>{description.buttons.logOut}</p>
             </div>
          )}
       </UserContainer>

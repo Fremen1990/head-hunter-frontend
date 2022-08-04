@@ -7,15 +7,18 @@ interface Props {
 
 export const UserContainer = styled.div<Props>`
    position: relative;
+   background-color: transparent;
 
    & div:nth-child(1) {
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
+      background-color: transparent;
 
       & p {
          font-size: 1.4rem;
+         background-color: transparent;
       }
 
       & .avatar {
@@ -25,12 +28,17 @@ export const UserContainer = styled.div<Props>`
          border-radius: 50%;
          margin-right: 5px;
          overflow: hidden;
+
+         & img {
+            width: 110%;
+         }
       }
 
       & > svg {
          margin: 5px;
          cursor: pointer;
          font-size: 1.4rem;
+         background-color: transparent;
          transition: 0.3s;
 
          &:hover {
@@ -54,7 +62,9 @@ export const UserContainer = styled.div<Props>`
       width: 100%;
       padding: 5px;
 
-      & a {
+      & a,
+      p {
+         background-color: transparent;
          text-transform: capitalize;
          padding: 5px;
          cursor: pointer;
