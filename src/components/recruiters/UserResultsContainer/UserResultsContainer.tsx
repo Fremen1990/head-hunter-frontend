@@ -13,12 +13,8 @@ interface Props {
 }
 
 export const UserResultsContainer = ({ layout, students }: Props) => {
-   const dispatch = useDispatch()
-
-   useEffect(() => {
-      dispatch(fetchHrCandidates())
-   }, [])
-
+   console.log(students)
+   console.log(layout)
    return (
       <ResultsContainer>
          {students.map((student: studentsInterface) => (

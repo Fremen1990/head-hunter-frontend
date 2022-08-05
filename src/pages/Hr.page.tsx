@@ -3,71 +3,36 @@ import { PageContainer } from '../constants/Layout/Container.styles'
 import { Header } from '../components/Header/Header'
 import { NavigationBar } from '../components/recruiters/Navigation/Navigation'
 import { UserResultsContainer } from '../components/recruiters/UserResultsContainer/UserResultsContainer'
-import { SearchFilter } from '../components/Dashboard/SearchFilterBar/SearchFilterForm'
-import { getStudents } from '../apiCalls'
 import { FilterSection } from '../components/recruiters/FilterSection/FilterSection'
-import { useSelector } from 'react-redux'
-import { UserState } from '../features/user/userSlice'
-import { useAppSelector } from '../app/hooks'
-
-// to remove later
-export interface studentsInterface {
-   id: string
-   email: string
-   studentStatus: string
-   courseCompletion: number
-   courseEngagement: number
-   projectDegree: number
-   teamProjectDegree: number
-   bonusProjectUrls: string[]
-   tel: string
-   firstName: string
-   lastName: string
-   githubUserName: string
-   portfolioUrls: string
-   projectUrls: string
-   bio: string
-   expectedTypeOfWork: string
-   targetWorkCity: string
-   expectedContractType: string
-   expectedSalary: string
-   canTakeApprenticeship: string
-   monthsOfCommercialExp: string
-   education: string
-   workExperience: string
-   courses: string
-   created_at?: Date
-   updated_at?: Date
-}
+import { useDispatch } from 'react-redux'
+import { fetchHrCandidates } from '../features/hr/hrActions'
 
 export const HrPage = () => {
-   // const [students, setStudents] = useState<studentsInterface[]>([])
-   const [toInterview, setToInterview] = useState<string>('Dotępni kursanci')
+   const [available, setAvailable] = useState([])
+   const [interview, setInterview] = useState([])
+   const [filterState, setFilterState] = useState({
+      value: 'availableStudents',
+   })
+   const dispatch = useDispatch()
+   const updateFilter = (value: string) => setFilterState({ value })
 
-   const { candidates } = useAppSelector((state: UserState) => state.hr)
-
-   console.log('candidates ', candidates)
-   // useEffect(() => {
-   //    ;(async () => {
-   //       const newStudents = await getStudents()
-   //       setStudents(newStudents)
-   //    })()
-   // }, [])
+   useEffect(() => {
+      ;(async () => {
+         const data = await dispatch(fetchHrCandidates())
+         setAvailable(data.payload)
+      })()
+   }, [filterState])
 
    return (
       <>
          <Header />
          <PageContainer>
-            <NavigationBar setToInterview={setToInterview} />
-            {/* <SearchFilter /> */}
+            <NavigationBar filterState={updateFilter} />
             <FilterSection />
-            {toInterview === 'Do rozmowy' ? (
-               <UserResultsContainer
-                  layout={'extended'}
-                  students={candidates}
-               />
+            {filterState.value === 'availableStudents' ? (
+               <UserResultsContainer layout={'simple'} students={available} />
             ) : (
-               <UserResultsContainer layout={'simple'} students={candidates} />
+               <UserResultsContainer layout={'extended'} students={available} />
             )}
          </PageContainer>
       </>
