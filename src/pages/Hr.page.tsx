@@ -16,11 +16,18 @@ export const HrPage = () => {
    const dispatch = useDispatch()
    const updateFilter = (value: string) => setFilterState({ value })
 
+   const getByFilter = async () => {
+      if (filterState.value === 'availableStudents') {
+         const availableStudents = await dispatch(fetchHrCandidates())
+         setAvailable(availableStudents.payload)
+      } else {
+         const interviewStudents = await dispatch(fetchHrCandidates())
+         setInterview(interviewStudents.payload)
+      }
+   }
+
    useEffect(() => {
-      ;(async () => {
-         const data = await dispatch(fetchHrCandidates())
-         setAvailable(data.payload)
-      })()
+      getByFilter()
    }, [filterState])
 
    return (
@@ -32,7 +39,7 @@ export const HrPage = () => {
             {filterState.value === 'availableStudents' ? (
                <UserResultsContainer layout={'simple'} students={available} />
             ) : (
-               <UserResultsContainer layout={'extended'} students={available} />
+               <UserResultsContainer layout={'extended'} students={interview} />
             )}
          </PageContainer>
       </>
