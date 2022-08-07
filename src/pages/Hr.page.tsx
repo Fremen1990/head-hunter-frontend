@@ -5,7 +5,8 @@ import { NavigationBar } from '../components/recruiters/Navigation/Navigation'
 import { UserResultsContainer } from '../components/recruiters/UserResultsContainer/UserResultsContainer'
 import { FilterSection } from '../components/recruiters/FilterSection/FilterSection'
 import { useDispatch } from 'react-redux'
-import { fetchHrCandidates } from '../features/hr/hrActions'
+import { fetchHrCandidates, fetchHrInterviews } from '../features/hr/hrActions'
+import { useAppSelector } from '../app/hooks'
 
 export const HrPage = () => {
    const [available, setAvailable] = useState([])
@@ -14,15 +15,21 @@ export const HrPage = () => {
       value: 'availableStudents',
    })
    const dispatch = useDispatch()
-   const updateFilter = (value: string) => setFilterState({ value })
+   const { isFetching } = useAppSelector((state) => state.hr)
+
+   const updateFilter = (value: string) => {
+      if (value !== filterState.value) {
+         setFilterState({ value })
+      }
+   }
 
    const getByFilter = async () => {
       if (filterState.value === 'availableStudents') {
          const availableStudents = await dispatch(fetchHrCandidates())
          setAvailable(availableStudents.payload)
       } else {
-         const interviewStudents = await dispatch(fetchHrCandidates())
-         setInterview(interviewStudents.payload)
+         const interviewStudents = await dispatch(fetchHrInterviews())
+         setInterview(interviewStudents.payload.data)
       }
    }
 
