@@ -20,6 +20,19 @@ export const fetchHrCandidates = createAsyncThunk<
    }
 })
 
+export const fetchHrInterviews = createAsyncThunk<
+   getUserProfileResponse[],
+   undefined,
+   { state: RootState }
+>('hr/fetchHrInterviews', async (arg, thunkAPI) => {
+   try {
+      const { data } = await api.get('/hr/interviews')
+      return data
+   } catch (e: any) {
+      return thunkAPI.rejectWithValue(e.response.data)
+   }
+})
+
 export const bookCallCandidate = createAsyncThunk<
    HrCandidateAddResponse,
    { hrUserId: string; candidateId: string },
