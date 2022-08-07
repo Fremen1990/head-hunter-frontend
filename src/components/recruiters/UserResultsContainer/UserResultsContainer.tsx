@@ -8,9 +8,14 @@ import { ResultsContainer } from './UserResultsContainer.styles'
 interface Props {
    students: studentsInterface[]
    layout: string
+   refreshStudents: () => void
 }
 
-export const UserResultsContainer = ({ layout, students }: Props) => {
+export const UserResultsContainer = ({
+   layout,
+   students,
+   refreshStudents,
+}: Props) => {
    return (
       <ResultsContainer>
          {students.map((student: studentsInterface) => (
@@ -18,6 +23,7 @@ export const UserResultsContainer = ({ layout, students }: Props) => {
                layout={layout}
                key={student.id}
                student={student.student}
+               refreshStudents={refreshStudents}
             />
          ))}
       </ResultsContainer>

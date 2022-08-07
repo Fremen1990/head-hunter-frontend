@@ -44,9 +44,17 @@ export const HrPage = () => {
             <NavigationBar filterState={updateFilter} />
             <FilterSection />
             {filterState.value === 'availableStudents' ? (
-               <UserResultsContainer layout={'simple'} students={available} />
+               <UserResultsContainer
+                  layout={'simple'}
+                  students={available}
+                  refreshStudents={getByFilter}
+               />
             ) : (
-               <UserResultsContainer layout={'extended'} students={interview} />
+               <UserResultsContainer
+                  layout={'extended'}
+                  students={interview}
+                  refreshStudents={getByFilter}
+               />
             )}
          </PageContainer>
       </>

@@ -12,22 +12,29 @@ import { InterViewMeBox } from './InterViewMeBox/InterViewMeBox'
 import { StudentPortfolioModal } from '../../commons/modals/StudentPortfolio/StudentPortfolioModal'
 import { description } from '../../../constants/description/description'
 import { studentsInterface } from 'src/pages/Hr.page'
+import { useDispatch } from 'react-redux'
+import { bookCallCandidate } from '../../../features/hr/hrActions'
 
 interface Props {
    layout: string
    student: studentsInterface
+   refreshStudents: () => void
 }
 
-export const OneUser = ({ layout, student }: Props) => {
+export const OneUser = ({ layout, student, refreshStudents }: Props) => {
    const [isOpen, setIsOpen] = useState<boolean>(false)
    const [showCv, setShowCv] = useState<boolean>(false)
-
+   const dispatch = useDispatch()
    const text = description.userInterview
    const buttonsName = description.buttons
    const descriptions = description.userInterview
 
    const showStudentPortfolio = () => setShowCv(!showCv)
-   // const handleBookCall = (id: string) => dispatch(bookCallCandidate({ id }))
+   const handleBookCall = (id: string) => {
+      dispatch(bookCallCandidate({ id }))
+      refreshStudents()
+   }
+
    // const handleDisinterest = (id: string) =>
    //    dispatch(disinterestCandidate({ id }))
    // const handleHired = (id: string) => dispatch(HiredCandidate({ id }))
@@ -62,7 +69,7 @@ export const OneUser = ({ layout, student }: Props) => {
                   {layout === 'simple' ? (
                      <ButtonsBox isOpen={isOpen}>
                         <Button
-                           // method={() => handleBookCall(student.user.id)}
+                           method={() => handleBookCall(student.studentId)}
                            buttonTitle={buttonsName.bookCall}
                         />
                         <AiOutlineCaretDown
