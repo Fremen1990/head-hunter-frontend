@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 import { appColors } from '../../../constants/Layout/app.colors'
 
+interface Props {
+   active: boolean
+}
+
 export const NavBar = styled.div`
    display: flex;
    flex-direction: row;
@@ -11,7 +15,7 @@ export const NavBar = styled.div`
    width: 100%;
 `
 
-export const Button = styled.button<{ active: boolean }>`
+export const Button = styled.button<Props>`
    width: 200px;
    background: transparent;
    font-family: Catamaran, sans-serif;
@@ -20,12 +24,13 @@ export const Button = styled.button<{ active: boolean }>`
    text-align: center;
    cursor: pointer;
    border: 2px solid transparent;
+   border-bottom-color: ${(props) =>
+      props.active ? `${appColors.buttonColor}` : 'transparent'};
 
-   ${({ active }) =>
-      active &&
-      `
-    border-bottom: 2px solid ${appColors.buttonColor}
-  `}
+   &:first-letter {
+      text-transform: uppercase;
+   }
+
    &:hover {
       border-bottom: 2px solid ${appColors.buttonColor};
    }
