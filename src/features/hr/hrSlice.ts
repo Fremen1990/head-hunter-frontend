@@ -1,5 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { bookCallCandidate, fetchHrCandidates } from './hrActions'
+import {
+   bookCallCandidate,
+   fetchHrCandidates,
+   fetchHrInterviews,
+} from './hrActions'
 import { RootState } from '../../app/store'
 
 export interface CandidateState {
@@ -35,6 +39,23 @@ export const hrSlice = createSlice({
          state.errorMessage = payload.error
       },
       [fetchHrCandidates.fulfilled]: (state: RootState, { payload }) => {
+         state.candidates = payload
+         state.isFetching = false
+         state.isSuccess = true
+         state.isError = false
+         state.errorMessage = ''
+         return state
+      },
+      // ===============FETCH HR INTERVIEWS=======================
+      [fetchHrInterviews.pending]: (state: RootState) => {
+         state.isFetching = true
+      },
+      [fetchHrInterviews.rejected]: (state: RootState, { payload }) => {
+         state.isFetching = false
+         state.isError = true
+         state.errorMessage = payload.error
+      },
+      [fetchHrInterviews.fulfilled]: (state: RootState, { payload }) => {
          state.candidates = payload
          state.isFetching = false
          state.isSuccess = true
