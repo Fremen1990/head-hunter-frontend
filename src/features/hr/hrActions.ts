@@ -35,11 +35,11 @@ export const fetchHrInterviews = createAsyncThunk<
 
 export const bookCallCandidate = createAsyncThunk<
    HrCandidateAddResponse,
-   { hrUserId: string; candidateId: string },
+   { hrUserId: string; studentId: string },
    { state: RootState }
->('/hr/bookCallCandidate/', async ({ id }: CandidateId, thunkAPI) => {
+>('/hr/bookCallCandidate/', async ({ studentId }: CandidateId, thunkAPI) => {
    try {
-      await api.patch(`/hr/candidate/`, { id })
+      await api.patch(`/hr/candidate`, { studentId })
    } catch (e: any) {
       return thunkAPI.rejectWithValue(e.response.data)
    }
