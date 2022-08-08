@@ -18,6 +18,11 @@ export const BackButton = styled.button`
    font-weight: bold;
    font-size: 16px;
    cursor: pointer;
+   transition: 0.3s;
+
+   :hover {
+      color: ${appColors.buttonColor};
+   }
 `
 
 export const BackIcon = styled(MdArrowBackIosNew)`

@@ -13,17 +13,17 @@ interface Props {
    ratingStars: number
 }
 
-export const RatingViewBox = (props: Props) => {
+export const RatingViewBox = ({ ratingStars, title }: Props) => {
    return (
       <RatingViewBoxContainer>
-         <RateHeading>{props.title}</RateHeading>
+         <RateHeading>{title}</RateHeading>
          <RatingContainer>
             <p>
-               <span>{props.ratingStars}</span>/5
+               <span>{ratingStars}</span>/5
             </p>
             <StarContainer>
                <StarRatings
-                  rating={props.ratingStars}
+                  rating={ratingStars}
                   starRatedColor="red"
                   starEmptyColor={appColors.iconColor}
                   starDimension="20px"
