@@ -9,6 +9,7 @@ export const RatingViewBoxContainer = styled.div`
    width: 164px;
    gap: 10px;
    margin: 0 40px 10px 0;
+  color: ${appColors.descriptionColor};
 
   & h2 {
     font-size: 1.4rem;
@@ -24,6 +25,11 @@ export const RatingViewBoxContainer = styled.div`
       color: ${appColors.descriptionColor};
    }
 `
+
+export const RateHeading = styled.h2`
+   color: ${appColors.descriptionColor}!important;
+`
+
 export const RatingContainer = styled.div`
    display: flex;
    flex-direction: row;

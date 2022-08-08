@@ -3,7 +3,7 @@ import { BsPaperclip } from 'react-icons/bs'
 import { appColors } from '../../../constants/Layout/app.colors'
 
 export const ClipIcon = styled(BsPaperclip)`
-   font-size: 1.4rem;
+   font-size: 2rem;
 `
 
 export const LinksSection = styled.div`

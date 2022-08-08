@@ -4,7 +4,9 @@ import {
    RatingContainer,
    RatingViewBoxContainer,
    StarContainer,
+   RateHeading,
 } from './RatingViewBox.styles'
+import { appColors } from '../../../../constants/Layout/app.colors'
 
 interface Props {
    title: string
@@ -14,7 +16,7 @@ interface Props {
 export const RatingViewBox = (props: Props) => {
    return (
       <RatingViewBoxContainer>
-         <h2>{props.title}</h2>
+         <RateHeading>{props.title}</RateHeading>
          <RatingContainer>
             <p>
                <span>{props.rating}</span>/5
@@ -23,6 +25,7 @@ export const RatingViewBox = (props: Props) => {
                <StarRatings
                   rating={props.rating}
                   starRatedColor="red"
+                  starEmptyColor={appColors.iconColor}
                   starDimension="20px"
                   numberOfStars={5}
                   name="rating"

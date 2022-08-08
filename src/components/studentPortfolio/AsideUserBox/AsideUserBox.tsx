@@ -10,6 +10,7 @@ import {
    RowContainer,
 } from './AsideUserBox.styles'
 import { description } from '../../../constants/description/description'
+import { toast } from 'react-toastify'
 
 interface Props {
    firstName: string
@@ -31,6 +32,29 @@ export const AsideUserBox = ({
    const { disinterest, hired } = description.buttons
    const { aboutMe } = description.studentPortfolio
 
+   const handleDisinterests = () => {
+      toast.error('Brak zainteresowania', {
+         position: 'top-center',
+         autoClose: 2000,
+         hideProgressBar: false,
+         closeOnClick: true,
+         pauseOnHover: true,
+         draggable: true,
+         progress: undefined,
+      })
+   }
+   const handleHire = () => {
+      toast.success('Zostałeś zatrudniony!!', {
+         position: 'top-center',
+         autoClose: 2000,
+         hideProgressBar: false,
+         closeOnClick: true,
+         pauseOnHover: true,
+         draggable: true,
+         progress: undefined,
+      })
+   }
+
    return (
       <>
          <img
@@ -44,9 +68,14 @@ export const AsideUserBox = ({
          <h2>
             {firstName} {lastName}
          </h2>
-         <GitHubContainer>
+         <GitHubContainer
+            as="a"
+            href={`https://github.com/${githubNick}`}
+            target="_blank"
+            rel="noopener noreferrer"
+         >
             <GithubIcon />
-            <a href="https://github.com/">{githubNick}</a>
+            {githubNick}
          </GitHubContainer>
          <RowContainer>
             <PhoneIcon /> <p>{phone}</p>
@@ -58,8 +87,8 @@ export const AsideUserBox = ({
             <p>{aboutMe}</p>
             <div>{desc}</div>
          </DescriptionContainer>
-         <Button buttonTitle={disinterest} />
-         <Button buttonTitle={hired} />
+         <Button buttonTitle={disinterest} method={handleDisinterests} />
+         <Button buttonTitle={hired} method={handleHire} />
       </>
    )
 }

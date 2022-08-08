@@ -3,11 +3,8 @@ import { appColors } from '../../../constants/Layout/app.colors'
 import { device } from '../../../constants/mediaQueries'
 
 export const ExpectationSection = styled.div`
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   flex-wrap: nowrap;
-   justify-content: space-between;
+   display: grid;
+   grid-template-columns: repeat(6, 1fr);
    background-color: ${appColors.headerColor};
    margin: 10px 0;
 
