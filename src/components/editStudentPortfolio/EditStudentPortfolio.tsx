@@ -115,6 +115,7 @@ export const EditStudentPortfolio = () => {
    const [loading, setLoading] = useState(false)
    const submit = () => {
       dispatch(userUpdateProfile(form))
+      setLoading(true)
       toast.success('Zostałeś zatrudniony!!', {
          position: 'top-center',
          autoClose: 2000,
@@ -125,7 +126,6 @@ export const EditStudentPortfolio = () => {
          progress: undefined,
          theme: 'colored',
       })
-      setLoading(true)
       setTimeout(() => {
          setLoading(false)
          navigate('/user/profile')
