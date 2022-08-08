@@ -22,7 +22,7 @@ export const UserResultsContainer = ({
             <OneUser
                layout={layout}
                key={student.id}
-               student={student.student}
+               student={student}
                refreshStudents={refreshStudents}
             />
          ))}
