@@ -23,7 +23,7 @@ export const HrPage = () => {
       }
    }
 
-   const getByFilter = async () => {
+   const updateStudentsTab = async () => {
       if (filterState.value === 'availableStudents') {
          const availableStudents = await dispatch(fetchHrCandidates())
          setAvailable(availableStudents.payload)
@@ -34,7 +34,7 @@ export const HrPage = () => {
    }
 
    useEffect(() => {
-      getByFilter()
+      updateStudentsTab()
    }, [filterState])
 
    return (
@@ -47,13 +47,13 @@ export const HrPage = () => {
                <UserResultsContainer
                   layout={'simple'}
                   students={available}
-                  refreshStudents={getByFilter}
+                  refreshStudents={updateStudentsTab}
                />
             ) : (
                <UserResultsContainer
                   layout={'extended'}
                   students={interview}
-                  refreshStudents={getByFilter}
+                  refreshStudents={updateStudentsTab}
                />
             )}
          </PageContainer>
