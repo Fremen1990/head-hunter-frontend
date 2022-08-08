@@ -2,12 +2,12 @@ import React from 'react'
 import { AccountAvatar, AccountContainer } from '../AccountContainer.styles'
 import { Button } from '../../commons/Button/Button'
 import { AccountBox } from '../AccountBox'
-import { UserState } from '../../../features/user/userSlice'
 import { NavLink } from 'react-router-dom'
 import { useAppSelector } from '../../../app/hooks'
+import { RootState } from '../../../app/store'
 
 export const User = () => {
-   const { userDetails } = useAppSelector((state: UserState) => state.user)
+   const { userDetails } = useAppSelector((state: RootState) => state.user)
 
    return (
       <AccountContainer>

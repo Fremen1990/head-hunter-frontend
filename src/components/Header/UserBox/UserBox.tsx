@@ -6,13 +6,13 @@ import { description } from '../../../constants/description/description'
 // eslint-disable-next-line no-unused-vars
 import { useDispatch, useSelector } from 'react-redux'
 import { userLogout } from '../../../features/user/userActions'
-import { UserState } from '../../../features/user/userSlice'
 import useClickOutside from '../../../utils/clickOutsideHook'
 import { useAppSelector } from '../../../app/hooks'
+import { RootState } from '../../../app/store'
 
 export const UserBox = () => {
    const { role, userDetails } = useAppSelector(
-      (state: UserState) => state.user
+      (state: RootState) => state.user
    )
    const [isOpen, setIsOpen] = useState<boolean>(false)
    const userMenu = useRef(null)

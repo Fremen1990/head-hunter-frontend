@@ -11,6 +11,7 @@ interface Props {
    error?: any
    validation?: UseFormRegisterReturn
    method: (e: ChangeEvent<HTMLInputElement>) => void
+   value: number
 }
 
 export const NumberInputBox = ({
@@ -19,16 +20,23 @@ export const NumberInputBox = ({
    layout,
    error,
    validation,
+   value,
 }: Props) => {
    return layout === 'simple' ? (
       <label>
          <p>{title}</p>
-         <input type="number" onChange={method} />
+         <input type="number" onChange={method} value={value} />
       </label>
    ) : (
       <BoxContainer>
          <p>{title}</p>
-         <input type="number" {...validation} onChange={method} />
+         <input
+            type="number"
+            {...validation}
+            onChange={method}
+            min={0}
+            value={value}
+         />
          {error && (
             <ErrorExtendedLayoutMessage>
                {error.message}

@@ -19,32 +19,46 @@ import {
 import {
    canTakeApprenticeshipOptions,
    expectedContractTypeOptions,
-   expectedTypeWorkOptions,
+   expectedTypeOfWork,
 } from '../../constants/secletOptions'
 import { useForm } from 'react-hook-form'
 import { emailValidate } from '../../constants/patterns/pattern_validation'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { userUpdateProfile } from '../../features/user/userActions'
+import { useAppSelector } from '../../app/hooks'
+import { RootState } from '../../app/store'
+import { Spinner } from '../commons/Spinner/Spinner'
 
 export const EditStudentPortfolio = () => {
+   const navigate = useNavigate()
+   const dispatch = useDispatch()
+
+   const { userDetails, email: userConstEmail } = useAppSelector(
+      (state: RootState) => state.user
+   )
+
    const [portfolioUrls, setPortfolioUrls] = useState<string>('')
    const [projectUrls, setProjectUrls] = useState<string>('')
    const [form, setForm] = useState<FormCVInterface>({
-      canTakeApprenticeship: 'Nie',
-      expectedContractType: 'Brak preferencji',
-      expectedSalary: '',
-      expectedTypeWork: 'Bez znaczenia',
-      monthsOfCommercialExp: 0,
-      targetWorkCity: '',
-      email: '',
-      firstName: '',
-      lastName: '',
-      githubUserName: '',
-      tel: '',
-      bio: '',
-      education: '',
-      courses: '',
-      workExperience: '',
-      portfolioUrls: [],
-      projectUrls: [],
+      studentStatus: userDetails.studentStatus,
+      canTakeApprenticeship: userDetails.canTakeApprenticeship,
+      expectedContractType: userDetails.expectedContractType,
+      expectedSalary: userDetails.expectedSalary,
+      expectedTypeOfWork: userDetails.expectedTypeOfWork,
+      monthsOfCommercialExp: userDetails.monthsOfCommercialExp,
+      targetWorkCity: userDetails.targetWorkCity,
+      email: userDetails.email,
+      firstName: userDetails?.firstName,
+      lastName: userDetails.lastName,
+      githubUserName: userDetails.githubUserName,
+      tel: userDetails.tel,
+      bio: userDetails.bio,
+      education: userDetails.education,
+      courses: userDetails.courses,
+      workExperience: userDetails.workExperience,
+      portfolioUrls: userDetails.portfolioUrls,
+      projectUrls: userDetails.projectUrls,
    })
 
    const {
@@ -97,7 +111,15 @@ export const EditStudentPortfolio = () => {
       setProjectUrls(e.target.value)
    }
 
-   const submit = () => {}
+   const [loading, setLoading] = useState(false)
+   const submit = () => {
+      dispatch(userUpdateProfile(form))
+      setLoading(true)
+      setTimeout(() => {
+         setLoading(false)
+         navigate('/user/profile')
+      }, 1500)
+   }
 
    const {
       aboutMe,
@@ -136,9 +158,13 @@ export const EditStudentPortfolio = () => {
    return (
       <PageContainer>
          <Form onSubmit={handleSubmit(submit)}>
-            <BackButton>{backFromModal}</BackButton>
+            <BackButton onClick={() => navigate(-1)}>
+               {backFromModal}
+            </BackButton>
             <AsideSection>
                <InputTextBox
+                  value={form.firstName}
+                  placeholder="Imię"
                   title={firstNameDesc}
                   layout="simple"
                   error={firstName}
@@ -153,6 +179,8 @@ export const EditStudentPortfolio = () => {
                   }
                />
                <InputTextBox
+                  value={form.lastName}
+                  placeholder="Nazwisko"
                   title={lastNameDesc}
                   layout="simple"
                   error={lastName}
@@ -167,6 +195,8 @@ export const EditStudentPortfolio = () => {
                   }
                />
                <InputTextBox
+                  value={form.githubUserName}
+                  placeholder="GitHub User Name"
                   title={githubNickDesc}
                   layout="simple"
                   error={githubUserName}
@@ -181,6 +211,8 @@ export const EditStudentPortfolio = () => {
                   }
                />
                <InputTextBox
+                  value={userConstEmail}
+                  placeholder="Email"
                   title={emailDesc}
                   layout="simple"
                   error={email}
@@ -195,12 +227,14 @@ export const EditStudentPortfolio = () => {
                   }
                />
                <InputTextBox
+                  value={form.tel}
+                  placeholder="Numer telefonu"
                   title={telDesc}
                   layout="simple"
                   error={tel}
                   validation={register('tel', {
                      maxLength: {
-                        value: 15,
+                        value: 20,
                         message: telErrorMessage,
                      },
                   })}
@@ -211,6 +245,9 @@ export const EditStudentPortfolio = () => {
                <label>
                   <p>{aboutMe}</p>
                   <textarea
+                     value={form.bio}
+                     placeholder="Napisz coś o sobie..."
+                     cols={25}
                      name="bio"
                      onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
                         updateForm('bio', e.target.value)
@@ -223,6 +260,8 @@ export const EditStudentPortfolio = () => {
                   <SubtitlesSection text={expectation} />
                   <EditExpectationBoxContainer>
                      <InputTextBox
+                        value={form.targetWorkCity}
+                        placeholder="Docelowe miasto"
                         title={targetPlace}
                         layout="extended"
                         error={targetWorkCity}
@@ -237,6 +276,8 @@ export const EditStudentPortfolio = () => {
                         }
                      />
                      <InputTextBox
+                        value={form.expectedSalary}
+                        placeholder="Oczekiwania finansowe"
                         title={targetSalary}
                         layout="extended"
                         error={expectedSalary}
@@ -252,9 +293,9 @@ export const EditStudentPortfolio = () => {
                      />
                      <SelectBox
                         title={preferWork}
-                        options={expectedTypeWorkOptions}
+                        options={expectedTypeOfWork}
                         method={(e: ChangeEvent<HTMLSelectElement>) =>
-                           updateForm('expectedTypeWork', e.target.value)
+                           updateForm('expectedTypeOfWork', e.target.value)
                         }
                      />
                      <SelectBox
@@ -265,6 +306,7 @@ export const EditStudentPortfolio = () => {
                         }
                      />
                      <NumberInputBox
+                        value={form.monthsOfCommercialExp}
                         title={experience}
                         layout="extended"
                         error={monthsOfCommercialExp}
@@ -291,24 +333,31 @@ export const EditStudentPortfolio = () => {
                   </EditExpectationBoxContainer>
                </label>
                <TextAreaBox
+                  placeholder="Opisz swoją edukację"
+                  value={form.education}
                   title={educationDescribe}
                   method={(e: ChangeEvent<HTMLTextAreaElement>) =>
                      updateForm('education', e.target.value)
                   }
                />
                <TextAreaBox
+                  placeholder="Wymień kursy które ukończyłeś/ukończyłaś"
+                  value={form.courses}
                   title={coursesDescribe}
                   method={(e: ChangeEvent<HTMLTextAreaElement>) =>
                      updateForm('courses', e.target.value)
                   }
                />
                <TextAreaBox
+                  placeholder="Opisz swoje doświadczenie zawodowe"
+                  value={form.workExperience}
                   title={experienceDescribe}
                   method={(e: ChangeEvent<HTMLTextAreaElement>) =>
                      updateForm('workExperience', e.target.value)
                   }
                />
                <UrlBox
+                  text="Portfolio"
                   urlBoxArray={form.portfolioUrls}
                   value={portfolioUrls}
                   inputMethod={updatePortfolioForm}
@@ -316,6 +365,7 @@ export const EditStudentPortfolio = () => {
                   btnText={addProjectBtn}
                />
                <UrlBox
+                  text="Projekt zaliczeniowy"
                   urlBoxArray={form.projectUrls}
                   value={projectUrls}
                   btnText={addProjectBtn}
@@ -325,6 +375,7 @@ export const EditStudentPortfolio = () => {
                <Button buttonTitle={sendFormBtn} />
             </MainSection>
          </Form>
+         {loading && <Spinner />}
       </PageContainer>
    )
 }

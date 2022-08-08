@@ -1,4 +1,5 @@
 export interface FormCVInterface {
+   studentStatus: string
    email: string
    firstName: string
    lastName: string
@@ -6,7 +7,7 @@ export interface FormCVInterface {
    tel: string
    bio: string
    education: string
-   expectedTypeWork: string
+   expectedTypeOfWork: string
    targetWorkCity: string
    expectedContractType: string
    expectedSalary: string
