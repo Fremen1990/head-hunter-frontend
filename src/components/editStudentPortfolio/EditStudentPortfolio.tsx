@@ -19,7 +19,7 @@ import {
 import {
    canTakeApprenticeshipOptions,
    expectedContractTypeOptions,
-   expectedTypeWorkOptions,
+   expectedTypeOfWork,
 } from '../../constants/secletOptions'
 import { useForm } from 'react-hook-form'
 import { emailValidate } from '../../constants/patterns/pattern_validation'
@@ -28,7 +28,6 @@ import { useDispatch } from 'react-redux'
 import { userUpdateProfile } from '../../features/user/userActions'
 import { useAppSelector } from '../../app/hooks'
 import { RootState } from '../../app/store'
-import { toast } from 'react-toastify'
 import { Spinner } from '../commons/Spinner/Spinner'
 
 export const EditStudentPortfolio = () => {
@@ -116,20 +115,10 @@ export const EditStudentPortfolio = () => {
    const submit = () => {
       dispatch(userUpdateProfile(form))
       setLoading(true)
-      toast.success('Zostałeś zatrudniony!!', {
-         position: 'top-center',
-         autoClose: 2000,
-         hideProgressBar: false,
-         closeOnClick: true,
-         pauseOnHover: true,
-         draggable: true,
-         progress: undefined,
-         theme: 'colored',
-      })
       setTimeout(() => {
          setLoading(false)
          navigate('/user/profile')
-      }, 2500)
+      }, 1500)
    }
 
    const {
@@ -245,7 +234,7 @@ export const EditStudentPortfolio = () => {
                   error={tel}
                   validation={register('tel', {
                      maxLength: {
-                        value: 15,
+                        value: 20,
                         message: telErrorMessage,
                      },
                   })}
@@ -304,9 +293,9 @@ export const EditStudentPortfolio = () => {
                      />
                      <SelectBox
                         title={preferWork}
-                        options={expectedTypeWorkOptions}
+                        options={expectedTypeOfWork}
                         method={(e: ChangeEvent<HTMLSelectElement>) =>
-                           updateForm('expectedTypeWork', e.target.value)
+                           updateForm('expectedTypeOfWork', e.target.value)
                         }
                      />
                      <SelectBox
