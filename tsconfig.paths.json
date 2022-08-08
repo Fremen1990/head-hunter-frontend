@@ -3,7 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "types": [
-        "../backend/src/types"
+        "../head-hunter-backend/src/types"
       ]
     }
   }
