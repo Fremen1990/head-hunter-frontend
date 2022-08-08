@@ -2,7 +2,7 @@ import React from 'react'
 import { LoginPageContainer } from '../components/UserForm/Login/Login.styles'
 import { Button } from '../components/commons/Button/Button'
 import { description } from '../constants/description/description'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { Header } from '../components/Header/Header'
 import { useAppSelector } from '../app/hooks'
 import { HomeLogo, Shaky } from '../constants/Layout/HomePage.styles'
@@ -13,7 +13,7 @@ export const HomePage = () => {
 
    return (
       <>
-         {role ? <Header /> : null}
+         <Header />
          <LoginPageContainer
             style={role ? { height: '90vh' } : { height: '100vh' }}
          >
@@ -42,7 +42,7 @@ export const HomePage = () => {
                   }
                >
                   <Button
-                     style={{ fontSize: 24 }}
+                     style={{ fontSize: '24px' }}
                      buttonTitle={
                         role === 'student'
                            ? 'Go to Student Page'

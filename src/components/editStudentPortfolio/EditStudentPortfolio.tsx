@@ -118,7 +118,7 @@ export const EditStudentPortfolio = () => {
       setTimeout(() => {
          setLoading(false)
          navigate('/user/profile')
-      }, 1500)
+      }, 1000)
    }
 
    const {

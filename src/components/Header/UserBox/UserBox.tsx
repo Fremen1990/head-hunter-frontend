@@ -44,7 +44,7 @@ export const UserBox = () => {
             <p>
                {role === 'student' ? (
                   <>
-                     {userDetails.name} {userDetails.lastName}
+                     {userDetails?.name} {userDetails?.lastName}
                   </>
                ) : role === 'hr' ? (
                   'HR'
