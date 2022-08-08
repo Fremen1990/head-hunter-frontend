@@ -1,26 +1,26 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { GlowEffect } from './GlowEffect'
+import { GlowEffect } from '../GlowEffect'
 import {
+   HomeButton,
    ErrorMessage,
-   NotFoundBox,
+   NotFoundContainer,
    PathWrapper,
    Samurai,
    Text404,
-} from './NotFound.style'
-import { pathSVG } from './pathSVG'
+} from './NotFoundBox.style'
+import { pathSVG } from '../../../constants/pathSVG'
 
 interface Props {
-   header: string
    description: string
    to: string
    linkText: string
 }
 
-export const NotFound = ({ header, description, to, linkText }: Props) => {
+export const NotFoundBox = ({ description, to, linkText }: Props) => {
    return (
       <>
-         <NotFoundBox>
+         <NotFoundContainer>
             <Samurai width="250pt" height="250pt" viewBox="0 0 900 900">
                <PathWrapper transform="translate(0,900) scale(0.1,-0.1)">
                   <path className="samurai-helmet" d={pathSVG.samuraiHelmet} />
@@ -38,8 +38,14 @@ export const NotFound = ({ header, description, to, linkText }: Props) => {
             </Text404>
             <GlowEffect filterId="text404-glow" stdDeviation="5" />
 
-            <ErrorMessage>Page Not Found</ErrorMessage>
-         </NotFoundBox>
+            <ErrorMessage>{description}</ErrorMessage>
+
+            <NavLink to={to}>
+               <HomeButton>
+                  <p>{linkText}</p>
+               </HomeButton>
+            </NavLink>
+         </NotFoundContainer>
       </>
    )
 }
