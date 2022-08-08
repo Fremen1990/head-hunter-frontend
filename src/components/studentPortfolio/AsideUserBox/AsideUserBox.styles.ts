@@ -40,6 +40,7 @@ export const DescriptionContainer = styled.div`
    & p {
       color: ${appColors.iconColor};
       margin-bottom: 10px;
+      text-align: justify;
 
       &::first-letter {
          text-transform: uppercase;

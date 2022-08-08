@@ -16,16 +16,12 @@ import { studentsInterface } from 'src/pages/Hr.page'
 import { useNavigate } from 'react-router-dom'
 
 interface Props {
-   changeShowCv: (arg: boolean) => void | boolean
    student: studentsInterface
    email: string
+   role: string
 }
 
-export const StudentPortfolio = ({
-   changeShowCv = true,
-   student,
-   email,
-}: Props) => {
+export const StudentPortfolio = ({ student, email, role }: Props) => {
    const navigate = useNavigate()
 
    const {
@@ -41,7 +37,6 @@ export const StudentPortfolio = ({
    const {
       firstName,
       tel,
-      // email,
       githubUserName,
       lastName,
       bio,
@@ -79,6 +74,7 @@ export const StudentPortfolio = ({
                githubNick={githubUserName}
                phone={tel}
                email={email}
+               role={role}
                desc={bio}
             />
          </AsideSection>

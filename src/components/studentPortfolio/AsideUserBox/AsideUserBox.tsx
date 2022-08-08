@@ -19,6 +19,7 @@ interface Props {
    phone: string
    email: string
    desc: string
+   role: string
 }
 
 export const AsideUserBox = ({
@@ -27,6 +28,7 @@ export const AsideUserBox = ({
    githubNick,
    phone,
    email,
+   role,
    desc,
 }: Props) => {
    const { disinterest, hired } = description.buttons
@@ -87,7 +89,9 @@ export const AsideUserBox = ({
             <p>{aboutMe}</p>
             <div>{desc}</div>
          </DescriptionContainer>
-         <Button buttonTitle={disinterest} method={handleDisinterests} />
+         {role === 'hr' ? (
+            <Button buttonTitle={disinterest} method={handleDisinterests} />
+         ) : null}
          <Button buttonTitle={hired} method={handleHire} />
       </>
    )

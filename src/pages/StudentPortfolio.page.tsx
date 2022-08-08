@@ -18,7 +18,7 @@ const StudentPortfolioContainer = styled.div`
 `
 
 export const StudentPortfolioPage = () => {
-   const { userDetails, email } = useAppSelector(
+   const { userDetails, email, role } = useAppSelector(
       (state: UserState) => state.user
    )
    return (
@@ -26,7 +26,11 @@ export const StudentPortfolioPage = () => {
          <Header />
          <PortfolioContainer>
             <StudentPortfolioContainer>
-               <StudentPortfolio student={userDetails} email={email} />
+               <StudentPortfolio
+                  student={userDetails}
+                  email={email}
+                  role={role}
+               />
             </StudentPortfolioContainer>
          </PortfolioContainer>
       </>
