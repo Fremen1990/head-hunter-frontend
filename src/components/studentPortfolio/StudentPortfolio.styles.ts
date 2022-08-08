@@ -32,6 +32,7 @@ export const AsideSection = styled.aside`
    flex-wrap: wrap;
    margin-bottom: 10px;
    background-color: ${appColors.pageContainerColor};
+   color: ${appColors.descriptionColor};
 
    ${device.desktop} {
       width: 250px;
