@@ -12,19 +12,30 @@ interface Props {
    error?: any
    validation?: UseFormRegisterReturn
    method: (e: ChangeEvent<HTMLInputElement>) => void
+   placeholder: string
+   value: string
 }
 
 export const InputTextBox = ({
+   value,
    title,
    method,
    layout,
    validation,
    error,
+   placeholder,
 }: Props) => {
    return layout === 'simple' ? (
       <label>
          <p>{title}</p>
-         <input type="text" {...validation} onChange={method} />
+         <input
+            value={value}
+            autoFocus
+            type="text"
+            {...validation}
+            onChange={method}
+            placeholder={placeholder}
+         />
          {error && (
             <ErrorSimpleLayoutMessage>{error.message}</ErrorSimpleLayoutMessage>
          )}
@@ -32,7 +43,14 @@ export const InputTextBox = ({
    ) : (
       <BoxContainer>
          <p>{title}</p>
-         <input type="text" {...validation} onChange={method} />
+         <input
+            value={value}
+            type="text"
+            {...validation}
+            onChange={method}
+            autoFocus
+            placeholder={placeholder}
+         />
          {error && (
             <ErrorExtendedLayoutMessage>
                {error.message}

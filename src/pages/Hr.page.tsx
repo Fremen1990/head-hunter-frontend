@@ -9,6 +9,7 @@ import { FilterSection } from '../components/recruiters/FilterSection/FilterSect
 import { useSelector } from 'react-redux'
 import { UserState } from '../features/user/userSlice'
 import { useAppSelector } from '../app/hooks'
+import { RootState } from '../app/store'
 
 // to remove later
 export interface studentsInterface {
@@ -44,7 +45,7 @@ export const HrPage = () => {
    // const [students, setStudents] = useState<studentsInterface[]>([])
    const [toInterview, setToInterview] = useState<string>('Dotępni kursanci')
 
-   const { candidates } = useAppSelector((state: UserState) => state.hr)
+   const { candidates } = useAppSelector((state: RootState) => state.hr)
 
    console.log('candidates ', candidates)
    // useEffect(() => {

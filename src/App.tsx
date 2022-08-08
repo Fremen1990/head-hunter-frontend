@@ -6,12 +6,11 @@ import { AdminPage } from './pages/Admin.page'
 import { NotFoundPage } from './pages/NotFound.page'
 import { LoginPage } from './pages/Login.page'
 import { HrPage } from './pages/Hr.page'
-// eslint-disable-next-line no-unused-vars
 import ProtectedRoute from './routing/ProtectedRoute'
 import { RegisterPage } from './pages/Register.page'
 import { HomePage } from './pages/HomePage'
 import { StudentPortfolioPage } from './pages/StudentPortfolio.page'
-import { EditStudentPortfolioModal } from './components/commons/modals/StudentPortfolio/EditStudentPortfolioModal'
+import { StudentPortfolioEditPage } from './pages/StudentPortfolioEdit.page'
 
 export interface IAppProps {}
 
@@ -35,10 +34,10 @@ export const App: React.FunctionComponent<IAppProps> = () => {
                <Route
                   path={ROUTES.USER_PORTFOLIO_PAGE}
                   element={<StudentPortfolioPage />}
-               />{' '}
+               />
                <Route
                   path={ROUTES.USER_PORTFOLIO_EDIT}
-                  element={<EditStudentPortfolioModal />}
+                  element={<StudentPortfolioEditPage />}
                />
             </Route>
 

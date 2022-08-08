@@ -1,5 +1,5 @@
 export const expectedTypeWorkOptions = [
-   { value: 'ANY', text: 'Bez znaczenia' },
+   { value: 'any', text: 'Bez znaczenia' },
    { value: 'OFFICE', text: 'Na miejscu' },
    { value: 'READY_TO_MOVE', text: 'Gotowość do przeprawadzki' },
    { value: 'REMOTE', text: 'Wyłącznie zdalnie' },
@@ -7,7 +7,7 @@ export const expectedTypeWorkOptions = [
 ]
 
 export const expectedContractTypeOptions = [
-   { value: 'ANY', text: 'Brak preferecji' },
+   { value: 'any', text: 'Brak preferecji' },
    { value: 'UOP', text: 'Tylko Umowa o pracę' },
    { value: 'B2B', text: 'Możliwe B2B' },
    { value: 'UZ_UOD', text: 'Możliwe umowa o zlecenie/umowa o dzieło' },
@@ -15,5 +15,6 @@ export const expectedContractTypeOptions = [
 
 export const canTakeApprenticeshipOptions = [
    { value: 'NO', text: 'Nie' },
-   { value: 'YES', text: 'Tak' },
+   { value: 'yes', text: 'Tak' },
 ]
+// TODO - COMPARE DTO vs FRONT-END - Bad Request validation regarding to DTO

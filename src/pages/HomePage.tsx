@@ -5,11 +5,11 @@ import { description } from '../constants/description/description'
 import { NavLink } from 'react-router-dom'
 import { Header } from '../components/Header/Header'
 import { useAppSelector } from '../app/hooks'
-import { UserState } from '../features/user/userSlice'
 import { HomeLogo, Shaky } from '../constants/Layout/HomePage.styles'
+import { RootState } from '../app/store'
 
 export const HomePage = () => {
-   const { role } = useAppSelector((state: UserState) => state.user)
+   const { role } = useAppSelector((state: RootState) => state.user)
 
    return (
       <>

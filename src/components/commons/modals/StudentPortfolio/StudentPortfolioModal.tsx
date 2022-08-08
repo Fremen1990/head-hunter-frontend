@@ -4,7 +4,7 @@ import { Header } from '../../../Header/Header'
 import { ModalContainer } from './StudentPortfolioModal.styles'
 import { studentsInterface } from '../../../../pages/Hr.page'
 import { useAppSelector } from '../../../../app/hooks'
-import { UserState } from '../../../../features/user/userSlice'
+import { RootState } from '../../../../app/store'
 
 interface Props {
    changeShowCv: Dispatch<SetStateAction<boolean>>
@@ -13,7 +13,7 @@ interface Props {
 
 export const StudentPortfolioModal = ({ changeShowCv, student }: Props) => {
    const currentUserPortfolio = useAppSelector(
-      (state: UserState) => state.user.userDetails
+      (state: RootState) => state.user.userDetails
    )
 
    return (
