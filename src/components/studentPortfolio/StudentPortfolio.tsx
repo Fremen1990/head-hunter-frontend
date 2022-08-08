@@ -57,6 +57,10 @@ export const StudentPortfolio = ({
       portfolioUrls,
       projectUrls,
       bonusProjectUrls,
+      courseCompletion,
+      courseEngagement,
+      projectDegree,
+      teamProjectDegree,
    } = student
 
    return (
@@ -79,7 +83,14 @@ export const StudentPortfolio = ({
             />
          </AsideSection>
          <MainSection>
-            <RatingBox />
+            <RatingBox
+               ratingStars={[
+                  courseCompletion,
+                  courseEngagement,
+                  projectDegree,
+                  teamProjectDegree,
+               ]}
+            />
             <ExpectationBox
                expectedContractType={expectedContractType}
                targetWorkCity={targetWorkCity}

@@ -3,9 +3,21 @@ import { RatingContainer } from './RatingBox.styles'
 import { SubtitlesSection } from '../SubtitlesSection/SubtitlesSection'
 import { RatingViewBox } from './RatingViewBox/RatingViewBox'
 import { description } from '../../../constants/description/description'
+import { studentsInterface } from '../../../pages/Hr.page'
 
-export const RatingBox = () => {
+interface Props {
+   ratingStars: number[]
+}
+
+export const RatingBox = ({ ratingStars }: Props) => {
    const { rating } = description.studentPortfolio
+   const [
+      courseCompletion,
+      courseEngagement,
+      projectDegree,
+      teamProjectDegree,
+   ] = ratingStars
+
    const {
       courseEvaluation,
       activityAssessment,
@@ -17,10 +29,22 @@ export const RatingBox = () => {
       <>
          <SubtitlesSection text={rating} />
          <RatingContainer>
-            <RatingViewBox rating={3} title={courseEvaluation} />
-            <RatingViewBox rating={5} title={activityAssessment} />
-            <RatingViewBox rating={2} title={codeEvaluation} />
-            <RatingViewBox rating={4} title={scrumAssessment} />
+            <RatingViewBox
+               ratingStars={Number(courseCompletion)}
+               title={courseEvaluation}
+            />
+            <RatingViewBox
+               ratingStars={Number(courseEngagement)}
+               title={activityAssessment}
+            />
+            <RatingViewBox
+               ratingStars={Number(projectDegree)}
+               title={codeEvaluation}
+            />
+            <RatingViewBox
+               ratingStars={Number(teamProjectDegree)}
+               title={scrumAssessment}
+            />
          </RatingContainer>
       </>
    )

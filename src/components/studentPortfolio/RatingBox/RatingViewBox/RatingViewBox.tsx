@@ -10,7 +10,7 @@ import { appColors } from '../../../../constants/Layout/app.colors'
 
 interface Props {
    title: string
-   rating: number
+   ratingStars: number
 }
 
 export const RatingViewBox = (props: Props) => {
@@ -19,11 +19,11 @@ export const RatingViewBox = (props: Props) => {
          <RateHeading>{props.title}</RateHeading>
          <RatingContainer>
             <p>
-               <span>{props.rating}</span>/5
+               <span>{props.ratingStars}</span>/5
             </p>
             <StarContainer>
                <StarRatings
-                  rating={props.rating}
+                  rating={props.ratingStars}
                   starRatedColor="red"
                   starEmptyColor={appColors.iconColor}
                   starDimension="20px"
