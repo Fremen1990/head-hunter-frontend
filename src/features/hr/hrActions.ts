@@ -4,7 +4,7 @@ import { getUserProfileResponse, HrCandidateAddResponse } from 'types'
 import { RootState } from '../../app/store'
 
 type CandidateId = {
-   id: string
+   studentId: string
 }
 
 export const fetchHrCandidates = createAsyncThunk<
@@ -45,12 +45,12 @@ export const bookCallCandidate = createAsyncThunk<
    }
 })
 
-// TODO TO BE FINISHED ON BACKEND !!
 export const disinterestCandidate = createAsyncThunk(
-   '/hr/undefined',
-   async ({ id }: CandidateId, thunkAPI) => {
+   '/hr/interviews/:studentId/remove',
+   async ({ studentId }: CandidateId, thunkAPI) => {
+      console.log(studentId)
       try {
-         await api.patch('/hr/undefined', { id })
+         await api.delete(`hr/interviews/${studentId}/remove`)
       } catch (e: any) {
          return thunkAPI.rejectWithValue(e.response.data)
       }
@@ -58,10 +58,10 @@ export const disinterestCandidate = createAsyncThunk(
 )
 
 export const HiredCandidate = createAsyncThunk(
-   '/hr/undefined',
-   async ({ id }: CandidateId, thunkAPI) => {
+   '/hr/interviews/:studentId/hire',
+   async ({ studentId }: CandidateId, thunkAPI) => {
       try {
-         await api.patch('/hr/undefined', { id })
+         await api.patch(`hr/interviews/${studentId}/hire`)
       } catch (e: any) {
          return thunkAPI.rejectWithValue(e.response.data)
       }
