@@ -29,7 +29,7 @@ export const HrPage = () => {
          setAvailable(availableStudents.payload)
       } else {
          const interviewStudents = await dispatch(fetchHrInterviews())
-         setInterview(interviewStudents.payload.data)
+         setInterview(interviewStudents.payload)
       }
    }
 
