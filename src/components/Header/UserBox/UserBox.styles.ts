@@ -22,8 +22,8 @@ export const UserContainer = styled.div<Props>`
       }
 
       & .avatar {
-         height: 30px;
-         width: 30px;
+         height: 45px;
+         width: 45px;
          border: 1px solid white;
          border-radius: 50%;
          margin-right: 5px;

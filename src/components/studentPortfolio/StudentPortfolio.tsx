@@ -13,17 +13,17 @@ import { RatingBox } from './RatingBox/RatingBox'
 import { ExpectationBox } from './ExpectationBox/ExpectationBox'
 import { description } from '../../constants/description/description'
 import { studentsInterface } from 'src/pages/Hr.page'
-
-export const loremText =
-   'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt\n' +
-   '                        ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo'
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
-   changeShowCv: (arg: boolean) => void
    student: studentsInterface
+   email: string
+   role: string
 }
 
-export const StudentPortfolio = ({ changeShowCv, student }: Props) => {
+export const StudentPortfolio = ({ student, email, role }: Props) => {
+   const navigate = useNavigate()
+
    const {
       educationDescribe,
       coursesDescribe,
@@ -37,7 +37,6 @@ export const StudentPortfolio = ({ changeShowCv, student }: Props) => {
    const {
       firstName,
       tel,
-      email,
       githubUserName,
       lastName,
       bio,
@@ -52,11 +51,19 @@ export const StudentPortfolio = ({ changeShowCv, student }: Props) => {
       workExperience,
       portfolioUrls,
       projectUrls,
+      bonusProjectUrls,
+      courseCompletion,
+      courseEngagement,
+      projectDegree,
+      teamProjectDegree,
    } = student
 
    return (
       <UserPortfolioContainer>
-         <BackButton onClick={() => changeShowCv(false)}>
+         <BackButton
+            // onClick={() => changeShowCv(false)}
+            onClick={() => navigate(-1)}
+         >
             <BackIcon />
             {backFromModal}
          </BackButton>
@@ -67,11 +74,19 @@ export const StudentPortfolio = ({ changeShowCv, student }: Props) => {
                githubNick={githubUserName}
                phone={tel}
                email={email}
+               role={role}
                desc={bio}
             />
          </AsideSection>
          <MainSection>
-            <RatingBox />
+            <RatingBox
+               ratingStars={[
+                  courseCompletion,
+                  courseEngagement,
+                  projectDegree,
+                  teamProjectDegree,
+               ]}
+            />
             <ExpectationBox
                expectedContractType={expectedContractType}
                targetWorkCity={targetWorkCity}
@@ -83,9 +98,9 @@ export const StudentPortfolio = ({ changeShowCv, student }: Props) => {
             <DescriptionBox text={educationDescribe} desc={education} />
             <DescriptionBox text={coursesDescribe} desc={courses} />
             <DescriptionBox text={experienceDescribe} desc={workExperience} />
+
             <LinksBox text={portfolio} link={portfolioUrls} />
-            <LinksBox text={groupProject} link="https://github.com" />
-            <LinksBox link="https://github.com" />
+            <LinksBox text={groupProject} link={bonusProjectUrls} />
             <LinksBox text={ownProject} link={projectUrls} />
          </MainSection>
       </UserPortfolioContainer>

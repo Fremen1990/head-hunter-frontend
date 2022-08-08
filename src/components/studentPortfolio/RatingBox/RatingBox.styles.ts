@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
 export const RatingContainer = styled.div`
-   display: flex;
-   flex-direction: row;
-   flex-wrap: wrap;
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
    padding: 5px;
 `

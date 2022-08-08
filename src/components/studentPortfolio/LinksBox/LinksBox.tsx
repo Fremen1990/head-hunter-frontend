@@ -4,19 +4,27 @@ import { ClipIcon, LinksSection } from './LinksBox.styles'
 
 interface Props {
    text?: string
-   link?: string
+   link?: string | string[]
 }
 
 export const LinksBox = ({ link, text }: Props) => {
    return (
       <>
          {text === undefined ? null : <SubtitlesSection text={text} />}
-         {link === undefined ? null : (
-            <LinksSection>
-               <ClipIcon />
-               <a href={`${link}`}>{link}</a>
-            </LinksSection>
-         )}
+         {link === undefined
+            ? null
+            : link.map((oneLink, i) => (
+                 <LinksSection key={i}>
+                    <ClipIcon />
+                    <a
+                       href={`${oneLink}`}
+                       target="_blank"
+                       rel="noopener noreferrer"
+                    >
+                       {oneLink}
+                    </a>
+                 </LinksSection>
+              ))}
       </>
    )
 }

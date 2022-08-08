@@ -14,9 +14,15 @@ export const BackButton = styled.button`
    color: ${appColors.fontColor};
    border: none;
    margin: 5px 0;
-   width: 35px;
+   width: 60px;
    font-weight: bold;
+   font-size: 16px;
    cursor: pointer;
+   transition: 0.3s;
+
+   :hover {
+      color: ${appColors.buttonColor};
+   }
 `
 
 export const BackIcon = styled(MdArrowBackIosNew)`
@@ -31,9 +37,10 @@ export const AsideSection = styled.aside`
    flex-wrap: wrap;
    margin-bottom: 10px;
    background-color: ${appColors.pageContainerColor};
+   color: ${appColors.descriptionColor};
 
    ${device.desktop} {
-      width: 300px;
+      width: 250px;
    }
 
    & div {
@@ -72,8 +79,8 @@ export const AsideSection = styled.aside`
    }
 
    & img {
-      max-width: 60px;
-      max-height: 60px;
+      max-width: 150px;
+      max-height: 150px;
       border-radius: 50%;
       margin: 20px 0;
 
@@ -85,6 +92,7 @@ export const AsideSection = styled.aside`
 
    & Button {
       width: 80%;
+      font-size: 16px;
    }
 `
 

@@ -42,7 +42,6 @@ export const LoginForm = () => {
    const onSubmit = async (data: Login) => {
       const { email, password } = data
       if (email && password) {
-         // @ts-ignore
          dispatch(userLogin({ email, pwd: password }))
       }
    }
