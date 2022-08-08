@@ -4,6 +4,7 @@ import {
    disinterestCandidate,
    fetchHrCandidates,
    fetchHrInterviews,
+   HiredCandidate,
 } from './hrActions'
 import { RootState } from '../../app/store'
 
@@ -99,6 +100,28 @@ export const hrSlice = createSlice({
          state.errorMessage = payload.error
       },
       [disinterestCandidate.fulfilled]: (
+         state: RootState,
+         { payload }: PayloadAction<{ message: string }>
+      ) => {
+         state.message = payload
+         state.isFetching = false
+         state.isSuccess = true
+         state.isError = false
+         state.errorMessage = ''
+         return state
+      },
+      [HiredCandidate.pending]: (state: RootState) => {
+         state.isFetching = true
+      },
+      [HiredCandidate.rejected]: (
+         state: RootState,
+         { payload }: PayloadAction<{ error: string }>
+      ) => {
+         state.isFetching = false
+         state.isError = true
+         state.errorMessage = payload.error
+      },
+      [HiredCandidate.fulfilled]: (
          state: RootState,
          { payload }: PayloadAction<{ message: string }>
       ) => {
