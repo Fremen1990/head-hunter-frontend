@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
-export const NotFoundBox = styled.div`
+export const NotFoundContainer = styled.div`
    display: flex;
    flex-direction: column;
    align-items: center;
    justify-content: center;
-   min-height: 86vh;
+   min-height: 88.7vh;
    background-color: transparent;
    width: 100%;
    margin: 0 auto;
@@ -16,109 +16,14 @@ export const NotFoundBox = styled.div`
 `
 export const Samurai = styled.svg`
    & > g {
-      animation: hueRotate 7s ease-in-out 3s infinite;
+      animation: hue-rotate 7s ease-in-out 3s infinite;
    }
 `
 export const Text404 = styled.svg`
    width: 350px;
 
    & > g {
-      animation: hueRotate 7s ease-in-out 3s infinite;
-   }
-`
-
-export const ErrorMessage = styled.h2`
-   font-size: 32px;
-   text-transform: uppercase;
-   display: block;
-   margin-top: 10px;
-   font-family: 'Audiowide', cursive;
-   color: #12000a;
-   font-weight: 300;
-   text-shadow: 0 0 4px #12000a;
-   animation: fadeInText 3s ease-in 3.5s forwards,
-      flicker4 5s linear 7.5s infinite, hueRotate 7s ease-in-out 3s infinite;
-
-   @keyframes fadeInText {
-      1% {
-         color: #12000a;
-         text-shadow: 0 0 4px #12000a;
-      }
-      70% {
-         color: #ff005d;
-         text-shadow: 0 0 14px #ff005d;
-      }
-      100% {
-         color: #ff005d;
-         text-shadow: 0 0 4px #ff005d;
-      }
-   }
-
-   @keyframes hueRotate {
-      0% {
-         filter: hue-rotate(0deg);
-      }
-      50% {
-         filter: hue-rotate(-120deg);
-      }
-      100% {
-         filter: hue-rotate(0deg);
-      }
-   }
-
-   @keyframes flicker4 {
-      0% {
-         color: #ff005d;
-         text-shadow: 0 0 4px #ff005d;
-      }
-      30% {
-         color: #ff005d;
-         text-shadow: 0 0 4px #ff005d;
-      }
-      31% {
-         color: #12000a;
-         text-shadow: 0 0 4px #12000a;
-      }
-      32% {
-         color: #ff005d;
-         text-shadow: 0 0 4px #ff005d;
-      }
-      36% {
-         color: #ff005d;
-         text-shadow: 0 0 4px #ff005d;
-      }
-      37% {
-         color: #12000a;
-         text-shadow: 0 0 4px #12000a;
-      }
-      41% {
-         color: #12000a;
-         text-shadow: 0 0 4px #12000a;
-      }
-      42% {
-         color: #ff005d;
-         text-shadow: 0 0 4px #ff005d;
-      }
-      85% {
-         color: #ff005d;
-         text-shadow: 0 0 4px #ff005d;
-      }
-      86% {
-         color: #12000a;
-         text-shadow: 0 0 4px #12000a;
-      }
-      95% {
-         color: #12000a;
-         text-shadow: 0 0 4px #12000a;
-      }
-      96% {
-         color: #ff005d;
-         text-shadow: 0 0 4px #ff005d;
-      }
-      100% {
-         color: #ff005d;
-         text-shadow: 0 0 4px #ff005d;
-      }
+      animation: hue-rotate 7s ease-in-out 3s infinite;
    }
 `
 
@@ -134,15 +39,15 @@ export const PathWrapper = styled.g`
       stroke: transparent;
       stroke-width: 80px;
       fill: transparent;
-      animation: drawSamurai 4s forwards;
+      animation: draw-samurai 4s forwards;
    }
 
-   @keyframes drawSamurai {
+   @keyframes draw-samurai {
       0% {
          fill: transparent;
       }
       100% {
-         fill: black;
+         fill: #000000;
       }
    }
 
@@ -158,25 +63,25 @@ export const PathWrapper = styled.g`
    & > .four-1 {
       stroke-dasharray: 940px;
       stroke-dashoffset: -940px;
-      animation: drawLine1 2s ease-in-out 0s forwards,
-         flicker3 5s linear 4s infinite;
+      animation: draw-line-four 2s ease-in-out 0s forwards,
+         flicker-four-1 5s linear 4s infinite;
    }
 
    & > .zero-1 {
       stroke-dasharray: 735px;
       stroke-dashoffset: -735px;
-      animation: drawLine2 2s ease-in-out 0.5s forwards,
-         flicker2 5s linear 4.5s infinite;
+      animation: draw-line-zero 2s ease-in-out 0.5s forwards,
+         flicker-zero-1 5s linear 4.5s infinite;
    }
 
    & > .four-2 {
       stroke-dasharray: 940px;
       stroke-dashoffset: -940px;
-      animation: drawLine1 2s ease-in-out 0.8s forwards,
-         flicker1 5s linear 5s infinite;
+      animation: draw-line-four 2s ease-in-out 0.8s forwards,
+         flicker-four-2 5s linear 5s infinite;
    }
 
-   @keyframes drawLine1 {
+   @keyframes draw-line-four {
       0% {
          stroke-dashoffset: -940px;
       }
@@ -184,7 +89,7 @@ export const PathWrapper = styled.g`
          stroke-dashoffset: 0;
       }
    }
-   @keyframes drawLine2 {
+   @keyframes draw-line-zero {
       0% {
          stroke-dashoffset: -735px;
       }
@@ -192,7 +97,7 @@ export const PathWrapper = styled.g`
          stroke-dashoffset: 0;
       }
    }
-   @keyframes flicker1 {
+   @keyframes flicker-four-1 {
       0% {
          stroke: #ff005d;
       }
@@ -221,7 +126,7 @@ export const PathWrapper = styled.g`
          stroke: #ff005d;
       }
    }
-   @keyframes flicker2 {
+   @keyframes flicker-zero-1 {
       0% {
          stroke: #ff005d;
       }
@@ -242,7 +147,7 @@ export const PathWrapper = styled.g`
       }
    }
 
-   @keyframes flicker3 {
+   @keyframes flicker-four-2 {
       0% {
          stroke: #ff005d;
       }
@@ -308,5 +213,115 @@ export const PathWrapper = styled.g`
          stroke: #ff005d;
          filter: url(#samurai-glow);
       }
+   }
+`
+
+export const ErrorMessage = styled.h2`
+   font-size: 32px;
+   text-transform: uppercase;
+   display: block;
+   margin-top: 10px;
+   font-family: 'Audiowide', cursive;
+   color: black;
+   font-weight: 300;
+   text-shadow: 0 0 4px #12000a;
+   animation: fade-in-text 2s ease-in 3.5s forwards,
+      flicker-error-message 5s linear 7.5s infinite,
+      hue-rotate 7s ease-in-out 3s infinite;
+
+   @keyframes fade-in-text {
+      1% {
+         color: black;
+         text-shadow: 0 0 4px #12000a;
+      }
+      70% {
+         color: #ff005d;
+         text-shadow: 0 0 14px #ff005d;
+      }
+      100% {
+         color: #ff005d;
+         text-shadow: 0 0 4px #ff005d;
+      }
+   }
+
+   @keyframes flicker-error-message {
+      0% {
+         color: #ff005d;
+         text-shadow: 0 0 4px #ff005d;
+      }
+      30% {
+         color: #ff005d;
+         text-shadow: 0 0 4px #ff005d;
+      }
+      31% {
+         color: #12000a;
+         text-shadow: 0 0 4px #12000a;
+      }
+      32% {
+         color: #ff005d;
+         text-shadow: 0 0 4px #ff005d;
+      }
+      36% {
+         color: #ff005d;
+         text-shadow: 0 0 4px #ff005d;
+      }
+      37% {
+         color: #12000a;
+         text-shadow: 0 0 4px #12000a;
+      }
+      41% {
+         color: #12000a;
+         text-shadow: 0 0 4px #12000a;
+      }
+      42% {
+         color: #ff005d;
+         text-shadow: 0 0 4px #ff005d;
+      }
+      85% {
+         color: #ff005d;
+         text-shadow: 0 0 4px #ff005d;
+      }
+      86% {
+         color: #12000a;
+         text-shadow: 0 0 4px #12000a;
+      }
+      95% {
+         color: #12000a;
+         text-shadow: 0 0 4px #12000a;
+      }
+      96% {
+         color: #ff005d;
+         text-shadow: 0 0 4px #ff005d;
+      }
+      100% {
+         color: #ff005d;
+         text-shadow: 0 0 4px #ff005d;
+      }
+   }
+`
+
+export const HomeButton = styled.button`
+   width: 250px;
+   height: 60px;
+   margin-top: 40px;
+   background-color: transparent;
+   cursor: pointer;
+   border: 3px solid black;
+   box-shadow: 0 0 4px #12000a;
+
+   & > p {
+      background-color: transparent;
+      font-size: 32px;
+      color: black;
+      text-transform: uppercase;
+      font-family: 'Audiowide', cursive;
+      text-decoration: none;
+      text-shadow: 0 0 4px #12000a;
+      animation: hue-rotate 7s ease-in-out 3s infinite;
+   }
+
+   & > p:hover {
+      color: #ff005d;
+      text-shadow: 0 0 5px #ff005d;
    }
 `
