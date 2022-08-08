@@ -13,7 +13,11 @@ import { StudentPortfolioModal } from '../../commons/modals/StudentPortfolio/Stu
 import { description } from '../../../constants/description/description'
 import { studentsInterface } from 'src/pages/Hr.page'
 import { useDispatch } from 'react-redux'
-import { bookCallCandidate } from '../../../features/hr/hrActions'
+import {
+   bookCallCandidate,
+   disinterestCandidate,
+   HiredCandidate,
+} from '../../../features/hr/hrActions'
 import { useAppSelector } from '../../../app/hooks'
 
 interface Props {
@@ -40,11 +44,20 @@ export const OneUser = ({ layout, student, refreshStudents }: Props) => {
       }
    }
 
-   // const handleDisinterest = (id: string) =>
-   //    dispatch(disinterestCandidate({ id }))
-   const handleHired = (id: string) => {
-      console.log(id)
-      refreshStudents()
+   const handleDisinterest = async (studentId: string) => {
+      try {
+         await dispatch(disinterestCandidate({ studentId }))
+      } finally {
+         await refreshStudents()
+      }
+   }
+
+   const handleHired = async (studentId: string) => {
+      try {
+         await dispatch(HiredCandidate({ studentId }))
+      } finally {
+         await refreshStudents()
+      }
    }
 
    return (
@@ -93,7 +106,7 @@ export const OneUser = ({ layout, student, refreshStudents }: Props) => {
                            method={() => showStudentPortfolio()}
                         />
                         <Button
-                           // method={() => handleDisinterest(student.user.id)}
+                           method={() => handleDisinterest(student.id)}
                            buttonTitle={buttonsName.disinterest}
                         />
                         <Button
