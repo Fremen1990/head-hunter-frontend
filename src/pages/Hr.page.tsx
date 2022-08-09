@@ -7,7 +7,7 @@ import { FilterSection } from '../components/recruiters/FilterSection/FilterSect
 import { useDispatch } from 'react-redux'
 import { fetchHrCandidates, fetchHrInterviews } from '../features/hr/hrActions'
 import { useAppSelector } from '../app/hooks'
-import { RootState } from '../app/store'
+import { Spinner } from '../components/commons/Spinner/Spinner'
 
 export const HrPage = () => {
    const [available, setAvailable] = useState([])
@@ -15,6 +15,7 @@ export const HrPage = () => {
    const [filterState, setFilterState] = useState({
       value: 'availableStudents',
    })
+   const [search, setSearch] = useState('')
    const dispatch = useDispatch()
    const { isFetching } = useAppSelector((state) => state.hr)
 
@@ -43,21 +44,24 @@ export const HrPage = () => {
          <Header />
          <PageContainer>
             <NavigationBar filterState={updateFilter} />
-            <FilterSection />
+            <FilterSection setSearch={setSearch} />
             {filterState.value === 'availableStudents' ? (
                <UserResultsContainer
                   layout={'simple'}
                   students={available}
                   refreshStudents={updateStudentsTab}
+                  searchingValue={search}
                />
             ) : (
                <UserResultsContainer
                   layout={'extended'}
                   students={interview}
                   refreshStudents={updateStudentsTab}
+                  searchingValue={search}
                />
             )}
          </PageContainer>
+         {isFetching && <Spinner />}
       </>
    )
 }
