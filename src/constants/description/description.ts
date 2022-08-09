@@ -33,6 +33,8 @@ export const description = {
       bookCall: 'zarezerwuj rozmowe',
       logOut: 'wyloguj',
       logIn: 'Zaloguj się',
+      changePwd: 'Zmień hasło',
+      sentResetToken: 'Utwórz reset token',
       account: 'konto',
       forgotPass: 'zapomniałeś hasła ?',
       addHr: 'dodaj nowego HR',
