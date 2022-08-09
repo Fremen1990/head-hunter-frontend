@@ -75,11 +75,14 @@ export const UserBox = styled.div`
    & .avatar {
       height: 30px;
       width: 30px;
-      border: 1px solid white;
       border-radius: 50%;
       margin-right: 5px;
       margin-left: 5px;
       overflow: hidden;
+
+      & img {
+         width: 100%;
+      }
    }
 `
 export const ButtonsBox = styled.div<Props>`

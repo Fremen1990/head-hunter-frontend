@@ -62,114 +62,117 @@ export const OneUser = ({ layout, student, refreshStudents }: Props) => {
 
    return (
       <>
-         {showCv ? (
-            <StudentPortfolioModal student={student} changeShowCv={setShowCv} />
-         ) : (
-            <>
-               <UserContainer isOpen={isOpen}>
-                  <div>
-                     {layout === 'simple' ? null : (
-                        <InfoBox>
-                           <p>{text.userReservation}</p>
-                           <p>11.07.2022 r</p>
-                        </InfoBox>
-                     )}
-                     <UserBox>
-                        {layout === 'simple' ? null : (
-                           <div className="avatar" />
-                        )}
-                        <p>{student.firstName}</p>
-
-                        {layout === 'simple' ? (
-                           <p>{student.student.lastName?.slice(-1)}</p>
-                        ) : (
-                           <p>{student.lastName}</p>
-                        )}
-                     </UserBox>
-                  </div>
-                  {layout === 'simple' ? (
-                     <ButtonsBox isOpen={isOpen}>
-                        <Button
-                           method={() =>
-                              handleBookCall(student.student.studentId)
+         <UserContainer isOpen={isOpen}>
+            {showCv ? (
+               <StudentPortfolioModal
+                  changeShowCv={setShowCv}
+                  student={student}
+               />
+            ) : null}
+            <div>
+               {layout === 'simple' ? null : (
+                  <InfoBox>
+                     <p>{text.userReservation}</p>
+                     <p>{student.date}</p>
+                  </InfoBox>
+               )}
+               <UserBox>
+                  {layout === 'simple' ? null : (
+                     <div className="avatar">
+                        <img
+                           src={
+                              student.student?.githubUserName
+                                 ? `https://avatars.githubusercontent.com/${student.student.githubUserName}`
+                                 : '/assets/default_avatar/GHLogo.png'
                            }
-                           buttonTitle={buttonsName.bookCall}
+                           alt="gitHub avatar"
                         />
-                        <AiOutlineCaretDown
-                           onClick={() => setIsOpen(!isOpen)}
-                        />
-                     </ButtonsBox>
-                  ) : (
-                     <ButtonsBox isOpen={isOpen}>
-                        <Button
-                           buttonTitle={buttonsName.showCv}
-                           method={() => showStudentPortfolio()}
-                        />
-                        <Button
-                           method={() => handleDisinterest(student.id)}
-                           buttonTitle={buttonsName.disinterest}
-                        />
-                        <Button
-                           method={() => handleHired(student.id)}
-                           buttonTitle={buttonsName.hired}
-                        />
-                        <AiOutlineCaretDown
-                           onClick={() => setIsOpen(!isOpen)}
-                        />
-                     </ButtonsBox>
+                     </div>
                   )}
-               </UserContainer>
-               {isOpen ? (
-                  <MoreInfoBox>
-                     <InterViewMeBox
-                        ratingBox={true}
-                        boxTitle={descriptions.courseEvaluation}
-                        point={student.courseCompletion}
-                     />
-                     <InterViewMeBox
-                        ratingBox={true}
-                        boxTitle={descriptions.activityAssessment}
-                        point={student.courseEngagement}
-                     />
-                     <InterViewMeBox
-                        ratingBox={true}
-                        boxTitle={descriptions.codeEvaluation}
-                        point={student.projectDegree}
-                     />
-                     <InterViewMeBox
-                        ratingBox={true}
-                        boxTitle={descriptions.scrumAssessment}
-                        point={student.teamProjectDegree}
-                     />
-                     <InterViewMeBox
-                        ratingBox={false}
-                        boxTitle={descriptions.preferWork}
-                        point={student.targetWorkCity}
-                     />
-                     <InterViewMeBox
-                        ratingBox={false}
-                        boxTitle={descriptions.contractType}
-                        point={student.expectedContractType}
-                     />
-                     <InterViewMeBox
-                        ratingBox={false}
-                        boxTitle={descriptions.targetSalary}
-                        point={student.expectedSalary}
-                     />
-                     <InterViewMeBox
-                        ratingBox={false}
-                        boxTitle={descriptions.practice}
-                        point={student.canTakeApprenticeship}
-                     />
-                     <InterViewMeBox
-                        ratingBox={false}
-                        boxTitle={descriptions.experience}
-                        point={student.workExperience}
-                     />
-                  </MoreInfoBox>
-               ) : null}
-            </>
-         )}
+                  <p>{student.student.firstName}</p>
+
+                  {layout === 'simple' ? (
+                     <p>{student.student.lastName?.slice(-1)}</p>
+                  ) : (
+                     <p>{student.student.lastName}</p>
+                  )}
+               </UserBox>
+            </div>
+            {layout === 'simple' ? (
+               <ButtonsBox isOpen={isOpen}>
+                  <Button
+                     method={() => handleBookCall(student.student.studentId)}
+                     buttonTitle={buttonsName.bookCall}
+                  />
+                  <AiOutlineCaretDown onClick={() => setIsOpen(!isOpen)} />
+               </ButtonsBox>
+            ) : (
+               <ButtonsBox isOpen={isOpen}>
+                  <Button
+                     buttonTitle={buttonsName.showCv}
+                     method={() => showStudentPortfolio()}
+                  />
+                  <Button
+                     method={() => handleDisinterest(student.student.studentId)}
+                     buttonTitle={buttonsName.disinterest}
+                  />
+                  <Button
+                     method={() => handleHired(student.student.studentId)}
+                     buttonTitle={buttonsName.hired}
+                  />
+                  <AiOutlineCaretDown onClick={() => setIsOpen(!isOpen)} />
+               </ButtonsBox>
+            )}
+         </UserContainer>
+         {isOpen ? (
+            <MoreInfoBox>
+               <InterViewMeBox
+                  ratingBox={true}
+                  boxTitle={descriptions.courseEvaluation}
+                  point={student.student.courseCompletion}
+               />
+               <InterViewMeBox
+                  ratingBox={true}
+                  boxTitle={descriptions.activityAssessment}
+                  point={student.student.courseEngagement}
+               />
+               <InterViewMeBox
+                  ratingBox={true}
+                  boxTitle={descriptions.codeEvaluation}
+                  point={student.student.projectDegree}
+               />
+               <InterViewMeBox
+                  ratingBox={true}
+                  boxTitle={descriptions.scrumAssessment}
+                  point={student.student.teamProjectDegree}
+               />
+               <InterViewMeBox
+                  ratingBox={false}
+                  boxTitle={descriptions.preferWork}
+                  point={student.student.targetWorkCity}
+               />
+               <InterViewMeBox
+                  ratingBox={false}
+                  boxTitle={descriptions.contractType}
+                  point={student.student.expectedContractType}
+               />
+               <InterViewMeBox
+                  ratingBox={false}
+                  boxTitle={descriptions.targetSalary}
+                  point={student.student.expectedSalary}
+               />
+               <InterViewMeBox
+                  ratingBox={false}
+                  boxTitle={descriptions.practice}
+                  point={student.student.canTakeApprenticeship}
+               />
+               <InterViewMeBox
+                  ratingBox={false}
+                  boxTitle={descriptions.experience}
+                  point={student.student.workExperience}
+               />
+            </MoreInfoBox>
+         ) : null}
       </>
    )
 }
