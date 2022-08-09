@@ -1,10 +1,8 @@
 import styled from 'styled-components'
 import React, { useState } from 'react'
-import {
-   getStudents,
-   importStudentsCall,
-   uploadFileCall,
-} from '../../../../apiCalls'
+import { getStudents, importStudentsCall } from '../../../../apiCalls'
+import { useDispatch } from 'react-redux'
+import { uploadFileCall } from '../../../../features/admin/adminActions'
 
 export const ImportStudents = () => {
    // -------- Beautyful styling :D  START-----------
@@ -36,11 +34,18 @@ export const ImportStudents = () => {
    // List students to be accepted by admin
    const [getAllStudentsJson, setGetAllStudentsJson] = useState([])
 
+   const dispatch = useDispatch()
+
    const sendStudentsFileHandler = async () => {
       const data = await new FormData()
       data.append('usersImport', uploadFile)
-      const response = await uploadFileCall(data)
-      setUploadStudentsJson(response)
+      console.log('Uplaod file', uploadFile)
+      console.log('data form', data)
+
+      const res = dispatch(await uploadFileCall(data))
+      console.log('RES', res)
+      // const response = await uploadFileCall(data)
+      // setUploadStudentsJson(response)
    }
 
    const importStudentsHandler = async () => {

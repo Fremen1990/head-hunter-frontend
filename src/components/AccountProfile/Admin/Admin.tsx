@@ -6,6 +6,10 @@ import { Button } from '../../commons/Button/Button'
 import { description } from '../../../constants/description/description'
 import { ImportStudents } from './ImportStudents/ImportStudents'
 import { ImportHr } from './ImportHr/ImportHr'
+import { useDispatch } from 'react-redux'
+import { getAllUsers } from '../../../features/admin/adminActions'
+import { useAppDispatch } from '../../../app/hooks'
+import { getStudents } from '../../../apiCalls'
 
 interface Props {
    children: React.ReactNode
@@ -16,6 +20,15 @@ export const Admin = ({ children }: Props) => {
    const [importStudentsVisible, setImportStudentsVisible] =
       useState<boolean>(false)
    const [importHrVisible, setImportHrVisible] = useState<boolean>(false)
+
+   const dispatch = useDispatch()
+
+   const getAllUsersHandler = async () => {
+      console.log('clok')
+      // const res = await getStudents()
+      // console.log(res)
+      dispatch(getAllUsers())
+   }
 
    return (
       <AccountContainer>
@@ -47,6 +60,8 @@ export const Admin = ({ children }: Props) => {
             buttonTitle={description.buttons.importHr}
          />
          {importHrVisible ? <ImportHr /> : null}
+
+         <Button method={getAllUsersHandler} buttonTitle="Get All Users" />
 
          {children}
       </AccountContainer>
