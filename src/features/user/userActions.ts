@@ -5,6 +5,7 @@ import {
    LogoutUserResponse,
    UpdateStudentResponse,
    UpdateStudentProfile,
+   ResetPasswordInterface,
 } from 'types'
 
 import { api } from '../../utils/axios'
@@ -29,6 +30,57 @@ export const userLogin = createAsyncThunk<
       return thunkAPI.rejectWithValue(e.response.data)
    }
 })
+
+export const sendResetLink = createAsyncThunk(
+   '/auth/send-reset-password-link',
+   async ({ email }: LoginUser, thunkAPI) => {
+      try {
+         const response = await api.post('/auth/send-reset-password-link', {
+            email,
+         })
+         const data = await response.data
+         if (response.status === 200) {
+            localStorage.setItem('resetToken', data.message)
+            return data
+         } else if (response.status === 404) {
+            console.log(data)
+            return data
+         } else {
+            return thunkAPI.rejectWithValue(data.error)
+         }
+      } catch (e: any) {
+         console.log(e.response.data)
+         return thunkAPI.rejectWithValue(e.response.data)
+      }
+   }
+)
+
+export const changePassword = createAsyncThunk(
+   '/auth/change-password',
+   async (
+      { resetPasswordToken, newPwd, newPwdConfirm }: ResetPasswordInterface,
+      thunkAPI
+   ) => {
+      try {
+         const response = await api.post('/auth/change-password', {
+            resetPasswordToken,
+            newPwd,
+            newPwdConfirm,
+         })
+         const data = await response.data
+         if (response.status === 200) {
+            localStorage.clear()
+            console.log(data)
+            return data
+         } else {
+            return thunkAPI.rejectWithValue(data.error)
+         }
+      } catch (e: any) {
+         console.log(e.response.data)
+         return thunkAPI.rejectWithValue(e.response.data)
+      }
+   }
+)
 
 export const fetchUserByToken = createAsyncThunk<
    getUserProfileResponse,
