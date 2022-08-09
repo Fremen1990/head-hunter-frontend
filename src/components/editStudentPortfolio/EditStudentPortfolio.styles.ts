@@ -68,19 +68,40 @@ export const AsideSection = styled.div`
       border: 1px solid ${appColors.userPointColor};
       border-radius: 5px;
       color: ${appColors.userPointColor};
+
+      :hover {
+         border-color: yellow;
+      }
+
+      &:focus {
+         outline: none;
+         box-shadow: 0px 0px 2px green;
+         border-color: green;
+      }
    }
 
    & textarea {
+      resize: none;
       width: 80vw;
       padding: 20px;
       color: ${appColors.userPointColor};
       font-size: 1.6rem;
       background-color: ${appColors.pageContainerColor};
 
+      :hover {
+         border-color: yellow;
+      }
+
+      &:focus {
+         outline: none;
+         box-shadow: 0px 0px 2px green;
+         border-color: green;
+      }
+
       ${device.desktop} {
          padding: 15px;
          height: 300px;
-         width: 20vw;
+         width: 100%;
       }
    }
 `
@@ -100,6 +121,16 @@ export const MainSection = styled.div`
       width: 90%;
       margin: 10px 0;
       padding: 5px;
+
+      :hover {
+         border-color: yellow;
+      }
+
+      &:focus {
+         outline: none;
+         box-shadow: 0px 0px 2px green;
+         border-color: green;
+      }
    }
 
    & select {
@@ -153,6 +184,27 @@ export const EditExpectationBoxContainer = styled.div`
    align-items: center;
    flex-wrap: wrap;
 
+   &input {
+
+      :hover {
+         border-color: yellow;
+      }
+
+      &:focus {
+         outline: none;
+         box-shadow: 0px 0px 2px green;
+         border-color: green;
+      }
+   }
+   
+   }
+
+   ${device.desktop} {
+      padding: 15px;
+      height: 400px;
+      width: 100%;
+   }
+
    ${device.tablet} {
       justify-content: center;
       flex-direction: column;
@@ -191,6 +243,18 @@ export const BoxContainer = styled.div`
    p {
       &::first-letter {
          text-transform: uppercase;
+      }
+   }
+
+   input {
+      :hover {
+         border-color: yellow;
+      }
+
+      &:focus {
+         outline: none;
+         box-shadow: 0px 0px 2px green;
+         border-color: green;
       }
    }
 

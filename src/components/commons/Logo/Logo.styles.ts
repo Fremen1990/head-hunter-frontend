@@ -16,7 +16,7 @@ export const LogoContainer = styled.div<Props>`
    }
 
    ${device.desktop} {
-      width: ${(props) => props.logoWidth || '50px'};
+      width: ${(props) => props.logoWidth || '89px'};
    }
 
    & img {

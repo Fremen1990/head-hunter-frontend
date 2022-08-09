@@ -9,7 +9,7 @@ export const RowContainer = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   margin: 5px 0;
 
   & p {
@@ -22,7 +22,7 @@ export const GitHubContainer = styled.div`
    display: flex;
    justify-content: center;
    align-items: center;
-   margin-bottom: 5px;
+   margin-bottom: 20px;
 
    & a {
       margin-left: 10px;
@@ -39,6 +39,8 @@ export const DescriptionContainer = styled.div`
 
    & p {
       color: ${appColors.iconColor};
+      margin-bottom: 10px;
+      text-align: justify;
 
       &::first-letter {
          text-transform: uppercase;
@@ -48,7 +50,8 @@ export const DescriptionContainer = styled.div`
 
 export const GithubIcon = styled(AiFillGithub)`
    color: ${appColors.linksColor};
-   font-size: 1.4rem;
+   font-size: 2.2rem;
+   margin-right: 6px;
    background-color: ${appColors.borderColor};
 `
 export const MailIcon = styled(IoMdMail)`

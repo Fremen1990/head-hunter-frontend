@@ -7,6 +7,7 @@ import { FilterSection } from '../components/recruiters/FilterSection/FilterSect
 import { useDispatch } from 'react-redux'
 import { fetchHrCandidates, fetchHrInterviews } from '../features/hr/hrActions'
 import { useAppSelector } from '../app/hooks'
+import { RootState } from '../app/store'
 
 export const HrPage = () => {
    const [available, setAvailable] = useState([])
