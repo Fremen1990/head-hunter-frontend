@@ -28,7 +28,7 @@ export const Header = () => {
       <HeaderContainer>
          <div>
             <Logo />
-            {currentSessionToken && <UserBox />}
+            <UserBox />
          </div>
       </HeaderContainer>
    )

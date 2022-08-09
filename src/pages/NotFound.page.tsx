@@ -7,7 +7,7 @@ export const NotFoundPage = () => {
    return (
       <>
          <Header />
-         <PageContainer>
+         <PageContainer style={{ height: '85vh' }}>
             <NotFoundBox description="Page not found" to="/" linkText="home" />
          </PageContainer>
       </>

@@ -10,11 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
    <React.StrictMode>
       <Provider store={store}>
-         <ToastContainer
-            position="top-center"
-            className="toast-container"
-            toastClassName="dark-toast"
-         />
+         <ToastContainer position="top-center" className="toast-container" />
          <GlobalStyles />
          <App />
       </Provider>

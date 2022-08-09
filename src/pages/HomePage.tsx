@@ -14,9 +14,7 @@ export const HomePage = () => {
    return (
       <>
          <Header />
-         <LoginPageContainer
-            style={role ? { height: '90vh' } : { height: '100vh' }}
-         >
+         <LoginPageContainer style={{ height: '90vh' }}>
             <HomeLogo>
                <img
                   src="/assets/home_logo/Mega.png"

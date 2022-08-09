@@ -11,7 +11,7 @@ import { useAppSelector } from '../../../app/hooks'
 import { RootState } from '../../../app/store'
 
 export const UserBox = () => {
-   const { role, userDetails } = useAppSelector(
+   const { role, userDetails, email } = useAppSelector(
       (state: RootState) => state.user
    )
    const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -29,7 +29,9 @@ export const UserBox = () => {
    return (
       <UserContainer isOpen={isOpen} ref={userMenu}>
          <div>
-            <NavLink to={'/user'}>
+            <NavLink
+               to={role === ('student' || 'admin' || 'hr') ? '/user' : ''}
+            >
                <div className={'avatar'}>
                   <img
                      src={
@@ -47,11 +49,12 @@ export const UserBox = () => {
                      {userDetails?.name} {userDetails?.lastName}
                   </>
                ) : role === 'hr' ? (
-                  'HR'
-               ) : (
+                  <p>{email}</p>
+               ) : role === 'admin' ? (
                   'Admin'
-               )}
+               ) : null}
             </p>
+
             <AiOutlineCaretDown onClick={() => setIsOpen(!isOpen)} />
          </div>
          {isOpen && (
