@@ -2,6 +2,7 @@ import { getUserProfileResponse, LoginUserResponse } from 'types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import {
    fetchUserByToken,
+   sendResetLink,
    userLogin,
    userLogout,
    userUpdateProfile,
@@ -76,6 +77,31 @@ export const userSlice = createSlice({
          state.isFetching = false
          state.isSuccess = true
          state.isError = false
+         state.errorMessage = ''
+         return state
+      },
+      // =============== SEND RESET LINK =============================
+      [sendResetLink.pending]: (state: RootState) => {
+         state.isFetching = true
+      },
+      [sendResetLink.rejected]: (
+         state: RootState,
+         { payload }: PayloadAction<{ message: string }>
+      ) => {
+         state.isFetching = false
+         state.isError = true
+         state.errorMessage = payload.message
+      },
+      [sendResetLink.fulfilled]: (
+         state,
+         { payload }: PayloadAction<{ status: string; email: string }>
+      ) => {
+         state.email = payload.email
+         // state.userDetails = payload.userDetails
+         state.isFetching = false
+         state.isSuccess = true
+         state.isError = false
+         state.status = payload.status
          state.errorMessage = ''
          return state
       },

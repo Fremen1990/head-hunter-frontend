@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { SyntheticEvent } from 'react'
 import { Form, FormContainer, Input, InputWrap } from './Form.styles'
 import { useAppSelector } from '../../app/hooks'
 import { UserState } from '../../features/user/userSlice'
@@ -11,7 +11,7 @@ import { sendResetLink } from '../../features/user/userActions'
 import { useNavigate } from 'react-router-dom'
 
 export const ForgotPasswordForm = () => {
-   const { isFetching, errorMessage } = useAppSelector(
+   const { isFetching, errorMessage, status } = useAppSelector(
       (state: UserState) => state.user
    )
 
@@ -26,19 +26,42 @@ export const ForgotPasswordForm = () => {
       },
    } = useForm()
 
+   // const onSubmit = async (data: any) => {
+   //    const { email } = data
+   //    if (email) {
+   //       // @ts-ignore
+   //       await dispatch(sendResetLink({ email }))
+   //       navigate('/auth/change-password')
+   //    } else {
+   //       console.log('User not found')
+   //    }
+   // }
+
+   // const onSubmit = async (data: any, e: any) => {
+   //    const {email} = await data
+   //    if(e.status === 404) {
+   //       console.log("dupa")
+   //    } else if (email) {
+   //       // @ts-ignore
+   //       await dispatch(sendResetLink({ email }))
+   //       navigate('/auth/change-password')
+   //    }
+   // }
+
    const onSubmit = async (data: any) => {
       const { email } = data
-      if (email) {
-         // @ts-ignore
-         await dispatch(sendResetLink({ email }))
-         navigate('/auth/change-password')
-      }
+      // @ts-ignore
+      dispatch(sendResetLink({ email }))
    }
 
    return (
       <FormContainer>
-         <Form onSubmit={handleSubmit(onSubmit)}>
+         <h1 style={{ fontSize: '38px', color: 'white' }}>
+            Potrzebny jest twój adres e-mail na który wyślemy token
+         </h1>
+         <Form onSubmit={handleSubmit(onSubmit)} noValidate={false}>
             {errorMessage && <p style={{ color: 'red' }}> {errorMessage}</p>}
+            {status && <p style={{ color: 'red' }}> {status}</p>}
             <InputWrap>
                <Input
                   err={email}
@@ -50,7 +73,7 @@ export const ForgotPasswordForm = () => {
                         message: `${description.form.messageEmail}`,
                      },
                   })}
-                  placeholder={description.inputsFields.emailPlaceholder}
+                  placeholder="Twój adres e-mail"
                />
             </InputWrap>
 

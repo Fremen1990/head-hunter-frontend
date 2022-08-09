@@ -5,7 +5,6 @@ import { UserState } from '../../features/user/userSlice'
 import { description } from '../../constants/description/description'
 import { Button } from '../commons/Button/Button'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { changePassword } from '../../features/user/userActions'
 

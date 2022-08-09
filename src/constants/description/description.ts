@@ -34,7 +34,7 @@ export const description = {
       logOut: 'wyloguj',
       logIn: 'Zaloguj się',
       changePwd: 'Zmień hasło',
-      sentResetToken: 'Utwórz reset token',
+      sentResetToken: 'Wyślij token na e-mail',
       account: 'konto',
       forgotPass: 'zapomniałeś hasła ?',
       addHr: 'dodaj nowego HR',
