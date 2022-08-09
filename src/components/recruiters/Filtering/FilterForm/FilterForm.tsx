@@ -120,6 +120,8 @@ export const FilterForm = (props: Props) => {
                      type="number"
                      value={filter.salary.min}
                      name={'min'}
+                     min={0}
+                     max={1000000}
                      onChange={(e) =>
                         dispatch({ type: 'SALARY', payload: e.target })
                      }
@@ -131,6 +133,8 @@ export const FilterForm = (props: Props) => {
                      type="number"
                      value={filter.salary.max}
                      name={'max'}
+                     min={0}
+                     max={1000000}
                      onChange={(e) =>
                         dispatch({ type: 'SALARY', payload: e.target })
                      }
@@ -170,6 +174,8 @@ export const FilterForm = (props: Props) => {
                   <input
                      type="number"
                      value={filter.experience.month}
+                     min={0}
+                     max={120}
                      onChange={(e) =>
                         dispatch({ type: 'EXPERIENCE', payload: e.target })
                      }
