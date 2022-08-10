@@ -6,31 +6,42 @@ import { BsSearch } from 'react-icons/bs'
 import { AiOutlineClose } from 'react-icons/ai'
 import { description } from '../../../constants/description/description'
 
-export const FilterSection = () => {
+interface Props {
+   setSearch: (value: string) => void
+}
+
+export const FilterSection = ({ setSearch }: Props) => {
    const [isOpen, setIsOpen] = useState(false)
-   const [search, setSearch] = useState('')
+   const [searchInput, setSearchInput] = useState('')
 
    isOpen
       ? (document.body.style.overflow = 'hidden')
       : (document.body.style.overflow = '')
 
-   const handleSearch = () => setSearch('')
-   const clearSearch = () => setSearch('')
+   const clearSearch = () => {
+      setSearchInput('')
+      setSearch('')
+   }
+
+   const handleChange = (value: string) => {
+      setSearchInput(value)
+      setSearch(value)
+   }
 
    return (
       <FilterSectionBox>
          <form>
             <label className={'search'} htmlFor={'search'}>
-               <BsSearch onClick={handleSearch} />
+               <BsSearch />
                <input
                   id={'search'}
                   type={'text'}
                   placeholder={description.inputsFields.filterPlaceholder}
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
+                  value={searchInput}
+                  onChange={(e) => handleChange(e.target.value)}
                />
                <div>
-                  {search.length > 0 && (
+                  {searchInput.length > 0 && (
                      <AiOutlineClose onClick={clearSearch} />
                   )}
                </div>
