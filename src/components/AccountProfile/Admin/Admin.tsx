@@ -10,25 +10,32 @@ import { useDispatch } from 'react-redux'
 import { getAllUsers } from '../../../features/admin/adminActions'
 import { useAppDispatch } from '../../../app/hooks'
 import { getStudents } from '../../../apiCalls'
+import styled from 'styled-components'
+
+const AdminBtnContainer = styled.div`
+   display: flex;
+`
 
 interface Props {
    children: React.ReactNode
 }
 
 export const Admin = ({ children }: Props) => {
-   const [hrFormVisible, setHrFormVisible] = useState<boolean>(false)
-   const [importStudentsVisible, setImportStudentsVisible] =
-      useState<boolean>(false)
-   const [importHrVisible, setImportHrVisible] = useState<boolean>(false)
+   const [adminFeatureOpen, setAdminFeatureOpen] = useState(0)
 
    const dispatch = useDispatch()
 
-   const getAllUsersHandler = async () => {
-      console.log('clok')
-      // const res = await getStudents()
-      // console.log(res)
-      dispatch(getAllUsers())
+   const handleToggleFeature = (featureNumber) => {
+      if (adminFeatureOpen === featureNumber) {
+         setAdminFeatureOpen(0)
+      } else {
+         setAdminFeatureOpen(featureNumber)
+      }
    }
+
+   // const getAllUsersHandler = async () => {
+   //    dispatch(getAllUsers())
+   // }
 
    return (
       <AccountContainer>
@@ -38,30 +45,51 @@ export const Admin = ({ children }: Props) => {
          />
          <AccountBox accountName={'Admin'} />
 
-         {/* HR FORM TO ADD HR */}
-         <Button
-            onClick={() => setHrFormVisible((prevState) => !hrFormVisible)}
-            buttonTitle={description.buttons.addHr}
-         />
-         {hrFormVisible ? <AddHrForm /> : null}
+         <AdminBtnContainer>
+            <Button
+               method={() => handleToggleFeature(1)}
+               buttonTitle="Dodaj nowego studenta"
+            />
+            <Button
+               method={() => handleToggleFeature(2)}
+               buttonTitle={description.buttons.addHr}
+            />
 
-         {/* IMPORT STUDENTS */}
-         <Button
-            onClick={() =>
-               setImportStudentsVisible((prevState) => !importStudentsVisible)
-            }
-            buttonTitle={description.buttons.importStudents}
-         />
-         {importStudentsVisible ? <ImportStudents /> : null}
+            <Button
+               method={() => handleToggleFeature(3)}
+               buttonTitle={description.buttons.importStudents}
+            />
 
-         {/* IMPORT HR */}
-         <Button
-            onClick={() => setImportHrVisible((prevState) => !importHrVisible)}
-            buttonTitle={description.buttons.importHr}
-         />
-         {importHrVisible ? <ImportHr /> : null}
+            <Button
+               method={() => handleToggleFeature(4)}
+               buttonTitle={description.buttons.importHr}
+            />
 
-         <Button method={getAllUsersHandler} buttonTitle="Get All Users" />
+            <Button
+               method={() => handleToggleFeature(5)}
+               buttonTitle="Pokaż wszystkich użytkowników"
+            />
+            <Button
+               method={() => handleToggleFeature(6)}
+               buttonTitle="Pokaż wszystkich studentów"
+            />
+            <Button
+               method={() => handleToggleFeature(7)}
+               buttonTitle="Pokasz wszystkich HR"
+            />
+            <Button
+               method={() => handleToggleFeature(7)}
+               buttonTitle="Dodaj 100 testowych studentów"
+            />
+         </AdminBtnContainer>
+
+         {adminFeatureOpen === 1 ? <AddHrForm /> : null}
+         {adminFeatureOpen === 2 ? <AddHrForm /> : null}
+         {adminFeatureOpen === 3 ? <ImportStudents /> : null}
+         {adminFeatureOpen === 4 ? <ImportHr /> : null}
+         {adminFeatureOpen === 5 ? <ImportHr /> : null}
+         {adminFeatureOpen === 6 ? <ImportHr /> : null}
+         {adminFeatureOpen === 7 ? <ImportHr /> : null}
 
          {children}
       </AccountContainer>

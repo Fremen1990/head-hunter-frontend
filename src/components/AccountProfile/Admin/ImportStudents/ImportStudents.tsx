@@ -1,109 +1,93 @@
 import styled from 'styled-components'
 import React, { useState } from 'react'
-import { getStudents, importStudentsCall } from '../../../../apiCalls'
-import { useDispatch } from 'react-redux'
-import { uploadFileCall } from '../../../../features/admin/adminActions'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+   importStudentsCall,
+   uploadFileCall,
+} from '../../../../features/admin/adminActions'
+import { Button } from '../../../commons/Button/Button'
+import { UploadFileDataTable } from '../UploadFileDataTable/UploadFileDataTable'
+import { clearUploadFile } from '../../../../features/admin/adminSlice'
+import { RootState } from '../../../../app/store'
+import { ScrollingExample } from '../MessageModal/ModalChakra'
+import { MessageModal } from '../MessageModal/MessageModal'
+
+const ImportButtonsContainer = styled.div`
+   display: flex;
+   gap: 50px;
+   align-items: center;
+   justify-content: center;
+   padding: 20px;
+   width: 50%;
+`
+
+const ImportData = styled.div`
+   display: flex;
+`
 
 export const ImportStudents = () => {
-   // -------- Beautyful styling :D  START-----------
-   const TwoCollumnsSplit = styled.div`
-      display: grid;
-      grid-template-columns: 50% 50%;
-      padding: 30px;
-      //background-color: #27292a;
-   `
-   const ListItem = styled.div`
-      font-size: 20px;
-      padding: 20px;
-   `
-   // -------- Beautyful styling :D END-----------
-
-   // --------------------Upload file START ----------------------
-   const [uploadFile, setUploadFile] = useState('')
-   const uploadFileHandler = (e: any) => {
-      setUploadFile(e.target.files[0])
-   }
-   // --------------------Upload file END ----------------------
-
-   // ----------------------STUDENTS START ------------------------
-
-   // upload students to be accepted by admin
-   const [uploadStudentsJson, setUploadStudentsJson] = useState([])
-   // import students to DB
-   const [importStudentsStatus, setImportStudentsStatus] = useState({})
-   // List students to be accepted by admin
-   const [getAllStudentsJson, setGetAllStudentsJson] = useState([])
-
    const dispatch = useDispatch()
+   const hiddenFileInput = React.useRef(null)
+   const [uploadFileData, setUploadFileData] = useState(null)
+   const [messageModalVisible, setMessageModalVisible] = useState(false)
 
-   const sendStudentsFileHandler = async () => {
+   const uploadFileHandler = async (e: any) => {
+      await setUploadFileData(null)
       const data = await new FormData()
-      data.append('usersImport', uploadFile)
-      console.log('Uplaod file', uploadFile)
-      console.log('data form', data)
-
-      const res = dispatch(await uploadFileCall(data))
-      console.log('RES', res)
-      // const response = await uploadFileCall(data)
-      // setUploadStudentsJson(response)
+      await data.append('usersImport', e.target.files[0])
+      const res = await dispatch(await uploadFileCall(data))
+      await setUploadFileData(res.payload)
    }
 
+   const handleClick = (e: React.MouseEvent<HTMLButtonElement | null>) => {
+      hiddenFileInput.current.click()
+   }
    const importStudentsHandler = async () => {
-      const reponse = await importStudentsCall(uploadStudentsJson)
-      setUploadStudentsJson([])
-      setImportStudentsStatus(reponse)
+      await dispatch(await importStudentsCall(uploadFileData))
+      setUploadFileData(null)
+      setMessageModalVisible(true)
+   }
+   const clearImport = async () => {
+      await setUploadFileData(null)
+      await dispatch(clearUploadFile([]))
    }
 
-   const getStudentsHandler = async () => {
-      const response = await getStudents()
-      setGetAllStudentsJson(response)
-   }
-   // ----------------------STUDENTS END ------------------------
    return (
-      <div>
-         <h2>STUDENTS</h2>
-
-         <ul>
-            <ListItem>
-               1.) Choole File: <br />
-               <input
-                  style={{ marginLeft: 30 }}
-                  type="file"
-                  name="file"
-                  onChange={uploadFileHandler}
+      <>
+         <ImportButtonsContainer>
+            {uploadFileData === null ? (
+               <Button
+                  method={handleClick}
+                  buttonTitle="Wczytaj plik CSV"
+                  style={{ background: 'green' }}
                />
-            </ListItem>
+            ) : null}
+            <input
+               style={{ display: 'none' }}
+               type="file"
+               id="fileInput"
+               name="file"
+               ref={hiddenFileInput}
+               onChange={uploadFileHandler}
+            />
 
-            <ListItem>
-               2.) Send File: <br />
-               <button
-                  style={{ marginLeft: 30, padding: 8 }}
-                  onClick={sendStudentsFileHandler}
-               >
-                  Upload students import file
-               </button>
-            </ListItem>
+            {uploadFileData !== null ? (
+               <Button
+                  method={importStudentsHandler}
+                  buttonTitle="Zaimportuj studentów do Bazy"
+                  style={{ background: 'green' }}
+               />
+            ) : null}
 
-            <ListItem>
-               3.) Click here to import students to Database: <br />
-               <button
-                  style={{ marginLeft: 30, padding: 8 }}
-                  onClick={importStudentsHandler}
-               >
-                  Import students to database{' '}
-               </button>
-            </ListItem>
+            {uploadFileData !== null ? (
+               <Button method={clearImport} buttonTitle="Wyczyść" />
+            ) : null}
+         </ImportButtonsContainer>
 
-            <ListItem>
-               4.) Click here see all students in Database: <br />
-               <button
-                  style={{ marginLeft: 30, padding: 8 }}
-                  onClick={getStudentsHandler}
-               >
-                  Get All Students
-               </button>
-            </ListItem>
-         </ul>
-      </div>
+         {messageModalVisible && (
+            <MessageModal setMessageModalVisible={setMessageModalVisible} />
+         )}
+         <UploadFileDataTable uploadFileData={uploadFileData} />
+      </>
    )
 }
