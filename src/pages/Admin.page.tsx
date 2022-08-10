@@ -15,13 +15,11 @@ import {
 import ReactJson from 'react-json-view'
 import styled from 'styled-components'
 
-export const AdminPage = () => {
-   return (
-      <>
-         <Header />
-         <PageContainer>
-            <Admin />
-         </PageContainer>
-      </>
-   )
-}
+export const AdminPage = () => (
+   <>
+      <Header />
+      <PageContainer>
+         <Admin />
+      </PageContainer>
+   </>
+)
