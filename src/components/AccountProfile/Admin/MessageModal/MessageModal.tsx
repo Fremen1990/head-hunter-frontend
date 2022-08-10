@@ -1,15 +1,5 @@
 import React from 'react'
 import { Button } from '../../../commons/Button/Button'
-import { useDisclosure } from '@chakra-ui/react'
-import { Modal, Radio, RadioGroup, Stack } from '@mui/material'
-import {
-   ModalBody,
-   ModalCloseButton,
-   ModalContent,
-   ModalFooter,
-   ModalHeader,
-   ModalOverlay,
-} from '@chakra-ui/modal'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../../app/store'
@@ -27,9 +17,11 @@ interface Props {
    setMessageModalVisible: () => void
 }
 
-const MessageModalContainer = styled.div`
+export const MessageModalContainer = styled.div`
+   padding: 20px;
+   top: 25vh;
    width: 25%;
-   max-height: 60vh;
+   max-height: 70vh;
    overflow: scroll;
    overflow-x: hidden;
    position: absolute;
@@ -40,27 +32,28 @@ const MessageModalContainer = styled.div`
    text-align: center;
 `
 
-const Heading = styled.h1`
+export const Heading = styled.h1`
    color: white;
    font-size: 24px;
 `
 
-const MessageTitle = styled.h2`
+export const MessageTitle = styled.h2`
    color: ${(props) => (props.color === 'green' ? 'green' : 'white')};
    font-size: 14px;
    margin: 10px;
 `
 
-const MessageNumber = styled(MessageTitle)`
+export const MessageNumber = styled(MessageTitle)`
    color: ${(props) => (props.color === 'red' ? 'red' : 'green')};
    display: inline;
 `
 
-const UsersList = styled.li`
+export const UsersList = styled.li`
+   list-style-type: none;
    font-size: 12px;
 `
 
-const ButtonOK = styled(Button)`
+export const ButtonOK = styled(Button)`
    margin: 30px;
 `
 

@@ -8,9 +8,10 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import { UploadFileFailedInterface, UploadFileResponseInterface } from 'types'
-import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
+import { FilterSectionBox } from '../../../recruiters/FilterSection/FilterSection.styles'
+import { BsSearch } from 'react-icons/bs'
+import { AiOutlineClose } from 'react-icons/ai'
 
 interface Props {
    uploadFileData:
@@ -19,7 +20,7 @@ interface Props {
       | null
 }
 
-export const UploadFileDataTable = ({ uploadFileData }: Props) => {
+export const UploadStudentsFileDataTable = ({ uploadFileData }: Props) => {
    const [search, setSearch] = useState('')
 
    const columns: string[] = [
@@ -32,6 +33,10 @@ export const UploadFileDataTable = ({ uploadFileData }: Props) => {
 
    const handleInputChange = (e) => {
       setSearch(e.target.value)
+   }
+
+   const clearSearch = () => {
+      setSearch('')
    }
 
    return (
@@ -47,13 +52,26 @@ export const UploadFileDataTable = ({ uploadFileData }: Props) => {
                      padding: '10px',
                   }}
                >
-                  <label style={{ padding: '20px', fontSize: 12 }}>
-                     <p>Search by email:</p>
-                     <input
-                        type="text"
-                        style={{ background: 'white' }}
-                        onChange={handleInputChange}
-                     />
+                  <label style={{ paddingBottom: '20px' }}>
+                     <FilterSectionBox>
+                        <form>
+                           <h2>Szukaj adresie email:</h2>
+                           <label className={'search'}>
+                              <BsSearch />
+                              <input
+                                 onChange={handleInputChange}
+                                 type={'text'}
+                                 value={search}
+                                 placeholder="Email address"
+                              />
+                              <div>
+                                 {search.length > 0 && (
+                                    <AiOutlineClose onClick={clearSearch} />
+                                 )}
+                              </div>
+                           </label>
+                        </form>
+                     </FilterSectionBox>
                   </label>
                   <Paper sx={{ width: '1000px', overflow: 'hidden' }}>
                      <TableContainer sx={{ maxHeight: 800 }}>
@@ -127,7 +145,7 @@ export const UploadFileDataTable = ({ uploadFileData }: Props) => {
                                              {row.bonusProjectUrls
                                                 .split(',')
                                                 ?.map((url, i) => (
-                                                   <>
+                                                   <div key={i}>
                                                       <a
                                                          href={url.replace(
                                                             '"',
@@ -143,7 +161,7 @@ export const UploadFileDataTable = ({ uploadFileData }: Props) => {
                                                          {url.replace('"', '')}
                                                       </a>
                                                       <br />
-                                                   </>
+                                                   </div>
                                                 ))}
                                           </TableCell>
                                        </TableRow>

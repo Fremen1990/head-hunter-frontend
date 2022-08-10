@@ -10,6 +10,10 @@ import styled from 'styled-components'
 import { AddStudentForm } from './AddStudentForm/AddStudentForm'
 import { AddHrForm } from './AddHrForm/AddHrForm'
 import { ImportHr } from './ImportHr/ImportHr'
+import { GetAllUsers } from './GetAllUsers/GetAllUsers'
+import { GetAllStudents } from './GetAllStudents/GetAllStudents'
+import { GetAllHr } from './GetAllHr/GetAllHr'
+import { GenerateTestUsers } from './ImportTestStudents/GenerateTestUsers'
 
 const AdminBtnContainer = styled.div`
    display: flex;
@@ -22,8 +26,6 @@ interface Props {
 export const Admin = ({ children }: Props) => {
    const [adminFeatureOpen, setAdminFeatureOpen] = useState(0)
 
-   const dispatch = useDispatch()
-
    const handleToggleFeature = (featureNumber) => {
       if (adminFeatureOpen === featureNumber) {
          setAdminFeatureOpen(0)
@@ -31,10 +33,6 @@ export const Admin = ({ children }: Props) => {
          setAdminFeatureOpen(featureNumber)
       }
    }
-
-   // const getAllUsersHandler = async () => {
-   //    dispatch(getAllUsers())
-   // }
 
    return (
       <AccountContainer>
@@ -77,7 +75,7 @@ export const Admin = ({ children }: Props) => {
                buttonTitle="Pokasz wszystkich HR"
             />
             <Button
-               method={() => handleToggleFeature(7)}
+               method={() => handleToggleFeature(8)}
                buttonTitle="Dodaj 100 testowych studentów"
             />
          </AdminBtnContainer>
@@ -86,9 +84,10 @@ export const Admin = ({ children }: Props) => {
          {adminFeatureOpen === 2 ? <AddHrForm /> : null}
          {adminFeatureOpen === 3 ? <ImportStudents /> : null}
          {adminFeatureOpen === 4 ? <ImportHr /> : null}
-         {adminFeatureOpen === 5 ? <ImportHr /> : null}
-         {adminFeatureOpen === 6 ? <ImportHr /> : null}
-         {adminFeatureOpen === 7 ? <ImportHr /> : null}
+         {adminFeatureOpen === 5 ? <GetAllUsers /> : null}
+         {adminFeatureOpen === 6 ? <GetAllStudents /> : null}
+         {adminFeatureOpen === 7 ? <GetAllHr /> : null}
+         {adminFeatureOpen === 8 ? <GenerateTestUsers /> : null}
 
          {children}
       </AccountContainer>

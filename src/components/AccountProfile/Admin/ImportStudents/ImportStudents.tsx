@@ -1,29 +1,19 @@
-import styled from 'styled-components'
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import {
    importStudentsCall,
    uploadFileCall,
 } from '../../../../features/admin/adminActions'
 import { Button } from '../../../commons/Button/Button'
-import { UploadFileDataTable } from '../UploadFileDataTable/UploadFileDataTable'
 import { clearUploadFile } from '../../../../features/admin/adminSlice'
-import { RootState } from '../../../../app/store'
-import { ScrollingExample } from '../MessageModal/ModalChakra'
 import { MessageModal } from '../MessageModal/MessageModal'
-
-const ImportButtonsContainer = styled.div`
-   display: flex;
-   gap: 50px;
-   align-items: center;
-   justify-content: center;
-   padding: 20px;
-   width: 50%;
-`
-
-const ImportData = styled.div`
-   display: flex;
-`
+import { FormTitle } from '../AddHrForm/AddHrForm.styles'
+import {
+   ImportButton,
+   ImportButtonsContainer,
+   ImportContainer,
+} from './ImportStudents.styles'
+import { UploadStudentsFileDataTable } from './UploadStudentsFileDataTable'
 
 export const ImportStudents = () => {
    const dispatch = useDispatch()
@@ -37,6 +27,9 @@ export const ImportStudents = () => {
       await data.append('usersImport', e.target.files[0])
       const res = await dispatch(await uploadFileCall(data))
       await setUploadFileData(res.payload)
+
+      console.log('Wczytaj CSV clicked')
+      console.log('Upload file data', uploadFileData)
    }
 
    const handleClick = (e: React.MouseEvent<HTMLButtonElement | null>) => {
@@ -54,40 +47,42 @@ export const ImportStudents = () => {
 
    return (
       <>
-         <ImportButtonsContainer>
-            {uploadFileData === null ? (
-               <Button
-                  method={handleClick}
-                  buttonTitle="Wczytaj plik CSV"
-                  style={{ background: 'green' }}
+         <ImportContainer>
+            <FormTitle>Zaimportuj Studentów</FormTitle>
+            <ImportButtonsContainer>
+               {uploadFileData === null ? (
+                  <ImportButton
+                     method={handleClick}
+                     buttonTitle="Wczytaj plik CSV"
+                  />
+               ) : null}
+               <input
+                  style={{ display: 'none' }}
+                  type="file"
+                  id="fileInput"
+                  name="file"
+                  ref={hiddenFileInput}
+                  onChange={uploadFileHandler}
                />
-            ) : null}
-            <input
-               style={{ display: 'none' }}
-               type="file"
-               id="fileInput"
-               name="file"
-               ref={hiddenFileInput}
-               onChange={uploadFileHandler}
-            />
 
-            {uploadFileData !== null ? (
-               <Button
-                  method={importStudentsHandler}
-                  buttonTitle="Zaimportuj studentów do Bazy"
-                  style={{ background: 'green' }}
-               />
-            ) : null}
+               {uploadFileData !== null ? (
+                  <Button
+                     method={importStudentsHandler}
+                     buttonTitle="Zaimportuj studentów do Bazy"
+                     style={{ background: 'green' }}
+                  />
+               ) : null}
 
-            {uploadFileData !== null ? (
-               <Button method={clearImport} buttonTitle="Wyczyść" />
-            ) : null}
-         </ImportButtonsContainer>
+               {uploadFileData !== null ? (
+                  <Button method={clearImport} buttonTitle="Wyczyść" />
+               ) : null}
+            </ImportButtonsContainer>
+         </ImportContainer>
 
          {messageModalVisible && (
             <MessageModal setMessageModalVisible={setMessageModalVisible} />
          )}
-         <UploadFileDataTable uploadFileData={uploadFileData} />
+         <UploadStudentsFileDataTable uploadFileData={uploadFileData} />
       </>
    )
 }

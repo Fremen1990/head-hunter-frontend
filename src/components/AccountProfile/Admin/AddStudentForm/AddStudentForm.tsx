@@ -1,6 +1,5 @@
 import React, { ChangeEvent, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { emailValidate } from '../../../../constants/patterns/pattern_validation'
 import { description } from '../../../../constants/description/description'
 import {
    Form,
@@ -12,7 +11,6 @@ import {
    LabelScoreWrap,
 } from './AddStudentForm.styles'
 import { Button } from '../../../commons/Button/Button'
-import { RiCloseCircleFill as CloseIcon } from 'react-icons/ri'
 import { useDispatch } from 'react-redux'
 import { addOneStudent } from '../../../../features/admin/adminActions'
 
@@ -67,21 +65,14 @@ export const AddStudentForm = () => {
             <FormTitle>*Adres e-mail</FormTitle>
             <InputWrap>
                <Input
+                  placeholder="student@domain.com"
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
                      updateForm('email', e.target.value)
                   }
                   value={form.email}
-                  err={email}
                   type="email"
                   title="email"
                />
-               <div>
-                  {email && (
-                     <div>
-                        <CloseIcon className="close-icon" /> {email.message}
-                     </div>
-                  )}
-               </div>
             </InputWrap>
          </Label>
 
@@ -89,6 +80,7 @@ export const AddStudentForm = () => {
             <p>*Hasło</p>
             <InputWrap>
                <Input
+                  placeholder="StrongPassword1234!@#$"
                   value={form.pwd}
                   err={fullName}
                   type="text"
@@ -97,13 +89,6 @@ export const AddStudentForm = () => {
                      updateForm('pwd', e.target.value)
                   }
                />
-               <div>
-                  {fullName && (
-                     <div>
-                        <CloseIcon className="close-icon" /> {fullName.message}
-                     </div>
-                  )}
-               </div>
             </InputWrap>
          </Label>
 
@@ -111,7 +96,7 @@ export const AddStudentForm = () => {
             <p>*Rola</p>
             <InputWrap>
                <Input
-                  value={form.role}
+                  value="student"
                   title="role"
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
                      updateForm('role', e.target.value)
@@ -120,13 +105,6 @@ export const AddStudentForm = () => {
                   type="text"
                   placeholder="student"
                />
-               <div>
-                  {fullName && (
-                     <div>
-                        <CloseIcon className="close-icon" /> {fullName.message}
-                     </div>
-                  )}
-               </div>
             </InputWrap>
          </Label>
 
@@ -145,14 +123,6 @@ export const AddStudentForm = () => {
                      min="0"
                      max="5"
                   />
-                  <div>
-                     {maxReservedStudents && (
-                        <div>
-                           <CloseIcon className="close-icon" />{' '}
-                           {maxReservedStudents.message}
-                        </div>
-                     )}
-                  </div>
                </InputWrap>
             </LabelScore>
 
@@ -170,14 +140,6 @@ export const AddStudentForm = () => {
                      min="0"
                      max="5"
                   />
-                  <div>
-                     {maxReservedStudents && (
-                        <div>
-                           <CloseIcon className="close-icon" />{' '}
-                           {maxReservedStudents.message}
-                        </div>
-                     )}
-                  </div>
                </InputWrap>
             </LabelScore>
 
@@ -195,14 +157,6 @@ export const AddStudentForm = () => {
                      min="0"
                      max="5"
                   />
-                  <div>
-                     {maxReservedStudents && (
-                        <div>
-                           <CloseIcon className="close-icon" />{' '}
-                           {maxReservedStudents.message}
-                        </div>
-                     )}
-                  </div>
                </InputWrap>
             </LabelScore>
 
@@ -220,14 +174,6 @@ export const AddStudentForm = () => {
                      min="0"
                      max="5"
                   />
-                  <div>
-                     {maxReservedStudents && (
-                        <div>
-                           <CloseIcon className="close-icon" />{' '}
-                           {maxReservedStudents.message}
-                        </div>
-                     )}
-                  </div>
                </InputWrap>
             </LabelScore>
          </LabelScoreWrap>
@@ -236,6 +182,7 @@ export const AddStudentForm = () => {
             <p>*Bonus project URLs</p>
             <InputWrap>
                <Input
+                  placeholder="https://github.com/Fremen1990/head-hunter-frontend"
                   value={form.bonusProjectUrls}
                   title="bonusProjectUrls"
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -244,13 +191,6 @@ export const AddStudentForm = () => {
                   err={fullName}
                   type="text"
                />
-               <div>
-                  {fullName && (
-                     <div>
-                        <CloseIcon className="close-icon" /> {fullName.message}
-                     </div>
-                  )}
-               </div>
             </InputWrap>
          </Label>
          <Button buttonTitle={description.buttons.addStudent} />

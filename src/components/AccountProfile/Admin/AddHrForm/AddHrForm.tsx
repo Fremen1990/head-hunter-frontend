@@ -1,6 +1,5 @@
 import React, { ChangeEvent, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { emailValidate } from '../../../../constants/patterns/pattern_validation'
 import { description } from '../../../../constants/description/description'
 import {
    Form,
@@ -11,12 +10,8 @@ import {
    LabelScore,
 } from './AddHrForm.styles'
 import { Button } from '../../../commons/Button/Button'
-import { RiCloseCircleFill as CloseIcon } from 'react-icons/ri'
 import { useDispatch } from 'react-redux'
-import {
-   addOneHr,
-   addOneStudent,
-} from '../../../../features/admin/adminActions'
+import { addOneHr } from '../../../../features/admin/adminActions'
 
 export const AddHrForm = () => {
    const { handleSubmit } = useForm<any>()
@@ -39,8 +34,6 @@ export const AddHrForm = () => {
          [key]: value,
       }))
    }
-
-   console.log('form', form)
 
    const sendForm = async () => {
       await dispatch(await addOneHr(form))

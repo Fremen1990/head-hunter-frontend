@@ -74,7 +74,6 @@ export const adminSlice = createSlice({
             UploadFileResponseInterface | UploadFileFailedInterface
          >
       ) => {
-         console.log('FULLFIELD PAYLOAD', payload.data)
          state.uploadedHrMessage = payload
          state.isFetching = false
          state.isSuccess = true
@@ -90,7 +89,6 @@ export const adminSlice = createSlice({
          state: AdminState,
          { payload }: PayloadAction<{ error: string }>
       ) => {
-         console.log('REJECT PAYLOAD')
          state.isFetching = false
          state.isError = true
          state.errorMessage = payload.error
@@ -103,7 +101,6 @@ export const adminSlice = createSlice({
             UploadFileResponseInterface | UploadFileFailedInterface
          >
       ) => {
-         console.log('FULLFIELD PAYLOAD', payload.data)
          state.uploadedHrMessage = payload
          state.isFetching = false
          state.isSuccess = true
@@ -119,7 +116,6 @@ export const adminSlice = createSlice({
          state: AdminState,
          { payload }: PayloadAction<{ error: string }>
       ) => {
-         console.log('REJECT PAYLOAD')
          state.isFetching = false
          state.isError = true
          state.errorMessage = payload.error
@@ -147,7 +143,6 @@ export const adminSlice = createSlice({
          state: AdminState,
          { payload }: PayloadAction<{ error: string }>
       ) => {
-         console.log('REJECT PAYLOAD')
          state.isFetching = false
          state.isError = true
          state.errorMessage = payload.error
@@ -160,7 +155,6 @@ export const adminSlice = createSlice({
             UploadFileResponseInterface | UploadFileFailedInterface
          >
       ) => {
-         console.log('FULLFIELD PAYLOAD', payload.data)
          state.message = payload
          state.isFetching = false
          state.isSuccess = true
@@ -176,7 +170,6 @@ export const adminSlice = createSlice({
          state: AdminState,
          { payload }: PayloadAction<{ error: string }>
       ) => {
-         console.log('REJECT PAYLOAD')
          state.isFetching = false
          state.isError = true
          state.errorMessage = payload.error
@@ -189,7 +182,6 @@ export const adminSlice = createSlice({
             UploadFileResponseInterface | UploadFileFailedInterface
          >
       ) => {
-         console.log('FULLFIELD PAYLOAD', payload.data)
          state.message = payload
          state.isFetching = false
          state.isSuccess = true
@@ -205,7 +197,6 @@ export const adminSlice = createSlice({
          state: AdminState,
          { payload }: PayloadAction<{ error: string }>
       ) => {
-         console.log('REJECT PAYLOAD')
          state.isFetching = false
          state.isError = true
          state.errorMessage = payload.error
@@ -214,7 +205,6 @@ export const adminSlice = createSlice({
          state: AdminState,
          { payload }: PayloadAction<UserType[]>
       ) => {
-         console.log('FULLFIELD PAYLOAD', payload)
          state.allUsers = payload
          state.isFetching = false
          state.isSuccess = true
