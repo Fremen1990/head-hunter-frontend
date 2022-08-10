@@ -13,9 +13,10 @@ import { DescriptionCandidateCvBox } from './DescriptionCandidateCvBox/Descripti
 import { RatingCandidateCvBox } from './RatingCandidateCvBox/RatingCandidateCvBox'
 import { ExpectationCandidateBox } from './ExpectationCandidateBox/ExpectationCandidateBox'
 import { LinksCandidateBox } from './LinksCadidateBox/LinksCandidateBox'
+import { UserType } from 'types'
 
 interface Props {
-   candidate: any
+   candidate: UserType
 }
 
 export const CandidateCv = ({ candidate }: Props) => {
