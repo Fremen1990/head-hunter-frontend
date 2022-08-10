@@ -3,48 +3,38 @@ import { FilterSectionBox } from './FilterSection.styles'
 import { Button } from '../../commons/Button/Button'
 import { Filtering } from '../Filtering/Filtering'
 import { BsSearch } from 'react-icons/bs'
-import { AiOutlineClose } from 'react-icons/ai'
 import { description } from '../../../constants/description/description'
+import { Search } from '../../commons/modals/Search/Serarch'
 
 interface Props {
-   setSearch: (value: string) => void
+   students: []
+   refreshStudents: () => void
+   layout: string
 }
 
-export const FilterSection = ({ setSearch }: Props) => {
+export const FilterSection = ({ students, refreshStudents, layout }: Props) => {
    const [isOpen, setIsOpen] = useState(false)
-   const [searchInput, setSearchInput] = useState('')
+   const [openModal, setOpenModal] = useState(false)
 
-   isOpen
+   isOpen || openModal
       ? (document.body.style.overflow = 'hidden')
       : (document.body.style.overflow = '')
-
-   const clearSearch = () => {
-      setSearchInput('')
-      setSearch('')
-   }
-
-   const handleChange = (value: string) => {
-      setSearchInput(value)
-      setSearch(value)
-   }
 
    return (
       <FilterSectionBox>
          <form>
-            <label className={'search'} htmlFor={'search'}>
+            <label
+               onClick={() => setOpenModal(true)}
+               className={'search'}
+               htmlFor={'search'}
+            >
                <BsSearch />
                <input
                   id={'search'}
                   type={'text'}
                   placeholder={description.inputsFields.filterPlaceholder}
-                  value={searchInput}
-                  onChange={(e) => handleChange(e.target.value)}
+                  disabled
                />
-               <div>
-                  {searchInput.length > 0 && (
-                     <AiOutlineClose onClick={clearSearch} />
-                  )}
-               </div>
             </label>
          </form>
          <Button
@@ -52,6 +42,14 @@ export const FilterSection = ({ setSearch }: Props) => {
             buttonTitle={description.buttons.filter}
          />
          {isOpen && <Filtering hiddenModal={() => setIsOpen(!isOpen)} />}
+         {openModal && (
+            <Search
+               students={students}
+               closeSearchBox={setOpenModal}
+               refreshStudents={refreshStudents}
+               layout={layout}
+            />
+         )}
       </FilterSectionBox>
    )
 }

@@ -14,7 +14,7 @@ export const FilterSectionBox = styled.div`
    & form {
       background-color: transparent;
 
-      & label.search {
+      & label {
          display: flex;
          align-items: center;
          border: 1px solid rgba(255, 255, 255, 0.2);
@@ -48,5 +48,6 @@ export const FilterSectionBox = styled.div`
       border: none;
       background-color: transparent;
       border-radius: 4px;
+      cursor: pointer;
    }
 `
