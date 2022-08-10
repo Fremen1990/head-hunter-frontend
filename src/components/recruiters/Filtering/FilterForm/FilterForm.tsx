@@ -4,13 +4,13 @@ import { OneStarInput } from './OneInput/OneStarInput'
 import { OneButtonInput } from './OneInput/OneButtonInput'
 import { filterReducer } from '../../../../utils/filterReducer'
 import {
-   activityAssessment,
-   codeEvaluation,
-   courseEvaluation,
+   courseEngagement,
+   projectDegree,
+   courseCompletion,
+   teamProjectDegree,
    initialState,
-   jobEvaluation,
-   typeOfContract,
-   typeOfWork,
+   expectedContractType,
+   expectedTypeOfWork,
 } from '../constFilterElement/filterElement'
 import { description } from '../../../../constants/description/description'
 import { Button } from '../../../commons/Button/Button'
@@ -25,6 +25,7 @@ export const FilterForm = (props: Props) => {
    const [filter, dispatch] = useReducer(filterReducer, initialState)
 
    const handleSubmit = (e: SyntheticEvent) => {
+      console.log(filter)
       e.preventDefault()
    }
 
@@ -46,7 +47,7 @@ export const FilterForm = (props: Props) => {
          <Form onSubmit={handleSubmit}>
             <div>
                <p>{describe.courseEvaluation}</p>
-               {courseEvaluation.map((el) => (
+               {courseCompletion.map((el) => (
                   <OneStarInput
                      key={`${el.name}${el.value}`}
                      onChange={dispatch}
@@ -57,7 +58,7 @@ export const FilterForm = (props: Props) => {
             </div>
             <div>
                <p>{describe.activityAssessment}</p>
-               {activityAssessment.map((el) => (
+               {courseEngagement.map((el) => (
                   <OneStarInput
                      key={`${el.name}${el.value}`}
                      onChange={dispatch}
@@ -68,7 +69,7 @@ export const FilterForm = (props: Props) => {
             </div>
             <div>
                <p>{describe.codeEvaluation}</p>
-               {codeEvaluation.map((el) => (
+               {projectDegree.map((el) => (
                   <OneStarInput
                      key={`${el.name}${el.value}`}
                      onChange={dispatch}
@@ -79,7 +80,7 @@ export const FilterForm = (props: Props) => {
             </div>
             <div>
                <p>{describe.jobEvaluation}</p>
-               {jobEvaluation.map((el) => (
+               {teamProjectDegree.map((el) => (
                   <OneStarInput
                      key={`${el.name}${el.value}`}
                      onChange={dispatch}
@@ -90,7 +91,7 @@ export const FilterForm = (props: Props) => {
             </div>
             <div>
                <p>{describe.typeOfWork}</p>
-               {typeOfWork.map((el) => (
+               {expectedTypeOfWork.map((el) => (
                   <OneButtonInput
                      key={`${el.name}${el.value}`}
                      onChange={dispatch}
@@ -102,7 +103,7 @@ export const FilterForm = (props: Props) => {
             </div>
             <div>
                <p>{describe.typeOfContract}</p>
-               {typeOfContract.map((el) => (
+               {expectedContractType.map((el) => (
                   <OneButtonInput
                      key={`${el.name}${el.value}`}
                      onChange={dispatch}
@@ -118,12 +119,12 @@ export const FilterForm = (props: Props) => {
                   od:
                   <input
                      type="number"
-                     value={filter.salary.min}
+                     value={filter.expectedSalary.min}
                      name={'min'}
                      min={0}
                      max={1000000}
                      onChange={(e) =>
-                        dispatch({ type: 'SALARY', payload: e.target })
+                        dispatch({ type: 'EXPECTEDSALARY', payload: e.target })
                      }
                   />
                </SalaryInput>
@@ -131,12 +132,12 @@ export const FilterForm = (props: Props) => {
                   do:
                   <input
                      type="number"
-                     value={filter.salary.max}
+                     value={filter.expectedSalary.max}
                      name={'max'}
                      min={0}
                      max={1000000}
                      onChange={(e) =>
-                        dispatch({ type: 'SALARY', payload: e.target })
+                        dispatch({ type: 'EXPECTEDSALARY', payload: e.target })
                      }
                   />
                </SalaryInput>
@@ -148,10 +149,13 @@ export const FilterForm = (props: Props) => {
                      Tak
                      <input
                         type={'radio'}
-                        name={'internship'}
+                        name={'canTakeApprenticeship'}
                         value={'yes'}
                         onChange={(e) =>
-                           dispatch({ type: 'INTERNSHIP', payload: e.target })
+                           dispatch({
+                              type: 'CANTAKEAPPRENTICESHIP',
+                              payload: e.target,
+                           })
                         }
                      />
                   </label>
@@ -159,10 +163,13 @@ export const FilterForm = (props: Props) => {
                      Nie
                      <input
                         type="radio"
-                        name="internship"
+                        name="canTakeApprenticeship"
                         value="no"
                         onChange={(e) =>
-                           dispatch({ type: 'INTERNSHIP', payload: e.target })
+                           dispatch({
+                              type: 'CANTAKEAPPRENTICESHIP',
+                              payload: e.target,
+                           })
                         }
                      />
                   </label>
@@ -173,11 +180,14 @@ export const FilterForm = (props: Props) => {
                <SalaryInput>
                   <input
                      type="number"
-                     value={filter.experience.month}
+                     value={filter.monthsOfCommercialExp.month}
                      min={0}
                      max={120}
                      onChange={(e) =>
-                        dispatch({ type: 'EXPERIENCE', payload: e.target })
+                        dispatch({
+                           type: 'MONTHSOFCOMMERCIALEXP',
+                           payload: e.target,
+                        })
                      }
                   />
                </SalaryInput>

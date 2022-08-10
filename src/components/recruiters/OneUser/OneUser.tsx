@@ -12,25 +12,53 @@ import { InterViewMeBox } from './InterViewMeBox/InterViewMeBox'
 import { StudentPortfolioModal } from '../../commons/modals/StudentPortfolio/StudentPortfolioModal'
 import { description } from '../../../constants/description/description'
 import { studentsInterface } from 'src/pages/Hr.page'
+import { useDispatch } from 'react-redux'
+import {
+   bookCallCandidate,
+   disinterestCandidate,
+   HiredCandidate,
+} from '../../../features/hr/hrActions'
+import { useAppSelector } from '../../../app/hooks'
 
 interface Props {
    layout: string
    student: studentsInterface
+   refreshStudents: () => void
 }
 
-export const OneUser = ({ layout, student }: Props) => {
+export const OneUser = ({ layout, student, refreshStudents }: Props) => {
    const [isOpen, setIsOpen] = useState<boolean>(false)
    const [showCv, setShowCv] = useState<boolean>(false)
-
+   const dispatch = useDispatch()
    const text = description.userInterview
    const buttonsName = description.buttons
    const descriptions = description.userInterview
+   const { isFetching } = useAppSelector((state) => state.hr)
 
    const showStudentPortfolio = () => setShowCv(!showCv)
-   // const handleBookCall = (id: string) => dispatch(bookCallCandidate({ id }))
-   // const handleDisinterest = (id: string) =>
-   //    dispatch(disinterestCandidate({ id }))
-   // const handleHired = (id: string) => dispatch(HiredCandidate({ id }))
+   const handleBookCall = async (studentId: string) => {
+      try {
+         await dispatch(bookCallCandidate({ studentId }))
+      } finally {
+         await refreshStudents()
+      }
+   }
+
+   const handleDisinterest = async (studentId: string) => {
+      try {
+         await dispatch(disinterestCandidate({ studentId }))
+      } finally {
+         await refreshStudents()
+      }
+   }
+
+   const handleHired = async (studentId: string) => {
+      try {
+         await dispatch(HiredCandidate({ studentId }))
+      } finally {
+         await refreshStudents()
+      }
+   }
 
    return (
       <>
@@ -53,7 +81,7 @@ export const OneUser = ({ layout, student }: Props) => {
                         <p>{student.firstName}</p>
 
                         {layout === 'simple' ? (
-                           <p>{student.lastName?.slice(-1)}</p>
+                           <p>{student.student.lastName?.slice(-1)}</p>
                         ) : (
                            <p>{student.lastName}</p>
                         )}
@@ -62,7 +90,9 @@ export const OneUser = ({ layout, student }: Props) => {
                   {layout === 'simple' ? (
                      <ButtonsBox isOpen={isOpen}>
                         <Button
-                           // method={() => handleBookCall(student.user.id)}
+                           method={() =>
+                              handleBookCall(student.student.studentId)
+                           }
                            buttonTitle={buttonsName.bookCall}
                         />
                         <AiOutlineCaretDown
@@ -76,11 +106,11 @@ export const OneUser = ({ layout, student }: Props) => {
                            method={() => showStudentPortfolio()}
                         />
                         <Button
-                           // method={() => handleDisinterest(student.user.id)}
+                           method={() => handleDisinterest(student.studentId)}
                            buttonTitle={buttonsName.disinterest}
                         />
                         <Button
-                           // method={() => handleHired(student.user.id)}
+                           method={() => handleHired(student.studentId)}
                            buttonTitle={buttonsName.hired}
                         />
                         <AiOutlineCaretDown
