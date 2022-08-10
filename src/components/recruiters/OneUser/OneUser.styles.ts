@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { appColors } from '../../../constants/Layout/app.colors'
 import { device } from '../../../constants/mediaQueries'
+import { NavLink } from 'react-router-dom'
 
 interface Props {
    isOpen: boolean
@@ -103,6 +104,28 @@ export const ButtonsBox = styled.div<Props>`
     color: ${appColors.buttonColor};
   }
 }`
+
+export const ShowCvLink = styled(NavLink)`
+   color: ${appColors.fontColor};
+   background-color: ${appColors.buttonColor};
+   border: 1px solid transparent;
+   border-radius: 4px;
+   text-align: center;
+   text-decoration: none;
+   padding: 5px 10px;
+   margin: 5px;
+   cursor: pointer;
+   transition: 0.3s;
+   font-size: 1.2rem;
+
+   &:hover {
+      border-color: ${appColors.fontColor};
+   }
+
+   &::first-letter {
+      text-transform: uppercase;
+   }
+`
 
 export const MoreInfoBox = styled.div`
    display: flex;

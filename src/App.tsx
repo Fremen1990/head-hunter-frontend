@@ -11,6 +11,7 @@ import { RegisterPage } from './pages/Register.page'
 import { HomePage } from './pages/HomePage'
 import { StudentPortfolioPage } from './pages/StudentPortfolio.page'
 import { StudentPortfolioEditPage } from './pages/StudentPortfolioEdit.page'
+import { CandidateCvPage } from './pages/CandidateCv.page'
 
 export interface IAppProps {}
 
@@ -25,6 +26,10 @@ export const App: React.FunctionComponent<IAppProps> = () => {
 
             <Route element={<ProtectedRoute allowedRoles={['hr', 'admin']} />}>
                <Route path={ROUTES.HR_PAGE} element={<HrPage />} />
+               <Route
+                  path={ROUTES.CANDIDATE_PAGE}
+                  element={<CandidateCvPage />}
+               />
             </Route>
 
             <Route
