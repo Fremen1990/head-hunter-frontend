@@ -4,10 +4,12 @@ import { Header } from '../components/Header/Header'
 import styled from 'styled-components'
 import { api } from '../utils/axios'
 import { Spinner } from '../components/commons/Spinner/Spinner'
+import { useParams } from 'react-router-dom'
 
 export const CandidateCvPage = () => {
    const [loading, setLoading] = useState(true)
    const [candidate, setCandidate] = useState({})
+   const { id } = useParams()
    const CandidateContainer = styled.div`
       display: flex;
       width: 100%;
@@ -21,9 +23,7 @@ export const CandidateCvPage = () => {
    `
    const fetchData = async () => {
       try {
-         const res = await api.get(
-            '/student/4fff930d-aea3-405c-99b4-f673f04e2c53'
-         )
+         const res = await api.get(`/student/${id}`)
          const data = await res.data
          setCandidate(data)
          setLoading(false)

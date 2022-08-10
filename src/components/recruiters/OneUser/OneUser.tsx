@@ -3,6 +3,7 @@ import {
    ButtonsBox,
    InfoBox,
    MoreInfoBox,
+   ShowCvLink,
    UserBox,
    UserContainer,
 } from './OneUser.styles'
@@ -35,7 +36,8 @@ export const OneUser = ({ layout, student, refreshStudents }: Props) => {
    const descriptions = description.userInterview
    const { isFetching } = useAppSelector((state) => state.hr)
 
-   const showStudentPortfolio = () => setShowCv(!showCv)
+   // const showStudentPortfolio = () => setShowCv(!showCv)
+
    const handleBookCall = async (studentId: string) => {
       try {
          await dispatch(bookCallCandidate({ studentId }))
@@ -108,10 +110,13 @@ export const OneUser = ({ layout, student, refreshStudents }: Props) => {
                </ButtonsBox>
             ) : (
                <ButtonsBox isOpen={isOpen}>
-                  <Button
-                     buttonTitle={buttonsName.showCv}
-                     method={() => showStudentPortfolio()}
-                  />
+                  {/* <Button */}
+                  {/*   buttonTitle={buttonsName.showCv} */}
+                  {/*   method={() => showStudentPortfolio()} */}
+                  {/* /> */}
+                  <ShowCvLink to={`candidate/${student.studentId}`}>
+                     {buttonsName.showCv}
+                  </ShowCvLink>
                   <Button
                      method={() => handleDisinterest(student.student.studentId)}
                      buttonTitle={buttonsName.disinterest}
