@@ -24,15 +24,18 @@ const ProtectedRoute = ({ allowedRoles }: Props) => {
    const rolesArray = Array(role)
    return rolesArray?.find((r) => allowedRoles.includes(r)) ? (
       <Outlet />
-   ) : isFetching ? (
-      <>
-         <Header />
-         <PageContainer>
-            <Spinner />
-         </PageContainer>
-      </>
    ) : (
       <NotAuthorized />
    )
+
+   //   isFetching ? (
+   //    <>
+   //       <Header />
+   //       {/* <PageContainer> */}
+   //       {/*   <Spinner /> */}
+   //       {/* </PageContainer> */}
+   //    </>
+   // ) : (
+   // )
 }
 export default ProtectedRoute

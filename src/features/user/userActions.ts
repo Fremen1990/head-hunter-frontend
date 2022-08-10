@@ -42,10 +42,9 @@ export const sendResetLink = createAsyncThunk<
          email,
       })
       const data = await response.data
-      console.log('status', response.status)
       if (response.status === 201) {
-         console.log(data)
          data.message = `Link z tokenem został wysłany na adres ${email}`
+         toast.success('Link z tokenem został wysłany! ')
          return data
       } else {
          return thunkAPI.rejectWithValue(data.error)
@@ -80,6 +79,7 @@ export const changePassword = createAsyncThunk(
          const data = await response.data
          if (response.status === 200) {
             data.message = `Zmiana hasła przebiegła pomyślnie. Można się logować :)`
+            toast.success('Zmiana hasła przebiegła pomyślnie')
             return data
          } else {
             return thunkAPI.rejectWithValue(data.error)
@@ -147,26 +147,3 @@ export const userUpdateProfile = createAsyncThunk<
       return thunkAPI.rejectWithValue(e.response.data)
    }
 })
-
-// dispatch(userUpdateProfile(userUpdateMock))
-//
-//
-// const userUpdateMock = {
-//   studentStatus: 'available',
-//   tel: '666-666-666',
-//   firstName: 'Tomasz UPDATED',
-//   lastName: 'UPDATEOWNIK',
-//   githubUserName: 'fremen1990',
-//   portfolioUrls: ['rv', 'rfev'],
-//   projectUrls: ['rv', 'rfev'],
-//   bio: 'My bio is aweeeesomeeeeeeeeee',
-//   expectedTypeOfWork: 'any',
-//   targetWorkCity: 're',
-//   expectedContractType: 'any',
-//   expectedSalary: '6000 USD',
-//   canTakeApprenticeship: 'yes',
-//   monthsOfCommercialExp: 5,
-//   education: '',
-//   workExperience: '',
-//   courses: '',
-// }

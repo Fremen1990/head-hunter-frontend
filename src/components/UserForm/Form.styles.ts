@@ -14,7 +14,7 @@ export const FormContainer = styled.div`
    justify-content: center;
    align-items: center;
    flex-wrap: wrap;
-   height: 70%;
+   height: 40%;
    width: 95%;
    padding: 5px;
    overflow: hidden;
@@ -72,7 +72,8 @@ export const ForgetPasswordLink = styled(NavLink)`
 export const ForgetPasswordText = styled.h1`
    color: ${appColors.fontColor};
    margin-bottom: 10px;
-   font-size: 3rem;
+   font-size: 2rem;
+   text-align: center;
 `
 
 export const InputWrap = styled.div`

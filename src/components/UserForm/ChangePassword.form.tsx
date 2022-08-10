@@ -1,17 +1,17 @@
 import React from 'react'
 import { Form, FormContainer, Input, InputWrap } from './Form.styles'
 import { useAppSelector } from '../../app/hooks'
-import { UserState } from '../../features/user/userSlice'
 import { description } from '../../constants/description/description'
 import { Button } from '../commons/Button/Button'
 import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import { changePassword } from '../../features/user/userActions'
 import { emailValidate } from '../../constants/patterns/pattern_validation'
+import { RootState } from '../../app/store'
 
 export const ChangePasswordForm = () => {
    const { isFetching, errorMessage, success } = useAppSelector(
-      (state: UserState) => state.user
+      (state: RootState) => state.user
    )
 
    const dispatch = useDispatch()

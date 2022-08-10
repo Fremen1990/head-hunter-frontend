@@ -15,7 +15,7 @@ export const User = () => {
    }
 
    const handleChangePassword = () => {
-      console.log('Change password')
+      navigate('/auth/send-reset-password-link')
    }
 
    return (

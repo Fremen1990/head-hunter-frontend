@@ -43,11 +43,11 @@ export const HomePage = () => {
                      style={{ fontSize: '24px' }}
                      buttonTitle={
                         role === 'student'
-                           ? 'Go to Student Page'
+                           ? 'Strona Studenta'
                            : role === 'hr'
-                           ? 'Go to candidates list'
+                           ? 'Strona Rekrutera'
                            : role === 'admin'
-                           ? 'Go to admin command center'
+                           ? 'Centrum Zarządzania Wszechświatem 👽'
                            : description.buttons.logIn
                      }
                   />
