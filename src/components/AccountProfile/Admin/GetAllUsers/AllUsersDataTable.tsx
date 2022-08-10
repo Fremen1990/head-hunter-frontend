@@ -20,6 +20,7 @@ export const AllUsersDataTable = ({ allUsers }: Props) => {
    const [search, setSearch] = useState('')
 
    const columns: string[] = [
+      'NO',
       'Email',
       'Role',
       'Active',
@@ -99,12 +100,20 @@ export const AllUsersDataTable = ({ allUsers }: Props) => {
                                           .toLowerCase()
                                           .includes(search.toLowerCase())
                                  )
-                                 .map((row) => {
+                                 .map((row, i) => {
                                     return (
                                        <TableRow
                                           className="tableRowCustom"
                                           key={row.email}
                                        >
+                                          <TableCell
+                                             style={{
+                                                color: 'white',
+                                                fontSize: 12,
+                                             }}
+                                          >
+                                             {i + 1}
+                                          </TableCell>
                                           <TableCell
                                              style={{
                                                 color: 'white',

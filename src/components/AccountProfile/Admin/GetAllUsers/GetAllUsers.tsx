@@ -11,6 +11,7 @@ import { AllUsersDataTable } from './AllUsersDataTable'
 import { Button } from '../../../commons/Button/Button'
 import { RootState } from '../../../../app/store'
 import { Spinner } from '../../../commons/Spinner/Spinner'
+import { toast } from 'react-toastify'
 
 export const GetAllUsers = () => {
    const dispatch = useDispatch()
@@ -22,6 +23,7 @@ export const GetAllUsers = () => {
    const handleGetUsers = async () => {
       const allUsers = await dispatch(await getAllUsers())
       await setAllUsers(allUsers.payload)
+      await toast.success('Baza użytkowników pobrana 👌')
    }
    const clearTable = async () => {
       await setAllUsers(null)

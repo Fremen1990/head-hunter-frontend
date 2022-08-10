@@ -20,6 +20,7 @@ export const AllStudentsDataTable = ({ allStudents }: Props) => {
    const [search, setSearch] = useState('')
 
    const columns: string[] = [
+      'NO',
       'First Name',
       'Last Name',
       'GitHub Username',
@@ -80,7 +81,7 @@ export const AllStudentsDataTable = ({ allStudents }: Props) => {
                         </form>
                      </FilterSectionBox>
                   </label>
-                  <Paper sx={{ width: '1400px', overflow: 'hidden' }}>
+                  <Paper sx={{ width: '1500', overflow: 'hidden' }}>
                      <TableContainer sx={{ maxHeight: 800 }}>
                         <Table stickyHeader aria-label="sticky table">
                            <TableHead>
@@ -119,12 +120,20 @@ export const AllStudentsDataTable = ({ allStudents }: Props) => {
                                                .toLowerCase()
                                                .includes(search.toLowerCase())
                                       )
-                                      .map((row) => {
+                                      .map((row, i) => {
                                          return (
                                             <TableRow
                                                className="tableRowCustom"
                                                key={row.studentId}
                                             >
+                                               <TableCell
+                                                  style={{
+                                                     color: 'white',
+                                                     fontSize: 12,
+                                                  }}
+                                               >
+                                                  {i + 1}
+                                               </TableCell>
                                                <TableCell
                                                   style={{
                                                      color: 'white',

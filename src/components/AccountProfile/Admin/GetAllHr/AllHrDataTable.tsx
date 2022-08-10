@@ -20,6 +20,7 @@ export const AllHrDataTable = ({ allHr }: Props) => {
    const [search, setSearch] = useState('')
 
    const columns: string[] = [
+      'NO',
       'Company',
       'Full Name',
       'Max reserved capacity',
@@ -102,12 +103,20 @@ export const AllHrDataTable = ({ allHr }: Props) => {
                                                .toLowerCase()
                                                .includes(search.toLowerCase())
                                       )
-                                      .map((row) => {
+                                      .map((row, i) => {
                                          return (
                                             <TableRow
                                                className="tableRowCustom"
                                                key={row.hrId}
                                             >
+                                               <TableCell
+                                                  style={{
+                                                     color: 'white',
+                                                     fontSize: 12,
+                                                  }}
+                                               >
+                                                  {i + 1}
+                                               </TableCell>
                                                <TableCell
                                                   style={{
                                                      color: 'white',

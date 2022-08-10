@@ -8,10 +8,8 @@ import {
    createOneUserResponse,
    HrType,
 } from 'types'
-import { AdminState } from './adminSlice'
 import { RootState } from '../../app/store'
 import { api } from '../../utils/axios'
-import { getStudents } from '../../apiCalls'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
@@ -25,7 +23,7 @@ export const addOneStudent = createAsyncThunk<
       const response = await api.post('admin/add-student', formData)
       const data = await response.data
       if (response.status === 201) {
-         toast.success('Student dodany !')
+         toast.success('Student dodany! 😎')
          return data
       } else {
          toast.error('Coś poszło nie tak!')
@@ -45,7 +43,7 @@ export const addOneHr = createAsyncThunk<
       const response = await api.post('admin/add-hr', formData)
       const data = await response.data
       if (response.status === 201) {
-         toast.success('HR dodany !')
+         toast.success('HR dodany ! 😎')
          return data
       } else {
          toast.error('Coś poszło nie tak!')
@@ -74,7 +72,7 @@ export const uploadFileCall = createAsyncThunk<
       )
       const data = await response.data
       if (response.status === 201) {
-         toast.success('Plik załadowany!')
+         toast.success('Plik załadowany! 🤖')
          return data
       } else {
          toast.error('Coś poszło nie tak!')
@@ -96,7 +94,7 @@ export const importStudentsCall = createAsyncThunk<
       const response = await api.post('admin/import-students', formData, {})
       const data = await response.data
       if (response.status === 201) {
-         toast.success('Studenci zaimportowani !')
+         toast.success('Studenci zaimportowani!👍')
          return data
       } else {
          toast.error('Coś poszło nie tak!')
@@ -117,7 +115,7 @@ export const importHrCall = createAsyncThunk<
       const response = await api.post('admin/import-hr', formData, {})
       const data = await response.data
       if (response.status === 201) {
-         toast.success('Studenci zaimportowani !')
+         toast.success('HR zaimportowani! 👍')
          return data
       } else {
          toast.error('Coś poszło nie tak!')
@@ -136,7 +134,6 @@ export const getAllUsers = createAsyncThunk<
    try {
       const response = await api.get('admin/user/all')
       const data = await response.data
-      console.log('Response from grt all user', response)
       if (response.status === 200) {
          return data
       } else {

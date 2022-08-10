@@ -24,6 +24,7 @@ export const UploadStudentsFileDataTable = ({ uploadFileData }: Props) => {
    const [search, setSearch] = useState('')
 
    const columns: string[] = [
+      'NO',
       'Email',
       'Course Completion',
       'Project Degree',
@@ -98,12 +99,20 @@ export const UploadStudentsFileDataTable = ({ uploadFileData }: Props) => {
                                        row.email === '' ||
                                        row.email.includes(search)
                                  )
-                                 .map((row) => {
+                                 .map((row, i) => {
                                     return (
                                        <TableRow
                                           className="tableRowCustom"
                                           key={row.email}
                                        >
+                                          <TableCell
+                                             style={{
+                                                color: 'white',
+                                                fontSize: 12,
+                                             }}
+                                          >
+                                             {i + 1}
+                                          </TableCell>
                                           <TableCell
                                              style={{
                                                 color: 'white',

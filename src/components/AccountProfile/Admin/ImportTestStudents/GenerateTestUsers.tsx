@@ -14,16 +14,18 @@ import {
    MessageTitle,
    UsersList,
 } from '../MessageModal/MessageModal'
+import { toast } from 'react-toastify'
 
 export const GenerateTestUsers = () => {
    const [testUsers, setTestUsers] = useState(null)
    const [isLoading, setIsLoading] = useState<boolean>(false)
 
    const handleGenerateTestUsers = async () => {
-      setIsLoading(true)
+      await setIsLoading(true)
       const testUsers = await generateTestUsers()
       await setTestUsers(testUsers)
-      setIsLoading(false)
+      await setIsLoading(false)
+      await toast.success('Testowi Studenci dodani! 💪')
    }
 
    return (

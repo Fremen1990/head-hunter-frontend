@@ -11,6 +11,7 @@ import {
 import { api } from '../../utils/axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { RootState } from '../../app/store'
+import { toast } from 'react-toastify'
 
 export const userLogin = createAsyncThunk<
    LoginUserResponse,
@@ -136,6 +137,8 @@ export const userUpdateProfile = createAsyncThunk<
       const response = await api.put(`/student/${state.user.id}`, formData)
       const data = response.data
       if (response.status === 200) {
+         toast.success('Profil uzupełniony! 💪')
+
          return data
       } else {
          return thunkAPI.rejectWithValue(data.error)
