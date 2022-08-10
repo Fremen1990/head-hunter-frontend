@@ -1,4 +1,6 @@
 export const HOME = '/'
+export const CHANGE_PASSWORD = '/auth/change-password'
+export const FORGOT_PASSWORD = '/auth/send-reset-password-link'
 export const STUDENT_REGISTER = '/user/register/:studentId/:registerToken'
 export const LOGIN = '/login'
 export const HR_PAGE = '/hr'

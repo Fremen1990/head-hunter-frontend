@@ -80,7 +80,7 @@ export const LoginForm = () => {
                />
                {password && <div>{password.message}</div>}
             </InputWrap>
-            <ForgetPasswordLink to="#">
+            <ForgetPasswordLink to="/auth/send-reset-password-link">
                {description.buttons.forgotPass}
             </ForgetPasswordLink>
 

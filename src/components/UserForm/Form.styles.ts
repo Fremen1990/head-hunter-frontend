@@ -14,7 +14,7 @@ export const FormContainer = styled.div`
    justify-content: center;
    align-items: center;
    flex-wrap: wrap;
-   height: 50%;
+   height: 70%;
    width: 95%;
    padding: 5px;
    overflow: hidden;
@@ -32,7 +32,7 @@ export const Form = styled.form`
    }
 
    ${device.desktop} {
-      width: 20%;
+      width: 30%;
    }
 
    & * {
@@ -67,6 +67,12 @@ export const ForgetPasswordLink = styled(NavLink)`
    margin-bottom: 10px;
    padding: 0 10px;
    text-decoration: none;
+`
+
+export const ForgetPasswordText = styled.h1`
+   color: ${appColors.fontColor};
+   margin-bottom: 10px;
+   font-size: 3rem;
 `
 
 export const InputWrap = styled.div`

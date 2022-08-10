@@ -1,13 +1,17 @@
 export const description = {
    inputsFields: {
       filterPlaceholder: 'Wyszukaj...',
-      passwordPlaceholder: 'hasło',
-      emailPlaceholder: 'email',
+      passwordPlaceholder: 'Hasło',
+      newPasswordPlaceholder: 'Wpisz nowe hasło',
+      newPasswordConfirmPlaceholder: 'Wpisz ponownie nowe hasło',
+      tokenPlaceholder: 'Podaj token wysłany na e-mail',
+      emailPlaceholder: 'Adres e-mail',
    },
    form: {
       requiredEmail: 'Email jest wymagany',
       messageEmail: 'Podaj poprawny adres email',
       requiredPass: 'Hasło jest wymagane',
+      requiredToken: 'Token jest wymagany',
       requiredField: 'Pole obowiązkowe',
       messageLongText: 'Wpis jest za długi',
       messageBigNumber: 'Wartość jest za duża',
@@ -33,6 +37,8 @@ export const description = {
       bookCall: 'zarezerwuj rozmowe',
       logOut: 'wyloguj',
       logIn: 'Zaloguj się',
+      changePwd: 'Zmień hasło',
+      sentResetToken: 'Wyślij e-mail',
       account: 'konto',
       forgotPass: 'zapomniałeś hasła ?',
       addHr: 'dodaj nowego HR',

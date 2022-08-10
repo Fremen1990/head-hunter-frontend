@@ -1,7 +1,9 @@
 import { getUserProfileResponse, LoginUserResponse } from 'types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import {
+   changePassword,
    fetchUserByToken,
+   sendResetLink,
    userLogin,
    userLogout,
    userUpdateProfile,
@@ -78,6 +80,49 @@ export const userSlice = createSlice({
          state.isError = false
          state.errorMessage = ''
          return state
+      },
+      // =============== SEND RESET LINK =============================
+      [sendResetLink.pending]: (state: RootState) => {
+         state.isFetching = true
+      },
+      [sendResetLink.rejected]: (
+         state: RootState,
+         { payload }: PayloadAction<{ error: string; message: string }>
+      ) => {
+         state.isFetching = false
+         state.isError = true
+         state.errorMessage = payload.error
+         state.isSuccess = payload.message
+      },
+      [sendResetLink.fulfilled]: (
+         state: RootState,
+         { payload }: PayloadAction<{ message: string }>
+      ) => {
+         state.isFetching = false
+         state.isSuccess = true
+         state.isError = false
+         state.success = payload.message
+      },
+      // =============== CHANGE PASSWORD =============================
+      [changePassword.pending]: (state: RootState) => {
+         state.isFetching = true
+      },
+      [changePassword.rejected]: (
+         state: RootState,
+         { payload }: PayloadAction<{ message: string }>
+      ) => {
+         state.isFetching = false
+         state.isError = true
+         state.errorMessage = payload.message
+      },
+      [changePassword.fulfilled]: (
+         state: RootState,
+         { payload }: PayloadAction<{ message: string }>
+      ) => {
+         state.isFetching = false
+         state.isSuccess = true
+         state.isError = false
+         state.success = payload.message
       },
       // ===============FETCH USER BY TOKEN TO HEADER=======================
       [fetchUserByToken.pending]: (state: RootState) => {

@@ -5,6 +5,7 @@ import {
    LogoutUserResponse,
    UpdateStudentResponse,
    UpdateStudentProfile,
+   ResetPasswordInterface,
 } from 'types'
 
 import { api } from '../../utils/axios'
@@ -29,6 +30,69 @@ export const userLogin = createAsyncThunk<
       return thunkAPI.rejectWithValue(e.response.data)
    }
 })
+
+export const sendResetLink = createAsyncThunk<
+   Partial<LoginUser>,
+   Partial<LoginUserResponse>,
+   { state: RootState }
+>('/auth/send-reset-password-link', async ({ email }, thunkAPI) => {
+   try {
+      const response = await api.post('/auth/send-reset-password-link', {
+         email,
+      })
+      const data = await response.data
+      console.log('status', response.status)
+      if (response.status === 201) {
+         console.log(data)
+         data.message = `Link z tokenem został wysłany na adres ${email}`
+         return data
+      } else {
+         return thunkAPI.rejectWithValue(data.error)
+      }
+   } catch (e: any) {
+      if (e.response.data.statusCode === 404) {
+         e.response.data.message = ''
+         e.response.data.error = `Nie znaleziono takiego adresu ${email}.`
+      }
+      return thunkAPI.rejectWithValue(e.response.data)
+   }
+})
+
+export const changePassword = createAsyncThunk(
+   '/auth/change-password',
+   async (
+      {
+         email,
+         resetPasswordToken,
+         newPwd,
+         newPwdConfirm,
+      }: ResetPasswordInterface,
+      thunkAPI
+   ) => {
+      try {
+         const response = await api.post('/auth/change-password', {
+            email,
+            resetPasswordToken,
+            newPwd,
+            newPwdConfirm,
+         })
+         const data = await response.data
+         if (response.status === 200) {
+            data.message = `Zmiana hasła przebiegła pomyślnie. Można się logować :)`
+            return data
+         } else {
+            return thunkAPI.rejectWithValue(data.error)
+         }
+      } catch (e: any) {
+         if (e.response.data.statusCode === 409) {
+            e.response.data.message = `Podany token jest niepoprawny albo został już wykorzystany.`
+         } else if (e.response.data.statusCode === 500) {
+            e.response.data.message = `Podano niepoprawne dane. Spróbuj jeszcze raz...`
+         }
+         return thunkAPI.rejectWithValue(e.response.data)
+      }
+   }
+)
 
 export const fetchUserByToken = createAsyncThunk<
    getUserProfileResponse,
