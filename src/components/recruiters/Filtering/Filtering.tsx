@@ -7,15 +7,13 @@ interface Props {
    hiddenModal: () => void
 }
 
-export const Filtering = (props: Props) => {
-   return (
-      <FilteringContainer>
-         <FilteringBox>
-            <TitleBox>
-               <p>{description.filterModal.filterName}</p>
-            </TitleBox>
-            <FilterForm hiddenModal={props.hiddenModal} />
-         </FilteringBox>
-      </FilteringContainer>
-   )
-}
+export const Filtering = (props: Props) => (
+   <FilteringContainer>
+      <FilteringBox>
+         <TitleBox>
+            <p>{description.filterModal.filterName}</p>
+         </TitleBox>
+         <FilterForm hiddenModal={props.hiddenModal} />
+      </FilteringBox>
+   </FilteringContainer>
+)
