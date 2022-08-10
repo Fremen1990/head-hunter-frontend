@@ -4,7 +4,25 @@ import { SubtitlesCandidateSection } from '../SubtitlesCandidateSection/Subtitle
 import { InterViewMeBox } from '../../recruiters/OneUser/InterViewMeBox/InterViewMeBox'
 import { description } from '../../../constants/description/description'
 
-export const ExpectationCandidateBox = () => {
+interface Props {
+   expectedContractType: string
+   targetWorkCity: string
+   expectedSalary: string
+   canTakeApprenticeship: string
+   monthsOfCommercialExp: number
+   expectedTypeOfWork: string
+}
+
+export const ExpectationCandidateBox = ({
+   expectedContractType,
+   targetWorkCity,
+   expectedTypeOfWork,
+   monthsOfCommercialExp,
+   canTakeApprenticeship,
+   expectedSalary,
+}: Props) => {
+   const { expectation } = description.studentPortfolio
+
    const {
       preferWork,
       targetPlace,
@@ -16,30 +34,38 @@ export const ExpectationCandidateBox = () => {
 
    return (
       <>
-         <SubtitlesCandidateSection />
+         <SubtitlesCandidateSection text={expectation} />
          <ExpectationSection>
             <InterViewMeBox
                ratingBox={false}
                boxTitle={preferWork}
-               point="biuro"
+               point={expectedTypeOfWork}
             />
             <InterViewMeBox
                ratingBox={false}
                boxTitle={targetPlace}
-               point="poznan"
+               point={targetWorkCity}
             />
             <InterViewMeBox
                ratingBox={false}
                boxTitle={contractType}
-               point="umowa o prace"
+               point={expectedContractType}
             />
             <InterViewMeBox
                ratingBox={false}
                boxTitle={targetSalary}
-               point="2000"
+               point={expectedSalary}
             />
-            <InterViewMeBox ratingBox={false} boxTitle={practice} point="tak" />
-            <InterViewMeBox ratingBox={false} boxTitle={experience} point="5" />
+            <InterViewMeBox
+               ratingBox={false}
+               boxTitle={practice}
+               point={canTakeApprenticeship}
+            />
+            <InterViewMeBox
+               ratingBox={false}
+               boxTitle={experience}
+               point={String(monthsOfCommercialExp)}
+            />
          </ExpectationSection>
       </>
    )

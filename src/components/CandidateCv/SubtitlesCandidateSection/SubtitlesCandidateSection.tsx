@@ -1,6 +1,10 @@
 import React from 'react'
 import { SubtitleSection } from './SubtitlesCandidateSection.styles'
 
-export const SubtitlesCandidateSection = () => (
-   <SubtitleSection>jakis opis</SubtitleSection>
+interface Props {
+   text: string
+}
+
+export const SubtitlesCandidateSection = ({ text }: Props) => (
+   <SubtitleSection>{text}</SubtitleSection>
 )

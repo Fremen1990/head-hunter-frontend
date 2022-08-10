@@ -10,10 +10,26 @@ import {
 import { Button } from '../../commons/Button/Button'
 import { description } from '../../../constants/description/description'
 
-export const AsideCandidateCvBox = () => {
-   const githubNick = 'nickdogithuba'
+interface Props {
+   firstName: string
+   lastName: string
+   githubNick: string
+   phone: string
+   email: string
+   desc: string
+}
+
+export const AsideCandidateCvBox = ({
+   firstName,
+   lastName,
+   githubNick,
+   phone,
+   email,
+   desc,
+}: Props) => {
    const { hired, disinterest } = description.buttons
    const { aboutMe } = description.studentPortfolio
+
    return (
       <>
          <img
@@ -24,7 +40,9 @@ export const AsideCandidateCvBox = () => {
             }
             alt="gitHub avatar"
          />
-         <h2>Imie Nazwisko</h2>
+         <h2>
+            {firstName} {lastName}
+         </h2>
          <GitHubContainer
             as="a"
             href={`https://github.com/${githubNick}`}
@@ -35,14 +53,14 @@ export const AsideCandidateCvBox = () => {
             {githubNick}
          </GitHubContainer>
          <RowContainer>
-            <PhoneIcon /> <p>telefon</p>
+            <PhoneIcon /> <p>{phone}</p>
          </RowContainer>
          <RowContainer>
-            <MailIcon /> <p>email</p>
+            <MailIcon /> <p>{email}</p>
          </RowContainer>
          <DescriptionContainer>
             <p>{aboutMe}</p>
-            <div>opis</div>
+            <div>{desc}</div>
          </DescriptionContainer>
          <Button buttonTitle={disinterest} />
          <Button buttonTitle={hired} />

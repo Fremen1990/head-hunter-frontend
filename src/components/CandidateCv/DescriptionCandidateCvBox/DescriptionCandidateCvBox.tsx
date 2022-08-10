@@ -2,9 +2,14 @@ import React from 'react'
 import { SubtitlesCandidateSection } from '../SubtitlesCandidateSection/SubtitlesCandidateSection'
 import { DescriptionSection } from './DescriptionCandidateCvBox.styles'
 
-export const DescriptionCandidateCvBox = () => (
+interface Props {
+   text: string
+   desc: string
+}
+
+export const DescriptionCandidateCvBox = ({ text, desc }: Props) => (
    <>
-      <SubtitlesCandidateSection />
-      <DescriptionSection>jakis opsi</DescriptionSection>
+      <SubtitlesCandidateSection text={text} />
+      <DescriptionSection>{desc}</DescriptionSection>
    </>
 )

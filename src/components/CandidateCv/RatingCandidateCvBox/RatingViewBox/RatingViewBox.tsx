@@ -8,16 +8,21 @@ import {
 import StarRatings from 'react-star-ratings'
 import { appColors } from '../../../../constants/Layout/app.colors'
 
-export const RatingViewBox = () => (
+interface Props {
+   title: string
+   ratingStars: number
+}
+
+export const RatingViewBox = ({ title, ratingStars }: Props) => (
    <RatingViewBoxContainer>
-      <RateHeading>Tytul</RateHeading>
+      <RateHeading>{title}</RateHeading>
       <RatingContainer>
          <p>
-            <span>5</span>/5
+            <span>{ratingStars}</span>/5
          </p>
          <StarContainer>
             <StarRatings
-               rating={3}
+               rating={ratingStars}
                starRatedColor="red"
                starEmptyColor={appColors.iconColor}
                starDimension="20px"
