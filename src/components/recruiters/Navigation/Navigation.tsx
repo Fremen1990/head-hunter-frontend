@@ -1,31 +1,45 @@
 import React, { useState } from 'react'
-import { NavBar, Tab } from './Navigation.styles'
+import { Button, NavBar } from './Navigation.styles'
 import { description } from '../../../constants/description/description'
 
 interface NavigationInterface {
-   setToInterview: (arg: string) => void
+   filterState: (filter: string) => void
 }
 
-const tabs: string[] = Object.values(description.navigation)
+export function NavigationBar(props: NavigationInterface) {
+   const [activeButton, setActiveButton] = useState({
+      availableStudents: true,
+      toReview: false,
+   })
 
-export function NavigationBar({ setToInterview }: NavigationInterface) {
-   const [active, setActive] = useState(tabs[0])
+   const handleClick = (e: any) => {
+      if (e.target.name === 'availableStudents') {
+         props.filterState('availableStudents')
+         setActiveButton({ availableStudents: true, toReview: false })
+      }
+      if (e.target.name === 'toReview') {
+         props.filterState('toReview')
+         setActiveButton({ availableStudents: false, toReview: true })
+      }
+   }
 
    return (
       <>
          <NavBar>
-            {tabs.map((type) => (
-               <Tab
-                  key={type}
-                  active={active === type}
-                  onClick={() => {
-                     setActive(type)
-                     setToInterview(type)
-                  }}
-               >
-                  {type}
-               </Tab>
-            ))}
+            <Button
+               active={activeButton.availableStudents}
+               name={'availableStudents'}
+               onClick={handleClick}
+            >
+               {description.navigation.availableStudents}
+            </Button>
+            <Button
+               active={activeButton.toReview}
+               name={'toReview'}
+               onClick={handleClick}
+            >
+               {description.navigation.toReview}
+            </Button>
          </NavBar>
       </>
    )
