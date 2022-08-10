@@ -59,9 +59,12 @@ export const UserBox = () => {
          </div>
          {isOpen && (
             <div>
-               <NavLink to={'/user'} onClick={() => setIsOpen(false)}>
-                  {description.buttons.account}
-               </NavLink>
+               {role === ('student' || 'hr') ? (
+                  <NavLink to={'/user'} onClick={() => setIsOpen(false)}>
+                     {description.buttons.account}
+                  </NavLink>
+               ) : null}
+
                <p onClick={handleLogout}>{description.buttons.logOut}</p>
             </div>
          )}

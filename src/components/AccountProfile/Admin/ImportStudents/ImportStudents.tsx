@@ -27,9 +27,6 @@ export const ImportStudents = () => {
       await data.append('usersImport', e.target.files[0])
       const res = await dispatch(await uploadFileCall(data))
       await setUploadFileData(res.payload)
-
-      console.log('Wczytaj CSV clicked')
-      console.log('Upload file data', uploadFileData)
    }
 
    const handleClick = (e: React.MouseEvent<HTMLButtonElement | null>) => {
@@ -37,8 +34,8 @@ export const ImportStudents = () => {
    }
    const importStudentsHandler = async () => {
       await dispatch(await importStudentsCall(uploadFileData))
-      setUploadFileData(null)
-      setMessageModalVisible(true)
+      await setUploadFileData(null)
+      await setMessageModalVisible(true)
    }
    const clearImport = async () => {
       await setUploadFileData(null)

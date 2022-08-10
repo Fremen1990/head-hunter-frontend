@@ -23,7 +23,7 @@ interface Props {
 export const UploadHrFileDataTable = ({ uploadFileData }: Props) => {
    const [search, setSearch] = useState('')
 
-   const columns: string[] = ['Email', 'Company', 'Full Name']
+   const columns: string[] = ['NO', 'Email', 'Company', 'Full Name']
 
    const handleInputChange = (e) => {
       setSearch(e.target.value)
@@ -97,12 +97,20 @@ export const UploadHrFileDataTable = ({ uploadFileData }: Props) => {
                                           .toLowerCase()
                                           .includes(search.toLowerCase())
                                  )
-                                 .map((row) => {
+                                 .map((row, i) => {
                                     return (
                                        <TableRow
                                           className="tableRowCustom"
                                           key={row.email}
                                        >
+                                          <TableCell
+                                             style={{
+                                                color: 'white',
+                                                fontSize: 12,
+                                             }}
+                                          >
+                                             {i + 1}
+                                          </TableCell>
                                           <TableCell
                                              style={{
                                                 color: 'white',

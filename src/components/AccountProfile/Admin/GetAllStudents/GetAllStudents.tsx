@@ -9,6 +9,7 @@ import { AllStudentsDataTable } from './AllStudentsDataTable'
 import { Button } from '../../../commons/Button/Button'
 import { Spinner } from '../../../commons/Spinner/Spinner'
 import { getStudents } from '../../../../apiCalls'
+import { toast } from 'react-toastify'
 
 export const GetAllStudents = () => {
    const [allStudents, setAllStudents] = useState(null)
@@ -19,6 +20,7 @@ export const GetAllStudents = () => {
       const allStudents = await getStudents()
       await setAllStudents(allStudents)
       setIsLoading(false)
+      toast.success('Baza studentów pobrana 👍')
    }
    const clearTable = async () => {
       await setAllStudents(null)

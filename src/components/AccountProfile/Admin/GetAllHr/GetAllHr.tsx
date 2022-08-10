@@ -9,16 +9,18 @@ import { AllHrDataTable } from './AllHrDataTable'
 import { Button } from '../../../commons/Button/Button'
 import { Spinner } from '../../../commons/Spinner/Spinner'
 import { getHr } from '../../../../apiCalls'
+import { toast } from 'react-toastify'
 
 export const GetAllHr = () => {
    const [allHr, setAllHr] = useState(null)
    const [isLoading, setIsLoading] = useState<boolean>(false)
 
    const handleGetHr = async () => {
-      setIsLoading(true)
+      await setIsLoading(true)
       const allHr = await getHr()
       await setAllHr(allHr)
-      setIsLoading(false)
+      await setIsLoading(false)
+      await toast.success('HR pobrane!')
    }
    const clearTable = async () => {
       await setAllHr(null)

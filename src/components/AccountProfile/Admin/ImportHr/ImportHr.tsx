@@ -41,10 +41,10 @@ export const ImportHr = () => {
    const handleClick = (e: React.MouseEvent<HTMLButtonElement | null>) => {
       hiddenFileInput.current.click()
    }
-   const importStudentsHandler = async () => {
+   const importHrHandler = async () => {
       await dispatch(await importHrCall(uploadFileData))
-      setUploadFileData(null)
-      setMessageModalVisible(true)
+      await setUploadFileData(null)
+      await setMessageModalVisible(true)
    }
    const clearImport = async () => {
       await setUploadFileData(null)
@@ -74,7 +74,7 @@ export const ImportHr = () => {
 
                {uploadFileData !== null ? (
                   <Button
-                     method={importStudentsHandler}
+                     method={importHrHandler}
                      buttonTitle="Zaimportuj HR do Bazy"
                      style={{ background: 'green' }}
                   />
