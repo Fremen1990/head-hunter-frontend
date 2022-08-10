@@ -50,7 +50,7 @@ export const FilterSection = ({ setSearch }: Props) => {
          <Button
             method={() => setIsOpen(!isOpen)}
             buttonTitle={description.buttons.filter}
-         ></Button>
+         />
          {isOpen && <Filtering hiddenModal={() => setIsOpen(!isOpen)} />}
       </FilterSectionBox>
    )

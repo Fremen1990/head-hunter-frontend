@@ -15,15 +15,13 @@ const StudentPortfolioContainer = styled.div`
    margin: 26px;
 `
 
-export const StudentPortfolioEditPage = () => {
-   return (
-      <>
-         <Header />
-         <PortfolioContainer>
-            <StudentPortfolioContainer>
-               <EditStudentPortfolioModal />
-            </StudentPortfolioContainer>
-         </PortfolioContainer>
-      </>
-   )
-}
+export const StudentPortfolioEditPage = () => (
+   <>
+      <Header />
+      <PortfolioContainer>
+         <StudentPortfolioContainer>
+            <EditStudentPortfolioModal />
+         </StudentPortfolioContainer>
+      </PortfolioContainer>
+   </>
+)

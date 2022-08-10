@@ -90,7 +90,7 @@ export const OneUser = ({ layout, student, refreshStudents }: Props) => {
                      </div>
                   )}
                   <p>{student.student.firstName}</p>
-
+                  
                   {layout === 'simple' ? (
                      <p>{student.student.lastName?.slice(-1)}</p>
                   ) : (
