@@ -9,6 +9,12 @@ import {
 } from './AsideCandidateCvBox.styles'
 import { Button } from '../../commons/Button/Button'
 import { description } from '../../../constants/description/description'
+import { useDispatch } from 'react-redux'
+import {
+   disinterestCandidate,
+   HiredCandidate,
+} from '../../../features/hr/hrActions'
+import { useNavigate, useParams } from 'react-router-dom'
 
 interface Props {
    firstName: string
@@ -27,8 +33,27 @@ export const AsideCandidateCvBox = ({
    email,
    desc,
 }: Props) => {
+   const dispatch = useDispatch()
+   const { id } = useParams()
+   const navigate = useNavigate()
    const { hired, disinterest } = description.buttons
    const { aboutMe } = description.studentPortfolio
+
+   const handleDisinterest = async (studentId: string) => {
+      try {
+         await dispatch(disinterestCandidate({ studentId }))
+      } finally {
+         navigate(-1)
+      }
+   }
+
+   const handleHired = async (studentId: string) => {
+      try {
+         await dispatch(HiredCandidate({ studentId }))
+      } finally {
+         navigate(-1)
+      }
+   }
 
    return (
       <>
@@ -62,8 +87,15 @@ export const AsideCandidateCvBox = ({
             <p>{aboutMe}</p>
             <div>{desc}</div>
          </DescriptionContainer>
-         <Button buttonTitle={disinterest} />
-         <Button buttonTitle={hired} />
+         {id && (
+            <>
+               <Button
+                  buttonTitle={disinterest}
+                  method={() => handleDisinterest(id)}
+               />
+               <Button buttonTitle={hired} method={() => handleHired(id)} />
+            </>
+         )}
       </>
    )
 }
