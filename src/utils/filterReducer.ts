@@ -1,45 +1,45 @@
 interface ChangeCourseEvaluation {
-   type: 'COURSEEVALUATION_UPDATE'
+   type: 'COURSECOMPLETION_UPDATE'
    payload: any
 }
 
 interface ChangeActivityAssessment {
-   type: 'ACTIVITYASSESSMENT_UPDATE'
+   type: 'COURSEENGAGEMENT_UPDATE'
    payload: any
 }
 
 interface ChangeCodeEvaluation {
-   type: 'CODEEVALUATION_UPDATE'
+   type: 'PROJECTDEGREE_UPDATE'
    payload: any
 }
 
 interface ChangeJobEvaluation {
-   type: 'JOBEVALUATION_UPDATE'
+   type: 'TEAMPROJECTDEGREE_UPDATE'
    payload: any
 }
 
 interface ChangeTypeOfWork {
-   type: 'TYPEOFWORK_UPDATE'
+   type: 'EXPECTEDTYPEOFWORK_UPDATE'
    payload: any
 }
 
 interface ChangetypeOfContract {
-   type: 'TYPEOFCONTRACT_UPDATE'
+   type: 'EXPECTEDCONTRACTTYPE_UPDATE'
    payload: any
 }
 
 interface ChangeMinSalary {
-   type: 'SALARY'
+   type: 'EXPECTEDSALARY'
    payload: any
 }
 
 interface ChangeExperience {
-   type: 'EXPERIENCE'
+   type: 'MONTHSOFCOMMERCIALEXP'
    payload: any
 }
 
 interface ChangeInternship {
-   type: 'INTERNSHIP'
+   type: 'CANTAKEAPPRENTICESHIP'
    payload: any
 }
 
@@ -61,128 +61,134 @@ type FilterActions =
 
 export const filterReducer = (state: any, action: FilterActions) => {
    switch (action.type) {
-      case 'COURSEEVALUATION_UPDATE': {
+      case 'COURSECOMPLETION_UPDATE': {
          if (action.payload.checked) {
             return {
                ...state,
-               courseEvaluation: [
-                  ...state.courseEvaluation,
+               courseCompletion: [
+                  ...state.courseCompletion,
                   ...action.payload.value,
                ],
             }
          } else {
             return {
                ...state,
-               courseEvaluation: state.courseEvaluation.filter(
+               courseCompletion: state.courseCompletion.filter(
                   (e: any) => e !== action.payload.value
                ),
             }
          }
       }
-      case 'ACTIVITYASSESSMENT_UPDATE': {
+      case 'COURSEENGAGEMENT_UPDATE': {
          if (action.payload.checked) {
             return {
                ...state,
-               activityAssessment: [
-                  ...state.activityAssessment,
+               courseEngagement: [
+                  ...state.courseEngagement,
                   ...action.payload.value,
                ],
             }
          } else {
             return {
                ...state,
-               activityAssessment: state.activityAssessment.filter(
+               courseEngagement: state.courseEngagement.filter(
                   (e: any) => e !== action.payload.value
                ),
             }
          }
       }
-      case 'CODEEVALUATION_UPDATE': {
+      case 'PROJECTDEGREE_UPDATE': {
          if (action.payload.checked) {
             return {
                ...state,
-               codeEvaluation: [
-                  ...state.codeEvaluation,
+               projectDegree: [...state.projectDegree, ...action.payload.value],
+            }
+         } else {
+            return {
+               ...state,
+               projectDegree: state.projectDegree.filter(
+                  (e: any) => e !== action.payload.value
+               ),
+            }
+         }
+      }
+      case 'TEAMPROJECTDEGREE_UPDATE': {
+         if (action.payload.checked) {
+            return {
+               ...state,
+               teamProjectDegree: [
+                  ...state.teamProjectDegree,
                   ...action.payload.value,
                ],
             }
          } else {
             return {
                ...state,
-               codeEvaluation: state.codeEvaluation.filter(
+               teamProjectDegree: state.teamProjectDegree.filter(
                   (e: any) => e !== action.payload.value
                ),
             }
          }
       }
-      case 'JOBEVALUATION_UPDATE': {
+      case 'EXPECTEDTYPEOFWORK_UPDATE': {
          if (action.payload.checked) {
             return {
                ...state,
-               jobEvaluation: [...state.jobEvaluation, ...action.payload.value],
+               expectedTypeOfWork: [
+                  ...state.expectedTypeOfWork,
+                  action.payload.value,
+               ],
             }
          } else {
             return {
                ...state,
-               jobEvaluation: state.jobEvaluation.filter(
+               expectedTypeOfWork: state.expectedTypeOfWork.filter(
                   (e: any) => e !== action.payload.value
                ),
             }
          }
       }
-      case 'TYPEOFWORK_UPDATE': {
+      case 'EXPECTEDCONTRACTTYPE_UPDATE': {
          if (action.payload.checked) {
             return {
                ...state,
-               typeOfWork: [...state.typeOfWork, action.payload.value],
+               expectedContractType: [
+                  ...state.expectedContractType,
+                  action.payload.value,
+               ],
             }
          } else {
             return {
                ...state,
-               typeOfWork: state.typeOfWork.filter(
+               expectedContractType: state.expectedContractType.filter(
                   (e: any) => e !== action.payload.value
                ),
             }
          }
       }
-      case 'TYPEOFCONTRACT_UPDATE': {
-         if (action.payload.checked) {
-            return {
-               ...state,
-               typeOfContract: [...state.typeOfContract, action.payload.value],
-            }
-         } else {
-            return {
-               ...state,
-               typeOfContract: state.typeOfContract.filter(
-                  (e: any) => e !== action.payload.value
-               ),
-            }
-         }
-      }
-      case 'SALARY': {
+      case 'EXPECTEDSALARY': {
          return {
             ...state,
-            salary: {
-               ...state.salary,
+            expectedSalary: {
+               ...state.expectedSalary,
                [action.payload.name]: action.payload.value,
             },
          }
       }
-      case 'INTERNSHIP': {
+      case 'CANTAKEAPPRENTICESHIP': {
          return {
             ...state,
-            internship: {
-               internship: action.payload.value,
+            canTakeApprenticeship: {
+               canTakeApprenticeship: action.payload.value,
             },
          }
       }
-      case 'EXPERIENCE': {
+      case 'MONTHSOFCOMMERCIALEXP': {
          return {
             ...state,
-            experience: {
-               ...state.experience,
-               month: action.payload.value,
+            monthsOfCommercialExp: {
+               ...state.monthsOfCommercialExp,
+               month: Number(action.payload.value),
             },
          }
       }
@@ -194,10 +200,10 @@ export const filterReducer = (state: any, action: FilterActions) => {
             activityAssessment: [],
             codeEvaluation: [],
             jobEvaluation: [],
-            typeOfWork: [],
-            typeOfContract: [],
-            salary: { min: 0, max: 0 },
-            experience: { month: 0 },
+            expectedTypeOfWork: [],
+            expectedContractType: [],
+            expectedSalary: { min: 0, max: 0 },
+            monthsOfCommercialExp: { month: 0 },
          }
       }
 
