@@ -12,7 +12,7 @@ import { description } from '../../../constants/description/description'
 
 export const AsideCandidateCvBox = () => {
    const githubNick = 'nickdogithuba'
-   const { hired } = description.buttons
+   const { hired, disinterest } = description.buttons
    const { aboutMe } = description.studentPortfolio
    return (
       <>
@@ -44,9 +44,7 @@ export const AsideCandidateCvBox = () => {
             <p>{aboutMe}</p>
             <div>opis</div>
          </DescriptionContainer>
-         {/* {role === 'hr' ? ( */}
-         {/*    <Button buttonTitle={disinterest} method={handleDisinterests} /> */}
-         {/* ) : null} */}
+         <Button buttonTitle={disinterest} />
          <Button buttonTitle={hired} />
       </>
    )
