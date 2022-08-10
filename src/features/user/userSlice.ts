@@ -1,6 +1,7 @@
 import { getUserProfileResponse, LoginUserResponse } from 'types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import {
+   changePassword,
    fetchUserByToken,
    sendResetLink,
    userLogin,
@@ -86,24 +87,42 @@ export const userSlice = createSlice({
       },
       [sendResetLink.rejected]: (
          state: RootState,
+         { payload }: PayloadAction<{ error: string; message: string }>
+      ) => {
+         state.isFetching = false
+         state.isError = true
+         state.errorMessage = payload.error
+         state.isSuccess = payload.message
+      },
+      [sendResetLink.fulfilled]: (
+         state: RootState,
+         { payload }: PayloadAction<{ message: string }>
+      ) => {
+         state.isFetching = false
+         state.isSuccess = true
+         state.isError = false
+         state.success = payload.message
+      },
+      // =============== CHANGE PASSWORD =============================
+      [changePassword.pending]: (state: RootState) => {
+         state.isFetching = true
+      },
+      [changePassword.rejected]: (
+         state: RootState,
          { payload }: PayloadAction<{ message: string }>
       ) => {
          state.isFetching = false
          state.isError = true
          state.errorMessage = payload.message
       },
-      [sendResetLink.fulfilled]: (
-         state,
-         { payload }: PayloadAction<{ status: string; email: string }>
+      [changePassword.fulfilled]: (
+         state: RootState,
+         { payload }: PayloadAction<{ message: string }>
       ) => {
-         state.email = payload.email
-         // state.userDetails = payload.userDetails
          state.isFetching = false
          state.isSuccess = true
          state.isError = false
-         state.status = payload.status
-         state.errorMessage = ''
-         return state
+         state.success = payload.message
       },
       // ===============FETCH USER BY TOKEN TO HEADER=======================
       [fetchUserByToken.pending]: (state: RootState) => {
