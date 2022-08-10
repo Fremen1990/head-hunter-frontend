@@ -36,6 +36,7 @@ export const description = {
       account: 'konto',
       forgotPass: 'zapomniałeś hasła ?',
       addHr: 'dodaj nowego HR',
+      addStudent: 'dodaj nowego studenta',
       importStudents: 'Zaimportuj studentów z pliku',
       importHr: 'Zaimportuj HR z pliku',
       annual: 'anuluj',

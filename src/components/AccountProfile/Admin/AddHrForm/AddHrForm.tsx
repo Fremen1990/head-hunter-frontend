@@ -1,78 +1,98 @@
-import React from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { emailValidate } from '../../../../constants/patterns/pattern_validation'
 import { description } from '../../../../constants/description/description'
-import { Form, FormTitle, Input, InputWrap, Label } from './AddHrForm.styles'
+import {
+   Form,
+   FormTitle,
+   Input,
+   InputWrap,
+   Label,
+   LabelScore,
+} from './AddHrForm.styles'
 import { Button } from '../../../commons/Button/Button'
 import { RiCloseCircleFill as CloseIcon } from 'react-icons/ri'
-
-interface HrInterface {
-   email: string
-   fullName: string
-   company: string
-   maxReservedStudents: number
-}
+import { useDispatch } from 'react-redux'
+import {
+   addOneHr,
+   addOneStudent,
+} from '../../../../features/admin/adminActions'
 
 export const AddHrForm = () => {
-   const {
-      handleSubmit,
-      register,
-      formState: {
-         errors: { email, fullName, company, maxReservedStudents },
-      },
-   } = useForm<HrInterface>()
+   const { handleSubmit } = useForm<any>()
 
-   const sendForm = () => {}
+   const dispatch = useDispatch()
+
+   const initialForm = {
+      email: '',
+      pwd: '',
+      fullName: '',
+      company: '',
+      maxReservedStudents: 0,
+   }
+
+   const [form, setForm] = useState<any>(initialForm)
+
+   const updateForm = (key: string, value: string | number) => {
+      setForm((form) => ({
+         ...form,
+         [key]: value,
+      }))
+   }
+
+   console.log('form', form)
+
+   const sendForm = async () => {
+      await dispatch(await addOneHr(form))
+      await setForm(initialForm)
+   }
 
    return (
       <Form onSubmit={handleSubmit(sendForm)}>
          <FormTitle>Dodaj nowego HR</FormTitle>
 
          <Label>
-            <p>*Adres e-mail</p>
+            <FormTitle>*Adres e-mail</FormTitle>
             <InputWrap>
                <Input
-                  err={email}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                     updateForm('email', e.target.value)
+                  }
+                  placeholder="company@domain.com"
+                  value={form.email}
                   type="email"
-                  {...register('email', {
-                     required: `${description.form.requiredField}`,
-                     pattern: {
-                        value: emailValidate,
-                        message: `${description.form.messageEmail}`,
-                     },
-                  })}
+                  title="email"
                />
-               <div>
-                  {email && (
-                     <div>
-                        <CloseIcon className="close-icon" /> {email.message}
-                     </div>
-                  )}
-               </div>
             </InputWrap>
          </Label>
 
          <Label>
-            <p>*Imię i nazwisko</p>
+            <p>*Hasło</p>
             <InputWrap>
                <Input
-                  err={fullName}
+                  placeholder="strong-password123!@#$!"
+                  value={form.pwd}
                   type="text"
-                  {...register('fullName', {
-                     required: `${description.form.requiredField}`,
-                     maxLength: {
-                        value: 50,
-                        message: `${description.form.messageLongText}`,
-                     },
-                  })}
+                  title="pwd"
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                     updateForm('pwd', e.target.value)
+                  }
                />
-               <div>
-                  {fullName && (
-                     <div>
-                        <CloseIcon className="close-icon" /> {fullName.message}
-                     </div>
-                  )}
-               </div>
+            </InputWrap>
+         </Label>
+
+         <Label>
+            <p>*Pełna nazwa</p>
+            <InputWrap>
+               <Input
+                  placeholder="HR Full Name"
+                  value={form.fullName}
+                  title="company"
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                     updateForm('fullName', e.target.value)
+                  }
+                  type="text"
+               />
             </InputWrap>
          </Label>
 
@@ -80,58 +100,32 @@ export const AddHrForm = () => {
             <p>*Nazwa firmy</p>
             <InputWrap>
                <Input
-                  err={company}
+                  placeholder="Company Name S.A."
+                  value={form.company}
+                  title="company"
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                     updateForm('company', e.target.value)
+                  }
                   type="text"
-                  {...register('company', {
-                     required: `${description.form.requiredField}`,
-                     maxLength: {
-                        value: 50,
-                        message: `${description.form.messageLongText}`,
-                     },
-                  })}
                />
-               <div>
-                  {company && (
-                     <div>
-                        <CloseIcon className="close-icon" /> {company.message}
-                     </div>
-                  )}
-               </div>
             </InputWrap>
          </Label>
 
-         <Label>
-            <p>
-               *Maksymalna liczba osób, jakie może dodać do {'"Do rozmowy"'}{' '}
-               jednocześnie
-            </p>
+         <LabelScore>
+            <p>*Maksymalna liczba studentów do rezerwacji</p>
             <InputWrap>
                <Input
-                  err={maxReservedStudents}
+                  value={form.maxReservedStudents}
+                  title="maxReservedStudents"
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                     updateForm('maxReservedStudents', e.target.value)
+                  }
                   type="number"
-                  {...register('maxReservedStudents', {
-                     required: `${description.form.requiredField}`,
-                     min: {
-                        value: 1,
-                        message: `${description.form.messageSmallNumber}`,
-                     },
-                     max: {
-                        value: 999,
-                        message: `${description.form.messageBigNumber}`,
-                     },
-                  })}
+                  min="0"
+                  max="999"
                />
-               <div>
-                  {maxReservedStudents && (
-                     <div>
-                        <CloseIcon className="close-icon" />{' '}
-                        {maxReservedStudents.message}
-                     </div>
-                  )}
-               </div>
             </InputWrap>
-         </Label>
-
+         </LabelScore>
          <Button buttonTitle={description.buttons.addHr} />
       </Form>
    )

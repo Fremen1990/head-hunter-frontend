@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
 import { AccountContainer, AccountAvatar } from '../AccountContainer.styles'
 import { AccountBox } from '../AccountBox'
-import { AddHrForm } from './AddHrForm/AddHrForm'
 import { Button } from '../../commons/Button/Button'
 import { description } from '../../../constants/description/description'
 import { ImportStudents } from './ImportStudents/ImportStudents'
-import { ImportHr } from './ImportHr/ImportHr'
 import { useDispatch } from 'react-redux'
-import { getAllUsers } from '../../../features/admin/adminActions'
-import { useAppDispatch } from '../../../app/hooks'
-import { getStudents } from '../../../apiCalls'
+
 import styled from 'styled-components'
+import { AddStudentForm } from './AddStudentForm/AddStudentForm'
+import { AddHrForm } from './AddHrForm/AddHrForm'
+import { ImportHr } from './ImportHr/ImportHr'
 
 const AdminBtnContainer = styled.div`
    display: flex;
@@ -83,7 +82,7 @@ export const Admin = ({ children }: Props) => {
             />
          </AdminBtnContainer>
 
-         {adminFeatureOpen === 1 ? <AddHrForm /> : null}
+         {adminFeatureOpen === 1 ? <AddStudentForm /> : null}
          {adminFeatureOpen === 2 ? <AddHrForm /> : null}
          {adminFeatureOpen === 3 ? <ImportStudents /> : null}
          {adminFeatureOpen === 4 ? <ImportHr /> : null}

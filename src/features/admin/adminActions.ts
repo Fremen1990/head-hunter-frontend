@@ -5,6 +5,8 @@ import {
    StudentUploadFileType,
    UserType,
    ImportUserResponse,
+   createOneUserResponse,
+   HrType,
 } from 'types'
 import { AdminState } from './adminSlice'
 import { RootState } from '../../app/store'
@@ -13,6 +15,46 @@ import { getStudents } from '../../apiCalls'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
+// ===================ADD ONE STUDENT =================================
+export const addOneStudent = createAsyncThunk<
+   createOneUserResponse,
+   StudentUploadFileType,
+   { state: RootState }
+>('admin/importStudents', async (formData: any, thunkAPI) => {
+   try {
+      const response = await api.post('admin/add-student', formData)
+      const data = await response.data
+      if (response.status === 201) {
+         toast.success('Student dodany !')
+         return data
+      } else {
+         toast.error('Coś poszło nie tak!')
+         return thunkAPI.rejectWithValue(data.error)
+      }
+   } catch (e: any) {
+      return thunkAPI.rejectWithValue(e.response.data)
+   }
+})
+// ===================ADD ONE HR =================================
+export const addOneHr = createAsyncThunk<
+   createOneUserResponse,
+   HrType,
+   { state: RootState }
+>('admin/importStudents', async (formData: any, thunkAPI) => {
+   try {
+      const response = await api.post('admin/add-hr', formData)
+      const data = await response.data
+      if (response.status === 201) {
+         toast.success('HR dodany !')
+         return data
+      } else {
+         toast.error('Coś poszło nie tak!')
+         return thunkAPI.rejectWithValue(data.error)
+      }
+   } catch (e: any) {
+      return thunkAPI.rejectWithValue(e.response.data)
+   }
+})
 // ===================UPLOAD FILE=================================
 export const uploadFileCall = createAsyncThunk<
    UploadFileResponseInterface | UploadFileFailedInterface,
@@ -46,7 +88,7 @@ export const uploadFileCall = createAsyncThunk<
 
 // ===================IMPORT STUDENTS =================================
 export const importStudentsCall = createAsyncThunk<
-   ImportUserResponse,
+   ImportUserResponse | [],
    StudentUploadFileType,
    { state: RootState }
 >('admin/importStudents', async (formData: any, thunkAPI) => {

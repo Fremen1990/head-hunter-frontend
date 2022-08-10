@@ -46,6 +46,7 @@ const Heading = styled.h1`
 `
 
 const MessageTitle = styled.h2`
+   color: ${(props) => (props.color === 'green' ? 'green' : 'white')};
    font-size: 14px;
    margin: 10px;
 `
@@ -80,7 +81,7 @@ export const MessageModal = ({ setMessageModalVisible }: Props) => {
          </MessageTitle>
 
          <MessageTitle>Message:</MessageTitle>
-         <MessageTitle>{message?.message}</MessageTitle>
+         <MessageTitle color="green">{message?.message}</MessageTitle>
 
          {message?.createdUsers !== [] ? (
             <>

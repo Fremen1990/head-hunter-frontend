@@ -75,7 +75,7 @@ export const UploadFileDataTable = ({ uploadFileData }: Props) => {
                            </TableHead>
                            <TableBody>
                               {uploadFileData
-                                 .filter(
+                                 ?.filter(
                                     (row) =>
                                        row.email === '' ||
                                        row.email.includes(search)

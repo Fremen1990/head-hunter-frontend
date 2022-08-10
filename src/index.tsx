@@ -5,12 +5,17 @@ import { GlobalStyles } from './GlobalStyles'
 import { Provider } from 'react-redux'
 import { store } from './app/store'
 import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import './pages/notAuthorized.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
    <React.StrictMode>
       <Provider store={store}>
-         <ToastContainer position="top-center" className="toast-container" />
+         <ToastContainer
+            position="top-center"
+            className="toast-container test"
+         />
          <GlobalStyles />
          <App />
       </Provider>

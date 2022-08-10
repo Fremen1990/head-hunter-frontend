@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import {
+   addOneHr,
+   addOneStudent,
    getAllUsers,
    importHrCall,
    importStudentsCall,
@@ -51,6 +53,64 @@ export const adminSlice = createSlice({
       },
    },
    extraReducers: {
+      // ===================ADD ONE STUDENT =================================
+      [addOneStudent.pending]: (state: AdminState) => {
+         state.isFetching = true
+      },
+      [addOneStudent.rejected]: (
+         state: AdminState,
+         { payload }: PayloadAction<{ error: string }>
+      ) => {
+         console.log('REJECT PAYLOAD')
+         state.isFetching = false
+         state.isError = true
+         state.errorMessage = payload.error
+      },
+      [addOneStudent.fulfilled]: (
+         state: AdminState,
+         {
+            payload,
+         }: PayloadAction<
+            UploadFileResponseInterface | UploadFileFailedInterface
+         >
+      ) => {
+         console.log('FULLFIELD PAYLOAD', payload.data)
+         state.uploadedHrMessage = payload
+         state.isFetching = false
+         state.isSuccess = true
+         state.isError = false
+         state.errorMessage = ''
+         return state
+      },
+      // ===================ADD ONE STUDENT =================================
+      [addOneHr.pending]: (state: AdminState) => {
+         state.isFetching = true
+      },
+      [addOneHr.rejected]: (
+         state: AdminState,
+         { payload }: PayloadAction<{ error: string }>
+      ) => {
+         console.log('REJECT PAYLOAD')
+         state.isFetching = false
+         state.isError = true
+         state.errorMessage = payload.error
+      },
+      [addOneHr.fulfilled]: (
+         state: AdminState,
+         {
+            payload,
+         }: PayloadAction<
+            UploadFileResponseInterface | UploadFileFailedInterface
+         >
+      ) => {
+         console.log('FULLFIELD PAYLOAD', payload.data)
+         state.uploadedHrMessage = payload
+         state.isFetching = false
+         state.isSuccess = true
+         state.isError = false
+         state.errorMessage = ''
+         return state
+      },
       // ===================UPLOAD FILE=================================
       [uploadFileCall.pending]: (state: AdminState) => {
          state.isFetching = true
