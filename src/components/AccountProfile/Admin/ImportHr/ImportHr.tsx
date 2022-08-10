@@ -1,118 +1,95 @@
 import styled from 'styled-components'
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import {
-   getHr,
-   getStudents,
    importHrCall,
-   importStudentsCall,
    uploadFileCall,
-} from '../../../../apiCalls'
-import ReactJson from 'react-json-view'
+} from '../../../../features/admin/adminActions'
+import { Button } from '../../../commons/Button/Button'
+import { clearUploadFile } from '../../../../features/admin/adminSlice'
+import { MessageModal } from '../MessageModal/MessageModal'
+import {
+   ImportButton,
+   ImportContainer,
+} from '../ImportStudents/ImportStudents.styles'
+import { FormTitle } from '../AddHrForm/AddHrForm.styles'
+import { UploadHrFileDataTable } from './UploadHrFileDataTable'
+
+const ImportButtonsContainer = styled.div`
+   display: flex;
+   gap: 50px;
+   align-items: center;
+   justify-content: center;
+   padding: 20px;
+   width: 50%;
+`
 
 export const ImportHr = () => {
-   // -------- Beautyful styling :D  START-----------
-   const ListItem = styled.div`
-      font-size: 20px;
-      padding: 20px;
-   `
-   // -------- Beautyful styling :D END-----------
+   const dispatch = useDispatch()
+   const hiddenFileInput = React.useRef(null)
+   const [uploadFileData, setUploadFileData] = useState(null)
+   const [messageModalVisible, setMessageModalVisible] = useState(false)
 
-   // --------------------Upload file START ----------------------
-   const [uploadFile, setUploadFile] = useState('')
-   const uploadFileHandler = (e: any) => {
-      setUploadFile(e.target.files[0])
-   }
-   // --------------------Upload file END ----------------------
-
-   // ----------------------HR START ------------------------
-
-   // upload students to be accepted by admin
-   const [uploadHrJson, setUploadHrJson] = useState([])
-   // import students to DB
-   const [importHrStatus, setImportHrStatus] = useState({})
-   // List students to be accepted by admin
-   const [getAllHrJson, setGetAllHrJson] = useState([])
-
-   const sendHrsFileHandler = async () => {
+   const uploadFileHandler = async (e: any) => {
+      await setUploadFileData(null)
       const data = await new FormData()
-      data.append('usersImport', uploadFile)
-      const response = await uploadFileCall(data)
-      setUploadHrJson(response)
+      await data.append('usersImport', e.target.files[0])
+      const res = await dispatch(await uploadFileCall(data))
+      await setUploadFileData(res.payload)
    }
 
-   const importHrsHandler = async () => {
-      const reponse = await importHrCall(uploadHrJson)
-      setUploadHrJson([])
-      setImportHrStatus(reponse)
+   const handleClick = (e: React.MouseEvent<HTMLButtonElement | null>) => {
+      hiddenFileInput.current.click()
+   }
+   const importStudentsHandler = async () => {
+      await dispatch(await importHrCall(uploadFileData))
+      setUploadFileData(null)
+      setMessageModalVisible(true)
+   }
+   const clearImport = async () => {
+      await setUploadFileData(null)
+      await dispatch(clearUploadFile([]))
    }
 
-   const getHrsHandler = async () => {
-      const response = await getHr()
-      setGetAllHrJson(response)
-   }
-   // ----------------------HR END ------------------------
    return (
-      <div>
-         <h2>HR</h2>
+      <>
+         <ImportContainer>
+            <FormTitle>Zaimportuj HR</FormTitle>
 
-         <ul>
-            <ListItem>
-               1.) Choole File: <br />
+            <ImportButtonsContainer>
+               {uploadFileData === null ? (
+                  <ImportButton
+                     method={handleClick}
+                     buttonTitle="Wczytaj plik CSV"
+                  />
+               ) : null}
                <input
-                  style={{ marginLeft: 30 }}
+                  style={{ display: 'none' }}
                   type="file"
+                  id="fileInput"
                   name="file"
+                  ref={hiddenFileInput}
                   onChange={uploadFileHandler}
                />
-            </ListItem>
 
-            <ListItem>
-               2.) Send File: <br />
-               <button
-                  style={{ marginLeft: 30, padding: 8 }}
-                  onClick={sendHrsFileHandler}
-               >
-                  Upload hr import file
-               </button>
-            </ListItem>
+               {uploadFileData !== null ? (
+                  <Button
+                     method={importStudentsHandler}
+                     buttonTitle="Zaimportuj HR do Bazy"
+                     style={{ background: 'green' }}
+                  />
+               ) : null}
 
-            <ListItem>
-               3.) Click here to import hr to Database: <br />
-               <button
-                  style={{ marginLeft: 30, padding: 8 }}
-                  onClick={importHrsHandler}
-               >
-                  Import hr to database{' '}
-               </button>
-            </ListItem>
+               {uploadFileData !== null ? (
+                  <Button method={clearImport} buttonTitle="Wyczyść" />
+               ) : null}
+            </ImportButtonsContainer>
 
-            <ListItem>
-               4.) Click here see all hr in Database: <br />
-               <button
-                  style={{ marginLeft: 30, padding: 8 }}
-                  onClick={getHrsHandler}
-               >
-                  Get All Hr
-               </button>
-            </ListItem>
-         </ul>
-         <div>
-            <h3>Import hr JSON:</h3>
-            <ReactJson src={uploadHrJson} />
-         </div>
-
-         <br />
-         <div>
-            <h3>import hr status</h3>
-            {importHrStatus && <ReactJson src={importHrStatus} />}
-         </div>
-
-         <br />
-
-         <div>
-            <h3>Get All Hr</h3>
-            <ReactJson src={getAllHrJson} />
-         </div>
-      </div>
+            {messageModalVisible && (
+               <MessageModal setMessageModalVisible={setMessageModalVisible} />
+            )}
+            <UploadHrFileDataTable uploadFileData={uploadFileData} />
+         </ImportContainer>
+      </>
    )
 }

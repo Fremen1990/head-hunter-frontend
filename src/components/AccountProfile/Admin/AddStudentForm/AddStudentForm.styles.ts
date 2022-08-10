@@ -49,7 +49,7 @@ export const LabelScoreWrap = styled.div`
 `
 
 export const LabelScore = styled(Label)`
-   width: 300px;
+   width: 100px;
 `
 
 export const InputWrap = styled.div`

@@ -9,7 +9,7 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Catamaran', sans-serif;
     font-size: 10px;
-     background-color: ${appColors.backgroundColor};
+      background-color: ${appColors.backgroundColor};
   }
   
   #root {
