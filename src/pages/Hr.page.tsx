@@ -15,7 +15,6 @@ export const HrPage = () => {
    const [filterState, setFilterState] = useState({
       value: 'availableStudents',
    })
-   const [search, setSearch] = useState('')
    const dispatch = useDispatch()
    const { isFetching } = useAppSelector((state) => state.hr)
 
@@ -44,20 +43,30 @@ export const HrPage = () => {
          <Header />
          <PageContainer>
             <NavigationBar filterState={updateFilter} />
-            <FilterSection setSearch={setSearch} />
+            <FilterSection
+               students={
+                  filterState.value === 'availableStudents'
+                     ? available
+                     : interview
+               }
+               refreshStudents={updateStudentsTab}
+               layout={
+                  filterState.value === 'availableStudents'
+                     ? 'simple'
+                     : 'extended'
+               }
+            />
             {filterState.value === 'availableStudents' ? (
                <UserResultsContainer
                   layout={'simple'}
                   students={available}
                   refreshStudents={updateStudentsTab}
-                  searchingValue={search}
                />
             ) : (
                <UserResultsContainer
                   layout={'extended'}
                   students={interview}
                   refreshStudents={updateStudentsTab}
-                  searchingValue={search}
                />
             )}
          </PageContainer>
