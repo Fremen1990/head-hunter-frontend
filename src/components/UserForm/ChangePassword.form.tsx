@@ -7,9 +7,10 @@ import { Button } from '../commons/Button/Button'
 import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import { changePassword } from '../../features/user/userActions'
+import { emailValidate } from '../../constants/patterns/pattern_validation'
 
 export const ChangePasswordForm = () => {
-   const { isFetching, errorMessage } = useAppSelector(
+   const { isFetching, errorMessage, success } = useAppSelector(
       (state: UserState) => state.user
    )
 
@@ -19,33 +20,60 @@ export const ChangePasswordForm = () => {
       handleSubmit,
       register,
       formState: {
-         errors: { resetPasswordToken, newPwd, newPwdConfirm },
+         errors: { email, resetPasswordToken, newPwd, newPwdConfirm },
       },
    } = useForm()
 
    const onSubmit = async (data: any) => {
-      const { resetPasswordToken, newPwd, newPwdConfirm } = data
-      if (resetPasswordToken && newPwd && newPwdConfirm) {
+      const { email, resetPasswordToken, newPwd, newPwdConfirm } = data
+      if (email && resetPasswordToken && newPwd && newPwdConfirm) {
          // @ts-ignore
-         await dispatch(
-            changePassword({ resetPasswordToken, newPwd, newPwdConfirm })
+         dispatch(
+            changePassword({ email, resetPasswordToken, newPwd, newPwdConfirm })
          )
       }
    }
 
+   if (success) {
+      setTimeout(() => {
+         window.location.href = '/login'
+      }, 2000)
+   }
+
    return (
       <FormContainer>
-         <Form onSubmit={handleSubmit(onSubmit)}>
-            {errorMessage && <p style={{ color: 'red' }}> {errorMessage}</p>}
+         <Form onSubmit={handleSubmit(onSubmit)} noValidate={false}>
+            {success && (
+               <p style={{ color: 'green', textAlign: 'center' }}>{success}</p>
+            )}
+            {errorMessage && (
+               <p style={{ color: 'red', textAlign: 'center' }}>
+                  {errorMessage}
+               </p>
+            )}
+            <InputWrap>
+               <Input
+                  err={email}
+                  type="email"
+                  {...register('email', {
+                     required: `${description.form.requiredEmail}`,
+                     pattern: {
+                        value: emailValidate,
+                        message: `${description.form.messageEmail}`,
+                     },
+                  })}
+                  placeholder={description.inputsFields.emailPlaceholder}
+               />
+            </InputWrap>
 
             <InputWrap>
                <Input
                   err={resetPasswordToken}
                   type="string"
                   {...register('resetPasswordToken', {
-                     required: `Token jest wymagany`,
+                     required: `${description.form.requiredToken}`,
                   })}
-                  placeholder={`token`}
+                  placeholder={description.inputsFields.tokenPlaceholder}
                />
             </InputWrap>
 
@@ -56,8 +84,9 @@ export const ChangePasswordForm = () => {
                   {...register('newPwd', {
                      required: `${description.form.requiredPass}`,
                   })}
-                  placeholder={description.inputsFields.passwordPlaceholder}
+                  placeholder={description.inputsFields.newPasswordPlaceholder}
                />
+               {newPwd && <div>{newPwd.message}</div>}
             </InputWrap>
 
             <InputWrap>
@@ -67,10 +96,12 @@ export const ChangePasswordForm = () => {
                   {...register('newPwdConfirm', {
                      required: `${description.form.requiredPass}`,
                   })}
-                  placeholder={description.inputsFields.passwordPlaceholder}
+                  placeholder={
+                     description.inputsFields.newPasswordConfirmPlaceholder
+                  }
                />
+               {newPwdConfirm && <div>{newPwdConfirm.message}</div>}
             </InputWrap>
-
             <Button
                buttonTitle={
                   isFetching ? 'loading...' : description.buttons.changePwd
