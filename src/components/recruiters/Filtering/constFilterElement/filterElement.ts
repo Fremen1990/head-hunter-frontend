@@ -7,137 +7,137 @@ interface ElementsButtonsInterface extends ElementsInterface {
    inputTitle: string
 }
 
-export const courseEvaluation: ElementsInterface[] = [
+export const courseCompletion: ElementsInterface[] = [
    {
-      name: 'courseEvaluation',
+      name: 'courseCompletion',
       value: '1',
    },
    {
-      name: 'courseEvaluation',
+      name: 'courseCompletion',
       value: '2',
    },
    {
-      name: 'courseEvaluation',
+      name: 'courseCompletion',
       value: '3',
    },
    {
-      name: 'courseEvaluation',
+      name: 'courseCompletion',
       value: '4',
    },
    {
-      name: 'courseEvaluation',
+      name: 'courseCompletion',
       value: '5',
    },
 ]
-export const activityAssessment: ElementsInterface[] = [
+export const courseEngagement: ElementsInterface[] = [
    {
-      name: 'activityAssessment',
+      name: 'courseEngagement',
       value: '1',
    },
    {
-      name: 'activityAssessment',
+      name: 'courseEngagement',
       value: '2',
    },
    {
-      name: 'activityAssessment',
+      name: 'courseEngagement',
       value: '3',
    },
    {
-      name: 'activityAssessment',
+      name: 'courseEngagement',
       value: '4',
    },
    {
-      name: 'activityAssessment',
+      name: 'courseEngagement',
       value: '5',
    },
 ]
-export const codeEvaluation: ElementsInterface[] = [
+export const projectDegree: ElementsInterface[] = [
    {
-      name: 'codeEvaluation',
+      name: 'projectDegree',
       value: '1',
    },
    {
-      name: 'codeEvaluation',
+      name: 'projectDegree',
       value: '2',
    },
    {
-      name: 'codeEvaluation',
+      name: 'projectDegree',
       value: '3',
    },
    {
-      name: 'codeEvaluation',
+      name: 'projectDegree',
       value: '4',
    },
    {
-      name: 'codeEvaluation',
+      name: 'projectDegree',
       value: '5',
    },
 ]
-export const jobEvaluation: ElementsInterface[] = [
+export const teamProjectDegree: ElementsInterface[] = [
    {
-      name: 'jobEvaluation',
+      name: 'teamProjectDegree',
       value: '1',
    },
    {
-      name: 'jobEvaluation',
+      name: 'teamProjectDegree',
       value: '2',
    },
    {
-      name: 'jobEvaluation',
+      name: 'teamProjectDegree',
       value: '3',
    },
    {
-      name: 'jobEvaluation',
+      name: 'teamProjectDegree',
       value: '4',
    },
    {
-      name: 'jobEvaluation',
+      name: 'teamProjectDegree',
       value: '5',
    },
 ]
-export const typeOfWork: ElementsButtonsInterface[] = [
+export const expectedTypeOfWork: ElementsButtonsInterface[] = [
    {
-      name: 'typeOfWork',
-      value: 'workOffice',
+      name: 'expectedTypeOfWork',
+      value: 'office',
       inputTitle: 'praca z biura',
    },
    {
-      name: 'typeOfWork',
-      value: 'homeoffice',
+      name: 'expectedTypeOfWork',
+      value: 'remote',
       inputTitle: 'praca z domu',
    },
 ]
-export const typeOfContract: ElementsButtonsInterface[] = [
+export const expectedContractType: ElementsButtonsInterface[] = [
    {
-      name: 'typeOfContract',
-      value: 'contractOfEmployment',
+      name: 'expectedContractType',
+      value: 'uop',
       inputTitle: 'umowa o prace',
    },
    {
-      name: 'typeOfContract',
+      name: 'expectedContractType',
       value: 'b2b',
       inputTitle: 'b2b',
    },
    {
-      name: 'typeOfContract',
-      value: 'contractOfMandate',
-      inputTitle: 'umowa zlecenie',
+      name: 'expectedContractType',
+      value: 'uz_uod',
+      inputTitle: 'umowa o zlecenie/dzieło',
    },
    {
-      name: 'typeOfContract',
-      value: 'workContract',
-      inputTitle: 'umowa o dzieło',
+      name: 'expectedContractType',
+      value: 'any',
+      inputTitle: 'bez naczenia',
    },
 ]
 
 export const initialState = {
-   courseEvaluation: [],
-   activityAssessment: [],
-   codeEvaluation: [],
-   jobEvaluation: [],
-   typeOfWork: [],
-   typeOfContract: [],
-   salary: { min: 0, max: 0 },
-   internship: {},
-   experience: { month: 0 },
+   courseCompletion: [],
+   courseEngagement: [],
+   projectDegree: [],
+   teamProjectDegree: [],
+   expectedTypeOfWork: [],
+   expectedContractType: [],
+   expectedSalary: { min: 0, max: 0 },
+   canTakeApprenticeship: {},
+   monthsOfCommercialExp: { month: 0 },
 }

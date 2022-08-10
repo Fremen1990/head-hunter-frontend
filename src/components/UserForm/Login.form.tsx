@@ -15,7 +15,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useDispatch } from 'react-redux'
 import { userLogin } from '../../features/user/userActions'
 import { useAppSelector } from '../../app/hooks'
-import { UserState } from '../../features/user/userSlice'
+import { RootState } from '../../app/store'
 
 type Login = {
    email: string
@@ -25,7 +25,7 @@ type Login = {
 export const LoginForm = () => {
    // const { isFetching, errorMessage, id } = useSelector((state) => state.user)
    const { isFetching, errorMessage, id } = useAppSelector(
-      (state: UserState) => state.user
+      (state: RootState) => state.user
    )
 
    const dispatch = useDispatch()
@@ -42,7 +42,6 @@ export const LoginForm = () => {
    const onSubmit = async (data: Login) => {
       const { email, password } = data
       if (email && password) {
-         // @ts-ignore
          dispatch(userLogin({ email, pwd: password }))
       }
    }

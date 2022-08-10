@@ -1,29 +1,42 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { OneUser } from '../OneUser/OneUser'
 import { studentsInterface } from 'src/pages/Hr.page'
 // eslint-disable-next-line no-unused-vars
-import { useDispatch } from 'react-redux'
-import { fetchHrCandidates } from '../../../features/hr/hrActions'
 // eslint-disable-next-line no-unused-vars
 import { ResultsContainer } from './UserResultsContainer.styles'
 
 interface Props {
    students: studentsInterface[]
    layout: string
+   refreshStudents: () => void
+   searchingValue: string
 }
 
-export const UserResultsContainer = ({ layout, students }: Props) => {
-   const dispatch = useDispatch()
-
-   useEffect(() => {
-      dispatch(fetchHrCandidates())
-   }, [])
-
+export const UserResultsContainer = ({
+   layout,
+   students,
+   refreshStudents,
+   searchingValue,
+}: Props) => {
    return (
       <ResultsContainer>
-         {students.map((student: studentsInterface) => (
-            <OneUser layout={layout} key={student.id} student={student} />
-         ))}
+         {students
+            .filter((item) => {
+               return (
+                  item.student.firstName
+                     .toLowerCase()
+                     .includes(searchingValue) ||
+                  item.student.lastName.toLowerCase().includes(searchingValue)
+               )
+            })
+            .map((items) => (
+               <OneUser
+                  layout={layout}
+                  key={items.id}
+                  student={items}
+                  refreshStudents={refreshStudents}
+               />
+            ))}
       </ResultsContainer>
    )
 }

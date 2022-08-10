@@ -1,19 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { AccountAvatar, AccountContainer } from '../AccountContainer.styles'
 import { Button } from '../../commons/Button/Button'
 import { AccountBox } from '../AccountBox'
-import { UserState } from '../../../features/user/userSlice'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../../../app/hooks'
+import { RootState } from '../../../app/store'
 
 export const User = () => {
-   const { userDetails } = useAppSelector((state: UserState) => state.user)
+   const navigate = useNavigate()
+
+   const { userDetails } = useAppSelector((state: RootState) => state.user)
+   if (userDetails?.firstLogin) {
+      navigate('/user/edit')
+   }
+
+   const handleChangePassword = () => {
+      console.log('Change password')
+   }
 
    return (
       <AccountContainer>
          <AccountAvatar
             src={
-               userDetails
+               userDetails.githubUserName
                   ? `https://avatars.githubusercontent.com/${userDetails?.githubUserName}`
                   : 'https://www.clipartmax.com/png/middle/48-483031_github-logo-black-and-white-github-icon-vector.png'
             }
@@ -31,18 +40,22 @@ export const User = () => {
 
          <div
             className="container-box"
-            style={{ flexDirection: 'row', padding: 20 }}
+            style={{
+               flexDirection: 'row',
+               gap: '40px',
+               flexWrap: 'wrap',
+               padding: '20px 0',
+            }}
          >
-            {/* Student CV */}
-            <NavLink to="/user/profile" style={{ margin: '30px' }}>
-               {/* <studentPortfolio /> */}
+            <NavLink to="/user/profile">
                <Button buttonTitle="Twoje CV" />
             </NavLink>
-            {/* Update CV */}
+
             <NavLink to="/user/edit">
-               {/* <EditStudentPortfolioModal /> */}
                <Button buttonTitle="Zaktualizuj dane" />
             </NavLink>
+
+            <Button method={handleChangePassword} buttonTitle="Zmień hasło" />
          </div>
       </AccountContainer>
    )

@@ -6,13 +6,13 @@ import { description } from '../../../constants/description/description'
 // eslint-disable-next-line no-unused-vars
 import { useDispatch, useSelector } from 'react-redux'
 import { userLogout } from '../../../features/user/userActions'
-import { UserState } from '../../../features/user/userSlice'
 import useClickOutside from '../../../utils/clickOutsideHook'
 import { useAppSelector } from '../../../app/hooks'
+import { RootState } from '../../../app/store'
 
 export const UserBox = () => {
-   const { role, userDetails } = useAppSelector(
-      (state: UserState) => state.user
+   const { role, userDetails, email } = useAppSelector(
+      (state: RootState) => state.user
    )
    const [isOpen, setIsOpen] = useState<boolean>(false)
    const userMenu = useRef(null)
@@ -29,7 +29,9 @@ export const UserBox = () => {
    return (
       <UserContainer isOpen={isOpen} ref={userMenu}>
          <div>
-            <NavLink to={'/user'}>
+            <NavLink
+               to={role === ('student' || 'admin' || 'hr') ? '/user' : ''}
+            >
                <div className={'avatar'}>
                   <img
                      src={
@@ -44,14 +46,15 @@ export const UserBox = () => {
             <p>
                {role === 'student' ? (
                   <>
-                     {userDetails.name} {userDetails.lastName}
+                     {userDetails?.name} {userDetails?.lastName}
                   </>
                ) : role === 'hr' ? (
-                  'HR'
-               ) : (
+                  <p>{email}</p>
+               ) : role === 'admin' ? (
                   'Admin'
-               )}
+               ) : null}
             </p>
+
             <AiOutlineCaretDown onClick={() => setIsOpen(!isOpen)} />
          </div>
          {isOpen && (
