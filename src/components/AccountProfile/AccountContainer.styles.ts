@@ -24,10 +24,10 @@ export const AccountContainer = styled.div`
       flex-direction: column;
       width: 90%;
       border: 1px solid ${appColors.borderColor};
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
-      min-height: 50px;
+      //box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+      min-height: 85px;
       margin-bottom: 50px;
-      background-color: transparent;
+      background-color: ${appColors.backgroundColor};
 
       & * {
          font-size: 1.8rem;
