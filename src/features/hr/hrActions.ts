@@ -45,7 +45,11 @@ export const bookCallCandidate = createAsyncThunk<
    }
 })
 
-export const disinterestCandidate = createAsyncThunk(
+export const disinterestCandidate = createAsyncThunk<
+   HrCandidateAddResponse,
+   { hrUserId: string; studentId: string },
+   { state: RootState }
+>(
    '/hr/interviews/:studentId/remove',
    async ({ studentId }: CandidateId, thunkAPI) => {
       console.log(studentId)
@@ -57,7 +61,11 @@ export const disinterestCandidate = createAsyncThunk(
    }
 )
 
-export const HiredCandidate = createAsyncThunk(
+export const HiredCandidate = createAsyncThunk<
+   HrCandidateAddResponse,
+   { hrUserId: string; studentId: string },
+   { state: RootState }
+>(
    '/hr/interviews/:studentId/hire',
    async ({ studentId }: CandidateId, thunkAPI) => {
       try {
