@@ -5,16 +5,20 @@ import styled from 'styled-components'
 import { api } from '../utils/axios'
 import { Spinner } from '../components/commons/Spinner/Spinner'
 import { useParams } from 'react-router-dom'
+import { device } from '../constants/mediaQueries'
 
 export const CandidateCvPage = () => {
    const [loading, setLoading] = useState(true)
    const [candidate, setCandidate] = useState({})
    const { id } = useParams()
    const CandidateContainer = styled.div`
-      display: flex;
       width: 100%;
       align-items: center;
       justify-content: center;
+
+      ${device.desktop} {
+         display: flex;
+      }
    `
 
    const CandidateCvContainer = styled.div`

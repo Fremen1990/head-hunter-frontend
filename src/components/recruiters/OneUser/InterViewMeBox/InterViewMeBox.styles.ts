@@ -32,7 +32,11 @@ export const BoxContainer = styled.div`
    }
 
    & p:nth-child(1) {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
+
+      ${device.desktop} {
+         font-size: 1.2rem;
+      }
    }
 
    & p:nth-child(2) {

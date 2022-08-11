@@ -8,7 +8,7 @@ export const RatingViewBoxContainer = styled.div`
    flex-wrap: wrap;
    width: 164px;
    gap: 10px;
-   margin: 0 40px 10px 0;
+   margin: 5px 40px 10px 0;
   color: ${appColors.descriptionColor};
 
   & h2 {
