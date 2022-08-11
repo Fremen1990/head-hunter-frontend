@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import { OneUser } from '../OneUser/OneUser'
-import { studentsInterface } from 'src/pages/Hr.page'
-// eslint-disable-next-line no-unused-vars
-// eslint-disable-next-line no-unused-vars
 import { ResultsContainer } from './UserResultsContainer.styles'
 import ReactPaginate from 'react-paginate'
 import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md'
+import { HrCandidateListResponse } from 'types'
 
 interface Props {
-   students: studentsInterface[]
+   students: HrCandidateListResponse[]
    layout: string
    refreshStudents: () => void
 }
