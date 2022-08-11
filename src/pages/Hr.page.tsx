@@ -8,10 +8,11 @@ import { useDispatch } from 'react-redux'
 import { fetchHrCandidates, fetchHrInterviews } from '../features/hr/hrActions'
 import { useAppSelector } from '../app/hooks'
 import { Spinner } from '../components/commons/Spinner/Spinner'
+import { HrCandidateListResponse } from 'types'
 
 export const HrPage = () => {
-   const [available, setAvailable] = useState([])
-   const [interview, setInterview] = useState([])
+   const [available, setAvailable] = useState<HrCandidateListResponse[]>([])
+   const [interview, setInterview] = useState<HrCandidateListResponse[]>([])
    const [filterState, setFilterState] = useState({
       value: 'availableStudents',
    })
