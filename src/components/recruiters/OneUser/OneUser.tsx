@@ -12,18 +12,16 @@ import { AiOutlineCaretDown } from 'react-icons/ai'
 import { InterViewMeBox } from './InterViewMeBox/InterViewMeBox'
 import { StudentPortfolioModal } from '../../commons/modals/StudentPortfolio/StudentPortfolioModal'
 import { description } from '../../../constants/description/description'
-import { studentsInterface } from 'src/pages/Hr.page'
 import { useDispatch } from 'react-redux'
 import {
    bookCallCandidate,
    disinterestCandidate,
    HiredCandidate,
 } from '../../../features/hr/hrActions'
-import { useAppSelector } from '../../../app/hooks'
 
 interface Props {
    layout: string
-   student: studentsInterface
+   student: any
    refreshStudents: () => void
 }
 
@@ -34,9 +32,6 @@ export const OneUser = ({ layout, student, refreshStudents }: Props) => {
    const text = description.userInterview
    const buttonsName = description.buttons
    const descriptions = description.userInterview
-   const { isFetching } = useAppSelector((state) => state.hr)
-
-   // const showStudentPortfolio = () => setShowCv(!showCv)
 
    const handleBookCall = async (studentId: string) => {
       try {
@@ -61,7 +56,6 @@ export const OneUser = ({ layout, student, refreshStudents }: Props) => {
          await refreshStudents()
       }
    }
-
    return (
       <>
          <UserContainer isOpen={isOpen}>
@@ -92,7 +86,7 @@ export const OneUser = ({ layout, student, refreshStudents }: Props) => {
                      </div>
                   )}
                   <p>{student.student.firstName}</p>
-                  
+
                   {layout === 'simple' ? (
                      <p>{student.student.lastName?.slice(-1)}</p>
                   ) : (
@@ -110,10 +104,6 @@ export const OneUser = ({ layout, student, refreshStudents }: Props) => {
                </ButtonsBox>
             ) : (
                <ButtonsBox isOpen={isOpen}>
-                  {/* <Button */}
-                  {/*   buttonTitle={buttonsName.showCv} */}
-                  {/*   method={() => showStudentPortfolio()} */}
-                  {/* /> */}
                   <ShowCvLink to={`candidate/${student.studentId}`}>
                      {buttonsName.showCv}
                   </ShowCvLink>
