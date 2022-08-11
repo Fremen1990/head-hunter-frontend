@@ -7,15 +7,17 @@ export const CandidateCvContainer = styled.div`
    display: flex;
    flex-wrap: wrap;
    align-items: flex-start;
+   justify-content: center;
 `
 
 export const BackButton = styled.button`
    display: flex;
    align-items: center;
+   justify-content: center;
    color: ${appColors.fontColor};
    border: none;
    margin: 5px 0;
-   width: 60px;
+   width: 100%;
    font-weight: bold;
    font-size: 16px;
    cursor: pointer;
@@ -23,6 +25,10 @@ export const BackButton = styled.button`
 
    :hover {
       color: ${appColors.buttonColor};
+   }
+
+   ${device.desktop} {
+      width: 60px;
    }
 `
 
@@ -32,6 +38,7 @@ export const AsideSection = styled.aside`
    justify-content: space-between;
    align-items: center;
    flex-wrap: wrap;
+   width: 100%;
    margin-bottom: 10px;
    background-color: ${appColors.pageContainerColor};
    color: ${appColors.descriptionColor};
