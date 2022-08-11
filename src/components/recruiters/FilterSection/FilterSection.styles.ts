@@ -14,10 +14,12 @@ export const FilterSectionBox = styled.div`
    & form {
       background-color: transparent;
 
-      & label {
+      & label.search {
          display: flex;
          align-items: center;
-         border: 1px solid rgba(255, 255, 255, 0.2);
+         margin: 0 auto;
+         width: 90%;
+         border: 1px solid transparent;
          border-radius: 4px;
          background-color: transparent;
 
@@ -33,10 +35,6 @@ export const FilterSectionBox = styled.div`
             font-size: 1.7rem;
             cursor: pointer;
             transition: 0.3s;
-
-            &:hover {
-               color: red;
-            }
          }
       }
    }
@@ -45,9 +43,14 @@ export const FilterSectionBox = styled.div`
       font-size: 1.4rem;
       color: ${appColors.fontColor};
       padding: 5px;
-      border: none;
+      border: 1px solid rgba(255, 255, 255, 0.3);
       background-color: transparent;
       border-radius: 4px;
-      cursor: pointer;
+      transition: 0.3s;
+      width: 90%;
+
+      &:focus {
+         border: 1px solid rgba(255, 255, 255, 0.6);
+      }
    }
 `

@@ -5,20 +5,27 @@ import { Filtering } from '../Filtering/Filtering'
 import { BsSearch } from 'react-icons/bs'
 import { description } from '../../../constants/description/description'
 import { Search } from '../../commons/modals/Search/Serarch'
+import { HrCandidateListResponse } from 'types'
 
 interface Props {
-   students: []
+   students: HrCandidateListResponse[]
    refreshStudents: () => void
    layout: string
 }
 
 export const FilterSection = ({ students, refreshStudents, layout }: Props) => {
-   const [isOpen, setIsOpen] = useState(false)
-   const [openModal, setOpenModal] = useState(false)
+   const [isOpen, setIsOpen] = useState<boolean>(false)
+   const [openModal, setOpenModal] = useState<boolean>(false)
 
    isOpen || openModal
       ? (document.body.style.overflow = 'hidden')
       : (document.body.style.overflow = '')
+
+   document.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.ctrlKey && (e.key === ' ' || e.key === 'Spacebar')) {
+         setOpenModal(true)
+      }
+   })
 
    return (
       <FilterSectionBox>
@@ -32,7 +39,7 @@ export const FilterSection = ({ students, refreshStudents, layout }: Props) => {
                <input
                   id={'search'}
                   type={'text'}
-                  placeholder={description.inputsFields.filterPlaceholder}
+                  placeholder={`${description.inputsFields.filterPlaceholder} | ctrl + space`}
                   disabled
                />
             </label>
