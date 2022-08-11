@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useLayoutEffect, useRef, useState } from 'react'
 import { ResultsContainer, SearchBox, SearchContainer } from './Search.styles'
 import { BsSearch } from 'react-icons/bs'
 import { description } from '../../../../constants/description/description'
 import { AiOutlineClose } from 'react-icons/ai'
 import { OneUser } from '../../../recruiters/OneUser/OneUser'
+import { HrCandidateListResponse } from 'types'
 
 interface Props {
-   students: []
+   students: HrCandidateListResponse[]
    closeSearchBox: (value: boolean) => void
    refreshStudents: () => void
    layout: string
@@ -18,11 +19,22 @@ export const Search = ({
    refreshStudents,
    layout,
 }: Props) => {
-   const [searchInput, setSearchInput] = useState('')
+   const [searchInput, setSearchInput] = useState<string>('')
+   const inputRef = useRef<HTMLInputElement>(null)
 
-   const clearSearch = () => {
-      setSearchInput('')
-   }
+   document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+         closeSearchBox(false)
+      }
+   })
+
+   useLayoutEffect(() => {
+      if (inputRef.current !== null) {
+         inputRef.current.focus()
+      }
+   })
+
+   const clearSearch = () => setSearchInput('')
 
    const toDisplay = students
       .filter((item) =>
@@ -45,6 +57,7 @@ export const Search = ({
                <label className={'search'} htmlFor={'search'}>
                   <BsSearch />
                   <input
+                     ref={inputRef}
                      id={'search'}
                      type={'text'}
                      placeholder={description.inputsFields.filterPlaceholder}
