@@ -4,12 +4,16 @@ import styled from 'styled-components'
 import { StudentPortfolio } from '../components/studentPortfolio/StudentPortfolio'
 import { useAppSelector } from '../app/hooks'
 import { RootState } from '../app/store'
+import { device } from '../constants/mediaQueries'
 
 const PortfolioContainer = styled.div`
-   display: flex;
    width: 100%;
-   align-items: center;
-   justify-content: center;
+
+   ${device.desktop} {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   }
 `
 
 const StudentPortfolioContainer = styled.div`

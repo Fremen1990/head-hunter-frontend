@@ -11,14 +11,19 @@ export const UserPortfolioContainer = styled.div`
 export const BackButton = styled.button`
    display: flex;
    align-items: center;
+   justify-content: center;
    color: ${appColors.fontColor};
    border: none;
    margin: 5px 0;
-   width: 60px;
+   width: 100%;
    font-weight: bold;
    font-size: 16px;
    cursor: pointer;
    transition: 0.3s;
+
+   ${device.desktop} {
+      width: 60px;
+   }
 
    :hover {
       color: ${appColors.buttonColor};
@@ -34,6 +39,7 @@ export const AsideSection = styled.aside`
    flex-direction: column;
    justify-content: space-between;
    align-items: center;
+   width: 100%;
    flex-wrap: wrap;
    margin-bottom: 10px;
    background-color: ${appColors.pageContainerColor};
