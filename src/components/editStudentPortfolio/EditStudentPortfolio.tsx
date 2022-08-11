@@ -29,6 +29,7 @@ import { userUpdateProfile } from '../../features/user/userActions'
 import { useAppSelector } from '../../app/hooks'
 import { RootState } from '../../app/store'
 import { Spinner } from '../commons/Spinner/Spinner'
+import { toast } from 'react-toastify'
 
 export const EditStudentPortfolio = () => {
    const navigate = useNavigate()
@@ -117,7 +118,8 @@ export const EditStudentPortfolio = () => {
       setLoading(true)
       setTimeout(() => {
          setLoading(false)
-         navigate('/user/profile')
+         toast.success('Profil uzupełniony! 💪')
+         // navigate('/user/profile')
       }, 1000)
    }
 
@@ -158,7 +160,7 @@ export const EditStudentPortfolio = () => {
    return (
       <PageContainer>
          <Form onSubmit={handleSubmit(submit)}>
-            <BackButton onClick={() => navigate(-1)}>
+            <BackButton onClick={() => navigate('/user')}>
                {backFromModal}
             </BackButton>
             <AsideSection>

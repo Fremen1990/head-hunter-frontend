@@ -137,7 +137,7 @@ export const userUpdateProfile = createAsyncThunk<
       const response = await api.put(`/student/${state.user.id}`, formData)
       const data = response.data
       if (response.status === 200) {
-         toast.success('Profil uzupełniony! 💪')
+         // toast.success('Profil uzupełniony! 💪')
 
          return data
       } else {

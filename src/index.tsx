@@ -7,7 +7,7 @@ import { store } from './app/store'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import './index.css'
-import 'animate.css/animate.min.css'
+// import 'animate.css/animate.min.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
