@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import React, { useState } from 'react'
+import { saveAs } from 'file-saver'
 import { useDispatch } from 'react-redux'
 import {
    importHrCall,
@@ -51,16 +52,31 @@ export const ImportHr = () => {
       await dispatch(clearUploadFile([]))
    }
 
+   const handleSaveFile = () => {
+      saveAs(
+         'https://raw.githubusercontent.com/Fremen1990/head-hunter-frontend/develop/hr.csv',
+         'hr_example_import_file.csv'
+      )
+   }
+
+   console.log(uploadFileData)
    return (
       <>
          <ImportContainer>
             <FormTitle>Zaimportuj HR</FormTitle>
 
             <ImportButtonsContainer>
+               <Button
+                  method={handleSaveFile}
+                  buttonTitle="Przykładowy plik"
+                  style={{ background: '#1e92f4', fontSize: 16 }}
+               />
+
                {uploadFileData === null ? (
                   <ImportButton
                      method={handleClick}
                      buttonTitle="Wczytaj plik CSV"
+                     style={{ fontSize: 16 }}
                   />
                ) : null}
                <input
@@ -76,19 +92,26 @@ export const ImportHr = () => {
                   <Button
                      method={importHrHandler}
                      buttonTitle="Zaimportuj HR do Bazy"
-                     style={{ background: 'green' }}
+                     style={{ background: 'green', fontSize: 16 }}
                   />
                ) : null}
 
                {uploadFileData !== null ? (
-                  <Button method={clearImport} buttonTitle="Wyczyść" />
+                  <Button
+                     method={clearImport}
+                     buttonTitle="Wyczyść"
+                     style={{ fontSize: 16 }}
+                  />
                ) : null}
             </ImportButtonsContainer>
 
             {messageModalVisible && (
                <MessageModal setMessageModalVisible={setMessageModalVisible} />
             )}
-            <UploadHrFileDataTable uploadFileData={uploadFileData} />
+
+            {uploadFileData ? (
+               <UploadHrFileDataTable uploadFileData={uploadFileData} />
+            ) : null}
          </ImportContainer>
       </>
    )

@@ -81,7 +81,7 @@ export const MessageModal = ({ setMessageModalVisible }: Props) => {
                <MessageTitle>Created users list:</MessageTitle>
                <ul>
                   {message?.createdUsers?.map((createdUser, i) => (
-                     <li key={i}>{createdUser}</li>
+                     <UsersList key={i}>{createdUser}</UsersList>
                   ))}
                </ul>
             </>

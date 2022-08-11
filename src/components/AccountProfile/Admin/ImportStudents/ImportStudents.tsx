@@ -14,6 +14,7 @@ import {
    ImportContainer,
 } from './ImportStudents.styles'
 import { UploadStudentsFileDataTable } from './UploadStudentsFileDataTable'
+import { saveAs } from 'file-saver'
 
 export const ImportStudents = () => {
    const dispatch = useDispatch()
@@ -42,11 +43,24 @@ export const ImportStudents = () => {
       await dispatch(clearUploadFile([]))
    }
 
+   const handleSaveFile = () => {
+      saveAs(
+         'https://raw.githubusercontent.com/Fremen1990/head-hunter-frontend/develop/Students%20x50.csv',
+         'students_example_import_file.csv'
+      )
+   }
+
    return (
       <>
          <ImportContainer>
             <FormTitle>Zaimportuj Studentów</FormTitle>
             <ImportButtonsContainer>
+               <Button
+                  method={handleSaveFile}
+                  buttonTitle="Przykładowy plik importu"
+                  style={{ background: '#1e92f4', fontSize: 16 }}
+               />
+
                {uploadFileData === null ? (
                   <ImportButton
                      method={handleClick}
@@ -66,12 +80,16 @@ export const ImportStudents = () => {
                   <Button
                      method={importStudentsHandler}
                      buttonTitle="Zaimportuj studentów do Bazy"
-                     style={{ background: 'green' }}
+                     style={{ background: 'green', fontSize: 16 }}
                   />
                ) : null}
 
                {uploadFileData !== null ? (
-                  <Button method={clearImport} buttonTitle="Wyczyść" />
+                  <Button
+                     method={clearImport}
+                     buttonTitle="Wyczyść"
+                     style={{ fontSize: 16 }}
+                  />
                ) : null}
             </ImportButtonsContainer>
          </ImportContainer>

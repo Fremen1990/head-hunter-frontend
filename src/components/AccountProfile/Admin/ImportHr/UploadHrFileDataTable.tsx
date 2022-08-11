@@ -35,7 +35,7 @@ export const UploadHrFileDataTable = ({ uploadFileData }: Props) => {
 
    return (
       <>
-         {uploadFileData !== null ? (
+         {uploadFileData !== undefined ? (
             <>
                <div
                   style={{
@@ -87,13 +87,13 @@ export const UploadHrFileDataTable = ({ uploadFileData }: Props) => {
                            </TableHead>
                            <TableBody>
                               {uploadFileData
-                                 ?.filter(
+                                 .filter(
                                     (row) =>
-                                       row.company === '' ||
-                                       row.company
+                                       row?.company === '' ||
+                                       row?.company
                                           .toLowerCase()
                                           .includes(search.toLowerCase()) ||
-                                       row.fullName
+                                       row?.fullName
                                           .toLowerCase()
                                           .includes(search.toLowerCase())
                                  )
