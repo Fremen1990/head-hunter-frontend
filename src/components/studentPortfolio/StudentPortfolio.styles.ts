@@ -57,7 +57,12 @@ export const AsideSection = styled.aside`
 
    & h2 {
       font-size: 1.8rem;
+      text-align: center;
       background-color: ${appColors.pageContainerColor};
+
+      ${device.tablet} {
+         font-size: 2.2rem;
+      }
 
       ${device.desktop} {
          font-size: 2.4rem;

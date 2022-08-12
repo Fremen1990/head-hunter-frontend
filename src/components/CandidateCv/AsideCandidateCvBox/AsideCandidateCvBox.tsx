@@ -1,20 +1,20 @@
 import React from 'react'
-import {
-   DescriptionContainer,
-   GitHubContainer,
-   GithubIcon,
-   MailIcon,
-   PhoneIcon,
-   RowContainer,
-} from './AsideCandidateCvBox.styles'
-import { Button } from '../../commons/Button/Button'
-import { description } from '../../../constants/description/description'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import {
    disinterestCandidate,
    HiredCandidate,
 } from '../../../features/hr/hrActions'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Button } from '../../commons/Button/Button'
+import { description } from '../../../constants/description/description'
+import {
+   GithubIcon,
+   MailIcon,
+   PhoneIcon,
+   DescriptionContainer,
+   GitHubContainer,
+   RowContainer,
+} from '../../studentPortfolio/AsideUserBox/AsideUserBox.styles'
 
 interface Props {
    firstName: string
