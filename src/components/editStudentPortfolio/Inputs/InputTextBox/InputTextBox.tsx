@@ -3,8 +3,9 @@ import {
    BoxContainer,
    ErrorExtendedLayoutMessage,
    ErrorSimpleLayoutMessage,
-} from '../EditStudentPortfolio.styles'
+} from '../../EditStudentPortfolio.styles'
 import { UseFormRegisterReturn } from 'react-hook-form'
+import { Input } from '../InputBox.styles'
 
 interface Props {
    layout: string
@@ -28,7 +29,7 @@ export const InputTextBox = ({
    return layout === 'simple' ? (
       <label>
          <p>{title}</p>
-         <input
+         <Input
             value={value}
             autoFocus
             type="text"
@@ -43,7 +44,7 @@ export const InputTextBox = ({
    ) : (
       <BoxContainer>
          <p>{title}</p>
-         <input
+         <Input
             value={value}
             type="text"
             {...validation}

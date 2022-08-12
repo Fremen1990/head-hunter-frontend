@@ -1,5 +1,6 @@
 import React from 'react'
 import { SubtitlesSection } from '../../studentPortfolio/SubtitlesSection/SubtitlesSection'
+import { TextArea } from './TextAreaBox.styles'
 
 interface Props {
    title: string
@@ -12,7 +13,7 @@ export const TextAreaBox = ({ title, method, value, placeholder }: Props) => {
    return (
       <label>
          <SubtitlesSection text={title} />
-         <textarea
+         <TextArea
             onChange={method}
             rows={4}
             style={{ resize: 'none' }}

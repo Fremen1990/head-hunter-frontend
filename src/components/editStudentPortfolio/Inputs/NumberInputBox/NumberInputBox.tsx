@@ -2,8 +2,9 @@ import React, { ChangeEvent } from 'react'
 import {
    BoxContainer,
    ErrorExtendedLayoutMessage,
-} from '../EditStudentPortfolio.styles'
+} from '../../EditStudentPortfolio.styles'
 import { UseFormRegisterReturn } from 'react-hook-form'
+import { Input } from '../InputBox.styles'
 
 interface Props {
    layout: string
@@ -25,12 +26,12 @@ export const NumberInputBox = ({
    return layout === 'simple' ? (
       <label>
          <p>{title}</p>
-         <input type="number" onChange={method} value={value} />
+         <Input type="number" onChange={method} value={value} />
       </label>
    ) : (
       <BoxContainer>
          <p>{title}</p>
-         <input
+         <Input
             type="number"
             {...validation}
             onChange={method}

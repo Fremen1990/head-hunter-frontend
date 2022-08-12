@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react'
 import { SubtitlesSection } from '../../studentPortfolio/SubtitlesSection/SubtitlesSection'
-import styled from 'styled-components'
 import { LinksBox } from '../../studentPortfolio/LinksBox/LinksBox'
+import { Input } from '../Inputs/InputBox.styles'
 
 interface Props {
    urlBoxArray: string[]
@@ -11,18 +11,6 @@ interface Props {
    btnText: string
    text: string
 }
-
-const InputUrls = styled.input`
-   :hover {
-      border-color: yellow;
-   }
-
-   &:focus {
-      outline: none;
-      box-shadow: 0px 0px 2px green;
-      border-color: green;
-   }
-`
 
 export const UrlBox = ({
    urlBoxArray,
@@ -34,9 +22,9 @@ export const UrlBox = ({
 }: Props) => (
    <label>
       <SubtitlesSection text={text} />
-      <LinksBox link={urlBoxArray} edit />
+      <LinksBox link={urlBoxArray} />
 
-      <InputUrls
+      <Input
          type="text"
          name="projectUrls"
          value={value}
