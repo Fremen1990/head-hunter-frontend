@@ -1,4 +1,11 @@
 import React, { ChangeEvent, useState } from 'react'
+import { RootState } from '../../app/store'
+import { useAppSelector } from '../../app/hooks'
+import { userUpdateProfile } from '../../features/user/userActions'
+import { useDispatch } from 'react-redux'
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { SubtitlesSection } from '../studentPortfolio/SubtitlesSection/SubtitlesSection'
 import { Button } from '../commons/Button/Button'
 import { InputTextBox } from './Inputs/InputTextBox/InputTextBox'
@@ -6,9 +13,14 @@ import { SelectBox } from './SelectBox/SelectBox'
 import { NumberInputBox } from './Inputs/NumberInputBox/NumberInputBox'
 import { TextAreaBox } from './TextAreaBox/TextAreaBox'
 import { UrlBox } from './UrlBox/UrlBox'
-import { FormCVInterface } from '../../types/formInterface'
+import { Spinner } from '../commons/Spinner/Spinner'
 import { description } from '../../constants/description/description'
-
+import {
+   canTakeApprenticeshipOptions,
+   expectedContractTypeOptions,
+   expectedTypeOfWork,
+} from '../../constants/secletOptions'
+import { TextArea } from './TextAreaBox/TextAreaBox.styles'
 import {
    AsideSection,
    BackButton,
@@ -17,20 +29,7 @@ import {
    Form,
    MainSection,
 } from './EditStudentPortfolio.styles'
-import {
-   canTakeApprenticeshipOptions,
-   expectedContractTypeOptions,
-   expectedTypeOfWork,
-} from '../../constants/secletOptions'
-import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { userUpdateProfile } from '../../features/user/userActions'
-import { useAppSelector } from '../../app/hooks'
-import { RootState } from '../../app/store'
-import { Spinner } from '../commons/Spinner/Spinner'
-import { toast } from 'react-toastify'
-import { TextArea } from './TextAreaBox/TextAreaBox.styles'
+import { FormCVInterface } from '../../types/formInterface'
 
 export const EditStudentPortfolio = () => {
    const navigate = useNavigate()
@@ -76,7 +75,7 @@ export const EditStudentPortfolio = () => {
       },
    } = useForm()
 
-   const handlePortfolioClick = (e: React.MouseEvent<HTMLElement>) => {
+   const handleAddPortfolioClick = (e: React.MouseEvent<HTMLElement>) => {
       e.preventDefault()
       setPortfolioUrls('')
       setForm((form) => ({
@@ -85,12 +84,30 @@ export const EditStudentPortfolio = () => {
       }))
    }
 
-   const handleProjectClick = (e: React.MouseEvent<HTMLElement>) => {
+   const handleAddProjectClick = (e: React.MouseEvent<HTMLElement>) => {
       e.preventDefault()
       setProjectUrls('')
       setForm((form) => ({
          ...form,
          projectUrls: [...form.projectUrls, projectUrls],
+      }))
+   }
+
+   const handleRemoveProjectClick = (project) => {
+      setProjectUrls('')
+      setForm((form) => ({
+         ...form,
+         projectUrls: form.projectUrls.filter((element) => element !== project),
+      }))
+   }
+
+   const handleRemovePortfolioClick = (portfolio) => {
+      setPortfolioUrls('')
+      setForm((form) => ({
+         ...form,
+         portfolioUrls: form.portfolioUrls.filter(
+            (element) => element !== portfolio
+         ),
       }))
    }
 
@@ -153,6 +170,7 @@ export const EditStudentPortfolio = () => {
    } = description.editCv
 
    const { addProjectBtn, sendFormBtn } = description.editCv
+
    return (
       <EditModalContainer>
          <Form onSubmit={handleSubmit(submit)}>
@@ -343,7 +361,10 @@ export const EditStudentPortfolio = () => {
                   urlBoxArray={form.portfolioUrls}
                   value={portfolioUrls}
                   inputMethod={updatePortfolioForm}
-                  btnMethod={handlePortfolioClick}
+                  removeMethod={(portfolio) =>
+                     handleRemovePortfolioClick(portfolio)
+                  }
+                  btnMethod={handleAddPortfolioClick}
                   btnText={addProjectBtn}
                />
                <UrlBox
@@ -351,7 +372,8 @@ export const EditStudentPortfolio = () => {
                   urlBoxArray={form.projectUrls}
                   value={projectUrls}
                   btnText={addProjectBtn}
-                  btnMethod={handleProjectClick}
+                  btnMethod={handleAddProjectClick}
+                  removeMethod={(project) => handleRemoveProjectClick(project)}
                   inputMethod={updateProjectChange}
                />
                <Button buttonTitle={sendFormBtn} />

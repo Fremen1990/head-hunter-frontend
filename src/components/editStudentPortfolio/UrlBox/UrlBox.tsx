@@ -8,6 +8,7 @@ interface Props {
    value: string
    inputMethod: (e: ChangeEvent<HTMLInputElement>) => void
    btnMethod: (e: React.MouseEvent<HTMLElement>) => void
+   removeMethod: (arg: string) => void
    btnText: string
    text: string
 }
@@ -17,12 +18,13 @@ export const UrlBox = ({
    value,
    inputMethod,
    btnMethod,
+   removeMethod,
    btnText,
    text,
 }: Props) => (
    <label>
       <SubtitlesSection text={text} />
-      <LinksBox link={urlBoxArray} />
+      <LinksBox link={urlBoxArray} edit removeMethod={removeMethod} />
 
       <Input
          type="text"

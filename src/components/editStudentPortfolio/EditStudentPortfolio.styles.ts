@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { appColors } from '../../constants/Layout/app.colors'
 import { device } from '../../constants/mediaQueries'
 import { PageContainer } from '../../constants/Layout/Container.styles'
+import { AiOutlineClose } from 'react-icons/ai'
 
 export const EditModalContainer = styled(PageContainer)`
    border: 1px solid transparent;
@@ -193,5 +194,18 @@ export const BoxContainer = styled.div`
 
    ${device.desktop} {
       width: 40%;
+   }
+`
+
+export const RemoveIcon = styled(AiOutlineClose)`
+   margin-left: 5px;
+   font-size: 2rem;
+   color: ${appColors.buttonColor};
+   transition: 0.3s;
+   cursor: pointer;
+
+   &:hover {
+      font-size: 2.5rem;
+      transform: rotate(-180deg);
    }
 `
