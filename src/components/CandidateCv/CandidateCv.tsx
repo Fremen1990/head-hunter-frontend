@@ -1,7 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AsideCandidateCvBox } from './AsideCandidateCvBox/AsideCandidateCvBox'
-import { DescriptionCandidateCvBox } from './DescriptionCandidateCvBox/DescriptionCandidateCvBox'
 import { RatingCandidateCvBox } from './RatingCandidateCvBox/RatingCandidateCvBox'
 import { ExpectationCandidateBox } from './ExpectationCandidateBox/ExpectationCandidateBox'
 import { description } from '../../constants/description/description'
@@ -14,6 +13,7 @@ import {
 import { CandidateCvContainer } from './CandidateCv.styles'
 import { UserType } from 'types'
 import { LinksBox } from '../studentPortfolio/LinksBox/LinksBox'
+import { DescriptionBox } from '../studentPortfolio/DescriptionBox/DescriptionBox'
 
 interface Props {
    candidate: UserType
@@ -91,15 +91,9 @@ export const CandidateCv = ({ candidate }: Props) => {
                monthsOfCommercialExp={monthsOfCommercialExp}
                expectedTypeOfWork={expectedTypeOfWork}
             />
-            <DescriptionCandidateCvBox
-               text={educationDescribe}
-               desc={education}
-            />
-            <DescriptionCandidateCvBox text={coursesDescribe} desc={courses} />
-            <DescriptionCandidateCvBox
-               text={experienceDescribe}
-               desc={workExperience}
-            />
+            <DescriptionBox text={educationDescribe} desc={education} />
+            <DescriptionBox text={coursesDescribe} desc={courses} />
+            <DescriptionBox text={experienceDescribe} desc={workExperience} />
             <LinksBox text={portfolio} link={portfolioUrls} />
             <LinksBox text={groupProject} link={bonusProjectUrls} />
             <LinksBox text={ownProject} link={projectUrls} />
