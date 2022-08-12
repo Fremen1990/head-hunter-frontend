@@ -4,7 +4,6 @@ import { AsideCandidateCvBox } from './AsideCandidateCvBox/AsideCandidateCvBox'
 import { DescriptionCandidateCvBox } from './DescriptionCandidateCvBox/DescriptionCandidateCvBox'
 import { RatingCandidateCvBox } from './RatingCandidateCvBox/RatingCandidateCvBox'
 import { ExpectationCandidateBox } from './ExpectationCandidateBox/ExpectationCandidateBox'
-import { LinksCandidateBox } from './LinksCadidateBox/LinksCandidateBox'
 import { description } from '../../constants/description/description'
 import {
    BackButton,
@@ -14,6 +13,7 @@ import {
 } from '../studentPortfolio/StudentPortfolio.styles'
 import { CandidateCvContainer } from './CandidateCv.styles'
 import { UserType } from 'types'
+import { LinksBox } from '../studentPortfolio/LinksBox/LinksBox'
 
 interface Props {
    candidate: UserType
@@ -100,9 +100,9 @@ export const CandidateCv = ({ candidate }: Props) => {
                text={experienceDescribe}
                desc={workExperience}
             />
-            <LinksCandidateBox text={portfolio} link={portfolioUrls} />
-            <LinksCandidateBox text={groupProject} link={bonusProjectUrls} />
-            <LinksCandidateBox text={ownProject} link={projectUrls} />
+            <LinksBox text={portfolio} link={portfolioUrls} />
+            <LinksBox text={groupProject} link={bonusProjectUrls} />
+            <LinksBox text={ownProject} link={projectUrls} />
          </MainSection>
       </CandidateCvContainer>
    )
