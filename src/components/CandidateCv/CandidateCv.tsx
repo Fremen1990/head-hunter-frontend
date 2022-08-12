@@ -1,18 +1,18 @@
 import React from 'react'
-import {
-   AsideSection,
-   BackButton,
-   BackIcon,
-   CandidateCvContainer,
-   MainSection,
-} from './CandidateCv.styles'
 import { useNavigate } from 'react-router-dom'
-import { description } from '../../constants/description/description'
 import { AsideCandidateCvBox } from './AsideCandidateCvBox/AsideCandidateCvBox'
 import { DescriptionCandidateCvBox } from './DescriptionCandidateCvBox/DescriptionCandidateCvBox'
 import { RatingCandidateCvBox } from './RatingCandidateCvBox/RatingCandidateCvBox'
 import { ExpectationCandidateBox } from './ExpectationCandidateBox/ExpectationCandidateBox'
 import { LinksCandidateBox } from './LinksCadidateBox/LinksCandidateBox'
+import { description } from '../../constants/description/description'
+import {
+   BackButton,
+   BackIcon,
+   AsideSection,
+   MainSection,
+} from '../studentPortfolio/StudentPortfolio.styles'
+import { CandidateCvContainer } from './CandidateCv.styles'
 import { UserType } from 'types'
 
 interface Props {
@@ -55,6 +55,7 @@ export const CandidateCv = ({ candidate }: Props) => {
       bonusProjectUrls,
       projectUrls,
    } = candidate.student
+
    const { email } = candidate
 
    return (
