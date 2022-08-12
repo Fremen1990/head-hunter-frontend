@@ -1,19 +1,19 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AsideCandidateCvBox } from './AsideCandidateCvBox/AsideCandidateCvBox'
-import { RatingCandidateCvBox } from './RatingCandidateCvBox/RatingCandidateCvBox'
 import { ExpectationCandidateBox } from './ExpectationCandidateBox/ExpectationCandidateBox'
+import { LinksBox } from '../studentPortfolio/LinksBox/LinksBox'
+import { DescriptionBox } from '../studentPortfolio/DescriptionBox/DescriptionBox'
+import { RatingBox } from '../studentPortfolio/RatingBox/RatingBox'
 import { description } from '../../constants/description/description'
+import { CandidateCvContainer } from './CandidateCv.styles'
 import {
-   BackButton,
    BackIcon,
+   BackButton,
    AsideSection,
    MainSection,
 } from '../studentPortfolio/StudentPortfolio.styles'
-import { CandidateCvContainer } from './CandidateCv.styles'
 import { UserType } from 'types'
-import { LinksBox } from '../studentPortfolio/LinksBox/LinksBox'
-import { DescriptionBox } from '../studentPortfolio/DescriptionBox/DescriptionBox'
 
 interface Props {
    candidate: UserType
@@ -75,7 +75,7 @@ export const CandidateCv = ({ candidate }: Props) => {
             />
          </AsideSection>
          <MainSection>
-            <RatingCandidateCvBox
+            <RatingBox
                ratingStars={[
                   courseCompletion,
                   courseEngagement,
