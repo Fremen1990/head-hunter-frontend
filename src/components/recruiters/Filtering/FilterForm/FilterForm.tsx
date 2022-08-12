@@ -25,7 +25,13 @@ export const FilterForm = (props: Props) => {
    const [filter, dispatch] = useReducer(filterReducer, initialState)
 
    const handleSubmit = (e: SyntheticEvent) => {
-      console.log(filter)
+      const newObj = {
+         ...filter,
+         monthsOfCommercialExp: filter.monthsOfCommercialExp.month,
+         canTakeApprenticeship:
+            filter.canTakeApprenticeship.canTakeApprenticeship,
+      }
+      console.log(newObj)
       e.preventDefault()
    }
 

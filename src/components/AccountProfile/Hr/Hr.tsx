@@ -24,10 +24,12 @@ export const Hr = () => {
                   <p> Zarezerwuj rozmowę </p>
                </UtilsMenuBox>
             </NavLink>
-            <UtilsMenuBox>
-               <IoCreate />
-               <p> Zmień Hasło</p>
-            </UtilsMenuBox>
+            <NavLink to="/auth/change-password">
+               <UtilsMenuBox>
+                  <IoCreate />
+                  <p> Zmień Hasło</p>
+               </UtilsMenuBox>
+            </NavLink>
          </UtilsMenu>
       </AccountContainer>
    )

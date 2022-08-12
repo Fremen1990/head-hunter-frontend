@@ -2,6 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import {
    bookCallCandidate,
    disinterestCandidate,
+   fetchFilterHrCandidates,
+   fetchFilterHrInterviews,
    fetchHrCandidates,
    fetchHrInterviews,
    HiredCandidate,
@@ -65,6 +67,41 @@ export const hrSlice = createSlice({
          state.errorMessage = ''
          return state
       },
+      // ===============FETCH FILTER HR INTERVIEWS=======================
+      [fetchFilterHrCandidates.pending]: (state: RootState) => {
+         state.isFetching = true
+      },
+      [fetchFilterHrCandidates.rejected]: (state: RootState, { payload }) => {
+         state.isFetching = false
+         state.isError = true
+         state.errorMessage = payload.error
+      },
+      [fetchFilterHrCandidates.fulfilled]: (state: RootState, { payload }) => {
+         state.candidates = payload
+         state.isFetching = false
+         state.isSuccess = true
+         state.isError = false
+         state.errorMessage = ''
+         return state
+      },
+      // ===============FETCH FILTER HR INTERVIEWS=======================
+      [fetchFilterHrInterviews.pending]: (state: RootState) => {
+         state.isFetching = true
+      },
+      [fetchFilterHrInterviews.rejected]: (state: RootState, { payload }) => {
+         state.isFetching = false
+         state.isError = true
+         state.errorMessage = payload.error
+      },
+      [fetchFilterHrInterviews.fulfilled]: (state: RootState, { payload }) => {
+         state.candidates = payload
+         state.isFetching = false
+         state.isSuccess = true
+         state.isError = false
+         state.errorMessage = ''
+         return state
+      },
+
       // ===============FETCH HR CANDIDATES=======================
       [bookCallCandidate.pending]: (state: RootState) => {
          state.isFetching = true

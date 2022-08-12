@@ -33,6 +33,32 @@ export const fetchHrInterviews = createAsyncThunk<
    }
 })
 
+export const fetchFilterHrCandidates = createAsyncThunk<
+   getUserProfileResponse[],
+   undefined,
+   { state: RootState }
+>('hr/fetchFilterHrCandidates', async (arg, thunkAPI) => {
+   try {
+      const { data } = await api.get('/hr/candidate/list/filter')
+      return data
+   } catch (e: any) {
+      return thunkAPI.rejectWithValue(e.response.data)
+   }
+})
+
+export const fetchFilterHrInterviews = createAsyncThunk<
+   getUserProfileResponse[],
+   undefined,
+   { state: RootState }
+>('hr/fetchFilterHrInterviews', async (arg, thunkAPI) => {
+   try {
+      const { data } = await api.get('/hr/interviews/filter')
+      return data
+   } catch (e: any) {
+      return thunkAPI.rejectWithValue(e.response.data)
+   }
+})
+
 export const bookCallCandidate = createAsyncThunk<
    HrCandidateAddResponse,
    { hrUserId: string; studentId: string },
