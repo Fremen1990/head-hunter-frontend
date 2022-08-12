@@ -1,7 +1,7 @@
 import styled from 'styled-components'
+import { MdArrowBackIosNew } from 'react-icons/md'
 import { appColors } from '../../constants/Layout/app.colors'
 import { device } from '../../constants/mediaQueries'
-import { MdArrowBackIosNew } from 'react-icons/md'
 
 export const UserPortfolioContainer = styled.div`
    display: flex;

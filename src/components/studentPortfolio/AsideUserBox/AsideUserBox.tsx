@@ -1,6 +1,7 @@
 import React from 'react'
+import { toast } from 'react-toastify'
 import { Button } from '../../commons/Button/Button'
-
+import { description } from '../../../constants/description/description'
 import {
    DescriptionContainer,
    GitHubContainer,
@@ -9,8 +10,6 @@ import {
    PhoneIcon,
    RowContainer,
 } from './AsideUserBox.styles'
-import { description } from '../../../constants/description/description'
-import { toast } from 'react-toastify'
 
 interface Props {
    firstName: string

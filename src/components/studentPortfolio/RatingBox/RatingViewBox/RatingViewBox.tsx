@@ -1,12 +1,12 @@
 import React from 'react'
 import StarRatings from 'react-star-ratings'
+import { appColors } from '../../../../constants/Layout/app.colors'
 import {
    RatingContainer,
    RatingViewBoxContainer,
    StarContainer,
    RateHeading,
 } from './RatingViewBox.styles'
-import { appColors } from '../../../../constants/Layout/app.colors'
 
 interface Props {
    title: string
