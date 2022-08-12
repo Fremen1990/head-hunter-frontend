@@ -1,5 +1,5 @@
 import React from 'react'
-import { SubtitlesCandidateSection } from '../SubtitlesCandidateSection/SubtitlesCandidateSection'
+import { SubtitlesSection } from '../../studentPortfolio/SubtitlesSection/SubtitlesSection'
 import { RatingContainer } from './RatingCandidateCvBox.styles'
 import { RatingViewBox } from './RatingViewBox/RatingViewBox'
 import { description } from '../../../constants/description/description'
@@ -25,7 +25,7 @@ export const RatingCandidateCvBox = ({ ratingStars }: Props) => {
    } = description.userInterview
    return (
       <>
-         <SubtitlesCandidateSection text={rating} />
+         <SubtitlesSection text={rating} />
          <RatingContainer>
             <RatingViewBox
                ratingStars={Number(courseCompletion)}

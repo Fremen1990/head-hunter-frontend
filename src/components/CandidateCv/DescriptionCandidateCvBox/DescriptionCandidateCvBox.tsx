@@ -1,5 +1,5 @@
 import React from 'react'
-import { SubtitlesCandidateSection } from '../SubtitlesCandidateSection/SubtitlesCandidateSection'
+import { SubtitlesSection } from '../../studentPortfolio/SubtitlesSection/SubtitlesSection'
 import { DescriptionSection } from './DescriptionCandidateCvBox.styles'
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 
 export const DescriptionCandidateCvBox = ({ text, desc }: Props) => (
    <>
-      <SubtitlesCandidateSection text={text} />
+      <SubtitlesSection text={text} />
       <DescriptionSection>{desc}</DescriptionSection>
    </>
 )

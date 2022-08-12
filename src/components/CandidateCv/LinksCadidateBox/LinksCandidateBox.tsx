@@ -1,6 +1,6 @@
 import React from 'react'
+import { SubtitlesSection } from '../../studentPortfolio/SubtitlesSection/SubtitlesSection'
 import { ClipIcon, LinksSection } from './LinksCandidateBox.styles'
-import { SubtitlesCandidateSection } from '../SubtitlesCandidateSection/SubtitlesCandidateSection'
 
 interface Props {
    text?: string
@@ -9,7 +9,7 @@ interface Props {
 
 export const LinksCandidateBox = ({ text, link }: Props) => (
    <>
-      {text === undefined ? null : <SubtitlesCandidateSection text={text} />}
+      {text === undefined ? null : <SubtitlesSection text={text} />}
       {link === undefined
          ? null
          : link.map((oneLink, i) => (
