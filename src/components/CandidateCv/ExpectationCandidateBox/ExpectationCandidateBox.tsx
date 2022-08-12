@@ -2,7 +2,7 @@ import React from 'react'
 import { InterViewMeBox } from '../../recruiters/OneUser/InterViewMeBox/InterViewMeBox'
 import { SubtitlesSection } from '../../studentPortfolio/SubtitlesSection/SubtitlesSection'
 import { description } from '../../../constants/description/description'
-import { ExpectationSection } from './ExpectationCandidateBox.styles'
+import { ExpectationSection } from '../../studentPortfolio/ExpectationBox/ExpectationBox.styles'
 
 interface Props {
    expectedContractType: string
