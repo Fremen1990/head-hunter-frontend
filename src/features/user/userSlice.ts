@@ -4,6 +4,7 @@ import {
    changePassword,
    fetchUserByToken,
    sendResetLink,
+   userChangeStatus,
    userLogin,
    userLogout,
    userUpdateProfile,
@@ -188,6 +189,24 @@ export const userSlice = createSlice({
          { payload }: PayloadAction<string>
       ) => {
          state.message = payload // HERE should be data return
+         state.isFetching = false
+         state.isSuccess = true
+         state.isError = false
+         state.errorMessage = ''
+         return state
+      },
+
+      // =============USER CHANGE STATUS===============
+      [userChangeStatus.pending]: (state: RootState) => {
+         state.isFetching = true
+      },
+      [userChangeStatus.rejected]: (state: RootState, { payload }) => {
+         state.isFetching = false
+         state.isError = true
+         state.errorMessage = payload.message
+      },
+      [userChangeStatus.fulfilled]: (state: RootState, { payload }) => {
+         state.message = payload
          state.isFetching = false
          state.isSuccess = true
          state.isError = false
