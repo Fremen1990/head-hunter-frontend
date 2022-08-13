@@ -16,7 +16,7 @@ export const HomePage = () => {
          {role && <Header />}
 
          <LoginPageContainer style={{ height: '90vh' }}>
-            <HomeLogo>
+            <HomeLogo data-cy="home-logo">
                <img
                   src="/assets/home_logo/Mega.png"
                   alt="MegaK Logo"
