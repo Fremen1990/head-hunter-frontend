@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useAppSelector } from '../../../app/hooks'
 import { RootState } from '../../../app/store'
-import { toast } from 'react-toastify'
 import { userChangeStatus } from '../../../features/user/userActions'
 import { Button } from '../../commons/Button/Button'
 import { AccountBox } from '../AccountBox'
@@ -15,6 +14,7 @@ export const User = () => {
    const dispatch = useDispatch()
 
    const { userDetails } = useAppSelector((state: RootState) => state.user)
+   const { studentStatus } = userDetails
    if (userDetails?.firstLogin) {
       navigate('/user/edit')
    }
@@ -24,23 +24,10 @@ export const User = () => {
    }
 
    const handleStatusClick = async () => {
-      try {
-         await dispatch(userChangeStatus())
-      } finally {
-         toast.success('Status został zmieniony!', {
-            position: 'top-center',
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-         })
-         setTimeout(() => {
-            navigate(0)
-         }, 2500)
-      }
+      await dispatch(userChangeStatus())
    }
+
+   useEffect(() => {}, [studentStatus])
 
    const { available, employed } = description.status
    const { changePwd, updatedData, yourCv, changeStatus } = description.buttons
@@ -61,7 +48,7 @@ export const User = () => {
          />
          <div className="container-box">
             <h3>Status</h3>
-            {userDetails.studentStatus === 'employed' ? (
+            {studentStatus === 'employed' ? (
                <p>{employed}</p>
             ) : (
                <p>{available}</p>

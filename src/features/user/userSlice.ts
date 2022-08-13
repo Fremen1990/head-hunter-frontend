@@ -206,7 +206,7 @@ export const userSlice = createSlice({
          state.errorMessage = payload.message
       },
       [userChangeStatus.fulfilled]: (state: RootState, { payload }) => {
-         state.message = payload
+         state.userDetails.studentStatus = payload
          state.isFetching = false
          state.isSuccess = true
          state.isError = false
