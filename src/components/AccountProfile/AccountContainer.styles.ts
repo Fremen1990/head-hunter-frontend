@@ -84,6 +84,10 @@ export const UtilsMenuBox = styled.button`
       font-size: 1.7rem;
       color: white;
       font-weight: 520;
+
+      &::first-letter {
+         text-transform: uppercase;
+      }
    }
 
    & > * {

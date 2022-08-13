@@ -7,6 +7,7 @@ import { toast } from 'react-toastify'
 import { userChangeStatus } from '../../../features/user/userActions'
 import { Button } from '../../commons/Button/Button'
 import { AccountBox } from '../AccountBox'
+import { description } from '../../../constants/description/description'
 import { AccountAvatar, AccountContainer } from '../AccountContainer.styles'
 
 export const User = () => {
@@ -41,6 +42,9 @@ export const User = () => {
       }
    }
 
+   const { available, employed } = description.status
+   const { changePwd, updatedData, yourCv, changeStatus } = description.buttons
+
    return (
       <AccountContainer>
          <AccountAvatar
@@ -58,11 +62,11 @@ export const User = () => {
          <div className="container-box">
             <h3>Status</h3>
             {userDetails.studentStatus === 'employed' ? (
-               <p>Zatrudniony</p>
+               <p>{employed}</p>
             ) : (
-               <p>Dostępny</p>
+               <p>{available}</p>
             )}
-            <Button method={handleStatusClick} buttonTitle="Zmień status" />
+            <Button method={handleStatusClick} buttonTitle={changeStatus} />
          </div>
 
          <div
@@ -75,14 +79,14 @@ export const User = () => {
             }}
          >
             <NavLink to="/user/profile">
-               <Button buttonTitle="Twoje CV" />
+               <Button buttonTitle={yourCv} />
             </NavLink>
 
             <NavLink to="/user/edit">
-               <Button buttonTitle="Zaktualizuj dane" />
+               <Button buttonTitle={updatedData} />
             </NavLink>
 
-            <Button method={handleChangePassword} buttonTitle="Zmień hasło" />
+            <Button method={handleChangePassword} buttonTitle={changePwd} />
          </div>
       </AccountContainer>
    )
