@@ -41,7 +41,9 @@ Application is created to connect software developer students with recruiters th
 
 ### - Redux Toolkit <img src="https://e7.pngegg.com/pngimages/413/852/png-clipart-redux-react-logo-javascript-dq-purple-violet-thumbnail.png" width="25" />
 
-### Styled Components <img src="https://a.storyblok.com/f/106378/318x214/059458447e/styled-components.png" width="30" />
+### - Styled Components <img src="https://a.storyblok.com/f/106378/318x214/059458447e/styled-components.png" width="30" />
+
+### - Cypress Tests in progress <img src="https://media.slid.es/avatars/1098231/Cypress_Logomark_Color_Dark_BG.jpg" width="25" />
 
 ---
 

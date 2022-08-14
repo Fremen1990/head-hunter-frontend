@@ -3,10 +3,12 @@
   "compilerOptions": {
     "target": "es5",
     "lib": [
+      "es5",
       "dom",
       "dom.iterable",
       "esnext"
     ],
+    "types": ["cypress", "node"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -26,5 +28,7 @@
   },
   "include": [
     "src"
-  ]
+//  "/**/*.{ts,tsx}"
+  ],
+  "exclude": ["node_modules"]
 }
