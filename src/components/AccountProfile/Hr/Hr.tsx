@@ -1,15 +1,17 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
+import { AccountBox } from '../AccountBox'
+import { IoPersonAdd, IoCreate } from 'react-icons/io5'
+import { description } from '../../../constants/description/description'
 import {
    AccountAvatar,
    AccountContainer,
    UtilsMenuBox,
    UtilsMenu,
 } from '../AccountContainer.styles'
-import { AccountBox } from '../AccountBox'
-import { IoPersonAdd, IoCreate } from 'react-icons/io5'
-import { NavLink } from 'react-router-dom'
 
 export const Hr = () => {
+   const { changePwd, bookCall } = description.buttons
    return (
       <AccountContainer>
          <AccountAvatar
@@ -21,13 +23,13 @@ export const Hr = () => {
             <NavLink to="/hr">
                <UtilsMenuBox>
                   <IoPersonAdd />
-                  <p> Zarezerwuj rozmowę </p>
+                  <p> {bookCall} </p>
                </UtilsMenuBox>
             </NavLink>
             <NavLink to="/auth/change-password">
                <UtilsMenuBox>
                   <IoCreate />
-                  <p> Zmień Hasło</p>
+                  <p>{changePwd}</p>
                </UtilsMenuBox>
             </NavLink>
          </UtilsMenu>

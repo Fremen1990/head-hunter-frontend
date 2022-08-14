@@ -11,6 +11,10 @@ import {
 } from './AsideUserBox.styles'
 import { description } from '../../../constants/description/description'
 import { toast } from 'react-toastify'
+import { userChangeStatus } from '../../../features/user/userActions'
+import { useDispatch } from 'react-redux'
+import { useAppSelector } from '../../../app/hooks'
+import { RootState } from '../../../app/store'
 
 interface Props {
    firstName: string
@@ -34,6 +38,8 @@ export const AsideUserBox = ({
    const { disinterest, hired } = description.buttons
    const { aboutMe } = description.studentPortfolio
 
+   const { userDetails } = useAppSelector((state: RootState) => state.user)
+   const dispatch = useDispatch()
    const handleDisinterests = () => {
       toast.error('Brak zainteresowania', {
          position: 'top-center',
@@ -45,8 +51,9 @@ export const AsideUserBox = ({
          progress: undefined,
       })
    }
-   const handleHire = () => {
-      toast.success('Zostałeś zatrudniony!!', {
+   const handleHire = async () => {
+      await dispatch(userChangeStatus())
+      toast.success('Zmieniono status na zatrudniony!', {
          position: 'top-center',
          autoClose: 2000,
          hideProgressBar: false,
@@ -92,7 +99,9 @@ export const AsideUserBox = ({
          {role === 'hr' ? (
             <Button buttonTitle={disinterest} method={handleDisinterests} />
          ) : null}
-         <Button buttonTitle={hired} method={handleHire} />
+         {userDetails.studentStatus !== 'employed' && (
+            <Button buttonTitle={hired} method={handleHire} />
+         )}
       </>
    )
 }

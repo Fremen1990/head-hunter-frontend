@@ -147,3 +147,15 @@ export const userUpdateProfile = createAsyncThunk<
       return thunkAPI.rejectWithValue(e.response.data)
    }
 })
+
+export const userChangeStatus = createAsyncThunk(
+   'user/updateStatus',
+   async (arg, thunkAPI) => {
+      try {
+         const { data } = await api.patch('student/updateStatus')
+         return data.studentStatus
+      } catch (e: any) {
+         return thunkAPI.rejectWithValue(e.response.data)
+      }
+   }
+)
