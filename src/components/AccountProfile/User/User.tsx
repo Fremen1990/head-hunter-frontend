@@ -1,15 +1,20 @@
 import React, { useEffect } from 'react'
-import { AccountAvatar, AccountContainer } from '../AccountContainer.styles'
-import { Button } from '../../commons/Button/Button'
-import { AccountBox } from '../AccountBox'
 import { NavLink, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { useAppSelector } from '../../../app/hooks'
 import { RootState } from '../../../app/store'
+import { userChangeStatus } from '../../../features/user/userActions'
+import { Button } from '../../commons/Button/Button'
+import { AccountBox } from '../AccountBox'
+import { description } from '../../../constants/description/description'
+import { AccountAvatar, AccountContainer } from '../AccountContainer.styles'
 
 export const User = () => {
    const navigate = useNavigate()
+   const dispatch = useDispatch()
 
    const { userDetails } = useAppSelector((state: RootState) => state.user)
+   const { studentStatus } = userDetails
    if (userDetails?.firstLogin) {
       navigate('/user/edit')
    }
@@ -17,6 +22,15 @@ export const User = () => {
    const handleChangePassword = () => {
       navigate('/auth/send-reset-password-link')
    }
+
+   const handleStatusClick = async () => {
+      await dispatch(userChangeStatus())
+   }
+
+   useEffect(() => {}, [studentStatus])
+
+   const { available, employed } = description.status
+   const { changePwd, updatedData, yourCv, changeStatus } = description.buttons
 
    return (
       <AccountContainer>
@@ -34,8 +48,12 @@ export const User = () => {
          />
          <div className="container-box">
             <h3>Status</h3>
-            <p>{userDetails?.studentStatus}</p>
-            <Button buttonTitle="Zmień status" />
+            {studentStatus === 'employed' ? (
+               <p>{employed}</p>
+            ) : (
+               <p>{available}</p>
+            )}
+            <Button method={handleStatusClick} buttonTitle={changeStatus} />
          </div>
 
          <div
@@ -48,14 +66,14 @@ export const User = () => {
             }}
          >
             <NavLink to="/user/profile">
-               <Button buttonTitle="Twoje CV" />
+               <Button buttonTitle={yourCv} />
             </NavLink>
 
             <NavLink to="/user/edit">
-               <Button buttonTitle="Zaktualizuj dane" />
+               <Button buttonTitle={updatedData} />
             </NavLink>
 
-            <Button method={handleChangePassword} buttonTitle="Zmień hasło" />
+            <Button method={handleChangePassword} buttonTitle={changePwd} />
          </div>
       </AccountContainer>
    )

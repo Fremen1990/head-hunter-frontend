@@ -11,7 +11,7 @@ export const AccountContainer = styled.div`
    border: 1px solid ${appColors.borderColor};
    background-color: ${appColors.pageContainerColor};
    color: ${appColors.fontColor};
-   min-height: 89vh;
+   min-height: 85vh;
 
    ${device.desktop} {
       width: 60%;
@@ -84,6 +84,10 @@ export const UtilsMenuBox = styled.button`
       font-size: 1.7rem;
       color: white;
       font-weight: 520;
+
+      &::first-letter {
+         text-transform: uppercase;
+      }
    }
 
    & > * {

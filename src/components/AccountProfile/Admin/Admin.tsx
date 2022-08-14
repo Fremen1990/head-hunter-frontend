@@ -1,12 +1,8 @@
 import React, { useState } from 'react'
 import { AccountContainer, AccountAvatar } from '../AccountContainer.styles'
 import { AccountBox } from '../AccountBox'
-import { Button } from '../../commons/Button/Button'
 import { description } from '../../../constants/description/description'
 import { ImportStudents } from './ImportStudents/ImportStudents'
-import { useDispatch } from 'react-redux'
-
-import styled from 'styled-components'
 import { AddStudentForm } from './AddStudentForm/AddStudentForm'
 import { AddHrForm } from './AddHrForm/AddHrForm'
 import { ImportHr } from './ImportHr/ImportHr'
@@ -14,10 +10,14 @@ import { GetAllUsers } from './GetAllUsers/GetAllUsers'
 import { GetAllStudents } from './GetAllStudents/GetAllStudents'
 import { GetAllHr } from './GetAllHr/GetAllHr'
 import { GenerateTestUsers } from './ImportTestStudents/GenerateTestUsers'
-
-const AdminBtnContainer = styled.div`
-   display: flex;
-`
+import { BsFillPersonCheckFill, BsFillPersonLinesFill } from 'react-icons/bs'
+import { FaFileImport } from 'react-icons/fa'
+import { TbDatabaseImport } from 'react-icons/tb'
+import { BiShow } from 'react-icons/bi'
+import { HiOutlinePresentationChartLine } from 'react-icons/hi'
+import { SiShowpad } from 'react-icons/si'
+import { AiOutlineAppstoreAdd } from 'react-icons/ai'
+import { AdminBtnContainer } from './Admin.styles'
 
 interface Props {
    children: React.ReactNode
@@ -43,41 +43,42 @@ export const Admin = ({ children }: Props) => {
          <AccountBox accountName={'Admin'} />
 
          <AdminBtnContainer>
-            <Button
-               method={() => handleToggleFeature(1)}
-               buttonTitle="Dodaj nowego studenta"
-            />
-            <Button
-               method={() => handleToggleFeature(2)}
-               buttonTitle={description.buttons.addHr}
-            />
+            <button onClick={() => handleToggleFeature(1)}>
+               <p>Dodaj nowego studenta</p>
+               <BsFillPersonCheckFill />
+               <div></div>
+            </button>
+            <button onClick={() => handleToggleFeature(2)}>
+               <p>{description.buttons.addHr}</p>
+               <BsFillPersonLinesFill />
+            </button>
 
-            <Button
-               method={() => handleToggleFeature(3)}
-               buttonTitle={description.buttons.importStudents}
-            />
+            <button onClick={() => handleToggleFeature(3)}>
+               <p>{description.buttons.importStudents}</p>
+               <FaFileImport />
+            </button>
 
-            <Button
-               method={() => handleToggleFeature(4)}
-               buttonTitle={description.buttons.importHr}
-            />
+            <button onClick={() => handleToggleFeature(4)}>
+               <p>{description.buttons.importHr}</p>
+               <TbDatabaseImport />
+            </button>
 
-            <Button
-               method={() => handleToggleFeature(5)}
-               buttonTitle="Pokaż wszystkich użytkowników"
-            />
-            <Button
-               method={() => handleToggleFeature(6)}
-               buttonTitle="Pokaż wszystkich studentów"
-            />
-            <Button
-               method={() => handleToggleFeature(7)}
-               buttonTitle="Pokasz wszystkich HR"
-            />
-            <Button
-               method={() => handleToggleFeature(8)}
-               buttonTitle="Dodaj 100 testowych studentów"
-            />
+            <button onClick={() => handleToggleFeature(5)}>
+               <p>Pokaż wszystkich użytkowników</p>
+               <BiShow />
+            </button>
+            <button onClick={() => handleToggleFeature(6)}>
+               <p>Pokaż wszystkich studentów</p>
+               <HiOutlinePresentationChartLine />
+            </button>
+            <button onClick={() => handleToggleFeature(7)}>
+               <p>Pokasz wszystkich HR</p>
+               <SiShowpad />
+            </button>
+            <button onClick={() => handleToggleFeature(8)}>
+               <p>Dodaj 100 testowych studentów</p>
+               <AiOutlineAppstoreAdd />
+            </button>
          </AdminBtnContainer>
 
          {adminFeatureOpen === 1 ? <AddStudentForm /> : null}
