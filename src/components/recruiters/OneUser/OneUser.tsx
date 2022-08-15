@@ -12,18 +12,16 @@ import { AiOutlineCaretDown } from 'react-icons/ai'
 import { InterViewMeBox } from './InterViewMeBox/InterViewMeBox'
 import { StudentPortfolioModal } from '../../commons/modals/StudentPortfolio/StudentPortfolioModal'
 import { description } from '../../../constants/description/description'
-import { studentsInterface } from 'src/pages/Hr.page'
 import { useDispatch } from 'react-redux'
 import {
    bookCallCandidate,
    disinterestCandidate,
    HiredCandidate,
 } from '../../../features/hr/hrActions'
-import { useAppSelector } from '../../../app/hooks'
 
 interface Props {
    layout: string
-   student: studentsInterface
+   student: []
    refreshStudents: () => void
 }
 
@@ -34,9 +32,6 @@ export const OneUser = ({ layout, student, refreshStudents }: Props) => {
    const text = description.userInterview
    const buttonsName = description.buttons
    const descriptions = description.userInterview
-   const { isFetching } = useAppSelector((state) => state.hr)
-
-   // const showStudentPortfolio = () => setShowCv(!showCv)
 
    const handleBookCall = async (studentId: string) => {
       try {
@@ -62,6 +57,21 @@ export const OneUser = ({ layout, student, refreshStudents }: Props) => {
       }
    }
 
+   const { date } = student
+   const {
+      firstName,
+      lastName,
+      courseCompletion,
+      courseEngagement,
+      projectDegree,
+      teamProjectDegree,
+      targetWorkCity,
+      expectedContractType,
+      expectedSalary,
+      workExperience,
+      canTakeApprenticeship,
+      studentId,
+   } = student.student
    return (
       <>
          <UserContainer isOpen={isOpen}>
@@ -75,7 +85,7 @@ export const OneUser = ({ layout, student, refreshStudents }: Props) => {
                {layout === 'simple' ? null : (
                   <InfoBox>
                      <p>{text.userReservation}</p>
-                     <p>{student.date}</p>
+                     <p>{date}</p>
                   </InfoBox>
                )}
                <UserBox>
@@ -91,38 +101,34 @@ export const OneUser = ({ layout, student, refreshStudents }: Props) => {
                         />
                      </div>
                   )}
-                  <p>{student.student.firstName}</p>
-                  
+                  <p>{firstName}</p>
+
                   {layout === 'simple' ? (
-                     <p>{student.student.lastName?.slice(-1)}</p>
+                     <p>{lastName?.slice(-1)}</p>
                   ) : (
-                     <p>{student.student.lastName}</p>
+                     <p>{lastName}</p>
                   )}
                </UserBox>
             </div>
             {layout === 'simple' ? (
                <ButtonsBox isOpen={isOpen}>
                   <Button
-                     method={() => handleBookCall(student.student.studentId)}
+                     method={() => handleBookCall(studentId)}
                      buttonTitle={buttonsName.bookCall}
                   />
                   <AiOutlineCaretDown onClick={() => setIsOpen(!isOpen)} />
                </ButtonsBox>
             ) : (
                <ButtonsBox isOpen={isOpen}>
-                  {/* <Button */}
-                  {/*   buttonTitle={buttonsName.showCv} */}
-                  {/*   method={() => showStudentPortfolio()} */}
-                  {/* /> */}
                   <ShowCvLink to={`candidate/${student.studentId}`}>
                      {buttonsName.showCv}
                   </ShowCvLink>
                   <Button
-                     method={() => handleDisinterest(student.student.studentId)}
+                     method={() => handleDisinterest(studentId)}
                      buttonTitle={buttonsName.disinterest}
                   />
                   <Button
-                     method={() => handleHired(student.student.studentId)}
+                     method={() => handleHired(studentId)}
                      buttonTitle={buttonsName.hired}
                   />
                   <AiOutlineCaretDown onClick={() => setIsOpen(!isOpen)} />
@@ -134,47 +140,47 @@ export const OneUser = ({ layout, student, refreshStudents }: Props) => {
                <InterViewMeBox
                   ratingBox={true}
                   boxTitle={descriptions.courseEvaluation}
-                  point={student.student.courseCompletion}
+                  point={courseCompletion}
                />
                <InterViewMeBox
                   ratingBox={true}
                   boxTitle={descriptions.activityAssessment}
-                  point={student.student.courseEngagement}
+                  point={courseEngagement}
                />
                <InterViewMeBox
                   ratingBox={true}
                   boxTitle={descriptions.codeEvaluation}
-                  point={student.student.projectDegree}
+                  point={projectDegree}
                />
                <InterViewMeBox
                   ratingBox={true}
                   boxTitle={descriptions.scrumAssessment}
-                  point={student.student.teamProjectDegree}
+                  point={teamProjectDegree}
                />
                <InterViewMeBox
                   ratingBox={false}
                   boxTitle={descriptions.preferWork}
-                  point={student.student.targetWorkCity}
+                  point={targetWorkCity}
                />
                <InterViewMeBox
                   ratingBox={false}
                   boxTitle={descriptions.contractType}
-                  point={student.student.expectedContractType}
+                  point={expectedContractType}
                />
                <InterViewMeBox
                   ratingBox={false}
                   boxTitle={descriptions.targetSalary}
-                  point={student.student.expectedSalary}
+                  point={expectedSalary}
                />
                <InterViewMeBox
                   ratingBox={false}
                   boxTitle={descriptions.practice}
-                  point={student.student.canTakeApprenticeship}
+                  point={canTakeApprenticeship}
                />
                <InterViewMeBox
                   ratingBox={false}
                   boxTitle={descriptions.experience}
-                  point={student.student.workExperience}
+                  point={workExperience}
                />
             </MoreInfoBox>
          ) : null}
