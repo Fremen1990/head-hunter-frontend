@@ -35,11 +35,13 @@ export const fetchHrInterviews = createAsyncThunk<
 
 export const fetchFilterHrCandidates = createAsyncThunk<
    getUserProfileResponse[],
-   undefined,
+   { newObj },
    { state: RootState }
->('hr/fetchFilterHrCandidates', async (arg, thunkAPI) => {
+>('hr/fetchFilterHrCandidates', async ({ newObj }, thunkAPI) => {
    try {
-      const { data } = await api.get('/hr/candidate/list/filter')
+      const { data } = await api.post('/hr/candidate/list/filter', {
+         newObj,
+      })
       return data
    } catch (e: any) {
       return thunkAPI.rejectWithValue(e.response.data)
@@ -48,11 +50,11 @@ export const fetchFilterHrCandidates = createAsyncThunk<
 
 export const fetchFilterHrInterviews = createAsyncThunk<
    getUserProfileResponse[],
-   undefined,
+   { newObj },
    { state: RootState }
->('hr/fetchFilterHrInterviews', async (arg, thunkAPI) => {
+>('hr/fetchFilterHrInterviews', async ({ newObj }, thunkAPI) => {
    try {
-      const { data } = await api.get('/hr/interviews/filter')
+      const { data } = await api.post('/hr/interviews/filter', { newObj })
       return data
    } catch (e: any) {
       return thunkAPI.rejectWithValue(e.response.data)
@@ -71,7 +73,11 @@ export const bookCallCandidate = createAsyncThunk<
    }
 })
 
-export const disinterestCandidate = createAsyncThunk(
+export const disinterestCandidate = createAsyncThunk<
+   HrCandidateAddResponse,
+   { hrUserId: string; studentId: string },
+   { state: RootState }
+>(
    '/hr/interviews/:studentId/remove',
    async ({ studentId }: CandidateId, thunkAPI) => {
       console.log(studentId)
@@ -83,7 +89,11 @@ export const disinterestCandidate = createAsyncThunk(
    }
 )
 
-export const HiredCandidate = createAsyncThunk(
+export const HiredCandidate = createAsyncThunk<
+   HrCandidateAddResponse,
+   { hrUserId: string; studentId: string },
+   { state: RootState }
+>(
    '/hr/interviews/:studentId/hire',
    async ({ studentId }: CandidateId, thunkAPI) => {
       try {
