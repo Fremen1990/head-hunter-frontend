@@ -10,9 +10,15 @@ interface Props {
    students: []
    refreshStudents: () => void
    layout: string
+   filterState: string
 }
 
-export const FilterSection = ({ students, refreshStudents, layout }: Props) => {
+export const FilterSection = ({
+   students,
+   refreshStudents,
+   layout,
+   filterState,
+}: Props) => {
    const [isOpen, setIsOpen] = useState(false)
    const [openModal, setOpenModal] = useState(false)
 
@@ -41,7 +47,13 @@ export const FilterSection = ({ students, refreshStudents, layout }: Props) => {
             method={() => setIsOpen(!isOpen)}
             buttonTitle={description.buttons.filter}
          />
-         {isOpen && <Filtering hiddenModal={() => setIsOpen(!isOpen)} />}
+         {isOpen && (
+            <Filtering
+               hiddenModal={() => setIsOpen(!isOpen)}
+               filterState={filterState}
+               refreshStudents={refreshStudents}
+            />
+         )}
          {openModal && (
             <Search
                students={students}
