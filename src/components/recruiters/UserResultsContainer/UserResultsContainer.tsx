@@ -1,14 +1,11 @@
 import React, { useState } from 'react'
 import { OneUser } from '../OneUser/OneUser'
-import { studentsInterface } from 'src/pages/Hr.page'
-// eslint-disable-next-line no-unused-vars
-// eslint-disable-next-line no-unused-vars
 import { ResultsContainer } from './UserResultsContainer.styles'
 import ReactPaginate from 'react-paginate'
 import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md'
 
 interface Props {
-   students: studentsInterface[]
+   students: []
    layout: string
    refreshStudents: () => void
 }
@@ -29,7 +26,7 @@ export const UserResultsContainer = ({
 
    const studentsToDisplay = students
       .slice(pagesVisited, pagesVisited + userPerPage)
-      .map((items) => (
+      .map((items: any) => (
          <OneUser
             layout={layout}
             key={items.id}

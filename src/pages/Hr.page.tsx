@@ -10,8 +10,8 @@ import { useAppSelector } from '../app/hooks'
 import { Spinner } from '../components/commons/Spinner/Spinner'
 
 export const HrPage = () => {
-   const [available, setAvailable] = useState([])
-   const [interview, setInterview] = useState([])
+   const [available, setAvailable] = useState<[]>([])
+   const [interview, setInterview] = useState<[]>([])
    const [filterState, setFilterState] = useState({
       value: 'availableStudents',
    })
@@ -55,6 +55,7 @@ export const HrPage = () => {
                      ? 'simple'
                      : 'extended'
                }
+               filterState={filterState.value}
             />
             {filterState.value === 'availableStudents' ? (
                <UserResultsContainer

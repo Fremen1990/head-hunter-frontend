@@ -1,38 +1,84 @@
-import React, { SyntheticEvent, useReducer } from 'react'
+import React, { SyntheticEvent, useReducer, useState } from 'react'
 import { ButtonBox, ClearBtn, Form } from './FilterForm.styles'
 import { OneStarInput } from './OneInput/OneStarInput'
 import { OneButtonInput } from './OneInput/OneButtonInput'
 import { filterReducer } from '../../../../utils/filterReducer'
 import {
-   courseEngagement,
-   projectDegree,
    courseCompletion,
-   teamProjectDegree,
-   initialState,
+   courseEngagement,
    expectedContractType,
    expectedTypeOfWork,
+   initialState,
+   projectDegree,
+   teamProjectDegree,
 } from '../constFilterElement/filterElement'
 import { description } from '../../../../constants/description/description'
 import { Button } from '../../../commons/Button/Button'
 import { SalaryInput } from '../Filttering.styles'
+import { useDispatch } from 'react-redux'
+import {
+   fetchFilterHrCandidates,
+   fetchFilterHrInterviews,
+} from '../../../../features/hr/hrActions'
+import { ModalFilterResults } from './ModaFilterResults/ModalFilterResults'
 
 interface Props {
    hiddenModal: () => void
+   filterState: string
+   refreshStudents: () => void
 }
 
-export const FilterForm = (props: Props) => {
+export const FilterForm = ({
+   hiddenModal,
+   filterState,
+   refreshStudents,
+}: Props) => {
    const describe = description.filterModal
    const [filter, dispatch] = useReducer(filterReducer, initialState)
+   const [filterResults, setFilterResults] = useState<[]>([])
+   const [openResultsModal, setOpenResultsModal] = useState(false)
 
-   const handleSubmit = (e: SyntheticEvent) => {
+   const filterDispatch = useDispatch()
+
+   const handleSubmit = async (e: SyntheticEvent) => {
+      e.preventDefault()
       const newObj = {
          ...filter,
          monthsOfCommercialExp: filter.monthsOfCommercialExp.month,
          canTakeApprenticeship:
-            filter.canTakeApprenticeship.canTakeApprenticeship,
+            filter.canTakeApprenticeship.canTakeApprenticeship ?? 'no',
+         expectedSalary: {
+            min:
+               filter.expectedSalary.min !== 0
+                  ? Number(filter.expectedSalary.min)
+                  : null,
+            max:
+               filter.expectedSalary.max !== 0
+                  ? Number(filter.expectedSalary.max)
+                  : null,
+         },
       }
-      console.log(newObj)
-      e.preventDefault()
+
+      if (filterState === 'availableStudents') {
+         try {
+            const availableStudents = await filterDispatch(
+               fetchFilterHrCandidates({ newObj })
+            )
+            console.log(availableStudents.payload)
+            setFilterResults(availableStudents.payload)
+         } finally {
+            setOpenResultsModal(true)
+         }
+      } else {
+         try {
+            const interviewsStudents = await filterDispatch(
+               fetchFilterHrInterviews({ newObj })
+            )
+            await setFilterResults(interviewsStudents.payload)
+         } finally {
+            setOpenResultsModal(true)
+         }
+      }
    }
 
    const handleClear = () => {
@@ -50,6 +96,16 @@ export const FilterForm = (props: Props) => {
 
    return (
       <>
+         {openResultsModal && (
+            <ModalFilterResults
+               closeModal={setOpenResultsModal}
+               filteringUsers={filterResults}
+               layout={
+                  filterState === 'availableStudents' ? 'simple' : 'extended'
+               }
+               refreshStudents={refreshStudents}
+            />
+         )}
          <Form onSubmit={handleSubmit}>
             <div>
                <p>{describe.courseEvaluation}</p>
@@ -170,7 +226,8 @@ export const FilterForm = (props: Props) => {
                      <input
                         type="radio"
                         name="canTakeApprenticeship"
-                        value="no"
+                        value={'no'}
+                        checked={true}
                         onChange={(e) =>
                            dispatch({
                               type: 'CANTAKEAPPRENTICESHIP',
@@ -199,7 +256,7 @@ export const FilterForm = (props: Props) => {
                </SalaryInput>
             </div>
             <ButtonBox>
-               <button className={'annualBtn'} onClick={props.hiddenModal}>
+               <button className={'annualBtn'} onClick={hiddenModal}>
                   {description.buttons.annual}
                </button>
                <Button buttonTitle={description.buttons.search} />
