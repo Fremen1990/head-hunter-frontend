@@ -7,10 +7,13 @@ export const ClipIcon = styled(BsPaperclip)`
 `
 
 export const LinksSection = styled.div`
+   display: flex;
+   align-items: center;
    padding: 10px;
    color: ${appColors.linksColor};
 
    & a {
       font-size: 1.6rem;
+      color: ${appColors.linksColor};
    }
 `

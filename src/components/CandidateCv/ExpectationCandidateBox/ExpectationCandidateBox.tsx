@@ -1,8 +1,8 @@
 import React from 'react'
-import { ExpectationSection } from './ExpectationCandidateBox.styles'
-import { SubtitlesCandidateSection } from '../SubtitlesCandidateSection/SubtitlesCandidateSection'
 import { InterViewMeBox } from '../../recruiters/OneUser/InterViewMeBox/InterViewMeBox'
+import { SubtitlesSection } from '../../studentPortfolio/SubtitlesSection/SubtitlesSection'
 import { description } from '../../../constants/description/description'
+import { ExpectationSection } from '../../studentPortfolio/ExpectationBox/ExpectationBox.styles'
 
 interface Props {
    expectedContractType: string
@@ -34,7 +34,7 @@ export const ExpectationCandidateBox = ({
 
    return (
       <>
-         <SubtitlesCandidateSection text={expectation} />
+         <SubtitlesSection text={expectation} />
          <ExpectationSection>
             <InterViewMeBox
                ratingBox={false}

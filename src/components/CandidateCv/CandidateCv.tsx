@@ -1,18 +1,18 @@
 import React from 'react'
-import {
-   AsideSection,
-   BackButton,
-   BackIcon,
-   CandidateCvContainer,
-   MainSection,
-} from './CandidateCv.styles'
 import { useNavigate } from 'react-router-dom'
-import { description } from '../../constants/description/description'
 import { AsideCandidateCvBox } from './AsideCandidateCvBox/AsideCandidateCvBox'
-import { DescriptionCandidateCvBox } from './DescriptionCandidateCvBox/DescriptionCandidateCvBox'
-import { RatingCandidateCvBox } from './RatingCandidateCvBox/RatingCandidateCvBox'
 import { ExpectationCandidateBox } from './ExpectationCandidateBox/ExpectationCandidateBox'
-import { LinksCandidateBox } from './LinksCadidateBox/LinksCandidateBox'
+import { LinksBox } from '../studentPortfolio/LinksBox/LinksBox'
+import { DescriptionBox } from '../studentPortfolio/DescriptionBox/DescriptionBox'
+import { RatingBox } from '../studentPortfolio/RatingBox/RatingBox'
+import { description } from '../../constants/description/description'
+import { CandidateCvContainer } from './CandidateCv.styles'
+import {
+   BackIcon,
+   BackButton,
+   AsideSection,
+   MainSection,
+} from '../studentPortfolio/StudentPortfolio.styles'
 import { UserType } from 'types'
 
 interface Props {
@@ -55,6 +55,7 @@ export const CandidateCv = ({ candidate }: Props) => {
       bonusProjectUrls,
       projectUrls,
    } = candidate.student
+
    const { email } = candidate
 
    return (
@@ -74,7 +75,7 @@ export const CandidateCv = ({ candidate }: Props) => {
             />
          </AsideSection>
          <MainSection>
-            <RatingCandidateCvBox
+            <RatingBox
                ratingStars={[
                   courseCompletion,
                   courseEngagement,
@@ -90,18 +91,12 @@ export const CandidateCv = ({ candidate }: Props) => {
                monthsOfCommercialExp={monthsOfCommercialExp}
                expectedTypeOfWork={expectedTypeOfWork}
             />
-            <DescriptionCandidateCvBox
-               text={educationDescribe}
-               desc={education}
-            />
-            <DescriptionCandidateCvBox text={coursesDescribe} desc={courses} />
-            <DescriptionCandidateCvBox
-               text={experienceDescribe}
-               desc={workExperience}
-            />
-            <LinksCandidateBox text={portfolio} link={portfolioUrls} />
-            <LinksCandidateBox text={groupProject} link={bonusProjectUrls} />
-            <LinksCandidateBox text={ownProject} link={projectUrls} />
+            <DescriptionBox text={educationDescribe} desc={education} />
+            <DescriptionBox text={coursesDescribe} desc={courses} />
+            <DescriptionBox text={experienceDescribe} desc={workExperience} />
+            <LinksBox text={portfolio} link={portfolioUrls} />
+            <LinksBox text={groupProject} link={bonusProjectUrls} />
+            <LinksBox text={ownProject} link={projectUrls} />
          </MainSection>
       </CandidateCvContainer>
    )

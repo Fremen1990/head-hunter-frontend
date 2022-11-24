@@ -1,43 +1,41 @@
 import React, { ChangeEvent, useState } from 'react'
+import { RootState } from '../../app/store'
+import { useAppSelector } from '../../app/hooks'
+import { userUpdateProfile } from '../../features/user/userActions'
+import { useDispatch } from 'react-redux'
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { SubtitlesSection } from '../studentPortfolio/SubtitlesSection/SubtitlesSection'
 import { Button } from '../commons/Button/Button'
-import { InputTextBox } from './InputTextBox/InputTextBox'
+import { InputTextBox } from './Inputs/InputTextBox/InputTextBox'
 import { SelectBox } from './SelectBox/SelectBox'
-import { NumberInputBox } from './NumberInputBox/NumberInputBox'
+import { NumberInputBox } from './Inputs/NumberInputBox/NumberInputBox'
 import { TextAreaBox } from './TextAreaBox/TextAreaBox'
 import { UrlBox } from './UrlBox/UrlBox'
-import { FormCVInterface } from '../../types/formInterface'
+import { Spinner } from '../commons/Spinner/Spinner'
 import { description } from '../../constants/description/description'
-import { PageContainer } from '../../constants/Layout/Container.styles'
-import {
-   AsideSection,
-   BackButton,
-   EditExpectationBoxContainer,
-   Form,
-   MainSection,
-} from './EditStudentPortfolio.styles'
 import {
    canTakeApprenticeshipOptions,
    expectedContractTypeOptions,
    expectedTypeOfWork,
 } from '../../constants/secletOptions'
-import { useForm } from 'react-hook-form'
-import { emailValidate } from '../../constants/patterns/pattern_validation'
-import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { userUpdateProfile } from '../../features/user/userActions'
-import { useAppSelector } from '../../app/hooks'
-import { RootState } from '../../app/store'
-import { Spinner } from '../commons/Spinner/Spinner'
-import { toast } from 'react-toastify'
+import { TextArea } from './TextAreaBox/TextAreaBox.styles'
+import {
+   AsideSection,
+   BackButton,
+   EditExpectationBoxContainer,
+   EditModalContainer,
+   Form,
+   MainSection,
+} from './EditStudentPortfolio.styles'
+import { FormCVInterface } from '../../types/formInterface'
 
 export const EditStudentPortfolio = () => {
    const navigate = useNavigate()
    const dispatch = useDispatch()
 
-   const { userDetails, email: userConstEmail } = useAppSelector(
-      (state: RootState) => state.user
-   )
+   const { userDetails } = useAppSelector((state: RootState) => state.user)
 
    const [portfolioUrls, setPortfolioUrls] = useState<string>('')
    const [projectUrls, setProjectUrls] = useState<string>('')
@@ -49,7 +47,6 @@ export const EditStudentPortfolio = () => {
       expectedTypeOfWork: userDetails.expectedTypeOfWork,
       monthsOfCommercialExp: userDetails.monthsOfCommercialExp,
       targetWorkCity: userDetails.targetWorkCity,
-      email: userDetails.email,
       firstName: userDetails?.firstName,
       lastName: userDetails.lastName,
       githubUserName: userDetails.githubUserName,
@@ -70,7 +67,6 @@ export const EditStudentPortfolio = () => {
             firstName,
             lastName,
             githubUserName,
-            email,
             tel,
             expectedSalary,
             targetWorkCity,
@@ -79,7 +75,7 @@ export const EditStudentPortfolio = () => {
       },
    } = useForm()
 
-   const handlePortfolioClick = (e: React.MouseEvent<HTMLElement>) => {
+   const handleAddPortfolioClick = (e: React.MouseEvent<HTMLElement>) => {
       e.preventDefault()
       setPortfolioUrls('')
       setForm((form) => ({
@@ -88,12 +84,30 @@ export const EditStudentPortfolio = () => {
       }))
    }
 
-   const handleProjectClick = (e: React.MouseEvent<HTMLElement>) => {
+   const handleAddProjectClick = (e: React.MouseEvent<HTMLElement>) => {
       e.preventDefault()
       setProjectUrls('')
       setForm((form) => ({
          ...form,
          projectUrls: [...form.projectUrls, projectUrls],
+      }))
+   }
+
+   const handleRemoveProjectClick = (project) => {
+      setProjectUrls('')
+      setForm((form) => ({
+         ...form,
+         projectUrls: form.projectUrls.filter((element) => element !== project),
+      }))
+   }
+
+   const handleRemovePortfolioClick = (portfolio) => {
+      setPortfolioUrls('')
+      setForm((form) => ({
+         ...form,
+         portfolioUrls: form.portfolioUrls.filter(
+            (element) => element !== portfolio
+         ),
       }))
    }
 
@@ -119,7 +133,7 @@ export const EditStudentPortfolio = () => {
       setTimeout(() => {
          setLoading(false)
          toast.success('Profil uzupełniony! 💪')
-         // navigate('/user/profile')
+         navigate('/user/profile')
       }, 1000)
    }
 
@@ -129,7 +143,6 @@ export const EditStudentPortfolio = () => {
       coursesDescribe,
       experienceDescribe,
       expectation,
-      backFromModal,
    } = description.studentPortfolio
    const {
       preferWork,
@@ -140,8 +153,9 @@ export const EditStudentPortfolio = () => {
       targetSalary,
    } = description.userInterview
 
+   const { backToProfile } = description.buttons
+
    const {
-      emailDesc,
       githubNickDesc,
       lastNameDesc,
       firstNameDesc,
@@ -149,7 +163,6 @@ export const EditStudentPortfolio = () => {
       firstNameErrorMessage,
       githubNickErrorMessage,
       lastNameErrorMessage,
-      emailErrorMessage,
       telErrorMessage,
       targetWorkCityErrorMessage,
       expectedSalaryErrorMessage,
@@ -157,11 +170,12 @@ export const EditStudentPortfolio = () => {
    } = description.editCv
 
    const { addProjectBtn, sendFormBtn } = description.editCv
+
    return (
-      <PageContainer>
+      <EditModalContainer>
          <Form onSubmit={handleSubmit(submit)}>
             <BackButton onClick={() => navigate('/user')}>
-               {backFromModal}
+               {backToProfile}
             </BackButton>
             <AsideSection>
                <InputTextBox
@@ -213,22 +227,6 @@ export const EditStudentPortfolio = () => {
                   }
                />
                <InputTextBox
-                  value={userConstEmail}
-                  placeholder="Email"
-                  title={emailDesc}
-                  layout="simple"
-                  error={email}
-                  validation={register('email', {
-                     pattern: {
-                        value: emailValidate,
-                        message: emailErrorMessage,
-                     },
-                  })}
-                  method={(e: ChangeEvent<HTMLInputElement>) =>
-                     updateForm('email', e.target.value)
-                  }
-               />
-               <InputTextBox
                   value={form.tel}
                   placeholder="Numer telefonu"
                   title={telDesc}
@@ -246,7 +244,7 @@ export const EditStudentPortfolio = () => {
                />
                <label>
                   <p>{aboutMe}</p>
-                  <textarea
+                  <TextArea
                      value={form.bio}
                      placeholder="Napisz coś o sobie..."
                      cols={25}
@@ -363,7 +361,10 @@ export const EditStudentPortfolio = () => {
                   urlBoxArray={form.portfolioUrls}
                   value={portfolioUrls}
                   inputMethod={updatePortfolioForm}
-                  btnMethod={handlePortfolioClick}
+                  removeMethod={(portfolio) =>
+                     handleRemovePortfolioClick(portfolio)
+                  }
+                  btnMethod={handleAddPortfolioClick}
                   btnText={addProjectBtn}
                />
                <UrlBox
@@ -371,13 +372,14 @@ export const EditStudentPortfolio = () => {
                   urlBoxArray={form.projectUrls}
                   value={projectUrls}
                   btnText={addProjectBtn}
-                  btnMethod={handleProjectClick}
+                  btnMethod={handleAddProjectClick}
+                  removeMethod={(project) => handleRemoveProjectClick(project)}
                   inputMethod={updateProjectChange}
                />
                <Button buttonTitle={sendFormBtn} />
             </MainSection>
          </Form>
          {loading && <Spinner />}
-      </PageContainer>
+      </EditModalContainer>
    )
 }

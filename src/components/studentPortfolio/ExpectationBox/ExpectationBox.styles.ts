@@ -12,12 +12,12 @@ export const ExpectationSection = styled.div`
    ${device.tablet} {
       flex-direction: row;
       justify-content: center;
+      margin-bottom: 40px;
    }
 
    ${device.desktop} {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-
       margin: 10px 0;
    }
 `

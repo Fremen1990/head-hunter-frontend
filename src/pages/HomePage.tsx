@@ -13,7 +13,7 @@ export const HomePage = () => {
 
    return (
       <>
-         {role && <Header />}
+         <Header />
 
          <LoginPageContainer style={{ height: '90vh' }}>
             <HomeLogo data-cy="home-logo">

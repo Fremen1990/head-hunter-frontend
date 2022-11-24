@@ -1,12 +1,19 @@
 import styled from 'styled-components'
 import { appColors } from '../../constants/Layout/app.colors'
 import { device } from '../../constants/mediaQueries'
+import { PageContainer } from '../../constants/Layout/Container.styles'
+import { AiOutlineClose } from 'react-icons/ai'
+
+export const EditModalContainer = styled(PageContainer)`
+   border: 1px solid transparent;
+   background-color: transparent;
+`
 
 export const BackButton = styled.button`
    width: 100%;
-   margin: 5px 5px 0;
+   margin: 0 auto;
    padding: 5px;
-   font-size: 1.5rem;
+   font-size: 1.8rem;
    text-align: center;
    border: 1px solid ${appColors.userPointColor};
    color: ${appColors.userPointColor};
@@ -17,8 +24,13 @@ export const BackButton = styled.button`
       text-transform: uppercase;
    }
 
+   ${device.tablet} {
+      width: 80%;
+   }
+
    ${device.desktop} {
-      width: 50px;
+      width: 65%;
+      margin-bottom: 20px;
    }
 
    &:hover {
@@ -41,7 +53,7 @@ export const AsideSection = styled.div`
    width: 100%;
 
    ${device.desktop} {
-      width: calc(30% - 10px);
+      width: 35%;
       margin-right: 10px;
    }
 
@@ -59,51 +71,6 @@ export const AsideSection = styled.div`
          text-transform: uppercase;
       }
    }
-
-   & input {
-      padding: 10px 10px;
-      font-size: 1.6rem;
-      margin-left: 10px;
-      background-color: ${appColors.pageContainerColor};
-      border: 1px solid ${appColors.userPointColor};
-      border-radius: 5px;
-      color: ${appColors.userPointColor};
-
-      :hover {
-         border-color: yellow;
-      }
-
-      &:focus {
-         outline: none;
-         box-shadow: 0px 0px 2px green;
-         border-color: green;
-      }
-   }
-
-   & textarea {
-      resize: none;
-      width: 80vw;
-      padding: 20px;
-      color: ${appColors.userPointColor};
-      font-size: 1.6rem;
-      background-color: ${appColors.pageContainerColor};
-
-      :hover {
-         border-color: yellow;
-      }
-
-      &:focus {
-         outline: none;
-         box-shadow: 0px 0px 2px green;
-         border-color: green;
-      }
-
-      ${device.desktop} {
-         padding: 15px;
-         height: 300px;
-         width: 100%;
-      }
-   }
 `
 
 export const MainSection = styled.div`
@@ -112,32 +79,7 @@ export const MainSection = styled.div`
    width: 100%;
 
    ${device.desktop} {
-      width: calc(70% - 60px);
-   }
-
-   & textarea {
-      color: ${appColors.userPointColor};
-      font-size: 1.5rem;
-      width: 90%;
-      margin: 10px 0;
-      padding: 5px;
-
-      :hover {
-         border-color: yellow;
-      }
-
-      &:focus {
-         outline: none;
-         box-shadow: 0px 0px 2px green;
-         border-color: green;
-      }
-   }
-
-   & select {
-      font-size: 1.6rem;
-      padding: 5px;
-      color: ${appColors.userPointColor};
-      background-color: ${appColors.pageContainerColor};
+      width: calc(100% - 35% - 10px);
    }
 
    & label {
@@ -145,18 +87,10 @@ export const MainSection = styled.div`
       text-align: center;
    }
 
-   & input {
-      font-size: 1.6rem;
-      background-color: ${appColors.pageContainerColor};
-      border: 1px solid ${appColors.userPointColor};
-      color: ${appColors.userPointColor};
-      margin: 20px 0;
-      padding: 5px;
-   }
-
    & button {
       margin-left: 10px;
-      padding: 5px;
+      padding: 5px 10px;
+      border-radius: 5px;
       font-size: 1.6rem;
       color: ${appColors.fontColor};
       border: 1px solid ${appColors.userPointColor};
@@ -178,41 +112,41 @@ export const MainSection = styled.div`
 `
 
 export const EditExpectationBoxContainer = styled.div`
-   display: flex;
-   flex-direction: row;
-   justify-content: center;
-   align-items: center;
-   flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 
-   &input {
+  &input {
 
-      :hover {
-         border-color: yellow;
-      }
+    :hover {
+      border-color: yellow;
+    }
 
-      &:focus {
-         outline: none;
-         box-shadow: 0px 0px 2px green;
-         border-color: green;
-      }
-   }
-   
-   }
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 2px green;
+      border-color: green;
+    }
+  }
 
-   ${device.desktop} {
-      padding: 15px;
-      height: 400px;
-      width: 100%;
-   }
+}
 
-   ${device.tablet} {
-      justify-content: center;
-      flex-direction: column;
-   }
+${device.desktop} {
+  padding: 15px;
+  height: 400px;
+  width: 100%;
+}
 
-   ${device.desktop} {
-      flex-direction: row;
-   }
+${device.tablet} {
+  justify-content: center;
+  flex-direction: column;
+}
+
+${device.desktop} {
+  flex-direction: row;
+}
 `
 export const ErrorSimpleLayoutMessage = styled.div`
    color: ${appColors.buttonColor};
@@ -253,12 +187,25 @@ export const BoxContainer = styled.div`
 
       &:focus {
          outline: none;
-         box-shadow: 0px 0px 2px green;
+         box-shadow: 0 0 2px green;
          border-color: green;
       }
    }
 
    ${device.desktop} {
       width: 40%;
+   }
+`
+
+export const RemoveIcon = styled(AiOutlineClose)`
+   margin-left: 5px;
+   font-size: 2rem;
+   color: ${appColors.buttonColor};
+   transition: 0.3s;
+   cursor: pointer;
+
+   &:hover {
+      font-size: 2.5rem;
+      transform: rotate(-180deg);
    }
 `

@@ -55,6 +55,7 @@ export const description = {
       annual: 'anuluj',
       search: 'wyszukaj',
       filter: 'Filtrowanie',
+      backToProfile: 'powrót do swojego profilu',
    },
    studentPortfolio: {
       rating: 'oceny',

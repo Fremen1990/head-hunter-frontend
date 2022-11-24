@@ -5,10 +5,6 @@ interface Props {
    text: string
 }
 
-export const SubtitlesSection = (props: Props) => {
-   return (
-      <>
-         <SubtitleSection>{props.text}</SubtitleSection>
-      </>
-   )
-}
+export const SubtitlesSection = ({ text }: Props) => (
+   <SubtitleSection>{text}</SubtitleSection>
+)

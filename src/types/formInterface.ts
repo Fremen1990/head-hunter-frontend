@@ -1,6 +1,5 @@
 export interface FormCVInterface {
    studentStatus: string
-   email: string
    firstName: string
    lastName: string
    githubUserName: string

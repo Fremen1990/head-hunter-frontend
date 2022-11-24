@@ -1,9 +1,8 @@
 import React from 'react'
-import { RatingContainer } from './RatingBox.styles'
 import { SubtitlesSection } from '../SubtitlesSection/SubtitlesSection'
 import { RatingViewBox } from './RatingViewBox/RatingViewBox'
 import { description } from '../../../constants/description/description'
-import { studentsInterface } from '../../../pages/Hr.page'
+import { RatingContainer } from './RatingBox.styles'
 
 interface Props {
    ratingStars: number[]

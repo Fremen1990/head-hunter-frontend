@@ -1,20 +1,19 @@
 import React from 'react'
-import { Button } from '../../commons/Button/Button'
-
-import {
-   DescriptionContainer,
-   GitHubContainer,
-   GithubIcon,
-   MailIcon,
-   PhoneIcon,
-   RowContainer,
-} from './AsideUserBox.styles'
-import { description } from '../../../constants/description/description'
-import { toast } from 'react-toastify'
-import { userChangeStatus } from '../../../features/user/userActions'
 import { useDispatch } from 'react-redux'
+import { userChangeStatus } from '../../../features/user/userActions'
+import { toast } from 'react-toastify'
 import { useAppSelector } from '../../../app/hooks'
 import { RootState } from '../../../app/store'
+import { Button } from '../../commons/Button/Button'
+import { description } from '../../../constants/description/description'
+import {
+    DescriptionContainer,
+    GitHubContainer,
+    GithubIcon,
+    MailIcon,
+    PhoneIcon,
+    RowContainer,
+} from './AsideUserBox.styles'
 
 interface Props {
    firstName: string

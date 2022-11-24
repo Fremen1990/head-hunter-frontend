@@ -1,4 +1,11 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { AsideUserBox } from './AsideUserBox/AsideUserBox'
+import { RatingBox } from './RatingBox/RatingBox'
+import { DescriptionBox } from './DescriptionBox/DescriptionBox'
+import { ExpectationBox } from './ExpectationBox/ExpectationBox'
+import { LinksBox } from './LinksBox/LinksBox'
+import { description } from '../../constants/description/description'
 import {
    AsideSection,
    BackButton,
@@ -6,14 +13,7 @@ import {
    MainSection,
    UserPortfolioContainer,
 } from './StudentPortfolio.styles'
-import { LinksBox } from './LinksBox/LinksBox'
-import { AsideUserBox } from './AsideUserBox/AsideUserBox'
-import { DescriptionBox } from './DescriptionBox/DescriptionBox'
-import { RatingBox } from './RatingBox/RatingBox'
-import { ExpectationBox } from './ExpectationBox/ExpectationBox'
-import { description } from '../../constants/description/description'
 import { studentsInterface } from 'src/pages/Hr.page'
-import { useNavigate } from 'react-router-dom'
 
 interface Props {
    student: studentsInterface

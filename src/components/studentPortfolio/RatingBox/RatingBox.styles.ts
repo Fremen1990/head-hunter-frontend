@@ -5,17 +5,18 @@ export const RatingContainer = styled.div`
    display: flex;
    flex-direction: column;
    justify-content: center;
+   flex-wrap: wrap;
    align-items: center;
    gap: 20px;
-   margin: 10px 0;
+   margin: 20px 0;
 
    ${device.tablet} {
       flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
    }
 
    ${device.desktop} {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      padding: 5px;
+      justify-content: space-around;
    }
 `
